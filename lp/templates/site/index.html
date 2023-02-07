@@ -1,0 +1,164 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Antherus</title>
+
+
+	<!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Boostrap 4 CDN  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+	<!-- FontAwesome CDN -->
+	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="fontawesome/css/all.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+
+
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-landing-page.css' %}">
+
+
+	<!-- Java Script -->
+	 <script type="text/javascript" src="{% static 'js/scripts-landing-page.js' %}"></script>
+
+
+</head>
+
+<!-- Corpo do HTML -->
+<body >
+	<!-- Container -->
+	<div class="container-fluid ">
+		<!-- Header da Pagina -->
+		<header id="header">
+			<!-- Imagem da Logo -->
+			<img src="{% static 'img/logo-2.png' %}" id="img-logo">
+		</header>
+
+		<!-- HEAD LINE -->
+		<div id="head-line">
+			<h4 class=" text-center " id="header-head-line">Operação Vendas nas Redes Sociais</h4>
+			<p class="texto-head-line text-center">Aumente suas vendas..<br>Receba uma consultoria grátis.</p>
+		</div>
+
+		<!-- Formulário -->
+		<div id="div-formulario">
+			<h5 class="text-center m-2 " id="header-formulario" >Preencha o Formulário.</h5>
+			<form id="formulario" enctype="multipart/form-data" method="POST">
+				{% csrf_token %}
+				<!-- CAMPO NOME -->
+				<div class="campo-formulario form-group" id="campo-formulario-nome">
+					<label for="nome">Nome</label>
+					<input type="text" name="nome" id="nome" class="form-control" placeholder="Seu Nome">
+					<span><i id="campo-nome-ok" class="fa fa-check" aria-hidden="true"></i></span>
+
+
+
+				</div>
+
+				<!-- E-MAIL -->
+				<div class="campo-formulario form-group" id="campo-formulario-email">
+					<label for="email">Seu Melhor E-mail</label>
+					<input type="email" name="email" id="email" class="form-control"  placeholder="Seu Melhor E-mail">
+					<span id="campo-email-ok"><i class="fa fa-check" aria-hidden="true"></i></span>
+
+
+				</div>
+
+				<!-- CAMPO WHATSAPP -->
+				<div class="campo-formulario form-group" id="campo-formulario-whatsapp">
+					<label for="whatsapp">Whatsapp</label>
+					<input type="text" name="whatsapp" id="whatsapp" class="form-control" placeholder="WhatsApp" maxlength="14" minlength="11">
+					<div id="campo-whatsapp-ok"><i class="fa fa-check" aria-hidden="true"></i></div>
+					<div id="validacao-whatsapp" class="text-center"><small  ></small></div>
+
+
+				</div>
+
+				<!-- CAMPO ACEITO OS TERMOS -->
+				<div class="campo-formulario form-group" id="campo-formulario-aceita-termos">
+					<input type="checkbox" name="aceita_termos" id="aceita-termos"  >
+					<label for="aceita-termos" id="text-aceita-termos">Aceita o contato de nosso time de consultores.</label>
+
+
+				</div>
+
+				<!-- CAMPO BTN ENVIAR -->
+				<div id="btn-enviar" class="form-group" >
+					<input type="submit" name="enviar" id="enviar" class="btn-lg btn-warning " disabled>
+
+					<br>
+				</div>
+
+
+
+			</form>
+		</div>
+
+
+		<!-- VIDEO -->
+		<div id="video">
+			<h5 id="header-video">Ainda não enviou o formulário??</h5>
+			<p id="text-header-video">Assista o vídeo e conheça mais!</p>
+			<iframe  src="https://www.youtube.com/embed/kq1jVJvX5E4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+		</div>
+
+		<!-- Texto Perssuasivo -->
+	<div id="texto-auxiliar">
+
+		<ul id="lista-beneficios" class="card text-dark">
+			<h5 id="header-lista-benificios" class="text-center">Consultoria inclui</h5>
+			<li class="item-lista-beneficios"><i class='fa fa-check mr-2 check-lista-beneficios'></i>Treinamento - Como vender pela redes sociais!</li>
+
+			<li class="item-lista-beneficios"><i class='fa fa-check mr-2 check-lista-beneficios'></i>Como conduzir vendas pelas redes sociais.</li>
+			<li class="item-lista-beneficios"><i class='fa fa-check mr-2 check-lista-beneficios'></i>Descubra como conquistar, engajar e fidelizar novos clientes.</li>
+			<li class="item-lista-beneficios"><i class='fa fa-check mr-2 check-lista-beneficios'></i>Análise e Planejamento elaborado por social midias profissionais.</li>
+			<br>
+
+			<p class="p-2 ml-2 text-center" id="texto-chamada-final">Venha faturar nas redes sociais você também!!!!</p>
+		</ul>
+
+
+	</div>
+
+	<!-- Botao retorno ao Formulário -->
+	<!-- CAMPO BTN ENVIAR -->
+				<div id="btn-retorno-formulario" class="form-group " >
+					<a href="#header" id="retorno-formulario" class="btn-lg btn-warning ">Preencher Formulário</a>
+
+					<br>
+				</div>
+
+
+	<footer >
+		<i class="fa fa-copyright" aria-hidden="true">Copyright</i>
+		<div>Antherus - Desenvolvimento Web</div>
+		<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+	</footer>
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+
+
+
+
+
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
