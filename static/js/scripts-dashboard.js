@@ -1,194 +1,120 @@
-$( document ).ready(function() {
+$(document).ready(function() {
 
+ 				/*BTN DO LEADS  HOVER */
+ 				$('.leads').hover(
+	  				function(){
+	  					$(this).css({'transform': 'initial','box-shadow': '0 5px 15px rgba(0,0,0,0.6)'});
+	  				}, function(){
+	  					$(this).css({'transform': 'scale(1.03)','box-shadow': 'none'});
+	  				}
+	  			);
 
 
-			/*Texto BTN ENVIAR */
+	  			/*ABRIR LEADS */
+	  			$(document).on('click', '.leads', function(){
+	  				 var formData = new FormData(); // construct our own upload data
+	  				 formData.append('confirma_abertura','leas-aberto');
+			         var request = new XMLHttpRequest();
+			         //request.open("POST", "http://127.0.0.1:8000/dropzone/{{post.id}}/upload/", false); //config your post url here
+			         //request.send(formData);  //send the post request to server
+			         //console.log("Enviou"+  list_of_files[i])
+			         //alert('Agora Leads está aberto')
 
-			$('#enviar').val('Aceite o termo acima para enviar');
-			$('#enviar').css({'color':'gray','width':'340px'});
 
+	  			});
 
 
 
 
 
 
-			$(document).on('focus','.form-control', function(){
-		  		$(this).css({'box-shadow':'20px 10px 30px  #00ff11 inset'})
 
-		  	});
+ 				/*BTN DO EDITAR PERFIL  HOVER */
+ 				$('#editar-perfil').hover(
+	  				function(){
+	  					$(this).css({'transform': 'initial','box-shadow': '0 5px 15px rgba(0,0,0,0.6)'});
+	  					$('#editar-perfil a').css({'color':'white'});
+	  				}, function(){
+	  					$(this).css({'transform': 'scale(1.03)','box-shadow': 'none'});
+	  					$('#editar-perfil a').css({'color':'#0275d8'});
+	  				}
+	  			);
 
-		  	$(document).on('blur','input', function(){
-		  		$(this).css({'box-shadow':'initial'})
-		  	});
+	  			/*BTN DO EDITAR CONFIGURACAO  HOVER */
+ 				$('#config-perfil').hover(
+	  				function(){
+	  					$(this).css({'transform': 'initial','box-shadow': '0 5px 15px rgba(0,0,0,0.6)'});
+	  					$('#config-perfil a').css({'color':'white'});
+	  				}, function(){
+	  					$(this).css({'transform': 'scale(1.03)','box-shadow': 'none'});
+	  					$('#config-perfil a').css({'color':'#0275d8'});
+	  				}
+	  			);
 
+ 				/*BTN HISTORICO DE ATENDIMENTO */
+				$('#display-atendimentos').hide();
+	  			$(document).on('click','#btn-mostra-display-atendimento', function(){
+	  				$('#display-atendimentos').show();
 
+	  				$('#btn-mostra-display-atendimento').addClass('aberto')
 
-		  	$(document).on('blur','#nome', function(){
-		  		var nome = $(this).val();
-		  		if(nome.length > 0){
+	  			})
 
-		  			$('#campo-nome-ok').css({'z-index':'0','color':'green'});
-		  			$('#campo-nome-ok').css({'z-index':'0'})
-		  		}else{
+	  			$(document).on('click','.aberto', function(){
+	  				$('#display-atendimentos').hide();
 
-		  			$('#campo-nome-ok').css({'z-index':'0','color':'red'});
-		  		}
-		  	});
+	  				$('#btn-mostra-display-atendimento').removeClass('aberto')
 
+	  			});
 
 
 
+	  			/*BTN CADASTRAR ATENDIMENTO */
+	  			$('#form-atendimento').hide();
+	  			$(document).on('click','#btn-cadastrar-atendimento', function(){
+	  				$('#form-atendimento').show();
+	  				$('#historico-atendimento').hide();
+	  				$('#btn-cadastrar-atendimento').addClass('open')
 
-		  	$(document).on('blur','#email', function(){
-		  		var email = $(this).val();
 
-		  		if(email.length > 0){
-		  			const regexEmail = 	/^([\w\-]+\.)*[\w\- ]+@([\w\- ]+\.)+([\w\-]{2,3})$/g;
+	  			})
 
 
-		  			// verificar Fazendo a procura do regex dentro do valor do email
-		  			verificaEmail = email.search(regexEmail);
-		  			//alert(verificaEmail)
-		  			if(verificaEmail == 0){
-		  				$('#campo-email-ok').css({'z-index':'0'});
-		  				$('#campo-email-ok').css({'color':'green'});
-		  			}
-		  			if(verificaEmail == -1){
-		  				$('#campo-email-ok').css({'z-index':'0'});
+	  			$(document).on('click','.open', function(){
+	  				$('#form-atendimento').hide();
+	  				$('#historico-atendimento').show();
+	  				$('#btn-cadastrar-atendimento').removeClass('open')
 
-		  				$('#campo-email-ok').css({'color':'red'});
 
+	  			})
 
-		  			}
 
 
-		  		}
 
 
-		  	});
 
 
 
 
 
 
-		  	/* Verifica se não está sendo digitado valores NÃO NÚMERICOS*/
-		  	document.getElementById('whatsapp').addEventListener('keyup', function (event) {
 
-		  			regexNumericos = /[0-9]/;
-		  			digitado = event.code
 
-		  			/*Para tirar o Key e ficar só o valor da tecla */
-		  			digitado = digitado.replace('Key','');
 
 
-		  			/*Verifica a regexNaonumericos */
-		  			verificaNaonumericos = digitado.search(regexNumericos);
 
 
-		  			/*Se  verificaNumeros retornar -1 , é pq NÃO É numerico */
-		  			if(verificaNaonumericos == -1){
-		  				$('#validacao-whatsapp').html('Digite somente números');
-		  				$('#validacao-whatsapp').css({'background':'yellow','color':'red'});
 
+		dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+		monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+		now = new Date
 
-		  			}
 
+		$('#data-hora-header').html("<span> Hoje é " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </span>");
 
+});
 
 
-		  			/* Se valor tecla Delete ou Backspace */
-		  			if(digitado == 'Delete' || digitado == 'Backspace'){
-		  				//alert('apagando')
-		  				$('#validacao-whatsapp').html('');
-		  			}
 
-		  			/*Verifica o valor do campo*/
 
-				  	var valorDigitado = $('#whatsapp').val();
-				  	if (valorDigitado.length == 12){
-				  		$('#validacao-whatsapp').html('máximo 11 números');
-				  		$('#validacao-whatsapp').css({'background':'yellow','color':'red'});
 
-
-				  	}
-
-
-		  	});
-
-		  	$(document).on('blur','#whatsapp', function(){
-		  		/* Verificar o tamanho digitado*/
-		  		whatsapp = $(this).val();
-
-
-
-		  		/*Se o tamanho for igual a 10 digitos - padrao DDD e 8 Digitos(xx) xxxx-xxxx */
-		  		if(whatsapp.length == 10){
-
-		  			whatsapp = whatsapp.replace(whatsapp[0],'('+whatsapp[0]);
-		  			whatsapp = whatsapp.replace(whatsapp[3],')'+whatsapp[3]);
-
-		  			$('#whatsapp').val(whatsapp)
-		  			$('#campo-whatsapp-ok').css({'z-index':'0','color':'green'})
-		  		}
-
-		  		/*Se o tamanho for igual a 11 digitos - padrao DDD e 8 Digitos(xx) 9xxxx-xxxx */
-		  		if(whatsapp.length == 11){
-
-		  			whatsapp = whatsapp.replace(whatsapp[0],'('+whatsapp[0]);
-		  			whatsapp = whatsapp.replace(whatsapp[3],')'+whatsapp[3]);
-
-
-		  			$('#whatsapp').val(whatsapp)
-		  			$('#campo-whatsapp-ok').css({'z-index':'0','color':'green'})
-		  		}
-
-		  	})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-		  	var checkTermos = document.getElementById('aceita-termos');
-		  	$(document).on('click','#aceita-termos', function(){
-
-		  		if(checkTermos.checked){
-		  			$('#enviar').val('Enviar');
-		  			$('#enviar').removeAttr('disabled');
-		  			$('#enviar').css({'color':'black','width':'340px'});
-		  		}else{
-		  			$('#enviar').val('Aceite o termo acima para enviar');
-		  			$('#enviar').attr('disabled','disabled');
-		  			$('#enviar').css({'color':'gray','width':'340px'});
-		  		}
-		  	});
-
-
-		  	/* Botão Enviar */
-		  	$(document).on('click','#enviar', function(){
-		  		$('#enviar').val('Enviando');
-		  	});
-
-
-
-
-
-
-
-
-
-
-		});

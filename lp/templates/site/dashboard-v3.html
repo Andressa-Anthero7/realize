@@ -3,7 +3,7 @@
 <html>
 <head>
 
-
+	
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Antherus</title>
@@ -11,7 +11,7 @@
 
 	<!-- Jquery CDN -->
 	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-
+	
 	<!-- Boostrap 4 CDN  -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -28,11 +28,11 @@
 
 	<!-- CSS -->
 	 <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-dashboard-v3.css' %}">
-
-
+	 
+	
 	<!-- Java Script -->
 	<script type="text/javascript" src="{% static 'js/script-dashboard-v3.js' %}"></script>
-
+	
 
 </head>
 
@@ -43,29 +43,29 @@
 		<!-- Header da Pagina -->
 		<header id="header">
 			<!-- Imagem da Logo -->
-			<img src="{% static 'img/logo-2.png" id="img-logo' %}">
+			<img src="{% static 'img/logo-2.png' %}" id="img-logo">
 
 			<!-- Switch para Background BlackMode/WhiteMode -->
 			<span id="switch-dark-mode">
 
-
+				
 				<label for="switch"><i class="fa fa-moon-o" id="btn-mode-dark" aria-hidden="true"></i></label>
-
+				
 				<input type="checkbox" id="switch" />
-
+				
 			</span>
 			<!-- SCRIPT DO DARK MODE -->
 			<script type="text/javascript" src="{% static 'js/darkmode.js' %}"></script>
 
 		</header>
-
+		
 
 		<!-- Header do Dashboard -->
 		<div id="header-dashboard" class="text-center">
 				<!--DATA DO DIA DATA DO HEADER -->
 				<div id="data-hora-header" ></div>
 		</div>
-
+		
 		<!-- NAVEGAÇAO -->
 			<nav id="navegacao">
 				<!--BARRA DE PESQUISA -->
@@ -87,15 +87,15 @@
 
 				<!-- Menu Deslizante -->
 				<div id="menu-deslizante" class="collapse p-1">
-
+					
 					<!--HEADER DO MENU DESLIZANTE -->
 					<h5 id="header-menu-deslizante" class="">Antherus - Gerenciador de Leads</h5>
 					<!-- PERFIL DO USUÁRIO -->
 					<div id="perfil-user" class="text-center">
 						<!--Foto Perfil User -->
-
+						
 							<img id="img-perfil-user" class="img img-fluid "  src="logo.png" alt="Foto Perfil Usuário">
-
+						
 						<div id="nome-perfil">ANDRESSA CRISTINA ANTHERO</div>
 						<script type="text/javascript">
 							var tamanhoNomeperfil = $('#nome-perfil').text();
@@ -118,7 +118,7 @@
 						</script>
 						<span id="editar-perfil" class="btn btn-outline-primary  " ><a href="editar-perfil.html" class=" text-decoration-none fa fa-edit d-inline">Editar Perfil</a></span>
 						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="configuracao.html" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
-
+						
 					</div>
 					<!-- BTNS DO MENU -->
 					<div id="menu" class="mt-3">
@@ -179,18 +179,18 @@
 						</div>
 
 						<script type="text/javascript" src="{% static 'js/script-btn-menu.js' %}"></script>
-
-
+						
+						
 					</div>
-
-
+					
+					
 				</div>
-
+				
 			</nav>
 			<!-- FINAL NAVEGAÇÃO -->
 
 			<!--DASHBOARD -->
-		<div id="dashboard-area">
+		<div id="dashboard">
 			<!-- Header do Leads Board -->
 				<h4 id="header-leads-board" class="text-left m-1 p-2">Gerenciador de Leads</h4>
 				<!-- Sub Header -->
@@ -198,69 +198,15 @@
 			<!-- Leads Board -->
 			<div id="leads-board">
 
+				
 
 
-
-			<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
+			{% for leads in leads %}
 				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
+				<div class="leads" data-toggle="modal" data-target="#leadsModal-{{leads.pk}}" >
 					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
+					<div id="remetente">{{leads.nome_leads}}</div>
+					<div id="data-horario" class="text-left">{{leads.data_recebimento|slice:"8:10"}}-{{leads.data_recebimento|slice:"5:7"}}-{{leads.data_recebimento|slice:"0:4"}} às{{leads.data_recebimento|slice:"10:19"}}</div>
 
 
 
@@ -268,52 +214,8 @@
 				<!--Final do Leads -->
 
 
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
 
 
-
-				</div>
-				<!--Final do Leads -->
-
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
-
-
-				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">Andressa Cristina Anthero</div>
-					<div id="data-horario">30/01/2023 12:00</div>
-
-
-
-				</div>
-				<!--Final do Leads -->
 				<!-- SCRIPT LEADS HOVER -->
 				<script type="text/javascript" src="{% static 'js/script-leads-hover.js' %}"></script>
 
@@ -323,13 +225,13 @@
 
 
 			  		<!-- MODAL DO LEADS -->
-				<div class="modal fade col-sm-6" id="leadsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade col-sm-6" id="leadsModal-{{leads.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<!-- MODAL DIALOG -->
 				  <div class="modal-dialog  " role="document">
 				  	<!-- MODAL CONTENT -->
 				    <div class="modal-content">
 				      <div class="modal-header p-0">
-				        <h5 class="modal-title ml-3 p-2 bg-primary text-white " id="exampleModalLabel">Leads - Id 1</h5>
+				        <h5 class="modal-title ml-3 p-2 bg-primary text-white " id="exampleModalLabel">Leads - Id {{leads.pk}}</h5>
 				        <button type="button" class="close m-1" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
 				        </button>
@@ -340,27 +242,29 @@
 				      				<!--Info do Leads -->
 				      	<div id="info-leads">
 
-				      		<!-- CAMPO REMETENTE -->
-					        <div class="my-2" id="campo-remetente">
-					        	<span class=" text-primary ml-1 p-1  label-info-leads remetente-label text-uppercase">Remetente</span>
-					        	<span class="text-info-leads ml-1"  id="info-nome"> Andressa Cristina Anthero12asd</span>
-					    	</div>
+
 
 					    	<!-- CAMPO  DATA DE RECEBIMENTO -->
-					         <div class="my-2 text-center text-dark" id="campo-recebido">
+					         <div class="my-2 text-center text-dark" id="">
 					         	<span  class="text-dark font-weight-bold text-uppercase">Recebido em</span>
-					         	<span class="text-info-leads"> 01/02/2023 12:00</span>
+					         	<span class="text-info-leads"> {{leads.data_recebimento|slice:"0:19"}}</span>
 					         </div>
 
+								<!-- CAMPO REMETENTE -->
+					        <div class="my-2" id="">
+					        	<span class=" text-primary ml-1 p-1  label-info-leads remetente-label text-uppercase">Remetente</span>
+					        	<span class="text-info-leads ml-1"  id="info-nome"> {{leads.nome_leads}}</span>
+					    	</div>
+
 					         <!-- CAMPO EMAIL -->
-					         <div class="my-2" id="campo-email">
+					         <div class="my-2" id="">
 					         	<span class=" text-primary ml-1  p-1 label-info-leads text-uppercase">Email</span>
-					         	<span class="text-info-leads ml-3">andressa@andressa.com.br</span>
+					         	<span class="text-info-leads ml-3">{{leads.email}}</span>
 					         </div>
 
 					         <!-- CAMPO WHATSAPP -->
-					         <div class=" text-center" id="campo-whatsapp">
-					         	<i   class="   fa fa-whatsapp font-weight-bold link-whatsapp"><span class="text-dark " id="whatsapp-leads">(16)99337-9492<span></i>
+					         <div class=" text-center" id="">
+					         	<i   class="   fa fa-whatsapp font-weight-bold link-whatsapp"><span class="text-dark " id="whatsapp-leads">{{leads.whatsapp}}<span></i>
 				         	 </div>
 
 				         	 <!-- BTN INICIAR ATENDIMENTO -->
@@ -389,10 +293,11 @@
 
 				</div>
 				<!--Final Modal -->
+			{% endfor %}
 
 
 
-
+			
 
 
 		</div>
@@ -400,14 +305,14 @@
 
 
 
+		
+
+		
 
 
+		
 
-
-
-
-
-
+		
 
 
 			<!-- FOOTER -->
@@ -417,14 +322,14 @@
 			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
 		</footer>
 
-
+	
 
 	</div>
 	<!-- FINAL CONTAINER -->
 
-
-
-
+	
+	
+	
 
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->

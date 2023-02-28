@@ -177,10 +177,7 @@ $( document ).ready(function() {
 		  	});
 
 
-		  	/* Botão Enviar */
-		  	$(document).on('click','#enviar', function(){
-		  		$('#enviar').val('Enviando');
-		  	});
+
 
 
 

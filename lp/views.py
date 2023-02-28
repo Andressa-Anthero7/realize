@@ -25,4 +25,4 @@ def index(request):
 
 def dashboard(request):
     leads = Leads.objects.all()
-    return render(request, 'site/dashboard.html', {'leads': leads})
+    return render(request, 'site/dashboard-v3.html', {'leads': leads})
