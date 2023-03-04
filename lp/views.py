@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from datetime import datetime
-from .models import Leads
+from .models import Leads, Agendamento
 
 
 # Create your views here.
@@ -24,5 +24,33 @@ def index(request):
 
 
 def dashboard(request):
-    leads = Leads.objects.all()
+    leads = Leads.objects.all().order_by('-data_recebimento')
+
+    print(leads)
     return render(request, 'site/dashboard-v3.html', {'leads': leads})
+
+
+def atendimento(request):
+    agendamentos = Agendamento.objects.all()
+    return render(request, 'site/atendimento.html', {'agendamentos': agendamentos})
+
+
+def criar_agendamento(request):
+    if request.method == 'POST':
+        nome_agendamento = request.POST.get('nome_agendamento')
+        data_evento = request.POST.get('data_evento')
+        data_termino = request.POST.get('data_termino')
+        print(data_termino)
+        data_agendamento = datetime.now()
+        user_agendamento = request.user
+        Agendamento.objects.create(
+            nome_agendamento=nome_agendamento,
+            data_evento=data_evento,
+            data_termino=data_termino,
+            data_agendamento=data_agendamento,
+            user_agendamento=user_agendamento,
+        )
+
+        return render(request, 'site/atendimento.html')
+    else:
+        return render(request, 'site/atendimento.html')

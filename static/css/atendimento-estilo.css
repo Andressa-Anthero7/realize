@@ -1,0 +1,974 @@
+
+*{
+	 margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#dashboard-area{
+
+}
+
+
+/* Celulares Moto G*/
+@media (min-width: 321px) and (max-width:  360.97px) {
+    body{
+
+
+        margin: 0 ;
+        padding: 0;
+
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+
+
+
+        background: lavender;
+
+        min-height: 2000px;
+
+
+    }
+
+    html{
+         overflow-x: hidden;
+
+    }
+
+
+    .container-fluid{
+
+         width: 415px;
+         border:1px solid red;
+
+    }
+
+    #header{
+       min-width:420px;
+        background: #0E0816;
+        position: relative;
+        left:-1.2em;
+
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:2em;
+    }
+
+    #data-hora-header{
+        max-width: 420px;
+        position: relative;
+        left:0em;
+        font-size: 1.3em;
+        font-weight: 600;
+
+    }
+
+
+    #navegacao{
+        width: 425px;
+        position: relative;
+        left:-1.5em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+         min-width:420px;
+        padding-left:2em;
+        position: relative;
+        left:0;
+        top:-2em;
+
+        min-height: 50px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    #menu-hamburguer{
+        position: relative;
+        top: 0em;
+        left: 0em;
+        font-size: 3em;
+        z-index: 1;
+    }
+
+    #btn-pesquisar{
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+        max-width: 360px;
+    }
+
+    #header-menu-deslizante{
+        max-width: 320px;
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1.1em;
+
+        text-align: center;
+        position: relative;
+        left:1em;
+    }
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+
+         max-width: 340px;
+         position: relative;
+        left:1em;
+
+    }
+
+    #img-perfil-user{
+        border:1px solid gray;
+        border-radius: 100%;
+        min-width:250px ;
+        min-height: 250px;
+        position: relative;
+        left:0em;
+    }
+
+    #editar-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1.5em;
+        position: relative;
+        left:0em;
+        margin-bottom: 0.5em;
+
+    }
+
+    #config-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1.5em;
+        position: relative;
+        left:0em;
+
+    }
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+
+
+
+
+
+
+    #menu{
+        padding-top:1em;
+        padding-bottom:1em;
+    }
+
+    .btn-menu{
+        min-width: 360px;
+
+        position: relative;
+        left: -1em;
+        line-height: 2em;
+        border-radius: 0px 40px 40px 0px;
+        text-align: left;
+        padding-left: 1em;
+        font-weight: 700;
+        font-size: 1.3em;
+
+
+    }
+
+    .text-btn-menu{
+        position: relative;
+        left:1em;
+        font-size: 0.9em;
+    }
+
+    .qtde-leads-btn-menu{
+        position: relative;
+        left:1em;
+    }
+
+
+    #switch-dark-mode{
+
+        position: relative;
+        left:5em;
+    }
+
+    #btn-mode-dark{
+        position: relative;
+        left: 2em;
+        top:0.3em;
+        font-size: 2em;
+        color:white;
+    }
+
+     input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+
+
+    #leads-atendimento{
+
+
+
+
+    }
+
+
+
+
+   #dados-leads-atendimento{
+        font-size: 1.5em;
+    }
+
+
+    #btn-voltar{
+        font-size: 1.3em;
+        position: relative;
+        left:-3em;
+        text-decoration: none;
+    }
+
+
+
+    #text-btn-voltar{
+        font-size: 0.8em;
+        font-weight: 800;
+    }
+
+
+
+    #whatsapp-leads-atendimento{
+        font-size: 0.9em;
+        padding: 0.5em;
+    }
+
+
+
+
+
+
+
+
+
+    #area-agendamento{
+
+        position: relative;
+        left:-1em;
+        min-width:420px;
+
+    }
+
+    #label-btn-agendamentos{
+         font-size: 1.5em;
+         position: relative;
+         left:1em;
+         top:0.1em;
+         font-weight: bolder;
+
+
+    }
+
+    #btn-agenda{
+
+        position: relative;
+        left:6.5em;
+        font-size: 1.5em;
+        margin: 0.5em;
+    }
+
+
+
+    #calendar{
+        min-height: 550px;
+
+        position: relative;
+        top:1em;
+        left:-1em;
+        max-width: 360px;
+        visibility: hidden;
+
+
+    }
+
+    tr{
+        height: 4em;
+
+    }
+
+    .fc-view{
+
+        background: silver;
+
+    }
+
+
+
+    .fc-header-toolbar{
+
+         min-height: 10em;
+    }
+
+    .fc-prev-button{
+        position: relative;
+        top:-3em;
+        left:1em;
+
+    }
+
+    .fc-next-button{
+        position: relative;
+        top:-3em;
+        left:21em;
+
+    }
+
+    .fc,.fc-toolbar-title{
+
+        white-space: nowrap;
+        font-size: 0.8em;
+        position: relative;
+        top:-1.7em;
+        left: -0.7em;
+
+
+    }
+
+    .fc-timeGridWeek-button{
+        position: relative;
+        left:-22em;
+        top:2em;
+
+    }
+
+    .fc-timegrid-slot-label-cushion{
+        color: black;
+    }
+
+    .fc-timeGridDay-button{
+        position: relative;
+        left:-8em;
+        top:2em;
+    }
+
+    a, .fc-col-header-cell-cushion{
+        font-size: 1.2em;
+        white-space: normal;
+        text-decoration: none;
+        color:black;
+    }
+
+
+    #text-area-anotacoes-atendimento{
+        position: relative;
+        top:-0.5em;
+        min-width: 330px;
+        min-height: 150px;
+        padding: 0.5em;
+
+    }
+
+    #enviar-anotacoes-atendimento{
+        min-width: 320px;
+        position: relative;
+        top:-1em;
+
+    }
+
+
+    #area-cadastrar-atendimento{
+
+        position: relative;
+        top:-34em;
+         left:-1em;
+        min-width:420px;
+
+
+
+    }
+
+    #label-btn-cadastrar-atendimento{
+         font-size: 1.4em;
+         position: relative;
+         left:1em;
+         top:0.1em;
+         font-weight: 600;
+         color:black;
+
+
+    }
+
+    #btn-cadastrar-atendimento{
+
+        position: relative;
+        left:3.5em;
+        font-size: 1.5em;
+        margin: 0.5em;
+    }
+
+
+
+
+    #atendimento{
+        position: relative;
+        top:-33em;
+        max-width: 330px;
+        display: none;
+
+    }
+
+    #lista-atendimento{
+        overflow-y: scroll;
+        max-height: 500px;
+
+    }
+
+
+
+   #area-cadastrar-cliente{
+
+        position: relative;
+        top:-33.5em;
+         left:-1em;
+         min-width:420px;
+
+
+
+    }
+
+    #label-btn-cadastrar-cliente{
+         font-size: 1.5em;
+         position: relative;
+         left:1em;
+         top:0.1em;
+         font-weight: bolder;
+
+
+    }
+
+    #btn-cadastrar-cliente{
+
+        position: relative;
+        left:5.5em;
+        font-size: 1.5em;
+        margin: 0.5em;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:-1em;
+        top:5em;
+        text-align: center;
+        color:black;
+
+    }
+
+}
+
+
+
+
+/* Celulares até 5,5 Polegadas Tamanho G */
+@media (min-width: 376px) and (max-width:  414.98px) {
+	body{
+
+
+	    margin: 0 ;
+	    padding: 0;
+
+		overflow-x: hidden;
+		font-family:Noto Sans, sans-serif;
+
+
+
+		background: lavender;
+
+		min-height: 2000px;
+
+
+	}
+
+	html{
+		 overflow-x: hidden;
+
+	}
+
+
+	.container-fluid{
+
+		 width: 400px;
+
+	}
+
+	#header{
+		min-width:440px;
+		background: #0E0816;
+		position: relative;
+		left:-2em;
+		border:1px solid red;
+	}
+
+	#img-logo{
+		max-width:300px;
+		max-height: 70px;
+		position: relative;
+		left:6em;
+	}
+
+	#data-hora-header{
+		max-width: 420px;
+		position: relative;
+		left:0em;
+		font-size: 1.3em;
+		font-weight: 600;
+
+	}
+
+
+	#navegacao{
+		width: 425px;
+		position: relative;
+		left:-1.5em;
+	}
+
+
+	#pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        max-width: 415px;
+        padding-left:2em;
+        position: relative;
+        left:0;
+        top:-2em;
+
+        min-height: 50px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    #menu-hamburguer{
+        position: relative;
+        top: 0em;
+        left: 0em;
+        font-size: 3em;
+        z-index: 1;
+    }
+
+    #btn-pesquisar{
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+    #header-menu-deslizante{
+        max-width: 360px;
+    	font-weight: 800;
+    	white-space: nowrap;
+
+
+        text-align: center;
+        position: relative;
+        left:1em;
+    }
+
+    #nome-perfil{
+    	font-weight: 800;
+    	white-space: nowrap;
+    	font-size: 1em;
+
+         max-width: 360px;
+         position: relative;
+        left:1em;
+
+    }
+
+    #img-perfil-user{
+        border:1px solid gray;
+        border-radius: 100%;
+        min-width:250px ;
+        min-height: 250px;
+        position: relative;
+        left:-0.85em;
+    }
+
+    #editar-perfil{
+    	font-weight: 800;
+    	white-space: nowrap;
+    	font-size: 1.5em;
+        position: relative;
+        left:-0.5em;
+
+    }
+
+    #config-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1.5em;
+        position: relative;
+        left:-0.5em;
+
+    }
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+
+
+
+
+
+
+    #menu{
+        padding-top:1em;
+        padding-bottom:1em;
+    }
+
+    .btn-menu{
+        min-width: 400px;
+
+        position: relative;
+        left: -1em;
+        line-height: 2em;
+        border-radius: 0px 40px 40px 0px;
+        text-align: left;
+        padding-left: 1em;
+        font-weight: 700;
+        font-size: 1.3em;
+
+
+    }
+
+    .text-btn-menu{
+        position: relative;
+        left:1em;
+    }
+
+    .qtde-leads-btn-menu{
+        position: relative;
+        left:1em;
+    }
+
+
+    #switch-dark-mode{
+
+    	position: relative;
+    	left:8em;
+    }
+
+    #btn-mode-dark{
+    	position: relative;
+    	left: 0em;
+    	top:0.3em;
+    	font-size: 2em;
+    	color:white;
+    }
+
+     input[type=checkbox]{
+        height: 0;
+        width: 0;
+        visibility: hidden;
+    }
+
+
+
+
+   #dados-leads-atendimento{
+        font-size: 1.5em;
+    }
+
+
+    #btn-voltar{
+        font-size: 1.3em;
+        position: relative;
+        left:-3em;
+        text-decoration: none;
+    }
+
+
+
+    #text-btn-voltar{
+        font-size: 0.8em;
+        font-weight: 800;
+    }
+
+
+
+    #whatsapp-leads-atendimento{
+        font-size: 0.9em;
+        padding: 0.5em;
+    }
+
+
+
+
+
+
+
+
+
+    #area-agendamento{
+
+        position: relative;
+        left:-1.5em;
+        min-width: 420px;
+    }
+
+    #label-btn-agendamentos{
+         font-size: 1.5em;
+         position: relative;
+         left:1em;
+         top:0.1em;
+         font-weight: bolder;
+
+
+    }
+
+    #btn-agenda{
+
+        position: relative;
+        left:6.2em;
+        font-size: 1.5em;
+        margin: 0.5em;
+    }
+
+
+
+    #calendar{
+        width: 400px;
+        min-height: 550px;
+
+        position: relative;
+        top:1em;
+        left:-1em;
+
+        visibility: hidden;
+
+    }
+
+    tr{
+        height: 4em;
+
+    }
+
+    .fc-view{
+
+        background: silver;
+
+    }
+
+
+
+    .fc-header-toolbar{
+
+         min-height: 10em;
+    }
+
+    .fc-prev-button{
+        position: relative;
+        top:-3em;
+        left:0.5em;
+
+    }
+
+    .fc-next-button{
+        position: relative;
+        top:-3em;
+        left:20.5em;
+
+    }
+
+    .fc,.fc-toolbar-title{
+
+        white-space: nowrap;
+        font-size: 0.9em;
+        position: relative;
+        top:-1.7em;
+        left: -1em;
+
+
+    }
+
+    .fc-timeGridWeek-button{
+        position: relative;
+        left:-22em;
+        top:2em;
+
+    }
+
+    .fc-timegrid-slot-label-cushion{
+        color: black;
+    }
+
+    .fc-timeGridDay-button{
+        position: relative;
+        left:-9em;
+        top:2em;
+    }
+
+    a, .fc-col-header-cell-cushion{
+        font-size: 1.2em;
+        white-space: normal;
+        text-decoration: none;
+        color:black;
+    }
+
+
+    #text-area-anotacoes-atendimento{
+        position: relative;
+        top:-0.5em;
+        min-width: 350px;
+        min-height: 150px;
+        padding: 0.5em;
+    }
+
+    #enviar-anotacoes-atendimento{
+        min-width: 320px;
+        position: relative;
+        top:-0.1em;
+
+    }
+
+
+    #area-cadastrar-atendimento{
+
+        position: relative;
+        top:-34em;
+        left:-1.5em;
+        min-width: 419px;
+
+
+    }
+
+    #label-btn-cadastrar-atendimento{
+         font-size: 1.5em;
+         position: relative;
+         left:1em;
+         top:0.1em;
+         font-weight: bolder;
+
+
+    }
+
+    #btn-cadastrar-atendimento{
+
+        position: relative;
+        left:2.5em;
+        font-size: 1.5em;
+        margin: 0.5em;
+    }
+
+    #atendimento{
+        position: relative;
+        top:-33em;
+        min-width: 370px;
+        display: none;
+    }
+
+    #lista-atendimento{
+        overflow-y: scroll;
+        max-height: 500px;
+
+    }
+
+
+
+   #area-cadastrar-cliente{
+
+        position: relative;
+        top:-33.5em;
+        left:-1.5em;
+        min-width: 419px;
+
+
+    }
+
+    #label-btn-cadastrar-cliente{
+         font-size: 1.5em;
+         position: relative;
+         left:1em;
+         top:0.1em;
+         font-weight: bolder;
+
+
+    }
+
+    #btn-cadastrar-cliente{
+
+        position: relative;
+        left:5.3em;
+        font-size: 1.5em;
+        margin: 0.5em;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+	footer{
+		position: relative;
+		left:-1em;
+		top:5em;
+		text-align: center;
+		color:black;
+
+	}
+
+
+}

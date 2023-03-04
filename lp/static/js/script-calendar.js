@@ -1,7 +1,8 @@
+
 	 const bancoDados = new Array();
           document.addEventListener('DOMContentLoaded', function() {
 
-               
+
 
               var calendarEl = document.getElementById('calendar');
               var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -21,11 +22,11 @@
               initialView: 'timeGridDay',
               selectable:true,
 
-              slotDuration: {minutes:10}, 
+              slotDuration: {minutes:10},
               slotLabelInterval:{minutes:10},
               slotLabelFormat: [
       					{  hour: 'numeric', minute:'numeric' }, // top level of text
-    				  
+
     				  ],
 
 
@@ -51,7 +52,7 @@
 
               },
 
-               
+
 
 
 
@@ -61,11 +62,11 @@
 
 
           select: function(info) {
-             	
-               var formData = new FormData();
 
 
-               
+
+
+
            		$('#calendarModal-1').modal('show');
               var nome = $('#nome-leads-atendimento').text();
               $('#nome-agendamento').val(nome);
@@ -74,62 +75,77 @@
 
            		$(document).on('click','#salvar-agendamento',function(){
               			//var nome = $('#nome-agendamento').val();
-                     var valor = info.startStr;
-
-             
-                   //alert(valor)
-                   var min = new Array();
-                  
-
-                  
-                   min = valor[14]+''+valor[15];
-                   min = parseInt(min);
-                   final = valor.replace(':'+valor[14]+''+valor[15],min+10);
-                   
-                   
-                   calendar.addEvent({
-                          title: nome,
-                          start: valor,
-                          end: final,
-                          locale: 'pt-br',
-                          timeZone: 'UTC',
+                         var valor = info.startStr;
+                         alert(valor)
 
 
-                          timeFormat: 'HH:mm',
-                          editable: true,
-                          droppable: true,
-                          startEditable:true,
-
-
-                    })
-
-                    $('#nome-agendamento').val('');
-                    
+                        alert(valor)
+                        var min = new Array();
 
 
 
-                  //formData.append('title',dados.title)
-                  //formData.append('hora',dados.startStr)
-                   //var request = new XMLHttpRequest()
-                 //request.open('POST', 'http://127.0.0.1:8000/agendar/',false)
-
-                   //const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+                        min = valor[14]+''+valor[15];
+                        min = parseInt(min);
+                        final = valor.replace(':'+valor[14]+''+valor[15],min+10);
 
 
-                  //request.setRequestHeader('X-CSRFToken', csrftoken)
+                       dados=calendar.addEvent({
+                              title: nome,
+                              start: valor,
+                              end: final,
+                              locale: 'pt-br',
+                              timeZone: 'UTC',
 
 
-                 //request.send(formData)
+                              timeFormat: 'HH:mm',
+                              editable: true,
+                              droppable: true,
+                              startEditable:true,
 
-                  //setTimeout(function() {
-                                      //window.location.href = "http://127.0.0.1:8000";
-                                 //}, 500);
 
-                  			
-                  			
+                        })
 
-                  			
-                  })/*FINAL DO BTN */
+
+                        //$('#nome-agendamento').val('');
+
+
+                        var formData = new FormData();
+
+
+                        formData.append('nome_agendamento',dados.title)
+						formData.append('data_evento',dados.startStr)
+
+
+
+
+
+                      var request = new XMLHttpRequest()
+
+
+                      request.open('POST', 'http://127.0.0.1:8000/criar_agendamento/',false)
+                       alert(request.readyState)
+
+
+                      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+                      alert(csrftoken)
+
+
+                      request.setRequestHeader('X-CSRFToken', csrftoken)
+                       alert(request.readyState)
+
+
+                      request.send(formData)
+                       alert(request.readyState)
+
+                      setTimeout(function() {
+                          window.location.href = "http://127.0.0.1:8000";
+                     }, 500);
+
+
+
+
+
+                })/*FINAL DO BTN */
 
            },/*FINAL DO SELECT */
 
@@ -197,16 +213,19 @@
 
 
            events:[
-              
-                  {
-                          id : '{{agendamentos.id}}',
-                          title  : '{{agendamentos.title}}',
-                          start  : '{{agendamentos.data}}',
+
+
+                   {% for agendamentos in agendamentos %}
+                        {
+                                id : '{{agendamentos.id}}',
+                                title  : '{{agendamentos.nome_agendamento}}',
+                                start  : '{{agendamentos.data_evento}}',
 
 
 
-                  },
-             
+                        },
+                    {% endfor %}
+
 
 
            ],

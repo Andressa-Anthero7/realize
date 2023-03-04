@@ -22,3 +22,11 @@ class Leads(models.Model):
     status_leads = models.CharField(max_length=6, choices=STATUS_LEADS)
     data_recebimento = models.CharField(max_length=50)
     ultimo_user = models.CharField(max_length=30)
+
+
+class Agendamento(models.Model):
+    nome_agendamento = models.CharField(max_length=30)
+    data_evento = models.CharField(max_length=50)
+    data_termino = models.CharField(max_length=50)
+    data_agendamento = models.CharField(max_length=50)
+    user_agendamento = models.CharField(max_length=50)

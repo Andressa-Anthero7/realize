@@ -196,12 +196,12 @@
 				<!-- Sub Header -->
 				<h5 id="sub-header-leads-board" class="text-center m-1 p-2">Principal</h5>
 			<!-- Leads Board -->
-			<div id="leads-board">
+			<div id="leads-board" class="border border-dark">
 
 				
 
 
-			{% for leads in leads %}
+				{% for leads in leads %}
 				<!--Leads -->
 				<div class="leads" data-toggle="modal" data-target="#leadsModal-{{leads.pk}}" >
 					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
@@ -220,8 +220,7 @@
 				<script type="text/javascript" src="{% static 'js/script-leads-hover.js' %}"></script>
 
 
-			</div>
-			<!-- FINAL Leads Board -->
+
 
 
 			  		<!-- MODAL DO LEADS -->
@@ -293,7 +292,10 @@
 
 				</div>
 				<!--Final Modal -->
-			{% endfor %}
+				{% endfor %}
+
+			</div>
+			<!-- FINAL Leads Board -->
 
 
 
