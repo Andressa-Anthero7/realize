@@ -122,7 +122,7 @@
                       var request = new XMLHttpRequest()
 
 
-                      request.open('POST', 'http://127.0.0.1:8000/criar_agendamento/',false)
+                      request.open('POST', 'https://nix2022.pythonanywhere.com/criar_agendamento/',false)
                        alert(request.readyState)
 
 
@@ -138,7 +138,7 @@
                        alert(request.readyState)
 
                       setTimeout(function() {
-                          window.location.href = "http://127.0.0.1:8000";
+                          window.location.href = "https://nix2022.pythonanywhere.com";
                      }, 500);
 
 
