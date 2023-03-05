@@ -30,9 +30,11 @@ def dashboard(request):
     return render(request, 'site/dashboard-v3.html', {'leads': leads})
 
 
-def atendimento(request):
+def atendimento(request, pk):
+    leads_atendimento = Leads.objects.filter(pk=pk)
     agendamentos = Agendamento.objects.all()
-    return render(request, 'site/atendimento.html', {'agendamentos': agendamentos})
+    return render(request, 'site/atendimento.html', {'agendamentos': agendamentos,
+                                                     'leads_atendimento':leads_atendimento})
 
 
 def criar_agendamento(request):

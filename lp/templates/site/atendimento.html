@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 {% load static %}
   {% csrf_token %}
-<html xmlns="http://www.w3.org/1999/html">
+
 <head>
 
 
@@ -11,8 +11,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Antherus</title>
 
-	<!-- CSS-->
-	 <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
+	<!-- CSS
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">-->
 
 
 	<!-- Jquery CDN -->
@@ -459,26 +459,30 @@
 		<!-- DADOS DO LEADS EM ATENDIMEMTO -->
 		<div id="leads-atendimento" class="text-center">
 			<!-- BTN VOLTAR -->
-			<div id="btn-voltar"><a href="dashboard-v3.html" id="btn-voltar" class="fa fa-arrow-left btn btn-outline-primary"><span id="text-btn-voltar"> voltar</span></a></div>
+			<div id="btn-voltar"><a href="{% url 'dashboard' %}" id="btn-voltar" class="fa fa-arrow-left btn btn-outline-primary"><span id="text-btn-voltar"> voltar</span></a></div>
+
+
+			{% for leads_atendimento in leads_atendimento %}
 			<div id="dados-leads-atendimento" class="m-3 ">
 				<div id="id-leads-atendimento">
 					<span>Id:</span>
-					<span>01</span>
+					<span>{{leads_atendimento.pk}}</span>
 				</div>
 				<div id="campo-nome-leads-atendimento" class="m-3">
 					<span class="mr-1">Nome:</span>
-					<span id="nome-leads-atendimento">Nix Anthero</span>
+					<span id="nome-leads-atendimento">{{leads_atendimento.nome_leads}}</span>
 				</div>
 				<div  class="m-3">
 					<span class="mr-1">Email:</span>
-					<span id="email-leads-atendimento">adm@adm.com.br</span>
+					<span id="email-leads-atendimento">{{leads_atendimento.email}}</span>
 				</div>
-				<a href="https://wa.me/5516993379492?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn btn-success m-3 p-2">
+				<a href="https://wa.me/55{{leads_atendimento.whatsapp|slice:'1:3'}}{{leads_atendimento.whatsapp|slice:'4:'}}?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn btn-success m-3 p-2">
 					<span class="">Falar pelo</span>
 					<span class="fa fa-whatsapp mx-1" ></span>
-					<span id="whatsapp-leads-atendimento">(16)9xxxx-xxxx</span>
+					<span id="whatsapp-leads-atendimento">{{leads_atendimento.whatsapp}}</span>
 				</a>
 			</div>
+			{% endfor %}
 
 
 		</div>
@@ -494,8 +498,9 @@
 
 		<!--AREA AGENDAMENTO -->
 		<div id="area-agendamento" class="bg-primary ">
-			<span id="label-btn-agendamentos">Agendamentos</span>
 			<span id="btn-agenda" class="btn btn-light"><i class=" fa fa-chevron-down"></i></span>
+			<span id="label-btn-agendamentos">Agendamentos</span>
+
 			<!--SCRIPT BTN AGENDAMENTOS -->
 			<script type="text/javascript" src="{% static 'js/script-btn-agendamentos.js' %}"></script>
 		</div>
@@ -556,8 +561,9 @@
 
 			<!--AREA CADASTRAR -->
 			<div id="area-cadastrar-atendimento" class="bg-primary ">
-				<span id="label-btn-cadastrar-atendimento">Cadastrar Atendimento</span>
 				<span id="btn-cadastrar-atendimento" class="btn btn-light"><i class=" fa fa-chevron-down"></i></span>
+				<span id="label-btn-cadastrar-atendimento">Cadastrar Atendimento</span>
+
 			</div>
 
 			<!--SCRIPT ABRIR ATENDIMENTO -->
@@ -630,8 +636,9 @@
 			<!-- CADASTRAR FICHA CLIENTE -->
 
 			<div id="area-cadastrar-cliente" class="bg-primary ">
-				<span id="label-btn-cadastrar-cliente">Cadastrar Cliente</span>
 				<span id="btn-cadastrar-cliente" class="btn btn-light"><i class=" fa fa-plus-circle"></i></span>
+				<span id="label-btn-cadastrar-cliente">Cadastrar Cliente</span>
+
 				<!-- CADASTRAR CLIENTE -->
 				<script type="text/javascript" src="{% static 'js/btn-cadastrar-cliente.js' %}"></script>
 			</div>
