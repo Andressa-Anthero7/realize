@@ -11,7 +11,7 @@ def index(request):
         nome_leads = request.POST.get('nome')
         email_leads = request.POST.get('email')
         whatsapp_leads = request.POST.get('whatsapp')
-        status_aberto = 'NÃO'
+        status_aberto = 'fa-envelope'
         data_recebimento = datetime.now()
         Leads.objects.create(nome_leads=nome_leads,
                              email=email_leads,
@@ -21,6 +21,11 @@ def index(request):
         return render(request, 'site/index.html')
     else:
         return render(request, 'site/index.html')
+
+
+def abrirleads(request, pk):
+    status_aberto = 'fa-envelope-open'
+    Leads.objects.filter(pk=pk).update(status_aberto=status_aberto )
 
 
 def dashboard(request):
@@ -34,7 +39,7 @@ def atendimento(request, pk):
     leads_atendimento = Leads.objects.filter(pk=pk)
     agendamentos = Agendamento.objects.all()
     return render(request, 'site/atendimento.html', {'agendamentos': agendamentos,
-                                                     'leads_atendimento':leads_atendimento})
+                                                     'leads_atendimento': leads_atendimento})
 
 
 def criar_agendamento(request):

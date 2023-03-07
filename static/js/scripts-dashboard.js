@@ -12,6 +12,7 @@ $(document).ready(function() {
 
 	  			/*ABRIR LEADS */
 	  			$(document).on('click', '.leads', function(){
+	  			    alert('alerta')
 	  				 var formData = new FormData(); // construct our own upload data
 	  				 formData.append('confirma_abertura','leas-aberto');
 			         var request = new XMLHttpRequest();

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% csrf_token %}
 <html>
 <head>
 
@@ -32,6 +33,25 @@
 	
 	<!-- Java Script -->
 	<script type="text/javascript" src="{% static 'js/script-dashboard-v3.js' %}"></script>
+
+
+	<!-- SCRIPT DATA ATUAL -->
+	<script>
+		$( document ).ready(function() {
+
+
+
+
+
+			dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+		   monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+		   now = new Date
+		   $('#data-hora-header').html("<span> Hoje é " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </span>")
+
+
+
+	   });
+	</script>
 	
 
 </head>
@@ -198,20 +218,70 @@
 			<!-- Leads Board -->
 			<div id="leads-board" class="border border-dark">
 
-				
-
 
 				{% for leads in leads %}
 				<!--Leads -->
-				<div class="leads" data-toggle="modal" data-target="#leadsModal-{{leads.pk}}" >
-					<div id="envelope"><i class="fa fa-envelope envelope-leads leads-novo"  aria-hidden="true"></i></div>
-					<div id="remetente">{{leads.nome_leads}}</div>
-					<div id="data-horario" class="text-left">{{leads.data_recebimento|slice:"8:10"}}-{{leads.data_recebimento|slice:"5:7"}}-{{leads.data_recebimento|slice:"0:4"}} às{{leads.data_recebimento|slice:"10:19"}}</div>
+				<script>
+					$(window).on('load', function(){
+						$(document).on('click', '#leads-{{leads.pk}}', function(){
+							$('#leadsModal-{{leads.pk}}').modal('show');
+							var formData = new FormData();
 
+
+                        formData.append('status_aberto','SIM')
+
+
+
+
+
+
+                      var request = new XMLHttpRequest()
+
+
+                      request.open('POST', 'http://127.0.0.1:8000/abrirleads/{{leads.pk}}/',false)
+
+
+
+                      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+
+
+                      request.setRequestHeader('X-CSRFToken', csrftoken)
+
+
+
+                      request.send(formData)
+
+                      	$('#leadsModal-{{leads.pk}}').modal('show');
+						});
+					});
+
+
+					</script>
+
+				<div class=" leads" id="leads-{{leads.pk}}" data-target="#leadsModal-{{leads.pk}}"    >
+
+
+
+
+					<div id="envelope">
+
+						<i class="fa {{leads.status_aberto}} envelope-leads leads-novo"  aria-hidden="true"></i>
+
+					</div>
+					<div id="remetente">{{leads.nome_leads|slice:':30'}}</div>
+
+					<div id="data-horario" class="text-left">{{leads.data_recebimento|slice:"8:10"}}-{{leads.data_recebimento|slice:"5:7"}}-{{leads.data_recebimento|slice:"0:4"}} às{{leads.data_recebimento|slice:"10:19"}}</div>
 
 
 				</div>
 				<!--Final do Leads -->
+				<!--SCRIPT ABRE ENVELOPE LEADS-->
+
+
+
+
+
 
 
 
@@ -235,6 +305,12 @@
 				        <button type="button" class="close m-1" data-dismiss="modal" aria-label="Close">
 				          <span aria-hidden="true">&times;</span>
 				        </button>
+						  <!--Script atualizar apos dismiss -->
+						 <script>
+							  $(document).on('click','.close', function(){
+						  		window.location.reload();
+						  	  });
+						 </script>
 				      </div>
 				      <!-- MODAL BODY -->
 				      <div class="modal-body py-1 m-0">
@@ -246,20 +322,20 @@
 
 					    	<!-- CAMPO  DATA DE RECEBIMENTO -->
 					         <div class="my-2 text-center text-dark" id="">
-					         	<span  class="text-dark font-weight-bold text-uppercase">Recebido em</span>
-					         	<span class="text-info-leads"> {{leads.data_recebimento|slice:"0:19"}}</span>
+					         	<div  class="text-dark font-weight-bold text-uppercase">Recebido em</div>
+					         	<div class="text-info-leads"> {{leads.data_recebimento|slice:"0:19"}}</div>
 					         </div>
 
 								<!-- CAMPO REMETENTE -->
 					        <div class="my-2" id="">
-					        	<span class=" text-primary ml-1 p-1  label-info-leads remetente-label text-uppercase">Remetente</span>
-					        	<span class="text-info-leads ml-1"  id="info-nome"> {{leads.nome_leads}}</span>
+					        	<div class=" text-primary ml-1 p-1  label-info-leads remetente-label text-uppercase">Remetente</div>
+					        	<div class="text-info-leads ml-3"  id="info-nome"> {{leads.nome_leads}}</div>
 					    	</div>
 
 					         <!-- CAMPO EMAIL -->
 					         <div class="my-2" id="">
-					         	<span class=" text-primary ml-1  p-1 label-info-leads text-uppercase">Email</span>
-					         	<span class="text-info-leads ml-3">{{leads.email}}</span>
+					         	<div class=" text-primary ml-1  p-1 label-info-leads text-uppercase">Email</div>
+					         	<div class=" text-info-leads text-info-leads-2 ml-3">{{leads.email}}</div>
 					         </div>
 
 					         <!-- CAMPO WHATSAPP -->

@@ -41,16 +41,16 @@
     .container-fluid{
 
          max-width: 415px;
-         border:1px solid red;
+
 
 
     }
 
     #header{
-       min-width:420px;
+       min-width:440px;
         background: #0E0816;
         position: relative;
-        left:-1.2em;
+        left:-2em;
 
     }
 
@@ -118,7 +118,8 @@
         z-index: 1;
         background: white;
         border:1px solid black;
-        max-width: 360px;
+        max-width: 413px;
+        border-top-right-radius:5%;
     }
 
     #header-menu-deslizante{
@@ -236,7 +237,11 @@
 
 
     #leads-atendimento{
-
+        position:relative;
+        left:0em;
+        padding:0.5em;
+        border:1px solid black;
+        border-radius:1%;
 
 
 
@@ -247,13 +252,16 @@
 
    #dados-leads-atendimento{
         font-size: 1.5em;
+
+
+
     }
 
 
     #btn-voltar{
         font-size: 1.3em;
         position: relative;
-        left:-2.5em;
+        left:-5em;
         text-decoration: none;
     }
 
@@ -267,8 +275,17 @@
 
 
     #whatsapp-leads-atendimento{
-        font-size: 0.9em;
+
         padding: 0.5em;
+        max-width:150px;
+
+    }
+
+    #email-leads-atendimento{
+
+        font-size:16px;
+        word-break: break-all;
+
     }
 
 
@@ -281,9 +298,9 @@
 
     #area-agendamento{
 
-        position: absolute;
-        left:-1em;
-        top:30em;
+        position: relative;
+        left:-2.2em;
+        top:2em;
         min-width:460px;
 
     }
@@ -301,7 +318,7 @@
     #btn-agenda{
 
         position: relative;
-        left:2em;
+        left:1em;
         font-size: 1.5em;
         margin: 0.5em;
     }
@@ -341,33 +358,34 @@
     }
 
     .fc-prev-button{
-        position: relative;
-        top:-3em;
-        left:1em;
+         position:relative;
+        left:25px;
+        top:22px;
 
     }
 
     .fc-next-button{
-        position: relative;
-        top:-3em;
-        left:20em;
+        position:relative;
+        left:50px;
+        top:22px;
 
     }
 
     .fc,.fc-toolbar-title{
 
         white-space: nowrap;
-        font-size: 0.9em;
+        font-size: 0.7em;
         position: relative;
         top:-1.7em;
-        left: 0em;
+        left: 1em;
+        border:1px solid red;
 
 
     }
 
     .fc-timeGridWeek-button{
         position: relative;
-        left:-20em;
+        left:-5em;
         top:2em;
 
     }
@@ -378,7 +396,7 @@
 
     .fc-timeGridDay-button{
         position: relative;
-        left:-6em;
+        left:-3em;
         top:2em;
     }
 
@@ -387,6 +405,7 @@
         white-space: normal;
         text-decoration: none;
         color:black;
+
     }
 
 
@@ -403,15 +422,16 @@
         min-width: 320px;
         position: relative;
         top:-1em;
+        color:black;
 
     }
 
 
     #area-cadastrar-atendimento{
 
-        position: absolute;
-        top:35em;
-         left:-1em;
+        position:relative;
+        top:-32em;
+         left:-2.2em;
          min-width:460px;
 
 
@@ -432,7 +452,7 @@
     #btn-cadastrar-atendimento{
 
         position: relative;
-        left:2em;
+        left:1em;
         font-size: 1.5em;
         margin: 0.5em;
     }
@@ -442,7 +462,7 @@
 
     #atendimento{
         position: relative;
-        top:-20em;
+        top:-30em;
         max-width: 380px;
         display: none;
 
@@ -452,16 +472,24 @@
     #lista-atendimento{
         overflow-y: scroll;
         max-height: 500px;
+        position:relative;
+        top:0em;
+        background:white;
 
+    }
+
+    #header-historico-atendimento{
+     position:relative;
+     top:0.5em;
     }
 
 
 
    #area-cadastrar-cliente{
 
-        position: absolute;
-        top:40em;
-         left:-1em;
+        position: relative;
+        top:-31.5em;
+         left:-2.2em;
         min-width:460px;
 
 
@@ -481,7 +509,7 @@
     #btn-cadastrar-cliente{
 
         position: relative;
-        left:2em;
+        left:1em;
         font-size: 1.5em;
         margin: 0.5em;
     }
@@ -552,8 +580,8 @@
 		min-width:440px;
 		background: #0E0816;
 		position: relative;
-		left:-2em;
-		border:1px solid red;
+		left:-2.2em;
+
 	}
 
 	#img-logo{
@@ -619,7 +647,7 @@
         top:1em;
         z-index: 1;
         background: white;
-        border:1px solid black;
+
     }
 
     #header-menu-deslizante{
@@ -737,13 +765,15 @@
 
    #dados-leads-atendimento{
         font-size: 1.5em;
+
+
     }
 
 
     #btn-voltar{
-        font-size: 1.3em;
+        font-size: 1.5em;
         position: relative;
-        left:-3em;
+        left:-6em;
         text-decoration: none;
     }
 
@@ -757,8 +787,17 @@
 
 
     #whatsapp-leads-atendimento{
-        font-size: 0.9em;
+        font-size: 1.5em;
+
         padding: 0.5em;
+    }
+
+
+    #email-leads-atendimento{
+
+        font-size:16px;
+        word-break: break-all;
+
     }
 
 
@@ -773,6 +812,8 @@
 
         position: relative;
         left:-2em;
+
+
         min-width: 430px;
     }
 
@@ -888,6 +929,8 @@
         min-width: 320px;
         position: relative;
         top:-0.1em;
+        color:black;
+        font-weight:800;
 
     }
 
@@ -922,7 +965,7 @@
 
     #atendimento{
         position: relative;
-        top:-33em;
+        top:-30em;
         min-width: 370px;
         display: none;
     }
@@ -931,6 +974,12 @@
         overflow-y: scroll;
         max-height: 500px;
 
+
+    }
+
+    #header-historico-atendimento{
+     position:relative;
+     top:0.5em;
     }
 
 

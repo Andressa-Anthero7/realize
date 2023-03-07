@@ -7,6 +7,8 @@
 
 
 
+
+
 /* Celulares Moto G*/
 @media (min-width: 321px) and (max-width:  360.97px) {
     body{
@@ -318,9 +320,16 @@
 
     .text-info-leads{
         
-        white-space: nowrap;
+        white-space:normal;
         color: green;
         font-size: 0.8em;
+    }
+
+    .text-info-leads-2{
+
+       word-break: break-all
+
+
     }
 
     #info-nome{
@@ -437,15 +446,15 @@
         color: green;
     }
 
-    .leads-aberto{
-        color: blue;
+    .fa-envelope-open{
+        color: orange;
     }
 
     #envelope{
         position: relative;
         top:0.3em;
-        left: 1.5em;
-        border-radius: 5%;
+        left: 0.5em;
+
         font-size: 1.5em;
     }
 
@@ -455,7 +464,7 @@
        
        position: relative;
        top:-2em;
-       left:5em;
+       left:2.8em;
        padding-left: 0.3em;
        font-size: 1em;
        white-space: nowrap;
@@ -469,7 +478,7 @@
        
        position: relative;
        top:-2em;
-       left:7em;
+       left:6em;
        padding-left: 0.3em;
        font-size: 1em;
        white-space: nowrap;
@@ -797,10 +806,18 @@
     	font-weight:700 ;
     }
 
+
     .text-info-leads{
-    	
-    	white-space: nowrap;
-    	color: green;
+
+        white-space:normal;
+        color: green;
+        font-size: 0.8em;
+    }
+
+    .text-info-leads-2{
+
+       word-break: break-all
+
     }
 
     #info-nome{
@@ -929,8 +946,8 @@
         color: green;
     }
 
-    .leads-aberto{
-        color: blue;
+    .fa-envelope-open{
+        color: orange;
     }
 
    #envelope{
