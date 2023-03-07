@@ -37,7 +37,7 @@
 
     .container-fluid{
          
-         width: 400px;
+         max-width: 415px;
 
     }
 
@@ -237,7 +237,7 @@
     #dashboard{
         border:1px solid black;
         border-radius:1%;
-        max-width: 360px;
+        min-width: 350px;
         
         position: relative;
         top: 1em;
@@ -247,6 +247,7 @@
     #leads-board{
         overflow-x: scroll;
         max-height: 500px;
+         min-width: 350px;
 
     }
 
