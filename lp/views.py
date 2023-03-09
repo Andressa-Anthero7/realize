@@ -1,6 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Leads, Agendamento
+from .models import Leads, Agendamento, Atendimento, Clientes
 
 
 # Create your views here.
@@ -25,7 +25,7 @@ def index(request):
 
 def abrirleads(request, pk):
     status_aberto = 'fa-envelope-open'
-    Leads.objects.filter(pk=pk).update(status_aberto=status_aberto )
+    Leads.objects.filter(pk=pk).update(status_aberto=status_aberto)
 
 
 def dashboard(request):
@@ -37,9 +37,14 @@ def dashboard(request):
 
 def atendimento(request, pk):
     leads_atendimento = Leads.objects.filter(pk=pk)
+    atendimento_vinculado = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
+
     agendamentos = Agendamento.objects.all()
+    anotacoes = Atendimento.objects.filter(leads_atendimento=pk).order_by('-data_inclusao_atendimento')
     return render(request, 'site/atendimento.html', {'agendamentos': agendamentos,
-                                                     'leads_atendimento': leads_atendimento})
+                                                     'leads_atendimento': leads_atendimento,
+                                                     'anotacoes': anotacoes,
+                                                     'atendimento_vinculado': atendimento_vinculado})
 
 
 def criar_agendamento(request):
@@ -61,3 +66,49 @@ def criar_agendamento(request):
         return render(request, 'site/atendimento.html')
     else:
         return render(request, 'site/atendimento.html')
+
+
+def criar_atendimento(request):
+    if request.method == 'POST':
+        print('anotacoes_atendimento')
+        anotacoes_atendimento = request.POST.get('anotacoes')
+
+        atendimento_vinculado = request.POST.get('id_atendimento')
+        data_inclusao_atendimento = datetime.now()
+        user_logado_inclusao = request.user
+
+        Atendimento.objects.create(
+            anotacoes_atendimento=anotacoes_atendimento,
+            atendimento_vinculado=atendimento_vinculado,
+            data_inclusao_atendimento=data_inclusao_atendimento,
+            user_inclusao_atendimento=user_logado_inclusao,
+
+        )
+
+        return redirect('atendimento', pk=atendimento_vinculado)
+    else:
+        return redirect('atendimento', pk=atendimento_vinculado)
+
+
+def cadastrar_clientes(request):
+    if request.method == 'POST':
+        atendimento_vinculado = request.POST.get('atendimento_vinculado')
+        nome_cliente = request.POST.get('nome_cliente')
+        print(nome_cliente)
+        email_cliente = request.POST.get('email_cliente')
+        whatsapp_cliente = request.POST.get('whatsapp_cliente')
+
+        Clientes.objects.create(
+            atendimento_vinculados_cliente=atendimento_vinculado,
+            nome_cliente=nome_cliente,
+            email_cliente=email_cliente,
+            whatsapp_cliente=whatsapp_cliente,
+
+        )
+
+
+
+
+def cadastro_cliente(request, pk):
+    cliente = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
+    return render(request, 'site/cadastro_cliente.html', {'cliente': cliente})
