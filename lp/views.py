@@ -88,7 +88,7 @@ def criar_atendimento(request):
 
         Atendimento.objects.create(
             anotacoes_atendimento=anotacoes_atendimento,
-            atendimento_vinculado=atendimento_vinculado,
+            leads_atendimento=atendimento_vinculado,
             data_inclusao_atendimento=data_inclusao_atendimento,
             user_inclusao_atendimento=user_logado_inclusao,
 
@@ -96,6 +96,7 @@ def criar_atendimento(request):
 
         return redirect('atendimento', pk=atendimento_vinculado)
     else:
+        atendimento_vinculado = request.GET.get('id_atendimento')
         return redirect('atendimento', pk=atendimento_vinculado)
 
 
