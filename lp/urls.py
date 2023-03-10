@@ -11,6 +11,7 @@ urlpatterns = [
     path('abrirleads/<int:pk>/', views.abrirleads, name='abrirleads'),
     path('cadastrar_clientes/', views.cadastrar_clientes, name='cadastrar_clientes'),
     path('cadastro_cliente/', views.cadastro_cliente, name='cadastro_cliente'),
+    path('qualificar_leads/<int:pk>/', views.qualificar_leads, name='qualificar_leads'),
 
 
 ]

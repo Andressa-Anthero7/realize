@@ -103,7 +103,7 @@ $(document).ready(function() {
 
       $(document).on('click','.fc-timeGridWeek-button',function(){
          $('.fc-col-header-cell-cushion').addClass('header-week-grid');
-         $('.fc-col-header-cell-cushion').removeClass('chshion');
+         $('.fc-col-header-cell-cushion').removeClass('cushion');
       });
 
       $(document)on('click','.header-week-grid',function(){

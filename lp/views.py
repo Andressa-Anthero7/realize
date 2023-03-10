@@ -12,11 +12,13 @@ def index(request):
         email_leads = request.POST.get('email')
         whatsapp_leads = request.POST.get('whatsapp')
         status_aberto = 'fa-envelope'
+        status_leads = 'NEUTRO'
         data_recebimento = datetime.now()
         Leads.objects.create(nome_leads=nome_leads,
                              email=email_leads,
                              whatsapp=whatsapp_leads,
                              status_aberto=status_aberto,
+                             status_leads=status_leads,
                              data_recebimento=data_recebimento)
         return render(request, 'site/index.html')
     else:
@@ -45,6 +47,13 @@ def atendimento(request, pk):
                                                      'leads_atendimento': leads_atendimento,
                                                      'anotacoes': anotacoes,
                                                      'atendimento_vinculado': atendimento_vinculado})
+
+
+def qualificar_leads(request, pk):
+    if request.method == 'POST':
+        status_leads = request.POST.get('status_leads')
+        print(status_leads)
+        Leads.objects.filter(pk=pk).update(status_leads=status_leads)
 
 
 def criar_agendamento(request):
@@ -105,8 +114,6 @@ def cadastrar_clientes(request):
             whatsapp_cliente=whatsapp_cliente,
 
         )
-
-
 
 
 def cadastro_cliente(request, pk):

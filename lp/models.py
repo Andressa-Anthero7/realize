@@ -4,17 +4,11 @@ from django.db import models
 # Create your models here.
 
 class Leads(models.Model):
-    STATUS_LEADS = (
-        ('FORTE', 'FORTE'),
-        ('NEUTRO', 'NEUTRO'),
-        ('FRACO', 'FRACO')
-    )
-
     nome_leads = models.CharField(max_length=30)
     email = models.CharField(max_length=50)
-    whatsapp = models.CharField(max_length=11)
-    status_aberto = models.CharField(max_length=4)
-    status_leads = models.CharField(max_length=6, choices=STATUS_LEADS)
+    whatsapp = models.CharField(max_length=13)
+    status_aberto = models.CharField(max_length=20)
+    status_leads = models.CharField(max_length=8)
     data_recebimento = models.CharField(max_length=50)
     ultimo_user = models.CharField(max_length=30)
 

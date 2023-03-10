@@ -181,9 +181,7 @@
                       request.send(formData)
 
 
-                      setTimeout(function() {
-                          window.location.href = "https://nix2022.pythonanywhere.com/";
-                     }, 500);
+                      window.location.reload();
 
 
 
@@ -221,7 +219,7 @@
               formData.append('title',info.event.title)
               formData.append('hora',info.event.startStr)
                var request = new XMLHttpRequest()
-               url = 'http://127.0.0.1:8000/editar/'+info.event.id+'/';
+               url = 'https://nix2022.pythonanywhere.com//editar/'+info.event.id+'/';
                //alert(url)
               request.open('POST',url ,false)
 
@@ -233,9 +231,7 @@
 
              request.send(formData)
 
-              setTimeout(function() {
-                                  window.location.href = "http://127.0.0.1:8000";
-                             }, 500);
+              window.location.reload();
 
 
 
@@ -488,7 +484,7 @@
 				<hr>
 				<div  class=" ">
 					<label class="bg-primary p-2 rounded  text-white font-weight-bold"">Email</label>
-					<p id="email-leads-atendimento" class="border border-danger  ">{{leads_atendimento.email}}</p>
+					<p id="email-leads-atendimento" class="  ">{{leads_atendimento.email}}</p>
 					<script>
 						var email = $('#email-leads-atendimento').text()
 						//alert(email[0])
@@ -513,11 +509,75 @@
 					</script>
 				</div>
 				<hr>
-				<a href="https://wa.me/55{{leads_atendimento.whatsapp|slice:'1:3'}}{{leads_atendimento.whatsapp|slice:'4:'}}?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn btn-success m-3 p-2">
+				<a id="btn-falar-whatsapp" href="https://wa.me/55{{leads_atendimento.whatsapp|slice:'1:3'}}{{leads_atendimento.whatsapp|slice:'4:'}}?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn btn-success m-3 p-2">
 					<span class="">Falar pelo</span>
 					<span class="fa fa-whatsapp mx-1" ></span>
 					<span id="whatsapp-leads-atendimento">{{leads_atendimento.whatsapp}}</span>
 				</a>
+				<!-- Qualificação -->
+				<form id="quaificacao-leads" class="my-3 py-4 border border-dark rounded">
+						<h4 class="text-center font-weight-bolder">Classificação do Leads</h4>
+						<label class="bg-primary p-1 rounded" for="opcionais-leads">Leads</label>
+						<select name="opcionais-leads" id="opcionais-leads" class="px-5 py-2 rounded font-weight-bold">
+
+							<option id="opcao-positivo"  value="POSITIVO">POSITIVO</option>
+							<option id="opcao-neutro"   value="NEUTRO">NEUTRO</option>
+							<option id="opcao-negativo"   value="NEGATIVO">NEGATIVO</option>
+						</select>
+
+						<script>
+									$( document ).ready(function() {
+										var statusLeads = '{{leads_atendimento.status_leads}}';
+										$('#opcionais-leads option[value="{{leads_atendimento.status_leads}}"] ').attr('selected','selected')
+									});
+							</script>
+
+
+
+
+				</form>
+				 <script>
+										 $(document).on('change','#opcionais-leads', function(){
+										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
+										 	var qualificacao = $(this).val();
+
+										 	 var formData = new FormData();
+
+											 formData.append('status_leads',qualificacao)
+
+											  var request = new XMLHttpRequest()
+
+
+
+
+											  request.open('POST', 'https://nix2022.pythonanywhere.com/qualificar_leads/{{leads_atendimento.pk}}/',false)
+
+
+
+
+
+											  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+
+
+
+											  request.setRequestHeader('X-CSRFToken', csrftoken)
+
+
+
+
+
+											 request.send(formData)
+											 window.location.reload();
+
+
+
+
+										 });
+									 </script>
+
+
+
 			</div>
 
 
@@ -725,15 +785,14 @@
 									 <script>
 										 $(document).on('click','#salvar-ficha-cliente', function(){
 										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
-										 	//alert('ALERTA')
+
 										 	 var formData = new FormData();
 										 	 var nome_cliente = $('#nome-cliente').val();
-										 	 //alert(nome_cliente)
+
 										 	 var email_cliente = $('#email-cliente').val();
-										 	 //alert(email_cliente)
+
 										 	 var whatsapp_cliente = $('#whatsapp-cliente').val();
-										 	 //alert(whatsapp_cliente)
-										 	 //alert(inputs)
+
 
 											formData.append('atendimento_vinculado',atendimento_vinculado)
 										 	 formData.append('nome_cliente',nome_cliente)
@@ -741,9 +800,7 @@
 										 	 formData.append('whatsapp_cliente',whatsapp_cliente)
 
 
-										 	 for (const pair of formData.entries()) {
-											  	alert(`${pair[0]}, ${pair[1]}`);
-											}
+
 
 
 
@@ -758,7 +815,7 @@
 
 
 
-											  request.open('POST', 'http://127.0.0.1:8000/cadastrar_clientes/',false)
+											  request.open('POST', 'https://nix2022.pythonanywhere.com/cadastrar_clientes/',false)
 
 
 

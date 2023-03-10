@@ -19,7 +19,7 @@
 
 
 
-         background: lavender;
+          background:#b7d0e1;
 
         min-height: 900px;
 
@@ -467,12 +467,12 @@
 
        position: relative;
        top:-2em;
-       left:6em;
+       left:7em;
 
        font-size: 1em;
        white-space: nowrap;
        font-weight: 700;
-
+       border:1px solid red;
     }
 
 
@@ -508,7 +508,7 @@
 
 
 
-		 background: lavender;
+		  background:#b7d0e1;
 
 		min-height: 900px;
 
@@ -809,7 +809,7 @@
 
     #campo-remetente{
     	position: relative;
-    	top:1.5em;
+    	top:4em;
     }
 
     .remetente-label{
@@ -819,8 +819,9 @@
 
     #campo-recebido{
     	position: relative;
-    	top:-3.5em;
+    	top:2em;
     	left:0em;
+    	border:1px solid red;
 
 
     }
@@ -944,12 +945,13 @@
        max-width: 180px;
 
        position: relative;
-       top:-2em;
+       top:1em;
        left:6em;
        padding-left: 0.3em;
        font-size: 1em;
        white-space: nowrap;
        font-weight: 700;
+       border1pc solid red;
 
     }
 
@@ -959,11 +961,12 @@
 
        position: relative;
        top:-2em;
-       left:7em;
-
+       left:6em;
+       padding-left: 0.3em;
        font-size: 1em;
        white-space: nowrap;
        font-weight: 700;
+       border:1px solid red;
     }
 
 
