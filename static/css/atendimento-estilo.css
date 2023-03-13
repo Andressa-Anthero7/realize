@@ -239,6 +239,7 @@
     }
 
 
+
     #leads-atendimento{
         position:relative;
         left:0em;
@@ -537,11 +538,40 @@
 
     #area-deletar-leads{
          position: relative;
-        top:-20em;
-         left:-2.2em;
-        min-width:460px;
-        border:1px solid red:
+        top:-30em;
+         left:0em;
+        max-width:460px;
+
     }
+
+    #btn-deletar-leads{
+        position:relative;
+        left:-4em;
+         top:1em;
+    }
+
+    #sair-deletar-leads{
+        position:relative;
+        left:1.5em;
+        top:1em;
+    }
+
+    .label-deletar{
+        position:absolute;
+        left:2.5em;
+
+
+
+    }
+
+    .info-leads-deletar{
+        position:relative;
+        top:0.5em;
+        left:-0.5em;
+        font-size:1.2em;
+    }
+
+
 
 
 
