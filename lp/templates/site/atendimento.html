@@ -127,8 +127,7 @@
                         min = valor[14]+''+valor[15];
                         min = parseInt(min);
                         final = valor.replace(':'+valor[14]+''+valor[15],min+10);
-                        alert(valor)
-                        alert(final)
+
 
 
                        dados=calendar.addEvent({
@@ -166,7 +165,7 @@
                       var request = new XMLHttpRequest()
 
 
-                      request.open('POST', 'http://127.0.0.1:8000/criar_agendamento/',false)
+                      request.open('POST', 'http://nix2022.pythonanywhere.com/criar_agendamento/',false)
 
 
 
@@ -210,18 +209,29 @@
 
             },
 
-             eventDrop: function(info) {
-             var formData = new FormData()
-             var valor = info.event.startStr
-             //alert(valor)
+             	eventDrop: function(info) {
+             	var formData = new FormData()
+             	var valor = info.event.startStr
+              	var min = new Array();
 
 
-              formData.append('title',info.event.title)
-              formData.append('hora',info.event.startStr)
+
+				min = valor[14]+''+valor[15];
+				min = parseInt(min);
+				final = valor.replace(':'+valor[14]+''+valor[15],min+10);
+             	alert('dropou')
+             	alert(valor)
+             	alert(final)
+
+
+              formData.append('nome_agendamento',info.event.title)
+              formData.append('data_evento',info.event.startStr)
+              formData.append('data_termino',final)
                var request = new XMLHttpRequest()
-               url = 'https://nix2022.pythonanywhere.com//editar/'+info.event.id+'/';
-               //alert(url)
+               url = 'http://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
+               alert(url)
               request.open('POST',url ,false)
+              alert(request.readyState)
 
                const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 
@@ -230,6 +240,7 @@
 
 
              request.send(formData)
+             alert(request.readyState)
 
               window.location.reload();
 

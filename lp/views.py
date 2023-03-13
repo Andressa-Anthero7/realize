@@ -129,3 +129,26 @@ def excluir_leads(request, pk):
         return redirect('dashboard')
     else:
         return redirect('index')
+
+
+def editar_agendamento(request, pk):
+    if request.method == 'POST':
+        nome_agendamento = request.POST.get('nome_agendamento')
+        data_evento = request.POST.get('data_evento')
+        data_termino = request.POST.get('data_termino')
+        print(data_termino)
+        data_agendamento = datetime.now()
+        user = request.user
+        user_agendamento = user.username
+        print(user_agendamento)
+        Agendamento.objects.filter(pk=pk).update(
+            nome_agendamento=nome_agendamento,
+            data_evento=data_evento,
+            data_termino=data_termino,
+            data_agendamento=data_agendamento,
+            user_agendamento=user_agendamento,
+        )
+
+        return render(request, 'site/atendimento.html')
+    else:
+        return render(request, 'site/atendimento.html')
