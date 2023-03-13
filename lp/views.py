@@ -120,3 +120,12 @@ def cadastrar_clientes(request):
 def cadastro_cliente(request, pk):
     cliente = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
     return render(request, 'site/cadastro_cliente.html', {'cliente': cliente})
+
+
+def excluir_leads(request, pk):
+    if request.method == 'POST':
+        leads_excluir = Leads.objects.filter(pk=pk)
+        leads_excluir.delete()
+        return redirect('dashboard')
+    else:
+        return redirect('index')

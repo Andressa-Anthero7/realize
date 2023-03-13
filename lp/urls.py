@@ -12,6 +12,7 @@ urlpatterns = [
     path('cadastrar_clientes/', views.cadastrar_clientes, name='cadastrar_clientes'),
     path('cadastro_cliente/', views.cadastro_cliente, name='cadastro_cliente'),
     path('qualificar_leads/<int:pk>/', views.qualificar_leads, name='qualificar_leads'),
+    path('leads_excluir/<int:pk>/', views.excluir_leads, name='excluir_leads')
 
 
 ]

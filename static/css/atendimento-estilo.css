@@ -535,6 +535,14 @@
         height:450px;
     }
 
+    #area-deletar-leads{
+         position: relative;
+        top:-20em;
+         left:-2.2em;
+        min-width:460px;
+        border:1px solid red:
+    }
+
 
 
 
@@ -1039,6 +1047,8 @@
         font-size: 1.5em;
         margin: 0.5em;
     }
+
+
 
 
 

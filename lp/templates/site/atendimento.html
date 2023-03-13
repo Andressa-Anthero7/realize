@@ -863,10 +863,64 @@
 		        </div>
 		    </div>
 		    <!-- FINAL MODAL 2 -->
-
-
-
 			<!-- FINAL CADASTRAR FICHA CLIENTE -->
+
+
+
+			<!--BTN DELETAR LEADS -->
+			<div id="area-deletar-leads" class="text-center">
+							<hr>
+
+			 	<a href="" id="deletar-leads" class="btn btn-lg btn-danger text-center m-2 " data-toggle="modal" data-target="#modal-deletar">Deletar Leads</a>
+			</div>
+
+			<!-- MODAL DELETAR-->
+		     <div id="modal-deletar" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+
+		                </div>
+		                <div id="modalBody-delatar" class="modal-body  d-block text-center">
+
+		                      <h4 id="modalTitle-deletar" class="modal-title ">Deletar Leads</h4>
+		                      <div class="">Confirma Deletar Leads - {{leads_atendimento.pk}}</div>
+							  <!-- INFO LEADS Á DELETAR -->
+							<form enctype="multipart/form-data" method="POST" action="{% url 'excluir_leads' pk=leads_atendimento.pk %}" id="info-leads-deletar" class="p-3">
+								{% csrf_token %}
+								<div class="p-3" >
+									<label class="bg-primary p-2 rounded text-white label-deletar">Nome</label>
+									<span class="info-leads-deletar">{{leads_atendimento.nome_leads}}</span>
+								</div>
+
+								<div class="p-3" >
+									<label class="bg-primary p-2 rounded text-white label-deletar">Email</label>
+									<span class="info-leads-deletar" >{{leads_atendimento.email}}</span>
+								</div>
+
+								<div class="p-3" >
+									<label  class="bg-primary p-2 rounded text-white label-deletar">Whatsapp</label>
+									<span class="info-leads-deletar">{{leads_atendimento.whatsapp}}</span>
+								</div>
+								<div>
+									<button type="submit" class="btn btn-danger " id="btn-deletar-leads"   >Deletar Leads</button>
+									<!--Script -->
+
+
+									<button type="button" class="btn btn-primary text-white" id="sair-deletar-leads" data-dismiss="modal">Sair</button>
+								</div>
+
+
+							</form>
+
+
+		                </div>
+
+		            </div>
+		        </div>
+		    </div>
+		    <!-- FINAL MODAL -->
 
 
 
