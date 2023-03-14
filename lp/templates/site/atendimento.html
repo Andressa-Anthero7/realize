@@ -2,6 +2,7 @@
 {% load static %}
   {% csrf_token %}
 
+
 <head>
 
 
@@ -165,7 +166,7 @@
                       var request = new XMLHttpRequest()
 
 
-                      request.open('POST', 'http://nix2022.pythonanywhere.com/criar_agendamento/',false)
+                      request.open('POST', 'https://nix2022.pythonanywhere.com/criar_agendamento/',false)
 
 
 
@@ -219,16 +220,14 @@
 				min = valor[14]+''+valor[15];
 				min = parseInt(min);
 				final = valor.replace(':'+valor[14]+''+valor[15],min+10);
-             	alert('dropou')
-             	alert(valor)
-             	alert(final)
+
 
 
               formData.append('nome_agendamento',info.event.title)
               formData.append('data_evento',info.event.startStr)
               formData.append('data_termino',final)
                var request = new XMLHttpRequest()
-               url = 'http://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
+               url = 'https://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
                alert(url)
               request.open('POST',url ,false)
               alert(request.readyState)
@@ -240,7 +239,7 @@
 
 
              request.send(formData)
-             alert(request.readyState)
+
 
               window.location.reload();
 
