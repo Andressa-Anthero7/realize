@@ -1,0 +1,302 @@
+*{
+	 margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Celulares Moto G*/
+@media (min-width: 321px) and (max-width:  360.97px) {
+    body{
+
+
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        -moz-overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+
+
+
+          background:#b7d0e1;
+
+        min-height: 1000px;
+        max-width: 100%;
+
+
+    }
+
+    html{
+         -moz-overflow-x: hidden;
+          overflow-x: hidden;
+
+    }
+
+
+    .container-fluid{
+
+         max-width: 415px;
+        
+
+
+    }
+
+    #header{
+       min-width:420px;
+        background: #0E0816;
+        position: relative;
+        left:-1.2em;
+
+    }
+
+    #img-logo{
+        max-width:200px;
+        max-height: 70px;
+        position: relative;
+        left:2em;
+    }
+
+    .img-perfil-user{
+
+    }
+
+
+
+
+
+    .form-control{
+        border:1px solid black;
+        border-radius:5%;
+        
+         position: relative;
+        left:-1em;
+    }
+
+
+    
+
+    .fa-pencil-square-o{
+        font-size:2em;
+        
+    
+    }
+
+    .label{
+        position: relative;
+        top:1.3em;
+        left:0.5em;
+        font-size: 1.5em;
+    }
+
+    .label-2{
+        position: relative;
+        top:1.3em;
+        left:0.3em;
+        font-size: 1.5em;
+
+    }
+
+
+    .label-3{
+         position: relative;
+        top:1.3em;
+        left:0em;
+        font-size: 1.5em;
+    }
+
+
+
+
+
+
+   #img-perfil-user{
+        border-radius:5%;
+   }
+
+   textarea{
+        
+        min-width:110%;
+        color:black;
+   }
+
+   #nome-user{
+        position: relative;
+        left:0.2em;
+        min-width: 100%;
+     
+   }
+
+   i{
+        position: relative;
+        left:0.5em;
+   }
+
+   
+
+
+
+
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:20em;
+        text-align: center;
+        color:black;
+
+    }
+}
+
+
+
+/* Celulares até 5,5 Polegadas Tamanho G */
+@media (min-width: 376px) and (max-width:  414.98px) {
+   body{
+
+
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        -moz-overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+
+
+
+          background:#b7d0e1;
+
+        min-height: 1000px;
+        max-width: 100%;
+
+
+    }
+
+    html{
+         -moz-overflow-x: hidden;
+          overflow-x: hidden;
+
+    }
+
+
+    .container-fluid{
+
+         max-width: 415px;
+        
+
+
+    }
+
+    #header{
+       min-width:420px;
+        background: #0E0816;
+        position: relative;
+        left:-1.2em;
+
+    }
+
+    #img-logo{
+        max-width:200px;
+        max-height: 70px;
+        position: relative;
+        left:2em;
+    }
+
+    .img-perfil-user{
+
+    }
+
+
+
+
+
+    .form-control{
+        border:1px solid black;
+        border-radius:5%;
+        
+         position: relative;
+        left:-1em;
+    }
+
+
+    
+
+    .fa-pencil-square-o{
+        font-size:2em;
+        
+    
+    }
+
+    .label{
+        position: relative;
+        top:1.3em;
+        left:0.5em;
+        font-size: 1.5em;
+    }
+
+    .label-2{
+        position: relative;
+        top:1.3em;
+        left:0.3em;
+        font-size: 1.5em;
+
+    }
+
+
+    .label-3{
+         position: relative;
+        top:1.3em;
+        left:0em;
+        font-size: 1.5em;
+    }
+
+
+
+
+
+
+   #img-perfil-user{
+        border-radius:5%;
+   }
+
+   textarea{
+        
+        min-width:105%;
+        color:black;
+   }
+
+   #nome-user{
+        position: relative;
+        left:0.2em;
+        min-width: 100%;
+     
+   }
+
+   i{
+        position: relative;
+        left:0.5em;
+   }
+
+   
+
+
+
+
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:20em;
+        text-align: center;
+        color:black;
+
+    }
+
+}

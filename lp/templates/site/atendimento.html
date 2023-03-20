@@ -401,8 +401,7 @@
 								//alert(' 25 ou menor')
 							};
 						</script>
-						<span id="editar-perfil" class="btn btn-outline-primary  " ><a href="editar-perfil.html" class=" text-decoration-none fa fa-edit d-inline">Editar Perfil</a></span>
-						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="configuracao.html" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
+						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
 
 					</div>
 					<!-- BTNS DO MENU -->
@@ -879,7 +878,7 @@
 
 			<!--BTN DELETAR LEADS -->
 			<div id="area-deletar-leads" class="text-center">
-							<hr>
+
 
 			 	<a href="" id="deletar-leads" class="btn btn-lg btn-danger text-center m-2 " data-toggle="modal" data-target="#modal-deletar">Deletar Leads</a>
 			</div>
@@ -897,19 +896,19 @@
 		                      <h4 id="modalTitle-deletar" class="modal-title ">Deletar Leads</h4>
 		                      <div class="">Confirma Deletar Leads - {{leads_atendimento.pk}}</div>
 							  <!-- INFO LEADS Á DELETAR -->
-							<form enctype="multipart/form-data" method="POST" action="{% url 'excluir_leads' pk=leads_atendimento.pk %}" id="info-leads-deletar" class="p-3">
+							<form enctype="multipart/form-data" method="POST" action="{% url 'excluir_leads' pk=leads_atendimento.pk %}" id="info-leads-deletar" class="ml-2">
 								{% csrf_token %}
-								<div class="p-3" >
-									<label class="bg-primary p-2 rounded text-white label-deletar">Nome</label>
+								<div class="m-4" >
+									<span class="bg-primary p-2 rounded text-white label-deletar">Nome</span>
 									<span class="info-leads-deletar">{{leads_atendimento.nome_leads}}</span>
 								</div>
 
-								<div class="p-3" >
-									<label class="bg-primary p-2 rounded text-white label-deletar">Email</label>
+								<div class="m-4" >
+									<span class="bg-primary p-2 rounded text-white label-deletar">Email</span>
 									<span class="info-leads-deletar" >{{leads_atendimento.email}}</span>
 								</div>
 
-								<div class="p-3" >
+								<div class="m-4" >
 									<label  class="bg-primary p-2 rounded text-white label-deletar">Whatsapp</label>
 									<span class="info-leads-deletar">{{leads_atendimento.whatsapp}}</span>
 								</div>

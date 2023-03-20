@@ -1,0 +1,80 @@
+
+*{
+	 margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Celulares Moto G*/
+@media (min-width: 321px) and (max-width:  360.97px) {
+
+     #header{
+            background: #0E0816;
+        }
+
+    form{
+        position:relative;
+        left:0em;
+
+
+    }
+    table{
+        position:relative;
+        left:5.5em;
+        top:2em;
+    }
+
+    .input{
+        border:1px solid black;
+       border-radius:5%;
+    }
+
+
+
+   td{
+        display:block;
+
+   }
+
+
+}
+
+
+
+/* Celulares até 5,5 Polegadas Tamanho G */
+@media (min-width: 376px) and (max-width:  414.98px) {
+
+        #header{
+            background: #0E0816;
+        }
+
+
+
+         form{
+        position:relative;
+        left:0em;
+
+
+    }
+    table{
+        position:relative;
+        left:7em;
+        top:2em;
+    }
+
+    .input{
+        border:1px solid black;
+       border-radius:5%;
+    }
+
+
+
+   td{
+        display:block;
+
+   }
+
+
+}

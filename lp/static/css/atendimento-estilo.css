@@ -294,6 +294,7 @@
 
         padding: 0.5em;
         max-width:150px;
+         font-size: 1.2em;
 
     }
 
@@ -395,7 +396,7 @@
         position: relative;
         top:-1.7em;
         left: 1em;
-        border:1px solid red;
+
 
 
     }
@@ -538,55 +539,49 @@
 
     #area-deletar-leads{
          position: relative;
-        top:-30em;
+        top:-25em;
          left:0em;
         max-width:460px;
+
 
     }
 
     #btn-deletar-leads{
         position:relative;
-        left:-4em;
-         top:1em;
+        left:-6em;
+         top:2em;
     }
 
     #sair-deletar-leads{
         position:relative;
-        left:1.5em;
-        top:1em;
+        left:3em;
+        top:2em;
     }
 
     .label-deletar{
         position:absolute;
-        left:2.5em;
+        left:2em;
+    }
 
-
-
+    #modalBody-delatar{
+        min-height:350px;
     }
 
     .info-leads-deletar{
         position:relative;
         top:0.5em;
-        left:-0.5em;
-        font-size:1.2em;
+        left:0em;
+        font-size:1.1em;
+
+
+
     }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
     footer{
         position: relative;
-        left:-1em;
+        left:0em;
         top:5em;
         text-align: center;
         color:black;
@@ -1076,6 +1071,52 @@
         left:1em;
         font-size: 1.5em;
         margin: 0.5em;
+    }
+
+
+    .fade{
+        width:450px;
+        height:450px;
+    }
+
+    #area-deletar-leads{
+         position: relative;
+        top:-25em;
+         left:0em;
+        max-width:460px;
+
+
+    }
+
+    #btn-deletar-leads{
+        position:relative;
+        left:-6em;
+         top:2em;
+    }
+
+    #sair-deletar-leads{
+        position:relative;
+        left:3em;
+        top:2em;
+    }
+
+    .label-deletar{
+        position:absolute;
+        left:2em;
+    }
+
+    #modalBody-delatar{
+        min-height:350px;
+    }
+
+    .info-leads-deletar{
+        position:relative;
+        top:0.5em;
+        left:0em;
+        font-size:1.1em;
+
+
+
     }
 
 

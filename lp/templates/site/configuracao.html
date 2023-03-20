@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+{% load static %}
+  {% csrf_token %}
+<html xmlns="http://www.w3.org/1999/html">
+<head>
+
+
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Antherus</title>
+
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="normalize.css">
+
+
+	<!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Boostrap 4 CDN  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+
+	<!-- FontAwesome CDN -->
+	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="fontawesome/css/all.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+
+
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/config-estilo.css' %}">
+
+</head>
+
+<!-- Corpo do HTML -->
+<body >
+	<!-- Container -->
+	<div class="container-fluid ">
+			<!-- Header da Pagina -->
+			<header id="header">
+				<!-- Imagem da Logo -->
+				<img src="logo-2.png" id="img-logo" class="img img-fluid">
+
+				
+
+			</header>
+
+
+			<!-- Header do Dashboard -->
+			<div id="header-dashboard" class="text-center">
+					<!--DATA DO DIA DATA DO HEADER -->
+					<div id="data-hora-header" ></div>
+			</div>
+
+			<!-- Formulario da Configuração -->
+				<div id="area-config">
+
+					<div id="" class="">
+					
+					
+					<h5  class="mt-3 text-center">Antherus - Gerenciador de Leads</h5>
+					<!-- PERFIL DO USUÁRIO -->
+					<div class="text-center">
+						<!--Foto Perfil User -->
+							<div class="m-3 p-3" >
+										<img id="img-perfil-user" class="img img-fluid border border-dark font-weight-bolder"  src="logo.png" alt="Foto Perfil Usuário">
+										<div class="my-3 text-center">
+											
+											<input type="file"  name="img-perfil-user" id="upload-img" class="d-inline">
+										</div>
+								
+							</div>
+							
+							<!-- NOME USER -->
+							<div class=" my-3 text-center">
+
+								<label  for="nome-user" class="bg-primary p-2 rounded text-white label text-center">Nome User</label>
+								<input type="text" id="nome-user" disabled class="form-control  mt-3 text-center font-weight-bold text-center" value="Andressa Cristina Anthero">
+								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-user-nome" aria-hidden="true">Editar</i>
+								<script type="text/javascript">
+										$(document).on('click','#editar-user-nome', function(){
+												$('#nome-user').removeAttr('disabled')
+										})
+								
+								</script>
+
+								
+							</div>
+
+
+							<!-- TAG META TAG PIXEL  -->
+
+							<div class=" my-3 ml-2  text-center">
+
+								<label class="bg-primary p-2 px-2 rounded text-white label-2 text-center">Tag Meta</label>
+								<textarea type="text" disabled id="textarea-tag-pixel" class="form-control  mt-3 text-dark p-3"></textarea> 
+								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-meta" aria-hidden="true">Editar</i>
+								<script type="text/javascript">
+										$(document).on('click','#editar-tag-meta', function(){
+												
+												$('#textarea-tag-pixel').removeAttr('disabled');
+												$('#textarea-tag-pixel').css({'height':'500'});
+												$('#editar-tag-meta').html('Sair');
+												$(document).on('click','#textarea-tag-pixel', function(){
+												   $('#editar-tag-meta').html('Salvar');
+
+												});
+												
+
+										})
+								
+								</script>
+							
+							</div>
+
+
+
+							<!-- TAG GOOGLE ANALITYCS-->
+							<div class=" my-3 ml-2   text-center">
+
+								<label  class="bg-primary p-2 px-2 rounded text-white label-3 text-center">Tag Google Analytics</label>
+								<textarea type="text" disabled="disabled" id="textarea-tag-google" class="form-control  mt-3"></textarea>
+								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-google" aria-hidden="true">Editar</i>
+								<script type="text/javascript">
+										$(document).on('click','#editar-tag-google', function(){
+												
+												$('#textarea-tag-google').removeAttr('disabled');
+												$('#textarea-tag-google').css({'height':'500'});
+												$('#editar-tag-google').html('Sair');
+												$(document).on('click','#textarea-tag-google', function(){
+												   $('#editar-tag-google').html('Salvar');
+
+												});
+												
+
+										})
+								
+								</script>
+								
+							</div> 
+							
+						
+							
+							
+							
+						
+					</div>
+
+
+
+				</div>
+				<!-- FINAL AREA CONFIGURACAO -->
+			
+
+		
+
+
+
+			<!-- FOOTER -->
+		<footer >
+			<i class="fa fa-copyright text-center" aria-hidden="true">Copyright</i>
+			<div>Antherus - Desenvolvimento Web</div>
+			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+		</footer>
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+
+	
+
+	
+
+
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

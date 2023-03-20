@@ -152,3 +152,7 @@ def editar_agendamento(request, pk):
         return render(request, 'site/atendimento.html')
     else:
         return render(request, 'site/atendimento.html')
+
+
+def configuracao(request):
+    return render(request, 'site/configuracao.html')
