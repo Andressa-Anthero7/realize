@@ -1,50 +1,103 @@
-  {% load static %}
+<!DOCTYPE html>
+{% load static %}
 
-  <!-- Boostrap 4 CDN  -->
+<html>
+<head>
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Antherus</title>
+
+
+	<!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Boostrap 4 CDN  -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
+	 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
 
 
-   <link rel="stylesheet" type="text/css" href="{% static 'css/login-estilo.css' %}">
+	<!-- FontAwesome CDN -->
+	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="fontawesome/css/all.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
 
-  <div id="header">
-    <img src="{% static 'img/logo-2.png' %}" id="img-logo" class="img img-fluid">
-  </div>
-  {% if form.errors %}
-    <p>Your username and password didn't match. Please try again.</p>
-  {% endif %}
 
-  {% if next %}
-    {% if user.is_authenticated %}
-      <p>Your account doesn't have access to this page. To proceed,
-      please login with an account that has access.</p>
-    {% else %}
-      <p>Please login to see this page.</p>
-    {% endif %}
-  {% endif %}
 
-  <form method="post" class="text-center" action="{% url 'login' %}">
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/login-estilo.css' %}">
 
-    {% csrf_token %}
-    <table class="">
-       <h6 class="text-center p-3">Faça LOGIN com seu usuário e senha.</h6>
-      <tr class="p-5" >
-        <td>{{ form.username.label_tag }}</td>
-        <td class="input">{{ form.username }}</td>
-      </tr>
-      <tr</tr>
-      <tr class="p-5" >
-        <td >{{ form.password.label_tag }}</td>
-        <td class="input">{{ form.password }}</td>
-      </tr>
-    </table>
-    <input class="text-center m-5 btn btn-warning" type="submit" value="login" />
-    <input type="hidden" name="next" value="{{ next }}" />
-  </form>
 
-  {# Assumes you setup the password_reset view in your URLconf #}
-  <p class="text-center m-5"><a href="{% url 'password_reset' %}">Esquece a Senha?</a></p>
+
+
+</head>
+
+<!-- Corpo do HTML -->
+<body >
+	<!-- Container -->
+	<div class="container-fluid ">
+		<!-- Header da Pagina -->
+		<header id="header">
+			<!-- Imagem da Logo -->
+			<img src="{% static 'img/logo-2.png' %}" id="img-logo">
+		</header>
+
+				{% if form.errors %}
+		    <p>Your username and password didn't match. Please try again.</p>
+		  {% endif %}
+
+		  {% if next %}
+		    {% if user.is_authenticated %}
+		      <p>Your account doesn't have access to this page. To proceed,
+		      please login with an account that has access.</p>
+		    {% else %}
+		      <p>Please login to see this page.</p>
+		    {% endif %}
+		  {% endif %}
+
+		  <form method="post" class="text-center" action="{% url 'login' %}">
+			 <h6 class="text-center p-3">Faça LOGIN com seu usuário e senha.</h6>
+		    {% csrf_token %}
+
+
+		      <div class="m-1" >
+		        <div>{{ form.username.label_tag }}</div>
+		        <div class="input">{{ form.username }}</div>
+		      </div>
+				<br>
+
+
+		      <div class="m-1" >
+		        <div >{{ form.password.label_tag }}</div>
+		        <div class="input">{{ form.password }}</div>
+		      </div>
+
+		    <input class="text-center m-5 btn btn-warning" type="submit" value="login" />
+		    <input type="hidden" name="next" value="{{ next }}" />
+		  </form>
+
+		  {# Assumes you setup the password_reset view in your URLconf #}
+		  <p class="text-center m-5"><a href="{% url 'password_reset' %}">Esquece a Senha?</a></p>
+
+
+
+		<!-- FOOTER -->
+		<footer >
+			<i class="fa fa-copyright text-center" aria-hidden="true">Copyright</i>
+			<div>Antherus - Desenvolvimento Web</div>
+			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+		</footer>
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+
+
+
 
 
 
@@ -52,5 +105,6 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
+</body>
+</html>
 
