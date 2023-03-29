@@ -156,10 +156,17 @@ def editar_agendamento(request, pk):
 
 
 def configuracao(request, user):
-    perfil = Perfil.objects.filter(user_vinculado=user)
-    print(perfil)
-    return render(request, 'site/configuracao.html', {'perfil': perfil,
-                                                      'user': user})
+    # user for igual request.user , passa!!
+    print(user)
+    print(request.user)
+    logado = request.user.username
+    if user == logado:
+        perfil = Perfil.objects.filter(user_vinculado=user)
+        print(perfil)
+        return render(request, 'site/configuracao.html', {'perfil': perfil,
+                                                          'user': user})
+    else:
+        return redirect(reverse('configuracao', args=[request.user]))
 
 
 def add_img_perfil(request):
