@@ -1,4 +1,5 @@
 from django.db import models
+from django_resized import ResizedImageField
 
 
 # Create your models here.
@@ -39,3 +40,9 @@ class Clientes(models.Model):
     info_complementares = models.TextField(max_length=300)
     data_inclusao_cliente = models.CharField(max_length=15)
     user_inclusao_cliente = models.CharField(max_length=50)
+
+
+class Perfil(models.Model):
+    user_vinculado = models.CharField(max_length=50)
+    img_perfil = ResizedImageField(size=[150, 150], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                   null=True)

@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Leads, Agendamento, Atendimento, Clientes
+from .models import Leads, Agendamento, Atendimento, Clientes, Perfil
+from django.urls import reverse
 
 
 # Create your views here.
@@ -154,5 +155,30 @@ def editar_agendamento(request, pk):
         return render(request, 'site/atendimento.html')
 
 
-def configuracao(request):
-    return render(request, 'site/configuracao.html')
+def configuracao(request, user):
+    perfil = Perfil.objects.filter(user_vinculado=user)
+    print(perfil)
+    return render(request, 'site/configuracao.html', {'perfil': perfil,
+                                                      'user': user})
+
+
+def add_img_perfil(request):
+    if request.method == 'POST':
+        img_perfil = request.FILES.get('img_perfil_add')
+        print(img_perfil)
+        user_vinculado = request.POST.get('user_vinculado')
+        Perfil.objects.create(img_perfil=img_perfil,
+                              user_vinculado=user_vinculado)
+        return redirect(reverse('configuracao', args=[request.user]))
+
+
+def editar_img_perfil(request):
+    if request.method == 'POST':
+        img_perfil = request.FILES.get('img_perfil_editar')
+        user_vinculado = request.POST.get('user_vinculado_editar')
+        print(img_perfil)
+        print(user_vinculado)
+        Perfil.objects.get(user_vinculado=user_vinculado).delete()
+        Perfil.objects.create(img_perfil=img_perfil,
+                              user_vinculado=user_vinculado)
+        return redirect(reverse('configuracao', args=[request.user]))

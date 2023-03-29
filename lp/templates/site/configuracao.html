@@ -12,7 +12,7 @@
 	<title>Antherus</title>
 
 	<!-- CSS -->
-	 <link rel="stylesheet" type="text/css" href="normalize.css">
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/normalize.css' %}">
 
 
 	<!-- Jquery CDN -->
@@ -43,7 +43,7 @@
 			<!-- Header da Pagina -->
 			<header id="header">
 				<!-- Imagem da Logo -->
-				<img src="logo-2.png" id="img-logo" class="img img-fluid">
+				<img src="{% static 'img/logo-2.png' %}" id="img-logo" class="img img-fluid">
 
 				
 
@@ -65,31 +65,70 @@
 					<h5  class="mt-3 text-center">Antherus - Gerenciador de Leads</h5>
 					<!-- PERFIL DO USUÁRIO -->
 					<div class="text-center">
+						<!-- NOME USER -->
+						<div class=" my-3  text-center">
+						{% for perfil in perfil %}
+							<img  class="img img-fluid border border-dark rounded-circle "  src="{{perfil.img_perfil.url}}" alt="Foto Perfil Usuáriooo">
+							<div  class=" text-center font-weight-bold text-center bg-white border  rounded" >{{perfil.user_vinculado}}</div>
+						</div>
+						{% endfor %}
 						<!--Foto Perfil User -->
-							<div class="m-3 p-3" >
-										<img id="img-perfil-user" class="img img-fluid border border-dark font-weight-bolder"  src="logo.png" alt="Foto Perfil Usuário">
+						{% for  perfil in perfil %}
+							<form method="POST" ENCTYPE="multipart/form-data"  action="{% url 'editar_img_perfil' %}"  class="m-3 p-3" >
+										{% csrf_token %}
+
+
 										<div class="my-3 text-center">
-											
-											<input type="file"  name="img-perfil-user" id="upload-img" class="d-inline">
+											<div id="input-img-perfil" class="mb-5" hidden>
+												<input type="file"  name="img_perfil_editar"   class="d-inline" >
+											</div>
+
+											<input type="text" name="user_vinculado_editar" value="{{request.user}}"  hidden>
+
+										<!-- BTN ADD/EDITAR DA IMG PERFIL -->
+
+											<input type="button" class="btn btn-outline-primary mx-3 "  id="btn-editar-img-perfil" value="Trocar Foto Perfil">
+
+											<input type="submit" class="btn btn-outline-primary mx-3" hidden id="btn-salvar-img-perfil" value="Salvar">
+											<script>
+												$(document).on('click','#btn-editar-img-perfil',function(){
+													$('#input-img-perfil').removeAttr('hidden');
+													$('#btn-salvar-img-perfil').removeAttr('hidden');
+													$('#btn-salvar-img-perfil').css({'position':'relative','top':'-2em'});
+													$(this).val('Sair');
+													$(this).css({'position':'relative','top':'-2em'});
+													$(this).removeClass('btn-outline-primary').addClass('btn-outline-danger fechar-editar-img-perfil');
+
+
+												});
+												$(document).on('click','.fechar-editar-img-perfil',function(){
+													window.location.reload();
+
+												});
+											</script>
 										</div>
 								
-							</div>
+							</form>
+						{%empty%}
+							<form method="POST" ENCTYPE="multipart/form-data" action="{% url 'add_img_perfil' %}" class="m-3 p-3" >
+									{% csrf_token %}
+
+
+
+										<div class="my-3 text-center">
+
+											<input type="file"  name="img_perfil_add" id="upload-img-2" class="d-inline">
+											<input type="text" name="user_vinculado" value="{{request.user}}" hidden>
+										</div>
+										<!-- BTN ADD/EDITAR DA IMG PERFIL -->
+										<div>
+											<input type="submit" class="btn btn-outline-primary" value="Add">
+										</div>
+
+							</form>
+						{% endfor %}
 							
-							<!-- NOME USER -->
-							<div class=" my-3 text-center">
 
-								<label  for="nome-user" class="bg-primary p-2 rounded text-white label text-center">Nome User</label>
-								<input type="text" id="nome-user" disabled class="form-control  mt-3 text-center font-weight-bold text-center" value="Andressa Cristina Anthero">
-								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-user-nome" aria-hidden="true">Editar</i>
-								<script type="text/javascript">
-										$(document).on('click','#editar-user-nome', function(){
-												$('#nome-user').removeAttr('disabled')
-										})
-								
-								</script>
-
-								
-							</div>
 
 
 							<!-- TAG META TAG PIXEL  -->

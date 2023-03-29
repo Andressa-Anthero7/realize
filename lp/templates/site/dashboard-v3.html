@@ -136,8 +136,8 @@
 								//alert(' 25 ou menor')
 							};
 						</script>
-						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
-						
+						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' request.user %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
+
 					</div>
 					<!-- BTNS DO MENU -->
 					<div id="menu" class="mt-3">
