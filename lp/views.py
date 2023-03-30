@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from datetime import datetime
 from .models import Leads, Agendamento, Atendimento, Clientes, Perfil
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 
 
 # Create your views here.
@@ -31,13 +32,13 @@ def abrirleads(request, pk):
     Leads.objects.filter(pk=pk).update(status_aberto=status_aberto)
 
 
+@login_required
 def dashboard(request):
     leads = Leads.objects.all().order_by('-data_recebimento')
-
-    print(leads)
     return render(request, 'site/dashboard-v3.html', {'leads': leads})
 
 
+@login_required
 def atendimento(request, pk):
     leads_atendimento = Leads.objects.filter(pk=pk)
     atendimento_vinculado = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
@@ -155,6 +156,7 @@ def editar_agendamento(request, pk):
         return render(request, 'site/atendimento.html')
 
 
+@login_required
 def configuracao(request, user):
     # user for igual request.user , passa!!
     print(user)

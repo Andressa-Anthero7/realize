@@ -190,7 +190,7 @@
     .container-fluid{
 
          max-width: 415px;
-        
+
 
 
     }
@@ -221,18 +221,18 @@
     .form-control{
         border:1px solid black;
         border-radius:5%;
-        
+
          position: relative;
         left:-1em;
     }
 
 
-    
+
 
     .fa-pencil-square-o{
         font-size:2em;
-        
-    
+
+
     }
 
     .label{
@@ -259,6 +259,12 @@
     }
 
 
+    #btn-editar-img-perfil{
+        position:relative;
+        top:4-em;
+    }
+
+
 
 
 
@@ -268,8 +274,8 @@
    }
 
    textarea{
-        
-        min-width:105%;
+
+        min-width:110%;
         color:black;
    }
 
@@ -277,7 +283,7 @@
         position: relative;
         left:0.2em;
         min-width: 100%;
-     
+
    }
 
    i{
@@ -285,7 +291,7 @@
         left:0.5em;
    }
 
-   
+
 
 
 

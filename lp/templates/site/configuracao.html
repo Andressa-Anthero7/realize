@@ -133,54 +133,92 @@
 
 							<!-- TAG META TAG PIXEL  -->
 
-							<div class=" my-3 ml-2  text-center">
-
-								<label class="bg-primary p-2 px-2 rounded text-white label-2 text-center">Tag Meta</label>
-								<textarea type="text" disabled id="textarea-tag-pixel" class="form-control  mt-3 text-dark p-3"></textarea> 
-								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-meta" aria-hidden="true">Editar</i>
+							<form class=" my-3 ml-2  text-center">
 								<script type="text/javascript">
 										$(document).on('click','#editar-tag-meta', function(){
-												
+
 												$('#textarea-tag-pixel').removeAttr('disabled');
 												$('#textarea-tag-pixel').css({'height':'500'});
 												$('#editar-tag-meta').html('Sair');
+												// addclass no editar-tag-meta para usar no botao Sair
+												$('#editar-tag-meta').addClass('sair-tag-meta');
+
+
+
 												$(document).on('click','#textarea-tag-pixel', function(){
-												   $('#editar-tag-meta').html('Salvar');
+													$('#editar-tag-meta').addClass('abre-tag-pixel');
+												   	$('.abre-tag-pixel').html('Salvar');
+
+												   	$(document).on('click','.abre-tag-pixel',function(){
+												   		$('#textarea-tag-pixel').css({'height':'initial'});
+												   		$('.abre-tag-pixel').html('Editar');
+												   		$('#editar-tag-meta').removeClass('abre-tag-pixel');
+
+												   	});
 
 												});
-												
 
 										})
-								
+
+										$(document).on('click','.sair-tag-meta', function(){
+											$('#textarea-tag-pixel').css({'height':'initial'});
+											$('.sair-tag-meta').removeClass('sair-tag-meta');
+											$('#editar-tag-meta').html('Editar');
+										});
+
 								</script>
+
+								<label class="bg-primary p-2 px-2 rounded text-white label-2 text-center">Tag Meta</label>
+								<textarea  disabled id="textarea-tag-pixel" class="form-control  mt-3 text-dark p-3"></textarea>
+								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-meta" aria-hidden="true">Editar</i>
+
 							
-							</div>
+							</form>
 
 
 
 							<!-- TAG GOOGLE ANALITYCS-->
-							<div class=" my-3 ml-2   text-center">
-
-								<label  class="bg-primary p-2 px-2 rounded text-white label-3 text-center">Tag Google Analytics</label>
-								<textarea type="text" disabled="disabled" id="textarea-tag-google" class="form-control  mt-3"></textarea>
-								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-google" aria-hidden="true">Editar</i>
+							<form class=" my-3 ml-2   text-center">
 								<script type="text/javascript">
 										$(document).on('click','#editar-tag-google', function(){
-												
 												$('#textarea-tag-google').removeAttr('disabled');
 												$('#textarea-tag-google').css({'height':'500'});
 												$('#editar-tag-google').html('Sair');
+												$('#editar-tag-google').addClass('sair-tag-google');
+
+												//Ao CLicar no Textarea
 												$(document).on('click','#textarea-tag-google', function(){
-												   $('#editar-tag-google').html('Salvar');
+													$('#editar-tag-google').addClass('abre-tag-google');
+												   	$('.abre-tag-google').html('Salvar');
+
+												   	$(document).on('click','.abre-tag-google',function(){
+												   		$('#textarea-tag-google').css({'height':'initial'});
+												   		$('.abre-tag-google').html('Editar');
+												   		$('#editar-tag-google').removeClass('abre-tag-google');
+
+												   	});
 
 												});
-												
+										});
 
-										})
-								
+										$(document).on('click','.sair-tag-google', function(){
+											$('#textarea-tag-google').css({'height':'initial'});
+											$('.sair-tag-gogole').removeClass('sair-tag-google');
+											$('#editar-tag-google').html('Editar');
+										});
+
+
+
+
 								</script>
+
+								<label  class="bg-primary p-2 px-2 rounded text-white label-3 text-center">Tag Google Analytics</label>
+								<textarea  disabled id="textarea-tag-google" class="form-control  mt-3 text-dark p-3"></textarea>
+								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-google" aria-hidden="true">Editar</i>
+
+
 								
-							</div> 
+							</form>
 							
 						
 							
