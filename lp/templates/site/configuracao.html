@@ -262,7 +262,9 @@
 								</script>
 
 								<label  class="bg-primary p-2 px-2 rounded text-white label-3 text-center">Tag Google Analytics</label>
-								<textarea  disabled id="textarea-tag-google" class="form-control  mt-3 text-dark p-3"></textarea>
+								{% for tag_google in tag_google %}
+								<textarea  disabled id="textarea-tag-google" class="form-control  mt-3 text-dark p-3">{{tag_google.tag_google}}</textarea>
+								{% endfor %}
 								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-google" aria-hidden="true">Editar</i>
 
 
