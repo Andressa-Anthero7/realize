@@ -161,13 +161,15 @@ def editar_agendamento(request, pk):
 @login_required
 def configuracao(request, user):
     meta_tag = Tagmeta.objects.all()
+    tag_google = TagGoogle.objects.all()
     logado = request.user.username
     if user == logado:
         perfil = Perfil.objects.filter(user_vinculado=user)
         print(perfil)
         return render(request, 'site/configuracao.html', {'perfil': perfil,
                                                           'user': user,
-                                                          'meta_tag': meta_tag})
+                                                          'meta_tag': meta_tag,
+                                                          'tag_google': tag_google})
     else:
         return redirect(reverse('configuracao', args=[request.user]))
 
