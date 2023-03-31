@@ -204,42 +204,61 @@
 
 
 							<!-- TAG GOOGLE ANALITYCS-->
-							<form class=" my-3 ml-2   text-center">
+							<form class=" my-3 ml-2  text-center" method="POST" >
 								<script type="text/javascript">
 										$(document).on('click','#editar-tag-google', function(){
+
 												$('#textarea-tag-google').removeAttr('disabled');
 												$('#textarea-tag-google').css({'height':'500'});
 												$('#editar-tag-google').html('Sair');
+												// addclass no editar-tag-meta para usar no botao Sair
 												$('#editar-tag-google').addClass('sair-tag-google');
 
-												//Ao CLicar no Textarea
+
+
 												$(document).on('click','#textarea-tag-google', function(){
 													$('#editar-tag-google').addClass('abre-tag-google');
 												   	$('.abre-tag-google').html('Salvar');
-												   	$(document).on('click','.abre-tag-google',function(){
 
+
+												   	$(document).on('click','.abre-tag-google',function(){
 												   		$('#textarea-tag-google').css({'height':'initial'});
 												   		$('.abre-tag-google').html('Editar');
 
-												   		$('#editar-tag-google').removeClass('abre-tag-google');
 
 
 												   	});
 
 												});
-										});
+
+										})
 
 										$(document).on('click','.sair-tag-google', function(){
-
+											alert('agora')
 											$('#textarea-tag-google').css({'height':'initial'});
-											$('.sair-tag-gogole').removeClass('sair-tag-google');
+											$('.sair-tag-google').removeClass('sair-tag-meta');
 											$('#editar-tag-google').html('Editar');
 
+											var tag_google = $('#textarea-tag-google').val();
+											alert(tag_google)
+											var formData = new FormData();
+											alert(formData)
+											formData.append('textarea-tag-google',tag_google);
+
+
+											var request = new XMLHttpRequest();
+											alert(request)
+
+											 request.open('POST','http://127.0.0.1:8000/add_tag_google/',false)
+
+											 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+											 request.setRequestHeader('X-CSRFToken', csrftoken)
+											 request.send(formData)
+											 window.location.reload();
+
+
 										});
-
-
-
-
 								</script>
 
 								<label  class="bg-primary p-2 px-2 rounded text-white label-3 text-center">Tag Google Analytics</label>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta
+from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -175,7 +175,6 @@ def configuracao(request, user):
 def add_img_perfil(request):
     if request.method == 'POST':
         img_perfil = request.FILES.get('img_perfil_add')
-        print(img_perfil)
         user_vinculado = request.POST.get('user_vinculado')
         Perfil.objects.create(img_perfil=img_perfil,
                               user_vinculado=user_vinculado)
@@ -203,6 +202,22 @@ def add_meta_tag(request):
         Tagmeta.objects.create(editado_por=editado_por,
                                data_atualizacao=data_atualizacao,
                                tag_meta=tag_meta)
+        return redirect(reverse('configuracao', args=[request.user]))
+    else:
+        return redirect(reverse('configuracao', args=[request.user]))
+
+
+def add_tag_google(request):
+    if request.method == 'POST':
+        editado_por = request.user.username
+        data_atualizacao = datetime.now()
+        tag_google = request.POST.get('textarea-tag-google')
+        tag_google_analitycs = TagGoogle.objects.all()
+        for tag_google_analitycs in tag_google_analitycs:
+            tag_google_analitycs.delete()
+        TagGoogle.objects.create(editado_por=editado_por,
+                                 data_atualizacao=data_atualizacao,
+                                 tag_google=tag_google)
         return redirect(reverse('configuracao', args=[request.user]))
     else:
         return redirect(reverse('configuracao', args=[request.user]))

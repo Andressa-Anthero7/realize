@@ -52,3 +52,9 @@ class Tagmeta(models.Model):
     editado_por = models.CharField(max_length=50)
     data_atualizacao = models.CharField(max_length=15)
     tag_meta = models.CharField(max_length=256)
+
+
+class TagGoogle(models.Model):
+    editado_por = models.CharField(max_length=50)
+    data_atualizacao = models.CharField(max_length=15)
+    tag_google = models.CharField(max_length=256)
