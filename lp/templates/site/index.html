@@ -11,23 +11,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Antherus</title>
 
+	 {% for meta_tag in tag_meta %}
+            {% autoescape off %}
+            {{meta_tag.tag_meta}}
+            {% endautoescape %}
+        {% endfor %}
+
 	<!-- Jquery CDN -->
 	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-
-
-
-
-
-
-
-	{{tag_meta.tag_meta}}
-
-
-
-
-
-
-
 
 	<!-- Boostrap 4 CDN  -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -54,6 +45,7 @@
 <body >
 	<!-- Container -->
 	<div class="container-fluid ">
+
 		<!-- Header da Pagina -->
 		<header id="header">
 			<!-- Imagem da Logo -->
