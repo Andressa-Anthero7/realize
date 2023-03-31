@@ -133,7 +133,8 @@
 
 							<!-- TAG META TAG PIXEL  -->
 
-							<form class=" my-3 ml-2  text-center">
+							<form class=" my-3 ml-2  text-center" method="POST" >
+								{% csrf_token %}
 								<script type="text/javascript">
 										$(document).on('click','#editar-tag-meta', function(){
 
@@ -149,10 +150,12 @@
 													$('#editar-tag-meta').addClass('abre-tag-pixel');
 												   	$('.abre-tag-pixel').html('Salvar');
 
+
 												   	$(document).on('click','.abre-tag-pixel',function(){
 												   		$('#textarea-tag-pixel').css({'height':'initial'});
 												   		$('.abre-tag-pixel').html('Editar');
-												   		$('#editar-tag-meta').removeClass('abre-tag-pixel');
+
+
 
 												   	});
 
@@ -161,16 +164,39 @@
 										})
 
 										$(document).on('click','.sair-tag-meta', function(){
+											alert('agira')
 											$('#textarea-tag-pixel').css({'height':'initial'});
 											$('.sair-tag-meta').removeClass('sair-tag-meta');
 											$('#editar-tag-meta').html('Editar');
+
+											var tagmeta = $('#textarea-tag-pixel').val();
+											alert(tagmeta)
+											var formData = new FormData();
+											alert(formData)
+											formData.append('textarea-tag-pixel',tagmeta);
+
+
+											var request = new XMLHttpRequest();
+											alert(request)
+
+											 request.open('POST','http://127.0.0.1:8000/add_meta_tag/',false)
+
+											 const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+											 request.setRequestHeader('X-CSRFToken', csrftoken)
+											 request.send(formData)
+											 window.location.reload();
+
+
 										});
 
 								</script>
 
 								<label class="bg-primary p-2 px-2 rounded text-white label-2 text-center">Tag Meta</label>
-								<textarea  disabled id="textarea-tag-pixel" class="form-control  mt-3 text-dark p-3"></textarea>
-								<i class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-meta" aria-hidden="true">Editar</i>
+								{% for meta_tag in meta_tag %}
+								<textarea  disabled id="textarea-tag-pixel" name="textarea-tag-pixel" class="form-control  mt-3 text-dark p-3"  >{{meta_tag.tag_meta}}</textarea>
+								{%endfor %}
+								<div class="fa fa-pencil-square-o  btn btn-outline-primary  " id="editar-tag-meta" aria-hidden="true">Editar</div>
 
 							
 							</form>
@@ -190,11 +216,13 @@
 												$(document).on('click','#textarea-tag-google', function(){
 													$('#editar-tag-google').addClass('abre-tag-google');
 												   	$('.abre-tag-google').html('Salvar');
-
 												   	$(document).on('click','.abre-tag-google',function(){
+
 												   		$('#textarea-tag-google').css({'height':'initial'});
 												   		$('.abre-tag-google').html('Editar');
+
 												   		$('#editar-tag-google').removeClass('abre-tag-google');
+
 
 												   	});
 
@@ -202,9 +230,11 @@
 										});
 
 										$(document).on('click','.sair-tag-google', function(){
+
 											$('#textarea-tag-google').css({'height':'initial'});
 											$('.sair-tag-gogole').removeClass('sair-tag-google');
 											$('#editar-tag-google').html('Editar');
+
 										});
 
 

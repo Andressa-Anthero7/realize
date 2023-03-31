@@ -18,5 +18,6 @@ urlpatterns = [
     path('configuracao/<str:user>/', views.configuracao, name='configuracao'),
     path('add_img_perfil/', views.add_img_perfil, name='add_img_perfil'),
     path('editar_img_perfil/', views.editar_img_perfil, name='editar_img_perfil'),
+    path('add_meta_tag/', views.add_meta_tag, name='add_meta_tag'),
 
 ]

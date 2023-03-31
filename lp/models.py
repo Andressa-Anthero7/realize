@@ -46,3 +46,9 @@ class Perfil(models.Model):
     user_vinculado = models.CharField(max_length=50)
     img_perfil = ResizedImageField(size=[150, 150], quality=100, upload_to='media/', force_format='PNG', blank=True,
                                    null=True)
+
+
+class Tagmeta(models.Model):
+    editado_por = models.CharField(max_length=50)
+    data_atualizacao = models.CharField(max_length=15)
+    tag_meta = models.CharField(max_length=256)

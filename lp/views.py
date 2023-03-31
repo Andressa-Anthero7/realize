@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Leads, Agendamento, Atendimento, Clientes, Perfil
+from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
@@ -24,7 +24,9 @@ def index(request):
                              data_recebimento=data_recebimento)
         return render(request, 'site/index.html')
     else:
-        return render(request, 'site/index.html')
+        tag_meta = Tagmeta.objects.all()
+        print(tag_meta)
+        return render(request, 'site/index.html', {'tag_meta': tag_meta})
 
 
 def abrirleads(request, pk):
@@ -158,15 +160,14 @@ def editar_agendamento(request, pk):
 
 @login_required
 def configuracao(request, user):
-    # user for igual request.user , passa!!
-    print(user)
-    print(request.user)
+    meta_tag = Tagmeta.objects.all()
     logado = request.user.username
     if user == logado:
         perfil = Perfil.objects.filter(user_vinculado=user)
         print(perfil)
         return render(request, 'site/configuracao.html', {'perfil': perfil,
-                                                          'user': user})
+                                                          'user': user,
+                                                          'meta_tag': meta_tag})
     else:
         return redirect(reverse('configuracao', args=[request.user]))
 
@@ -185,9 +186,23 @@ def editar_img_perfil(request):
     if request.method == 'POST':
         img_perfil = request.FILES.get('img_perfil_editar')
         user_vinculado = request.POST.get('user_vinculado_editar')
-        print(img_perfil)
-        print(user_vinculado)
         Perfil.objects.get(user_vinculado=user_vinculado).delete()
         Perfil.objects.create(img_perfil=img_perfil,
                               user_vinculado=user_vinculado)
+        return redirect(reverse('configuracao', args=[request.user]))
+
+
+def add_meta_tag(request):
+    if request.method == 'POST':
+        editado_por = request.user.username
+        data_atualizacao = datetime.now()
+        tag_meta = request.POST.get('textarea-tag-pixel')
+        tagmeta = Tagmeta.objects.all()
+        for tagmeta in tagmeta:
+            tagmeta.delete()
+        Tagmeta.objects.create(editado_por=editado_por,
+                               data_atualizacao=data_atualizacao,
+                               tag_meta=tag_meta)
+        return redirect(reverse('configuracao', args=[request.user]))
+    else:
         return redirect(reverse('configuracao', args=[request.user]))
