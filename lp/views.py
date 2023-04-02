@@ -3,6 +3,7 @@ from datetime import datetime
 from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from .whatsapp import notificacao
 
 
 # Create your views here.
@@ -22,10 +23,14 @@ def index(request):
                              status_aberto=status_aberto,
                              status_leads=status_leads,
                              data_recebimento=data_recebimento)
+        leads = Leads.objects.last()
+        print(leads.pk)
+        leads_id = leads.pk
+        notificacao(leads_id)
         return render(request, 'site/index.html')
     else:
         tag_meta = Tagmeta.objects.all()
-        print(tag_meta)
+
         return render(request, 'site/index.html', {'tag_meta': tag_meta})
 
 
