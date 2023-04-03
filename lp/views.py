@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 from .whatsapp import notificacao
 
 
+
 # Create your views here.
 
 
@@ -24,7 +25,6 @@ def index(request):
                              status_leads=status_leads,
                              data_recebimento=data_recebimento)
         leads = Leads.objects.last()
-        print(leads.pk)
         leads_id = leads.pk
         notificacao(leads_id)
         return render(request, 'site/index.html')
