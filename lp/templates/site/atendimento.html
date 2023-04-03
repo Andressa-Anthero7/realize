@@ -19,14 +19,12 @@
 	<!-- Jquery CDN -->
 	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 
-	<!-- Include jQuery Mobile stylesheets -->
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
 
-	<!-- Include the jQuery Mobile library -->
-	<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 
 	<!-- Boostrap 4 CDN  -->
@@ -124,7 +122,8 @@
 
               /* BTN SALVAR AGENDAMETO NO MODAL */
 
-
+           		$(document).bind('vclick click','#salvar-agendamento',function(){
+              			//var nome = $('#nome-agendamento').val();
                          var valor = info.startStr;
 
 
@@ -178,7 +177,7 @@
 
 
 
-                      request.open('POST', 'https://nix2022.pythonanywhere.com/criar_agendamento/',false)
+                      request.open('POST', 'http://127.0.0.1:8000/criar_agendamento/',false)
                       var valor = request.readyState
                        alert(valor)
 
@@ -204,7 +203,7 @@
 
 
 
-
+                })/*FINAL DO BTN */
 
            },/*FINAL DO SELECT */
 
