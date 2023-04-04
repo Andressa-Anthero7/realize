@@ -19,14 +19,6 @@
 	<!-- Jquery CDN -->
 	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
 
-	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
-
-	<script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-
-
-
-
-
 	<!-- Boostrap 4 CDN  -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -122,13 +114,8 @@
 
                var inicio = info.startStr;
 
-
                var comeco = info.startStr;
                $('#data_evento').val(comeco)
-
-           		$(document).bind('vclick click','#salvar-agendamento',function(){
-              			//var nome = $('#nome-agendamento').val();
-                         var valor = info.startStr;
 
                 var min = new Array();
 
@@ -137,57 +124,6 @@
 
 				min = parseInt(min);
 
-                        var min = new Array();
-
-
-
-                        min = valor[14]+''+valor[15];
-                        min = parseInt(min);
-                        final = valor.replace(':'+valor[14]+''+valor[15],min+10);
-
-
-
-                       dados=calendar.addEvent({
-                              title: nome,
-                              start: valor,
-                              end: final,
-                              locale: 'pt-br',
-                              timeZone: 'UTC',
-
-
-                              timeFormat: 'HH:mm',
-                              editable: true,
-                              droppable: true,
-                              startEditable:true,
-
-
-                        })
-
-
-
-                        //$('#nome-agendamento').val('');
-
-
-                        var formData = new FormData();
-
-
-                        formData.append('nome_agendamento',dados.title)
-						formData.append('data_evento',dados.startStr)
-						formData.append('data_termino', dados.endStr)
-
-
-
-
-
-                      var request = new XMLHttpRequest()
-                      var valor = request.readyState
-                       alert(valor)
-
-
-
-                      request.open('POST', 'http://127.0.0.1:8000/criar_agendamento/',false)
-                      var valor = request.readyState
-                       alert(valor)
 
 
 				termino = info.endStr;
@@ -202,18 +138,12 @@
 
 
 
-
 			   dados=calendar.addEvent({
 					  title: nome,
 					  start: valor,
 					  end: final,
 					  locale: 'pt-br',
 					  timeZone: 'UTC',
-                      request.send(formData)
-                      var valor = request.readyState
-                       alert(valor)
-
-
 
 
 					  timeFormat: 'HH:mm',
@@ -993,7 +923,7 @@
 			<!-- FOOTER -->
 		<footer >
 			<i class="fa fa-copyright text-center" aria-hidden="true">Copyright</i>
-			<div>Antherus - Desenvolvimento Weeb</div>
+			<div>Antherus - Desenvolvimento Web</div>
 			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
 		</footer>
 
