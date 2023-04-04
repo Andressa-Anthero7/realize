@@ -163,7 +163,7 @@
           eventClick: function(info) {
 
 					$('#calendarModal-1').modal('show');
-             		$('#modalTitle-1').html('Deletar Evento')
+             		$('#modalTitle-1').html('Deletar Evento'+info.event.id)
              		$('#salvar-agendamento').html('Deletar');
 
               		var nome = $('#nome-leads-atendimento').text();
@@ -191,7 +191,7 @@
 					$('#data_termino').val(final);
 
 					$(document).on('click','#salvar-agendamento', function(){
-						document.getElementById('form-agendamento').action = 'http://127.0.0.1:8000/deletar_agendamento/'+info.event.id+'/';
+						document.getElementById('form-agendamento').action = 'http://nix2022.pythonanywhere.com/deletar_agendamento/'+info.event.id+'/';
 					});
 
 
@@ -201,7 +201,7 @@
 
 			eventDrop: function (info) {
              		$('#calendarModal-1').modal('show');
-             		$('#modalTitle-1').html('Editar Evento')
+             		$('#modalTitle-1').html('Editar Evento'+info.event.id)
              		$('#salvar-agendamento').html('Editar');
 
               		var nome = $('#nome-leads-atendimento').text();
@@ -229,7 +229,7 @@
 					$('#data_termino').val(final);
 
 					$(document).on('click','#salvar-agendamento', function(){
-						document.getElementById('form-agendamento').action = 'http://127.0.0.1:8000/editar_agendamento/'+info.event.id+'/';
+						document.getElementById('form-agendamento').action = 'http://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
 					});
 
 
