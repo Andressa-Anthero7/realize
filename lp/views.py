@@ -6,7 +6,6 @@ from django.contrib.auth.decorators import login_required
 from .whatsapp import notificacao
 
 
-
 # Create your views here.
 
 
@@ -70,9 +69,12 @@ def criar_agendamento(request):
         nome_agendamento = request.POST.get('nome_agendamento')
         data_evento = request.POST.get('data_evento')
         data_termino = request.POST.get('data_termino')
+        print(nome_agendamento)
+        print(data_evento)
         print(data_termino)
         data_agendamento = datetime.now()
         user_agendamento = request.user
+        atendimento_vinculado = request.POST.get('atendimento-vinculado')
         Agendamento.objects.create(
             nome_agendamento=nome_agendamento,
             data_evento=data_evento,
@@ -81,9 +83,10 @@ def criar_agendamento(request):
             user_agendamento=user_agendamento,
         )
 
-        return render(request, 'site/atendimento.html')
+        return redirect('atendimento', pk=atendimento_vinculado)
     else:
-        return render(request, 'site/atendimento.html')
+        atendimento_vinculado = request.GET.get('atendimento-vinculado')
+        return redirect('atendimento', pk=atendimento_vinculado)
 
 
 def criar_atendimento(request):
@@ -161,6 +164,15 @@ def editar_agendamento(request, pk):
         return render(request, 'site/atendimento.html')
     else:
         return render(request, 'site/atendimento.html')
+
+
+def deletar_agendamento(request, pk):
+    if request.method == 'POST':
+        agendamento_excluir = Agendamento.objects.filter(pk=pk)
+        agendamento_excluir.delete()
+        return redirect('atendimento', pk=pk)
+    else:
+        return redirect('atendimento', pk=pk)
 
 
 @login_required

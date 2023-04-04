@@ -109,104 +109,60 @@
 
 
            		$('#calendarModal-1').modal('show');
-              var nome = $('#nome-leads-atendimento').text();
-              $('#nome-agendamento').val(nome);
+              	var nome = $('#nome-leads-atendimento').text();
+              	$('#nome-agendamento').val(nome);
 
-              /* BTN SALVAR AGENDAMETO NO MODAL */
+               var inicio = info.startStr;
 
-           		$(document).on('click','#salvar-agendamento',function(){
-              			//var nome = $('#nome-agendamento').val();
-                         var valor = info.startStr;
+               var comeco = info.startStr;
+               $('#data_evento').val(comeco)
 
+                var min = new Array();
 
+				min = inicio[11]+''+ inicio[12]+':'+inicio[14]+''+inicio[15];
+				$('#hora-inicio').val(min);
 
-
-                        var min = new Array();
-
-
-
-                        min = valor[14]+''+valor[15];
-                        min = parseInt(min);
-                        final = valor.replace(':'+valor[14]+''+valor[15],min+10);
+				min = parseInt(min);
 
 
 
-                       dados=calendar.addEvent({
-                              title: nome,
-                              start: valor,
-                              end: final,
-                              locale: 'pt-br',
-                              timeZone: 'UTC',
-
-
-                              timeFormat: 'HH:mm',
-                              editable: true,
-                              droppable: true,
-                              startEditable:true,
-
-
-                        })
-
-
-
-                        //$('#nome-agendamento').val('');
-
-
-                        var formData = new FormData();
-
-
-                        formData.append('nome_agendamento',dados.title)
-						formData.append('data_evento',dados.startStr)
-						formData.append('data_termino', dados.endStr)
+				termino = info.endStr;
+				termino = termino[11]+''+ termino[12]+':'+termino[14]+''+termino[15];
+				$('#hora-termino').val(termino)
+				final = info.endStr;
+				$('#data_termino').val(final)
 
 
 
 
 
-                      var request = new XMLHttpRequest()
 
 
-                      request.open('POST', 'https://nix2022.pythonanywhere.com/criar_agendamento/',false)
+			   dados=calendar.addEvent({
+					  title: nome,
+					  start: valor,
+					  end: final,
+					  locale: 'pt-br',
+					  timeZone: 'UTC',
 
 
-
-                      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-
-
-
-                      request.setRequestHeader('X-CSRFToken', csrftoken)
+					  timeFormat: 'HH:mm',
+					  editable: true,
+					  droppable: true,
+					  startEditable:true,
 
 
-
-                      request.send(formData)
-
-
-                      window.location.reload();
-
+				})
 
 
 
-
-                })/*FINAL DO BTN */
 
            },/*FINAL DO SELECT */
 
+
           eventClick: function deletar(info) {
 
-             $('#id-agendamento').html(info.event.id);
-             $('#modalTitle').html(info.event.title);
-             var data_agendamento = info.event.startStr;
-             $('#data-agendamento').html(data_agendamento);
-             $('#campo-editar-titulo').val(info.event.title)
-             $('#campo-editar-data-agendamento').val(info.event.startStr)
-
-              $('#calendarModal').modal('show');
-
-
-
-
-
-
+             $('#calendarModal-1').modal('show');
 
             },
 
@@ -227,7 +183,7 @@
               formData.append('data_evento',info.event.startStr)
               formData.append('data_termino',final)
                var request = new XMLHttpRequest()
-               url = 'https://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
+               url = 'http://127.0.0.1:8000/editar_agendamento/'+info.event.id+'/';
                alert(url)
               request.open('POST',url ,false)
               alert(request.readyState)
@@ -482,7 +438,7 @@
 			<div id="dados-leads-atendimento" >
 				<div id="id-leads-atendimento"  class="my-3 bg-primary rounded text-white font-weight-bold">
 					<span>Id:</span>
-					<span>{{leads_atendimento.pk}}</span>
+					<span id="id-atendimento-vinculado" >{{leads_atendimento.pk}}</span>
 					<div>{{leads_atendimento.data_recebimento|slice:'8:10'}}{{leads_atendimento.data_recebimento|slice:'4:7'}}-{{leads_atendimento.data_recebimento|slice:':4'}}{{leads_atendimento.data_recebimento|slice:'10:16'}}</div>
 				</div>
 				<hr>
@@ -628,10 +584,41 @@
 		                <div id="modalBody-1" class="modal-body  d-block">
 
 		                      <h4 id="modalTitle-1" class="modal-title text-center">Criar Evento</h4>
-		                      <form>
-		                      	<label for="nome-agendamento">Cliente</label>
+		                      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_agendamento' %}">
+								  {% csrf_token %}
+								  <div>
+									  <label for="nome-agendamento">Cliente</label>
 
-		                      	<input type="text" name="nome" class="form-control" id="nome-agendamento">
+									  <input type="text" name="nome_agendamento" class="form-control" id="nome-agendamento">
+
+								  </div>
+
+								  <div>
+									  <label for="hora-inicio">Hora Inicio</label>
+
+									  <input type="text"  class="form-control" id="hora-inicio" >
+									  <input type="text" name="data_evento" id="data_evento"  >
+
+								  </div>
+
+								  <div>
+									  <label for="hora-termino">Hora Termino</label>
+
+									  <input type="text" class="form-control" id="hora-termino" >
+									  <input type="text" name="data_termino" id="data_termino" >
+
+								  </div>
+
+								  <input type="text" name="atendimento-vinculado" id="atendimento-vinculado">
+								   <script>
+									  var atendimento = $('#id-atendimento-vinculado').text();
+									  $('#atendimento-vinculado').val(atendimento);
+								  </script>
+
+
+									<button type="submit" class="btn btn-success" id="salvar-agendamento"  >Salvar</button>
+
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 
 
 
@@ -640,13 +627,10 @@
 
 
 		                </div>
-		                <div class="modal-footer">
 
 
-		                	<button type="submit" class="btn btn-success" id="salvar-agendamento"  data-dismiss="modal" >Salvar</button>
 
-		                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-		                </div>
+
 		            </div>
 		        </div>
 		    </div>
