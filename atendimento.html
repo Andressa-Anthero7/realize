@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+{% load static %}
+  {% csrf_token %}
+
+
+<head>
+
+
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Antherus</title>
+
+	<!-- CSS-->
+	 <link rel="stylesheet" type="text/css" href="{% static 'normalize.css' %}">
+
+
+	<!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Boostrap 4 CDN  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+	 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
+
+
+	<!-- FontAwesome CDN -->
+	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="fontawesome/css/all.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+
+
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/atendimento-estilo.css' %}">
+
+	<!--SCRIPT DO CALENDAR -->
+			<script type="text/javascript">
+
+
+	 const bancoDados = new Array();
+          document.addEventListener('DOMContentLoaded', function() {
+
+
+
+              var calendarEl = document.getElementById('calendar');
+              var calendar = new FullCalendar.Calendar(calendarEl, {
+
+              locale: 'pt-br',
+        	    timeZone: 'UTC',
+
+
+      		    timeFormat: 'HH:mm',
+      		    editable: true,
+              droppable: true,
+              startEditable:true,
+
+
+
+
+              initialView: 'timeGridDay',
+              selectable:true,
+
+              slotDuration: {minutes:10},
+              slotLabelInterval:{minutes:10},
+              slotLabelFormat: [
+      					{  hour: 'numeric', minute:'numeric' }, // top level of text
+
+    				  ],
+
+
+
+
+
+              headerToolbar: {
+                left: 'prev,next',
+                  center: 'title',
+                right: 'timeGridWeek,timeGridDay' // user can switch between the two
+
+              },
+
+
+
+
+
+
+              buttonText: {
+
+                week: 'Semana',
+                day: 'Hoje',
+
+              },
+
+
+
+
+
+
+
+
+
+
+          select: function(info) {
+
+
+
+
+
+           		$('#calendarModal-1').modal('show');
+              	var nome = $('#nome-leads-atendimento').text();
+              	$('#nome-agendamento').val(nome);
+
+               var inicio = info.startStr;
+
+               var comeco = info.startStr;
+               $('#data_evento').val(comeco)
+
+                var min = new Array();
+
+				min = inicio[11]+''+ inicio[12]+':'+inicio[14]+''+inicio[15];
+				$('#hora-inicio').val(min);
+
+				min = parseInt(min);
+
+
+
+				termino = info.endStr;
+				termino = termino[11]+''+ termino[12]+':'+termino[14]+''+termino[15];
+				$('#hora-termino').val(termino)
+				final = info.endStr;
+				$('#data_termino').val(final)
+
+
+
+
+
+
+
+			   dados=calendar.addEvent({
+					  title: nome,
+					  start: valor,
+					  end: final,
+					  locale: 'pt-br',
+					  timeZone: 'UTC',
+
+
+					  timeFormat: 'HH:mm',
+					  editable: true,
+					  droppable: true,
+					  startEditable:true,
+
+
+				})
+
+
+
+
+           },/*FINAL DO SELECT */
+
+
+          eventClick: function deletar(info) {
+
+             $('#calendarModal-1').modal('show');
+
+            },
+
+             	eventDrop: function(info) {
+             	var formData = new FormData()
+             	var valor = info.event.startStr
+              	var min = new Array();
+
+
+
+				min = valor[14]+''+valor[15];
+				min = parseInt(min);
+				final = valor.replace(':'+valor[14]+''+valor[15],min+10);
+
+
+
+              formData.append('nome_agendamento',info.event.title)
+              formData.append('data_evento',info.event.startStr)
+              formData.append('data_termino',final)
+               var request = new XMLHttpRequest()
+               url = 'http://127.0.0.1:8000/editar_agendamento/'+info.event.id+'/';
+               alert(url)
+              request.open('POST',url ,false)
+              alert(request.readyState)
+
+               const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+
+              request.setRequestHeader('X-CSRFToken', csrftoken)
+
+
+             request.send(formData)
+
+
+              window.location.reload();
+
+
+
+
+
+
+
+
+
+           },
+
+
+
+
+
+
+
+
+
+
+           events:[
+
+
+                   {% for agendamentos in agendamentos %}
+                        {
+                                id : '{{agendamentos.id}}',
+                                title  : '{{agendamentos.nome_agendamento}}',
+                                start  : '{{agendamentos.data_evento}}',
+                                end : '{{agendamentos.data_termino}}',
+
+
+
+                        },
+                    {% endfor %}
+
+
+
+           ],
+
+
+
+
+
+
+
+
+
+       });
+      calendar.render();
+
+
+
+
+
+
+	});
+			</script>
+
+
+	<!-- SCRIPT DATA ATUAL -->
+	<script>
+		$( document ).ready(function() {
+			dayName = new Array ("domingo", "segunda", "terça", "quarta", "quinta", "sexta", "sábado")
+		   monName = new Array ("janeiro", "fevereiro", "março", "abril", "maio", "junho", "agosto", "outubro", "novembro", "dezembro")
+		   now = new Date
+		   $('#data-hora-header').html("<span> Hoje é " + dayName[now.getDay() ] + ", " + now.getDate () + " de " + monName [now.getMonth() ]   +  " de "  +     now.getFullYear () + ". </span>")
+	   });
+	</script>
+
+
+
+
+
+
+
+</head>
+
+<!-- Corpo do HTML -->
+<body >
+	<!-- Container -->
+	<div class="container-fluid ">
+		<!-- Header da Pagina -->
+		<header id="header">
+			<!-- Imagem da Logo -->
+			<img src="{% static 'img/logo-2.png' %}" id="img-logo">
+
+			<!-- Switch para Background BlackMode/WhiteMode -->
+			<span id="switch-dark-mode">
+
+
+				<label for="switch"><i class="fa fa-moon-o" id="btn-mode-dark" aria-hidden="true"></i></label>
+
+				<input type="checkbox" id="switch" />
+
+			</span>
+
+			<!-- SCRIPT DO DARK MODE -->
+			<script type="text/javascript" src="{% static 'js/darkmode.js' %}"></script>
+
+		</header>
+
+
+			<!-- Header do Dashboard -->
+			<div id="header-dashboard" class="text-center">
+					<!--DATA DO DIA DATA DO HEADER -->
+					<div id="data-hora-header" class="my-3" ></div>
+			</div>
+
+			<!-- NAVEGAÇAO -->
+			<nav id="navegacao">
+
+			<!--BARRA DE PESQUISA -->
+			<div id="pesquisa">
+
+					<form method="GET" class="" id="form-pesquisa">
+							<!-- BTN MENU HAMBURGUER -->
+								<i class="fa fa-bars menu-hamburguer-closed btn" data-toggle="collapse" data-target="#menu-deslizante" id="menu-hamburguer" aria-hidden="true"></i>
+
+								<!--INPUT DA BARRA DE PESQUISA -->
+								<input type="text" name="barra-pesquisa" id="barra-pesquisa" class="barra-pesquisa-closed form-control" placeholder="Pesquisar">
+
+								<!--BTN PESQUISAR -->
+								<span id="btn-pesquisar" class=" btn-sm btn-primary ">Ok</span>
+					</form>
+
+
+			</div>
+
+			<!-- Menu Deslizante -->
+				<div id="menu-deslizante" class="collapse p-1">
+
+					<!--HEADER DO MENU DESLIZANTE -->
+					<h5 id="header-menu-deslizante" class="">Antherus - Gerenciador de Leads</h5>
+					<!-- PERFIL DO USUÁRIO -->
+					<div id="perfil-user" class="text-center">
+						<!--Foto Perfil User -->
+
+							<img id="img-perfil-user" class="img img-fluid "  src="logo.png" alt="Foto Perfil Usuário">
+
+						<div id="nome-perfil">ANDRESSA CRISTINA ANTHERO</div>
+						<script type="text/javascript">
+							var tamanhoNomeperfil = $('#nome-perfil').text();
+							var tamanho = tamanhoNomeperfil.length
+							//alert(tamanho)
+							if(tamanho <= 25){
+								$('#nome-perfil').css({'font-size':'1.1em','position':'relative','left':'0.7em'});
+								//alert(' 25 ou menor')
+							};
+
+							if(tamanho <= 20){
+								$('#nome-perfil').css({'font-size':'1.4em'});
+								//alert(' 25 ou menor')
+							};
+
+							if(tamanho <= 15){
+								$('#nome-perfil').css({'font-size':'1.8em','position':'relative','left':'0.5em'});
+								//alert(' 25 ou menor')
+							};
+						</script>
+						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' request.user %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
+
+					</div>
+					<!-- BTNS DO MENU -->
+					<div id="menu" class="mt-3">
+						<!-- BTN LEADS -->
+						<div class="btn  btn-menu " id="todos-leads" >
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Todos Leads</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="novos-leads">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Novos Leads</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="leads-aberto">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Leads em Aberto</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="leads-em-atendimento">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Leads em Atendimento</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="leads-nao-atendido">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Leads Não Atendido</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="leads-positivo">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Leads Positivo</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="leads-neutro">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Leads Status Neutro</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+
+						<!-- BTN -->
+						<div class="btn  btn-menu " id="leads-negativo">
+							<i class="fa fa-envelope-open ml-3" ></i>
+							<span class="text-btn-menu">Leads Status Negativo</span>
+							<span class="qtde-leads-btn-menu">100000</span>
+						</div>
+						<!--SCRIPT BTN MENU -->
+						<script type="text/javascript" src="{% static 'js/script-btn-menu.js' %}"></script>
+
+
+					</div>
+
+
+				</div>
+
+			</nav>
+
+		<!-- DADOS DO LEADS EM ATENDIMEMTO -->
+		<div id="leads-atendimento" class="text-center">
+			<!-- BTN VOLTAR -->
+			<div id="btn-voltar"><a href="{% url 'dashboard' %}"  class="fa fa-arrow-left btn btn-outline-primary"><span id="text-btn-voltar"> voltar</span></a></div>
+
+
+			{% for leads_atendimento in leads_atendimento %}
+			<div id="dados-leads-atendimento" >
+				<div id="id-leads-atendimento"  class="my-3 bg-primary rounded text-white font-weight-bold">
+					<span>Id:</span>
+					<span id="id-atendimento-vinculado" >{{leads_atendimento.pk}}</span>
+					<div>{{leads_atendimento.data_recebimento|slice:'8:10'}}{{leads_atendimento.data_recebimento|slice:'4:7'}}-{{leads_atendimento.data_recebimento|slice:':4'}}{{leads_atendimento.data_recebimento|slice:'10:16'}}</div>
+				</div>
+				<hr>
+				<div id="campo-nome-leads-atendimento"class=" ">
+					<label class="bg-primary p-2 rounded  text-white font-weight-bold"">Nome</label>
+					<div id="nome-leads-atendimento" >{{leads_atendimento.nome_leads}}</div>
+				</div>
+				<hr>
+				<div  class=" ">
+					<label class="bg-primary p-2 rounded  text-white font-weight-bold"">Email</label>
+					<p id="email-leads-atendimento" class="  ">{{leads_atendimento.email}}</p>
+					<script>
+						var email = $('#email-leads-atendimento').text()
+						//alert(email[0])
+						if(email.length >29){
+							$('#email-leads-atendimento').css({'font-size':'14px'});
+
+
+						}
+
+						if(email.length >34){
+							$('#email-leads-atendimento').css({'font-size':'16px'});
+						}
+
+						if(email.length >39){
+							$('#email-leads-atendimento').css({'font-size':'14px'});
+
+
+
+
+						}
+
+					</script>
+				</div>
+				<hr>
+				<a id="btn-falar-whatsapp" href="https://wa.me/55{{leads_atendimento.whatsapp|slice:'1:3'}}{{leads_atendimento.whatsapp|slice:'4:'}}?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn btn-success m-3 p-2">
+					<span class="">Falar pelo</span>
+					<span class="fa fa-whatsapp mx-1" ></span>
+					<span id="whatsapp-leads-atendimento">{{leads_atendimento.whatsapp}}</span>
+				</a>
+				<!-- Qualificação -->
+				<form id="quaificacao-leads" class="my-3 py-4 border border-dark rounded">
+						<h4 class="text-center font-weight-bolder">Classificação do Leads</h4>
+						<label class="bg-primary p-1 rounded" for="opcionais-leads">Leads</label>
+						<select name="opcionais-leads" id="opcionais-leads" class="px-5 py-2 rounded font-weight-bold">
+
+							<option id="opcao-positivo"  value="POSITIVO">POSITIVO</option>
+							<option id="opcao-neutro"   value="NEUTRO">NEUTRO</option>
+							<option id="opcao-negativo"   value="NEGATIVO">NEGATIVO</option>
+						</select>
+
+						<script>
+									$( document ).ready(function() {
+										var statusLeads = '{{leads_atendimento.status_leads}}';
+										$('#opcionais-leads option[value="{{leads_atendimento.status_leads}}"] ').attr('selected','selected')
+									});
+							</script>
+
+
+
+
+				</form>
+				 <script>
+										 $(document).on('change','#opcionais-leads', function(){
+										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
+										 	var qualificacao = $(this).val();
+
+										 	 var formData = new FormData();
+
+											 formData.append('status_leads',qualificacao)
+
+											  var request = new XMLHttpRequest()
+
+
+
+
+											  request.open('POST', 'https://nix2022.pythonanywhere.com/qualificar_leads/{{leads_atendimento.pk}}/',false)
+
+
+
+
+
+											  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+
+
+
+											  request.setRequestHeader('X-CSRFToken', csrftoken)
+
+
+
+
+
+											 request.send(formData)
+											 window.location.reload();
+
+
+
+
+										 });
+									 </script>
+
+
+
+			</div>
+
+
+
+		</div>
+
+		<!-- FINAL DO LEADS EM ATENDIMEMTO -->
+
+
+
+
+
+
+
+
+		<!--AREA AGENDAMENTO -->
+		<div id="area-agendamento" class="bg-primary ">
+			<span id="btn-agenda" class="btn btn-light"><i class=" fa fa-chevron-down"></i></span>
+			<span id="label-btn-agendamentos">Agendamentos</span>
+
+			<!--SCRIPT BTN AGENDAMENTOS -->
+			<script type="text/javascript" src="{% static 'js/script-btn-agendamentos.js' %}"></script>
+		</div>
+
+
+
+
+		<!-- AGENDAMENTOS -->
+			<div id='calendar'></div>
+
+			<!-- MODAL 1 -->
+		     <div id="calendarModal-1" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+
+		                </div>
+		                <div id="modalBody-1" class="modal-body  d-block">
+
+		                      <h4 id="modalTitle-1" class="modal-title text-center">Criar Evento</h4>
+		                      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_agendamento' %}">
+								  {% csrf_token %}
+								  <div>
+									  <label for="nome-agendamento">Cliente</label>
+
+									  <input type="text" name="nome_agendamento" class="form-control" id="nome-agendamento">
+
+								  </div>
+
+								  <div>
+									  <label for="hora-inicio">Hora Inicio</label>
+
+									  <input type="text"  class="form-control" id="hora-inicio" >
+									  <input type="text" name="data_evento" id="data_evento"  >
+
+								  </div>
+
+								  <div>
+									  <label for="hora-termino">Hora Termino</label>
+
+									  <input type="text" class="form-control" id="hora-termino" >
+									  <input type="text" name="data_termino" id="data_termino" >
+
+								  </div>
+
+								  <input type="text" name="atendimento-vinculado" id="atendimento-vinculado">
+								   <script>
+									  var atendimento = $('#id-atendimento-vinculado').text();
+									  $('#atendimento-vinculado').val(atendimento);
+								  </script>
+
+
+									<button type="submit" class="btn btn-success" id="salvar-agendamento"  >Salvar</button>
+
+									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+
+
+
+		                      </form>
+
+
+		                </div>
+
+
+
+
+		            </div>
+		        </div>
+		    </div>
+		    <!-- FINAL MODAL -->
+
+
+
+
+
+
+
+
+			<!-- FINAL AGENDAMENTOS -->
+
+
+
+
+
+			<!--AREA CADASTRAR -->
+			<div id="area-cadastrar-atendimento" class="bg-primary ">
+				<span id="btn-cadastrar-atendimento" class="btn btn-light"><i class=" fa fa-chevron-down"></i></span>
+				<span id="label-btn-cadastrar-atendimento">Cadastrar Atendimento</span>
+
+			</div>
+
+			<!--SCRIPT ABRIR ATENDIMENTO -->
+			<script type="text/javascript" src="{% static 'js/script-abrir-atendimento.js' %}"></script>
+
+			<!-- ATENDIMENTO -->
+			<div id="atendimento">
+
+				<!-- FORMULÁRIO ATENDIMENTO -->
+				<form id="form-atendimento" enctype="multipart/form-data" method="POST" action="{% url 'criar_atendimento' %}" >
+					{% csrf_token %}
+					<h4 class="m-4 text-center text-dark font-weight-bold">Cadastro de Atendimento</h4>
+					<div class="text-center">
+						<label for="text-area-anotacoes-atendimento" id="label-anotacoes-atendimento" class="border border-primary bg-primary rounded p-2 text-white">Anotações do Atendimento</label>
+						<textarea id="text-area-anotacoes-atendimento" class="form-control" name="anotacoes" maxlength="300"></textarea>
+						<input hidden type="text" name="id_atendimento" value="{{leads_atendimento.pk}}">
+						<input type="submit" id="enviar-anotacoes-atendimento" value="Cadastrar Atendimento" class="btn btn-lg btn-warning">
+					</div>
+				</form>
+
+					<br>
+
+					<!-- LISTAGEM DE ATENDIMENTOS -->
+				<h4  class="text-center text-dark font-weight-bold bg-primary rounded p-2" id="header-historico-atendimento">Histórico de Atendimento</h4>
+
+				<!--LISTA ATENDIMENTO -->
+				<div id="lista-atendimento" class=" border border-dark rounded ">
+					{% for anotacoes in anotacoes %}
+					<!--ATENDIMENTO CADASTRADO -->
+					<div class="atendimento-cadastrado border border-dark rounded p-1 m-1">
+						<p class="text-atendimento p-1">{{anotacoes.anotacoes_atendimento}}</p>
+						<small class="ml-1">{{anotacoes.data_inclusao_atendimento|slice:"8:10"}}-{{anotacoes.data_inclusao_atendimento|slice:"5:7"}}-{{anotacoes.data_inclusao_atendimento|slice:"0:4"}} às{{anotacoes.data_inclusao_atendimento|slice:"10:19"}} - realizado por:{{anotacoes.user_inclusao_atendimento|capfirst}}</small>
+
+					</div>
+						<!-- FINAL ATENDIMENTO CADASTRADO -->
+					{% endfor %}
+
+
+
+				</div>
+				<!--FINAL LISTA ATENDIMENTO -->
+
+			</div>
+
+			<!-- FINAL ATENDIMENTO -->
+
+
+			<!-- CADASTRAR FICHA CLIENTE -->
+
+
+
+			<div id="area-cadastrar-cliente" class="bg-primary ">
+				{% if atendimento_vinculado %}
+				<script>
+					$( document ).ready(function() {
+						$('#label-btn-cadastrar-cliente ').text('Acessar Cliente')
+						$('#icone-btn-cliente').addClass('fa-address-book').removeClass('fa-plus-circle');
+						$('#salvar-ficha-cliente').text('Acessar Cadastro Completo')
+					});
+				</script>
+
+				{%else%}
+					<script>
+					$( document ).ready(function() {
+						$('#label-btn-cadastrar-cliente ').text('Cadastrar Cliente');
+						$('#icone-btn-cliente').addClass('fa-plus-circle').removeClass('fa-address-book');
+						$('#salvar-ficha-cliente').text('Salvar')
+					});
+				</script>
+				{% endif %}
+				<span id="btn-cadastrar-cliente" class="btn btn-light"><i id="icone-btn-cliente" class=" fa "></i></span>
+				<span id="label-btn-cadastrar-cliente"></span>
+
+				<!-- CADASTRAR CLIENTE -->
+				<script type="text/javascript" src="{% static 'js/btn-cadastrar-cliente.js' %}"></script>
+			</div>
+
+
+
+
+			<!-- MODAL 2 -->
+		     <div id="calendarModal-2" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+
+		                </div>
+		                <div id="modalBody" class="modal-body  d-block">
+
+		                      <h4 id="modalTitle" class="modal-title text-center">Cadastrar Cliente</h4>
+		                      <form id="form-cadastar-cliente" >
+								  <input hidden type="text" name="atendimento_vinculado"  id="atendimento_vinculado" value="{{leads_atendimento.pk}}">
+		                      	<div id="campo-nome-cliente">
+		                      		<label for="nome-cliente">Nome Cliente</label>
+
+		                      		<input type="text" name="nome_cliente" class="form-control" id="nome-cliente">
+
+		                      	</div>
+
+		                      	<div id="campo-email-cliente">
+		                      		<label for="nome-cliente">E-mail</label>
+
+		                      		<input type="text" name="email_cliente" class="form-control" id="email-cliente">
+
+		                      	</div>
+
+		                      	<div id="campo-whatsapp-cliente">
+		                      		<label for="nome-cliente">WhatsAPP</label>
+
+		                      		<input type="text" name="whatsapp_cliente" class="form-control" id="whatsapp-cliente">
+
+		                      	</div>
+
+
+
+		                      	<div class="p-1 mt-3">Confira os dados e Salve na base de Clientes</div>
+								 <div class="modal-footer">
+
+
+		                	<button  class="btn btn-success" id="salvar-ficha-cliente"  data-dismiss="modal" ></button>
+									 <script>
+										 $(document).on('click','#salvar-ficha-cliente', function(){
+										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
+
+										 	 var formData = new FormData();
+										 	 var nome_cliente = $('#nome-cliente').val();
+
+										 	 var email_cliente = $('#email-cliente').val();
+
+										 	 var whatsapp_cliente = $('#whatsapp-cliente').val();
+
+
+											formData.append('atendimento_vinculado',atendimento_vinculado)
+										 	 formData.append('nome_cliente',nome_cliente)
+										 	 formData.append('email_cliente',email_cliente)
+										 	 formData.append('whatsapp_cliente',whatsapp_cliente)
+
+
+
+
+
+
+
+
+
+
+
+
+											  var request = new XMLHttpRequest()
+
+
+
+
+											  request.open('POST', 'https://nix2022.pythonanywhere.com/cadastrar_clientes/',false)
+
+
+
+
+
+											  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+												//alert(csrftoken)
+
+
+											  request.setRequestHeader('X-CSRFToken', csrftoken)
+
+
+
+
+
+											 request.send(formData)
+											 alert(request.readyState)
+
+
+
+
+											window.location.reload();
+
+
+
+
+										 });
+									 </script>
+
+
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		                </div>
+
+
+
+
+
+		                      </form>
+
+
+		                </div>
+
+		            </div>
+		        </div>
+		    </div>
+		    <!-- FINAL MODAL 2 -->
+			<!-- FINAL CADASTRAR FICHA CLIENTE -->
+
+
+
+			<!--BTN DELETAR LEADS -->
+			<div id="area-deletar-leads" class="text-center">
+
+
+			 	<a href="" id="deletar-leads" class="btn btn-lg btn-danger text-center m-2 " data-toggle="modal" data-target="#modal-deletar">Deletar Leads</a>
+			</div>
+
+			<!-- MODAL DELETAR-->
+		     <div id="modal-deletar" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+
+		                </div>
+		                <div id="modalBody-delatar" class="modal-body  d-block text-center">
+
+		                      <h4 id="modalTitle-deletar" class="modal-title ">Deletar Leads</h4>
+		                      <div class="">Confirma Deletar Leads - {{leads_atendimento.pk}}</div>
+							  <!-- INFO LEADS Á DELETAR -->
+							<form enctype="multipart/form-data" method="POST" action="{% url 'excluir_leads' pk=leads_atendimento.pk %}" id="info-leads-deletar" class="ml-2">
+								{% csrf_token %}
+								<div class="m-4" >
+									<span class="bg-primary p-2 rounded text-white label-deletar">Nome</span>
+									<span class="info-leads-deletar">{{leads_atendimento.nome_leads}}</span>
+								</div>
+
+								<div class="m-4" >
+									<span class="bg-primary p-2 rounded text-white label-deletar">Email</span>
+									<span class="info-leads-deletar" >{{leads_atendimento.email}}</span>
+								</div>
+
+								<div class="m-4" >
+									<label  class="bg-primary p-2 rounded text-white label-deletar">Whatsapp</label>
+									<span class="info-leads-deletar">{{leads_atendimento.whatsapp}}</span>
+								</div>
+								<div>
+									<button type="submit" class="btn btn-danger " id="btn-deletar-leads"   >Deletar Leads</button>
+									<!--Script -->
+
+
+									<button type="button" class="btn btn-primary text-white" id="sair-deletar-leads" data-dismiss="modal">Sair</button>
+								</div>
+
+
+							</form>
+
+
+		                </div>
+
+		            </div>
+		        </div>
+		    </div>
+		    <!-- FINAL MODAL -->
+
+
+
+
+
+
+			<!-- FOOTER -->
+		<footer >
+			<i class="fa fa-copyright text-center" aria-hidden="true">Copyright</i>
+			<div>Antherus - Desenvolvimento Web</div>
+			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+		</footer>
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+	{% endfor %}
+
+	<!-- Java Script -->
+	<script type="text/javascript" src="{% static 'js/script-atendimento.js'%}"></script>
+
+	<!--SCRIPT FICHA-CLIENTE -->
+			<script type="text/javascript" src="{% static 'js/script-ficha-cliente.js' %}"></script>
+
+
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
