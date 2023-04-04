@@ -161,9 +161,9 @@ def editar_agendamento(request, pk):
             user_agendamento=user_agendamento,
         )
 
-        return render(request, 'site/atendimento.html')
+        return redirect('atendimento', pk=pk)
     else:
-        return render(request, 'site/atendimento.html')
+        return redirect('atendimento', pk=pk)
 
 
 def deletar_agendamento(request, pk):

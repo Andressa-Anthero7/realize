@@ -160,44 +160,103 @@
            },/*FINAL DO SELECT */
 
 
-          eventClick: function deletar(info) {
+          eventClick: function(info) {
 
-             $('#calendarModal-1').modal('show');
+					$('#calendarModal-1').modal('show');
+             		$('#modalTitle-1').html('Deletar Evento')
+             		$('#salvar-agendamento').html('Deletar');
+
+              		var nome = $('#nome-leads-atendimento').text();
+              		$('#nome-agendamento').val(nome);
+              		$('#agendamento-nome').text(nome);
+
+               		var inicio = info.event.startStr;
+
+              	 	var comeco = info.event.startStr;
+               		$('#data_evento').val(comeco)
+
+                	var min = new Array();
+
+					min = inicio[11]+''+ inicio[12]+':'+inicio[14]+''+inicio[15];
+					$('#hora-inicio').text(min);
+
+					min = parseInt(min);
+
+
+
+					termino = info.event.endStr;
+					termino = termino[11]+''+ termino[12]+':'+termino[14]+''+termino[15];
+					$('#hora-termino').text(termino)
+					final = info.event.endStr;
+					$('#data_termino').val(final);
+
+					$(document).on('click','#salvar-agendamento', function(){
+						document.getElementById('form-agendamento').action = 'http://127.0.0.1:8000/deletar_agendamento/'+info.event.id+'/';
+					});
+
+
+
 
             },
 
-             	eventDrop: function(info) {
-             	var formData = new FormData()
-             	var valor = info.event.startStr
-              	var min = new Array();
+			eventDrop: function (info) {
+             		$('#calendarModal-1').modal('show');
+             		$('#modalTitle-1').html('Editar Evento')
+             		$('#salvar-agendamento').html('Editar');
+
+              		var nome = $('#nome-leads-atendimento').text();
+              		$('#nome-agendamento').val(nome);
+              		$('#agendamento-nome').text(nome);
+
+               		var inicio = info.event.startStr;
+
+              	 	var comeco = info.event.startStr;
+               		$('#data_evento').val(comeco)
+
+                	var min = new Array();
+
+					min = inicio[11]+''+ inicio[12]+':'+inicio[14]+''+inicio[15];
+					$('#hora-inicio').text(min);
+
+					min = parseInt(min);
 
 
 
-				min = valor[14]+''+valor[15];
-				min = parseInt(min);
-				final = valor.replace(':'+valor[14]+''+valor[15],min+10);
+					termino = info.event.endStr;
+					termino = termino[11]+''+ termino[12]+':'+termino[14]+''+termino[15];
+					$('#hora-termino').text(termino)
+					final = info.event.endStr;
+					$('#data_termino').val(final);
+
+					$(document).on('click','#salvar-agendamento', function(){
+						document.getElementById('form-agendamento').action = 'http://127.0.0.1:8000/editar_agendamento/'+info.event.id+'/';
+					});
 
 
 
-              formData.append('nome_agendamento',info.event.title)
-              formData.append('data_evento',info.event.startStr)
-              formData.append('data_termino',final)
-               var request = new XMLHttpRequest()
-               url = 'https://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
-               alert(url)
-              request.open('POST',url ,false)
-              alert(request.readyState)
-
-               const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
 
 
-              request.setRequestHeader('X-CSRFToken', csrftoken)
 
 
-             request.send(formData)
+				   dados=calendar.addEvent({
+						  title: nome,
+						  start: valor,
+						  end: final,
+						  locale: 'pt-br',
+						  timeZone: 'UTC',
 
 
-              window.location.reload();
+						  timeFormat: 'HH:mm',
+						  editable: true,
+						  droppable: true,
+						  startEditable:true,
+
+
+					})
+
+
+
+
 
 
 
@@ -584,32 +643,32 @@
 		                <div id="modalBody-1" class="modal-body  d-block">
 
 		                      <h4 id="modalTitle-1" class="modal-title text-center">Criar Evento</h4>
-		                      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_agendamento' %}">
+		                      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_agendamento' %}" id="form-agendamento">
 								  {% csrf_token %}
 								  <div>
 									  <label for="nome-agendamento">Cliente</label>
-
-									  <input type="text" name="nome_agendamento" class="form-control" id="nome-agendamento">
+									  <div class="form-control" id="agendamento-nome" ></div>
+									  <input type="text" name="nome_agendamento" id="nome-agendamento" hidden>
 
 								  </div>
 
-								  <div>
+								  <div id="campo-hora-inicio">
 									  <label for="hora-inicio">Hora Inicio</label>
 
-									  <input type="text"  class="form-control" id="hora-inicio" >
-									  <input type="text" name="data_evento" id="data_evento"  >
+									  <div class="form-control" id="hora-inicio" ></div>
+									  <input type="text" name="data_evento" id="data_evento" hidden >
 
 								  </div>
 
-								  <div>
+								  <div id="campo-hora-termino">
 									  <label for="hora-termino">Hora Termino</label>
 
-									  <input type="text" class="form-control" id="hora-termino" >
-									  <input type="text" name="data_termino" id="data_termino" >
+									  <div class="form-control" id="hora-termino" ></div>
+									  <input type="text" name="data_termino" id="data_termino" hidden >
 
 								  </div>
 
-								  <input type="text" name="atendimento-vinculado" id="atendimento-vinculado">
+								  <input type="text" name="atendimento-vinculado" id="atendimento-vinculado" hidden>
 								   <script>
 									  var atendimento = $('#id-atendimento-vinculado').text();
 									  $('#atendimento-vinculado').val(atendimento);
