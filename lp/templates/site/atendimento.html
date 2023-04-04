@@ -183,7 +183,7 @@
               formData.append('data_evento',info.event.startStr)
               formData.append('data_termino',final)
                var request = new XMLHttpRequest()
-               url = 'http://127.0.0.1:8000/editar_agendamento/'+info.event.id+'/';
+               url = 'https://nix2022.pythonanywhere.com/editar_agendamento/'+info.event.id+'/';
                alert(url)
               request.open('POST',url ,false)
               alert(request.readyState)
