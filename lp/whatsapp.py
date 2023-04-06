@@ -1,8 +1,9 @@
 def notificacao(leads_pk):
     from twilio.rest import Client
-    from django.conf import settings
 
-    client = Client(settings.TWILIO_ACCOUNT_SID, settings.TWILIO_AUTH_TOKEN)
+    account_sid = 'ACc4b4a408cd71392b6e1240e43319dade'
+    auth_token = '1a3b0a6f090dbf09b67884ce75b6d966'
+    client = Client(account_sid, auth_token)
 
     message = client.messages.create(
         from_='whatsapp:+14155238886',
@@ -11,3 +12,4 @@ def notificacao(leads_pk):
     )
 
     print(message.sid)
+

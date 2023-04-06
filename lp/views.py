@@ -25,6 +25,7 @@ def index(request):
                              data_recebimento=data_recebimento)
         leads = Leads.objects.last()
         leads_id = leads.pk
+        print(leads_id)
         notificacao(leads_id)
         return render(request, 'site/index.html')
     else:
