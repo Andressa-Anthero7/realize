@@ -58,3 +58,15 @@ class TagGoogle(models.Model):
     editado_por = models.CharField(max_length=50)
     data_atualizacao = models.CharField(max_length=15)
     tag_google = models.CharField(max_length=256)
+
+
+class TwilioAccountSid(models.Model):
+    editado_por = models.CharField(max_length=50)
+    data_atualizacao = models.CharField(max_length=15)
+    twilio_account_sid = models.CharField(max_length=256)
+
+
+class TwilioAuthToken(models.Model):
+    editado_por = models.CharField(max_length=50)
+    data_atualizacao = models.CharField(max_length=15)
+    twilio_auth_token = models.CharField(max_length=256)
