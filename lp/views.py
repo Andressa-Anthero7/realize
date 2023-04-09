@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
-from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle
+from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle, TwilioAccountSid, \
+    TwilioAuthToken
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .whatsapp import notificacao
@@ -26,7 +27,14 @@ def index(request):
         leads = Leads.objects.last()
         leads_id = leads.pk
         print(leads_id)
-        notificacao(leads_id)
+        account_sid = TwilioAccountSid.objects.last()
+        account_sid = account_sid.twilio_account_sid
+        auth_token = TwilioAuthToken.objects.last()
+        auth_token = auth_token.twilio_auth_token
+        print(account_sid)
+        print(auth_token)
+        notificacao(leads_id, account_sid, auth_token)
+
         return render(request, 'site/index.html')
     else:
         tag_meta = Tagmeta.objects.all()
