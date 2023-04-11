@@ -684,7 +684,7 @@
 
 											$('form').on('submit', function(){
 
-											  //$('#salvar-agendamento').hide();
+											  $('#salvar-agendamento').hide();
 
 
 											});
@@ -693,7 +693,14 @@
 
 
 
-									<a  type="button" class="btn btn-outline-danger text-center" id="btn-close" onClick="window.location.realod();" >Close</a>
+									<a  type="button" class="btn btn-outline-danger text-center" id="btn-close"  >Close</a>
+								  <script>
+									  $(document).on('click','#btn-close',function(){
+									  		window.location.href = 'http://nix2022.pythonanywhere.com/';
+									  		//alert('alerta')
+									  });
+								  </script>
+
 
 
 

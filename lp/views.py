@@ -98,6 +98,7 @@ def criar_agendamento(request):
         account_sid = account_sid.twilio_account_sid
         auth_token = TwilioAuthToken.objects.last()
         auth_token = auth_token.twilio_auth_token
+        # refresh(atendimento_vinculado)
         notificar_agenda(data_evento, account_sid, auth_token, nome_agendamento, atendimento_vinculado)
         return redirect('atendimento', pk=atendimento_vinculado)
     else:
