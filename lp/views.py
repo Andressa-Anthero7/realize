@@ -5,6 +5,9 @@ from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, 
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from .whatsapp import notificacao
+from .notificar_agendamento import notificar_agenda
+from .refresh import refresh
+from datetime import datetime, timedelta, time
 
 
 # Create your views here.
@@ -59,6 +62,7 @@ def atendimento(request, pk):
     atendimento_vinculado = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
 
     agendamentos = Agendamento.objects.all()
+    print(agendamentos)
     anotacoes = Atendimento.objects.filter(leads_atendimento=pk).order_by('-data_inclusao_atendimento')
     return render(request, 'site/atendimento.html', {'agendamentos': agendamentos,
                                                      'leads_atendimento': leads_atendimento,
@@ -78,20 +82,23 @@ def criar_agendamento(request):
         nome_agendamento = request.POST.get('nome_agendamento')
         data_evento = request.POST.get('data_evento')
         data_termino = request.POST.get('data_termino')
-        print(nome_agendamento)
-        print(data_evento)
-        print(data_termino)
         data_agendamento = datetime.now()
         user_agendamento = request.user
         atendimento_vinculado = request.POST.get('atendimento-vinculado')
+        print(data_evento)
         Agendamento.objects.create(
             nome_agendamento=nome_agendamento,
             data_evento=data_evento,
             data_termino=data_termino,
             data_agendamento=data_agendamento,
             user_agendamento=user_agendamento,
+            vinculado_ao_atendimento=atendimento_vinculado
         )
-
+        account_sid = TwilioAccountSid.objects.last()
+        account_sid = account_sid.twilio_account_sid
+        auth_token = TwilioAuthToken.objects.last()
+        auth_token = auth_token.twilio_auth_token
+        notificar_agenda(data_evento, account_sid, auth_token, nome_agendamento, atendimento_vinculado)
         return redirect('atendimento', pk=atendimento_vinculado)
     else:
         atendimento_vinculado = request.GET.get('atendimento-vinculado')

@@ -49,7 +49,7 @@
               var calendar = new FullCalendar.Calendar(calendarEl, {
 
               locale: 'pt-br',
-        	    timeZone: 'UTC',
+        	    timeZone: 'America/Sao_Paulo',
 
 
       		    timeFormat: 'HH:mm',
@@ -63,8 +63,8 @@
               initialView: 'timeGridDay',
               selectable:true,
 
-              slotDuration: {minutes:10},
-              slotLabelInterval:{minutes:10},
+              slotDuration: {minutes:1},
+              slotLabelInterval:{minutes:1},
               slotLabelFormat: [
       					{  hour: 'numeric', minute:'numeric' }, // top level of text
 
@@ -113,6 +113,7 @@
               	$('#nome-agendamento').val(nome);
 
                var inicio = info.startStr;
+               alert(inicio)
 
                var comeco = info.startStr;
                $('#data_evento').val(comeco)
@@ -640,6 +641,7 @@
 		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
 
 		                </div>
+						<!-- MODAL BODY-->
 		                <div id="modalBody-1" class="modal-body  d-block">
 
 		                      <h4 id="modalTitle-1" class="modal-title text-center">Criar Evento</h4>
@@ -675,9 +677,22 @@
 								  </script>
 
 
-									<button type="submit" class="btn btn-success" id="salvar-agendamento"  >Salvar</button>
 
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+
+									<button  type="submit" class="btn btn-success" id="salvar-agendamento" onClick="window.location.reload()"   >Salvar</button>
+								  	<script>
+
+											$('form').on('submit', function(){
+
+											  $('#salvar-agendamento').hide();
+
+											});
+
+									</script>
+
+
+
+									<a href="" type="button" class="btn btn-outline-danger text-center" id="btn-close"  >Close</a>
 
 
 
@@ -686,6 +701,8 @@
 
 
 		                </div>
+						<!--FINAL MODAL BODY -->
+
 
 
 
