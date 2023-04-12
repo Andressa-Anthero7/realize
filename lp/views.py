@@ -34,8 +34,6 @@ def index(request):
         account_sid = account_sid.twilio_account_sid
         auth_token = TwilioAuthToken.objects.last()
         auth_token = auth_token.twilio_auth_token
-        print(account_sid)
-        print(auth_token)
         notificacao(leads_id, account_sid, auth_token)
 
         return render(request, 'site/index.html')
@@ -62,7 +60,6 @@ def atendimento(request, pk):
     atendimento_vinculado = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
 
     agendamentos = Agendamento.objects.all()
-    print(agendamentos)
     anotacoes = Atendimento.objects.filter(leads_atendimento=pk).order_by('-data_inclusao_atendimento')
     return render(request, 'site/atendimento.html', {'agendamentos': agendamentos,
                                                      'leads_atendimento': leads_atendimento,
@@ -85,7 +82,6 @@ def criar_agendamento(request):
         data_agendamento = datetime.now()
         user_agendamento = request.user
         atendimento_vinculado = request.POST.get('atendimento-vinculado')
-        print(data_evento)
         Agendamento.objects.create(
             nome_agendamento=nome_agendamento,
             data_evento=data_evento,
@@ -98,7 +94,6 @@ def criar_agendamento(request):
         account_sid = account_sid.twilio_account_sid
         auth_token = TwilioAuthToken.objects.last()
         auth_token = auth_token.twilio_auth_token
-        # refresh(atendimento_vinculado)
         notificar_agenda(data_evento, account_sid, auth_token, nome_agendamento, atendimento_vinculado)
         return redirect('atendimento', pk=atendimento_vinculado)
     else:
