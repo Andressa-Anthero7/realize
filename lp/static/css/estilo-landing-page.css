@@ -1033,7 +1033,7 @@
 
 
 /* Celulares até 5,5 Polegadas Tamanho G */
-@media (min-width: 376px) and (max-width:  414.98px) {
+@media (min-width: 376px) and (max-width:  428.98px) {
 	body{
 
 
@@ -1061,7 +1061,7 @@
 	.container-fluid{
 
 		 width: 400px;
-
+         overflow-x: hidden;
 	}
 
 	#header{
@@ -1371,7 +1371,7 @@
 
 
 /* Tablet Menor */
-@media (min-width: 415.00px) and (max-width:  768.98px) {
+@media (min-width: 429.00px) and (max-width:  768.98px) {
 	body{
 
 
