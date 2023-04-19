@@ -20,6 +20,7 @@ class Agendamento(models.Model):
     data_termino = models.CharField(max_length=50)
     data_agendamento = models.CharField(max_length=50)
     user_agendamento = models.CharField(max_length=50)
+    vinculado_ao_atendimento = models.CharField(max_length=10)
 
 
 class Atendimento(models.Model):
