@@ -502,7 +502,11 @@
 					<div>{{leads_atendimento.data_recebimento|slice:'8:10'}}{{leads_atendimento.data_recebimento|slice:'4:7'}}-{{leads_atendimento.data_recebimento|slice:':4'}}{{leads_atendimento.data_recebimento|slice:'10:16'}}</div>
 				</div>
 				<hr>
+<<<<<<< HEAD
 				<div id="campo-nome-leads-atendimento"class=" ">
+=======
+				<div id="campo-nome-leads-atendimento">
+>>>>>>> 7aa911ca308633d2feea5d81b8a6869c56a3e726
 					<label class="bg-primary p-2 rounded  text-white font-weight-bold">Nome</label>
 					<div id="nome-leads-atendimento" >{{leads_atendimento.nome_leads}}</div>
 				</div>
@@ -612,8 +616,346 @@
 		<!-- FINAL DO LEADS EM ATENDIMEMTO -->
 
 
+<<<<<<< HEAD
 			<!--BTN DELETAR LEADS -->
 			<div id="" class="text-center">
+=======
+<<<<<<< HEAD
+=======
+
+
+
+
+
+
+		<!--AREA AGENDAMENTO -->
+		<div id="area-agendamento" class="bg-primary ">
+			<span id="btn-agenda" class="btn btn-light"><i class=" fa fa-chevron-down"></i></span>
+			<span id="label-btn-agendamentos">Agendamentos</span>
+
+			<!--SCRIPT BTN AGENDAMENTOS -->
+			<script type="text/javascript" src="{% static 'js/script-btn-agendamentos.js' %}"></script>
+		</div>
+
+
+
+
+		<!-- AGENDAMENTOS -->
+			<div id='calendar'></div>
+
+			<!-- MODAL 1 -->
+		     <div id="calendarModal-1" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+
+		                </div>
+						<!-- MODAL BODY-->
+		                <div id="modalBody-1" class="modal-body  d-block">
+
+		                      <h4 id="modalTitle-1" class="modal-title text-center">Criar Evento</h4>
+		                      <form method="POST" enctype="multipart/form-data" action="{% url 'criar_agendamento' %}" id="form-agendamento">
+								  {% csrf_token %}
+								  <div>
+									  <label for="nome-agendamento">Cliente</label>
+									  <div class="form-control" id="agendamento-nome" ></div>
+									  <input type="text" name="nome_agendamento" id="nome-agendamento" hidden>
+
+								  </div>
+
+								  <div id="campo-hora-inicio">
+									  <label for="hora-inicio">Hora Inicio</label>
+
+									  <div class="form-control" id="hora-inicio" ></div>
+									  <input type="text" name="data_evento" id="data_evento" hidden >
+
+								  </div>
+
+								  <div id="campo-hora-termino">
+									  <label for="hora-termino">Hora Termino</label>
+
+									  <div class="form-control" id="hora-termino" ></div>
+									  <input type="text" name="data_termino" id="data_termino" hidden >
+
+								  </div>
+
+								  <input type="text" name="atendimento-vinculado" id="atendimento-vinculado" hidden>
+								   <script>
+									  var atendimento = $('#id-atendimento-vinculado').text();
+									  $('#atendimento-vinculado').val(atendimento);
+								  </script>
+
+
+
+
+									<button  type="submit" class="btn btn-success" id="salvar-agendamento"    >Salvar</button>
+								  	<script>
+
+											$('form').on('submit', function(){
+
+											  $('#salvar-agendamento').hide();
+
+
+											});
+
+									</script>
+
+
+
+									<a type="button" class="btn btn-outline-danger text-center" id="btn-close"  >Close</a>
+								  <script>
+									  $('#btn-close').on('click', function(){
+									  		window.location.reload(true)
+									  });
+								  </script>
+
+
+
+
+		                      </form>
+
+
+		                </div>
+						<!--FINAL MODAL BODY -->
+
+
+
+
+
+		            </div>
+		        </div>
+		    </div>
+		    <!-- FINAL MODAL -->
+
+
+
+
+
+
+
+
+			<!-- FINAL AGENDAMENTOS -->
+
+
+
+
+
+			<!--AREA CADASTRAR -->
+			<div id="area-cadastrar-atendimento" class="bg-primary ">
+				<span id="btn-cadastrar-atendimento" class="btn btn-light"><i class=" fa fa-chevron-down"></i></span>
+				<span id="label-btn-cadastrar-atendimento">Cadastrar Atendimento</span>
+
+			</div>
+
+			<!--SCRIPT ABRIR ATENDIMENTO -->
+			<script type="text/javascript" src="{% static 'js/script-abrir-atendimento.js' %}"></script>
+
+			<!-- ATENDIMENTO -->
+			<div id="atendimento">
+
+				<!-- FORMULÁRIO ATENDIMENTO -->
+				<form id="form-atendimento" enctype="multipart/form-data" method="POST" action="{% url 'criar_atendimento' %}" >
+					{% csrf_token %}
+					<h4 class="m-4 text-center text-dark font-weight-bold">Cadastro de Atendimento</h4>
+					<div class="text-center">
+						<label for="text-area-anotacoes-atendimento" id="label-anotacoes-atendimento" class="border border-primary bg-primary rounded p-2 text-white">Anotações do Atendimento</label>
+						<textarea id="text-area-anotacoes-atendimento" class="form-control" name="anotacoes" maxlength="300"></textarea>
+						<input hidden type="text" name="id_atendimento" value="{{leads_atendimento.pk}}">
+						<input type="submit" id="enviar-anotacoes-atendimento" value="Cadastrar Atendimento" class="btn btn-lg btn-warning">
+					</div>
+				</form>
+
+					<br>
+
+					<!-- LISTAGEM DE ATENDIMENTOS -->
+				<h4  class="text-center text-dark font-weight-bold bg-primary rounded p-2" id="header-historico-atendimento">Histórico de Atendimento</h4>
+
+				<!--LISTA ATENDIMENTO -->
+				<div id="lista-atendimento" class=" border border-dark rounded ">
+					{% for anotacoes in anotacoes %}
+					<!--ATENDIMENTO CADASTRADO -->
+					<div class="atendimento-cadastrado border border-dark rounded p-1 m-1">
+						<p class="text-atendimento p-1">{{anotacoes.anotacoes_atendimento}}</p>
+						<small class="ml-1">{{anotacoes.data_inclusao_atendimento|slice:"8:10"}}-{{anotacoes.data_inclusao_atendimento|slice:"5:7"}}-{{anotacoes.data_inclusao_atendimento|slice:"0:4"}} às{{anotacoes.data_inclusao_atendimento|slice:"10:19"}} - realizado por:{{anotacoes.user_inclusao_atendimento|capfirst}}</small>
+
+					</div>
+						<!-- FINAL ATENDIMENTO CADASTRADO -->
+					{% endfor %}
+
+
+
+				</div>
+				<!--FINAL LISTA ATENDIMENTO -->
+
+			</div>
+
+			<!-- FINAL ATENDIMENTO -->
+
+
+			<!-- CADASTRAR FICHA CLIENTE -->
+
+
+
+			<div id="area-cadastrar-cliente" class="bg-primary ">
+				{% if atendimento_vinculado %}
+				<script>
+					$( document ).ready(function() {
+						$('#label-btn-cadastrar-cliente ').text('Acessar Cliente')
+						$('#icone-btn-cliente').addClass('fa-address-book').removeClass('fa-plus-circle');
+						$('#salvar-ficha-cliente').text('Acessar Cadastro Completo')
+					});
+				</script>
+
+				{%else%}
+					<script>
+					$( document ).ready(function() {
+						$('#label-btn-cadastrar-cliente ').text('Cadastrar Cliente');
+						$('#icone-btn-cliente').addClass('fa-plus-circle').removeClass('fa-address-book');
+						$('#salvar-ficha-cliente').text('Salvar')
+					});
+				</script>
+				{% endif %}
+				<span id="btn-cadastrar-cliente" class="btn btn-light"><i id="icone-btn-cliente" class=" fa "></i></span>
+				<span id="label-btn-cadastrar-cliente"></span>
+
+				<!-- CADASTRAR CLIENTE -->
+				<script type="text/javascript" src="{% static 'js/btn-cadastrar-cliente.js' %}"></script>
+			</div>
+
+
+
+
+			<!-- MODAL 2 -->
+		     <div id="calendarModal-2" class="modal fade">
+		        <div class="modal-dialog">
+		            <div class="modal-content">
+		                <div class="modal-header">
+		                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span> <span class="sr-only">close</span></button>
+
+		                </div>
+		                <div id="modalBody" class="modal-body  d-block">
+
+		                      <h4 id="modalTitle" class="modal-title text-center">Cadastrar Cliente</h4>
+		                      <form id="form-cadastar-cliente" >
+								  <input hidden type="text" name="atendimento_vinculado"  id="atendimento_vinculado" value="{{leads_atendimento.pk}}">
+		                      	<div id="campo-nome-cliente">
+		                      		<label for="nome-cliente">Nome Cliente</label>
+
+		                      		<input type="text" name="nome_cliente" class="form-control" id="nome-cliente">
+
+		                      	</div>
+
+		                      	<div id="campo-email-cliente">
+		                      		<label for="nome-cliente">E-mail</label>
+
+		                      		<input type="text" name="email_cliente" class="form-control" id="email-cliente">
+
+		                      	</div>
+
+		                      	<div id="campo-whatsapp-cliente">
+		                      		<label for="nome-cliente">WhatsAPP</label>
+
+		                      		<input type="text" name="whatsapp_cliente" class="form-control" id="whatsapp-cliente">
+
+		                      	</div>
+
+
+
+		                      	<div class="p-1 mt-3">Confira os dados e Salve na base de Clientes</div>
+								 <div class="modal-footer">
+
+
+		                	<button  class="btn btn-success" id="salvar-ficha-cliente"  data-dismiss="modal" ></button>
+									 <script>
+										 $(document).on('click','#salvar-ficha-cliente', function(){
+										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
+
+										 	 var formData = new FormData();
+										 	 var nome_cliente = $('#nome-cliente').val();
+
+										 	 var email_cliente = $('#email-cliente').val();
+
+										 	 var whatsapp_cliente = $('#whatsapp-cliente').val();
+
+
+											formData.append('atendimento_vinculado',atendimento_vinculado)
+										 	 formData.append('nome_cliente',nome_cliente)
+										 	 formData.append('email_cliente',email_cliente)
+										 	 formData.append('whatsapp_cliente',whatsapp_cliente)
+
+
+
+
+
+
+
+
+
+
+
+
+											  var request = new XMLHttpRequest()
+
+
+
+
+											  request.open('POST', 'https://nix2022.pythonanywhere.com/cadastrar_clientes/',false)
+
+
+
+
+
+											  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
+
+												//alert(csrftoken)
+
+
+											  request.setRequestHeader('X-CSRFToken', csrftoken)
+
+
+
+
+
+											 request.send(formData)
+											 alert(request.readyState)
+
+
+
+
+											window.location.reload();
+
+
+
+
+										 });
+									 </script>
+
+
+		                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		                </div>
+
+
+
+
+
+		                      </form>
+
+
+		                </div>
+
+		            </div>
+		        </div>
+		    </div>
+		    <!-- FINAL MODAL 2 -->
+			<!-- FINAL CADASTRAR FICHA CLIENTE -->
+
+
+
+>>>>>>> d07233df666e13f5987270784ff944264fb17f40
+			<!--BTN DELETAR LEADS -->
+			<div class="text-center">
+>>>>>>> 7aa911ca308633d2feea5d81b8a6869c56a3e726
 
 
 			 	<a href="" id="deletar-leads" class="btn btn-lg btn-danger text-center m-2 " data-toggle="modal" data-target="#modal-deletar">Deletar Leads</a>
@@ -673,7 +1015,7 @@
 
 
 			<!-- FOOTER -->
-		<footer >
+		<footer class="mt-3" >
 			<i class="fa fa-copyright text-center" aria-hidden="true">Copyright</i>
 			<div>Antherus - Desenvolvimento Web</div>
 			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
