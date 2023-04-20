@@ -366,112 +366,6 @@
 					<div id="data-hora-header" class="my-3" ></div>
 			</div>
 
-			<!-- NAVEGAÇAO -->
-			<nav id="navegacao">
-
-
-
-			<!-- Menu Deslizante -->
-				<div id="menu-deslizante" class="collapse p-1">
-
-					<!--HEADER DO MENU DESLIZANTE -->
-					<h5 id="header-menu-deslizante" class="">Antherus - Gerenciador de Leads</h5>
-					<!-- PERFIL DO USUÁRIO -->
-					<div id="perfil-user" class="text-center">
-						<!--Foto Perfil User -->
-
-							<img id="img-perfil-user" class="img img-fluid "  src="logo.png" alt="Foto Perfil Usuário">
-
-						<div id="nome-perfil">ANDRESSA CRISTINA ANTHERO</div>
-						<script type="text/javascript">
-							var tamanhoNomeperfil = $('#nome-perfil').text();
-							var tamanho = tamanhoNomeperfil.length
-							//alert(tamanho)
-							if(tamanho <= 25){
-								$('#nome-perfil').css({'font-size':'1.1em','position':'relative','left':'0.7em'});
-								//alert(' 25 ou menor')
-							};
-
-							if(tamanho <= 20){
-								$('#nome-perfil').css({'font-size':'1.4em'});
-								//alert(' 25 ou menor')
-							};
-
-							if(tamanho <= 15){
-								$('#nome-perfil').css({'font-size':'1.8em','position':'relative','left':'0.5em'});
-								//alert(' 25 ou menor')
-							};
-						</script>
-						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' request.user %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
-
-					</div>
-					<!-- BTNS DO MENU -->
-					<div id="menu" class="mt-3">
-						<!-- BTN LEADS -->
-						<div class="btn  btn-menu " id="todos-leads" >
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Todos Leads</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="novos-leads">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Novos Leads</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="leads-aberto">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Leads em Aberto</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="leads-em-atendimento">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Leads em Atendimento</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="leads-nao-atendido">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Leads Não Atendido</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="leads-positivo">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Leads Positivo</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="leads-neutro">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Leads Status Neutro</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-
-						<!-- BTN -->
-						<div class="btn  btn-menu " id="leads-negativo">
-							<i class="fa fa-envelope-open ml-3" ></i>
-							<span class="text-btn-menu">Leads Status Negativo</span>
-							<span class="qtde-leads-btn-menu">100000</span>
-						</div>
-						<!--SCRIPT BTN MENU -->
-						<script type="text/javascript" src="{% static 'js/script-btn-menu.js' %}"></script>
-
-
-					</div>
-
-
-				</div>
-
-			</nav>
 
 		<!-- DADOS DO LEADS EM ATENDIMEMTO -->
 		<div id="leads-atendimento" class="text-center">
@@ -481,20 +375,20 @@
 
 			{% for leads_atendimento in leads_atendimento %}
 			<div id="dados-leads-atendimento" >
-				<div id="id-leads-atendimento"  class="my-3 bg-primary rounded text-white font-weight-bold">
+				<div id="id-leads-atendimento"  class="my-3 bg-primary rounded text-white font-weight-bold info-leads-desktop">
 					<span>Id:</span>
 					<span id="id-atendimento-vinculado" >{{leads_atendimento.pk}}</span>
 					<div>{{leads_atendimento.data_recebimento|slice:'8:10'}}{{leads_atendimento.data_recebimento|slice:'4:7'}}-{{leads_atendimento.data_recebimento|slice:':4'}}{{leads_atendimento.data_recebimento|slice:'10:16'}}</div>
 				</div>
 				<hr>
-				<div id="campo-nome-leads-atendimento"class=" ">
+				<div id="campo-nome-leads-atendimento" class="info-leads-desktop">
 					<label class="bg-primary p-2 rounded  text-white font-weight-bold">Nome</label>
 					<div id="nome-leads-atendimento" >{{leads_atendimento.nome_leads}}</div>
 				</div>
 				<hr>
-				<div  id="campo-email-leads-atendimento">
+				<div  id="campo-email-leads-atendimento" class="info-leads-desktop">
 					<label class="bg-primary p-2 rounded  text-white font-weight-bold">Email</label>
-					<p id="email-leads-atendimento" class="  ">{{leads_atendimento.email}}</p>
+					<div id="email-leads-atendimento" class="  ">{{leads_atendimento.email}}</div>
 					<script>
 						var email = $('#email-leads-atendimento').text()
 						//alert(email[0])
@@ -548,6 +442,7 @@
 				</form>
 				 <script>
 										 $(document).on('change','#opcionais-leads', function(){
+										 	alert('alerta')
 										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
 										 	var qualificacao = $(this).val();
 
@@ -598,7 +493,7 @@
 
 
 			<!--BTN DELETAR LEADS -->
-			<div id="" class="text-center">
+			<div id="area-deletar-leads" class="text-center">
 
 
 			 	<a href="" id="deletar-leads" class="btn btn-lg btn-danger text-center m-2 " data-toggle="modal" data-target="#modal-deletar">Deletar Leads</a>

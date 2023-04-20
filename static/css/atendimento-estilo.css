@@ -2906,14 +2906,15 @@
 
     #barra-pesquisa{
         min-width: 1120px;
-        padding-left:2em;
+        padding-left:2.5em;
         position: relative;
         left:1em;
         top:-2em;
 
-        min-height: 50px;
+        height: 30px;
          z-index: 0;
-         font-size: 2em;
+         font-size: 1.5em;
+         border:1px solid red;
 
     }
     .form-control{
@@ -2922,9 +2923,9 @@
 
     #menu-hamburguer{
         position: relative;
-        top: 0em;
-        left: 0.5em;
-        font-size: 3em;
+        top: -0.6em;
+        left: 1em;
+        font-size: 1.5em;
         z-index: 1;
     }
 
@@ -3056,7 +3057,7 @@
    #dados-leads-atendimento{
         font-size: 1.5em;
         position:relative;
-        top:-3em;
+        top:-4em;
         z-index:-1;
 
 
@@ -3069,7 +3070,7 @@
         font-size: 2em;
         position: relative;
         left:-16em;
-        top:-1em;
+        top:-2.5em;
         text-decoration: none;
         padding:1em;
     }
@@ -3147,7 +3148,7 @@
         position:relative;
         left:25em;
         top:-10em;
-        max-width:23em;
+        width:25em;
     }
 
 
@@ -3747,7 +3748,7 @@
         position:relative;
         left:30em;
         top:-10em;
-        max-width:23em;
+        width:25em;
     }
 
 
