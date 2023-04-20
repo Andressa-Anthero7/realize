@@ -537,7 +537,7 @@
 
     #area-deletar-leads{
          position: relative;
-        top:0em;
+        top:-25em;
          left:0em;
         max-width:460px;
 
@@ -643,7 +643,7 @@
         max-width:200px;
         max-height: 70px;
         position: relative;
-        left:2em;
+        left:2.5em;
     }
 
     #data-hora-header{
@@ -656,154 +656,11 @@
     }
 
 
-    #navegacao{
-        width: 425px;
-        position: relative;
-        left:-1.5em;
-    }
-
-
-    #pesquisa{
-
-         max-height: 70px;
-
-    }
-
-    #barra-pesquisa{
-         min-width:420px;
-        padding-left:2em;
-        position: relative;
-        left:0;
-        top:-2em;
-
-        min-height: 50px;
-         z-index: 0;
-         font-size: 2em;
-
-    }
-    .form-control{
-        border:1px solid black;
-    }
-
-    #menu-hamburguer{
-        position: relative;
-        top: 0em;
-        left: 0em;
-        font-size: 3em;
-        z-index: 1;
-    }
-
-    #btn-pesquisar{
-        display: none;
-    }
-
-    #menu-deslizante{
-        position: relative;
-        top:1em;
-        z-index: 1;
-        background: white;
-        border:1px solid black;
-        max-width: 413px;
-        border-top-right-radius:5%;
-    }
-
-    #header-menu-deslizante{
-        max-width: 320px;
-        font-weight: 800;
-        white-space: nowrap;
-        font-size: 1.1em;
-
-        text-align: center;
-        position: relative;
-        left:1em;
-    }
-
-    #nome-perfil{
-        font-weight: 800;
-        white-space: nowrap;
-        font-size: 1em;
-
-         max-width: 340px;
-         position: relative;
-        left:1em;
-
-    }
-
-    #img-perfil-user{
-        border:1px solid gray;
-        border-radius: 100%;
-        min-width:250px ;
-        min-height: 250px;
-        position: relative;
-        left:0em;
-    }
-
-    #editar-perfil{
-        font-weight: 800;
-        white-space: nowrap;
-        font-size: 1.5em;
-        position: relative;
-        left:0em;
-        margin-bottom: 0.5em;
-
-    }
-
-    #config-perfil{
-        font-weight: 800;
-        white-space: nowrap;
-        font-size: 1.5em;
-        position: relative;
-        left:0em;
-
-    }
-
-    .text-decoration-none{
-          text-decoration: none;
-    }
-
-
-
-
-
-
-
-    #menu{
-        padding-top:1em;
-        padding-bottom:1em;
-    }
-
-    .btn-menu{
-        min-width: 360px;
-
-        position: relative;
-        left: -1em;
-        line-height: 2em;
-        border-radius: 0px 40px 40px 0px;
-        text-align: left;
-        padding-left: 1em;
-        font-weight: 700;
-        font-size: 1.3em;
-
-
-    }
-
-    .text-btn-menu{
-        position: relative;
-        left:1em;
-        font-size: 0.9em;
-    }
-
-    .qtde-leads-btn-menu{
-        position: relative;
-        left:1em;
-    }
-
-
     #switch-dark-mode{
 
        position: -webkit-sticky;
         position: sticky;
-        left:0em;
+        left:70%;
     }
 
     #btn-mode-dark{

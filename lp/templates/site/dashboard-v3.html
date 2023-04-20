@@ -136,7 +136,7 @@
 								//alert(' 25 ou menor')
 							};
 						</script>
-						<span id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' request.user %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></span>
+						<div id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' request.user %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></div>
 
 					</div>
 					<!-- BTNS DO MENU -->
@@ -294,7 +294,7 @@
 
 
 			  		<!-- MODAL DO LEADS -->
-				<div class="modal fade col-sm-6" id="leadsModal-{{leads.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+				<div class="modal fade col-sm-6 col-md-12 col-lg-12" id="leadsModal-{{leads.pk}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 					<!-- MODAL DIALOG -->
 				  <div class="modal-dialog  " role="document">
 				  	<!-- MODAL CONTENT -->
@@ -343,7 +343,10 @@
 				         	 </div>
 
 				         	 <!-- BTN INICIAR ATENDIMENTO -->
-				         	 <a href="{% url 'atendimento' pk=leads.pk %}" id="iniciar-atendimento" class="btn btn-lg btn-primary text-center ">Iniciar Atendimento</a>
+							<div class="text-center">
+								 <a href="{% url 'atendimento' pk=leads.pk %}" id="iniciar-atendimento" class="btn btn-lg btn-primary  ">Iniciar Atendimento</a>
+							</div>
+
 
 
 
