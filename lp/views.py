@@ -69,9 +69,10 @@ def atendimento(request, pk):
 
 def qualificar_leads(request, pk):
     if request.method == 'POST':
-        status_leads = request.POST.get('status_leads')
+        status_leads = request.POST.get('opcionais-leads')
         print(status_leads)
         Leads.objects.filter(pk=pk).update(status_leads=status_leads)
+        return redirect('atendimento', pk=pk)
 
 
 def criar_agendamento(request):

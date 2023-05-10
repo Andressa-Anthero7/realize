@@ -419,7 +419,8 @@
 					<span id="whatsapp-leads-atendimento">{{leads_atendimento.whatsapp}}</span>
 				</a>
 				<!-- Qualificação -->
-				<form id="quaificacao-leads" class="my-3 py-4 border border-dark rounded">
+				<form id="quaificacao-leads" class="my-3 py-4 border border-dark rounded" METHOD="POST" action="{% url 'qualificar_leads' pk=leads_atendimento.pk %}">
+						{% csrf_token %}
 						<h4 class="text-center font-weight-bolder">Classificação do Leads</h4>
 						<label class="bg-primary p-1 rounded" for="opcionais-leads">Leads</label>
 						<select name="opcionais-leads" id="opcionais-leads" class="px-5 py-2 rounded font-weight-bold">
@@ -434,52 +435,19 @@
 										var statusLeads = '{{leads_atendimento.status_leads}}';
 										$('#opcionais-leads option[value="{{leads_atendimento.status_leads}}"] ').attr('selected','selected')
 									});
-							</script>
+						</script>
+
+
+						<script>
+							 $(document).on('change','#opcionais-leads', function(){
+								$( "form" ).first().submit();
+							 });
+						 </script>
 
 
 
 
 				</form>
-				 <script>
-										 $(document).on('change','#opcionais-leads', function(){
-										 	alert('alerta')
-										 	var atendimento_vinculado = $('#atendimento_vinculado').val();
-										 	var qualificacao = $(this).val();
-
-										 	 var formData = new FormData();
-
-											 formData.append('status_leads',qualificacao)
-
-											  var request = new XMLHttpRequest()
-
-
-
-
-											  request.open('POST', 'https://nix2022.pythonanywhere.com/qualificar_leads/{{leads_atendimento.pk}}/',false)
-
-
-
-
-
-											  const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value
-
-
-
-
-											  request.setRequestHeader('X-CSRFToken', csrftoken)
-
-
-
-
-
-											 request.send(formData)
-											 window.location.reload();
-
-
-
-
-										 });
-									 </script>
 
 
 
