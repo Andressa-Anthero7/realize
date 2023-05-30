@@ -1,12 +1,7 @@
 from django.shortcuts import render, redirect
-from datetime import datetime
-from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle, TwilioAccountSid, \
-    TwilioAuthToken
+from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from .whatsapp import notificacao
-from .notificar_agendamento import notificar_agenda
-from .refresh import refresh
 from datetime import datetime, timedelta, time
 
 
@@ -28,13 +23,6 @@ def index(request):
                              status_leads=status_leads,
                              data_recebimento=data_recebimento)
         leads = Leads.objects.last()
-        leads_id = leads.pk
-        print(leads_id)
-        account_sid = TwilioAccountSid.objects.last()
-        account_sid = account_sid.twilio_account_sid
-        auth_token = TwilioAuthToken.objects.last()
-        auth_token = auth_token.twilio_auth_token
-        notificacao(leads_id, account_sid, auth_token)
 
         return render(request, 'site/index.html')
     else:
@@ -91,11 +79,7 @@ def criar_agendamento(request):
             user_agendamento=user_agendamento,
             vinculado_ao_atendimento=atendimento_vinculado
         )
-        account_sid = TwilioAccountSid.objects.last()
-        account_sid = account_sid.twilio_account_sid
-        auth_token = TwilioAuthToken.objects.last()
-        auth_token = auth_token.twilio_auth_token
-        notificar_agenda(data_evento, account_sid, auth_token, nome_agendamento, atendimento_vinculado)
+
         return redirect('atendimento', pk=atendimento_vinculado)
     else:
         atendimento_vinculado = request.GET.get('atendimento-vinculado')
