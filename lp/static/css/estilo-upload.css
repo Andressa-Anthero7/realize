@@ -1,0 +1,203 @@
+*{
+	 margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+ .dropzone.dz-error-message{
+    visibility: hidden;
+}
+
+
+
+
+
+
+
+
+
+
+@media(max-width:  767.98px){
+
+    body{
+        overflow-x:hidden;
+        background: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container{
+        max-width: 769px;
+        padding: 0;
+        margin: 0;
+    }
+
+    header{
+        background: black;
+        padding: 0;
+        margin: 0;
+        min-width: 769px;
+    }
+
+    #img-logo{
+        max-width:50%;
+        max-height: 5em;
+    }
+
+    .form-control{
+
+    }
+
+    .label{
+        position: relative;
+        top:0.7em;  
+    }
+
+
+   
+
+
+
+
+
+
+}
+
+
+@media(min-width:  768px) and (max-width: 1023.97px){
+
+    body{
+        overflow-x:hidden;
+        background: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container{
+        max-width: 769px;
+        padding: 0;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+         
+    }
+
+    header{
+        background: black;
+        padding: 0;
+        margin: 0;
+        min-width: 1024px;
+        position: relative;
+        left: -3em;
+    }
+
+    #btn-voltar{
+        position: relative;
+        left: -10em;
+        top:-2em;
+        font-size: 1.5em;
+    }
+
+    #img-logo{
+        max-width:50%;
+        max-height: 5em;
+        position: relative;
+        left: 5em;
+    }
+
+    #area-form-uploads-img{
+       padding: 10%;
+       border:1px solid black;
+       border-bottom-right-radius: 5%;
+       border-bottom-left-radius: 5%;
+
+    }
+
+    .form-control{
+
+    }
+
+    .label{
+        position: relative;
+        top:0.7em;  
+    }
+
+    #salvar{
+        font-size: 1.5em;
+    }
+
+}
+
+
+@media(min-width:  1024px) {
+
+    body{
+        overflow-x:hidden;
+        background: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container{
+         max-width: 100%;
+        padding: 0;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+         
+    }
+
+    header{
+        background: black;
+        padding: 0;
+        margin: 0;
+       width: 120%;
+        position: relative;
+        left: -3em;
+    }
+
+    #btn-voltar{
+        position: relative;
+        left: -20em;
+        top:5em;
+        font-size: 1em;
+    }
+
+    #img-logo{
+        max-width:50%;
+        max-height: 5em;
+        position: relative;
+        left: 5em;
+    }
+
+    #area-form-uploads-img{
+       padding: 10%;
+       border:1px solid black;
+       border-bottom-right-radius: 5%;
+       border-bottom-left-radius: 5%;
+       position: relative;
+       top:-13em;
+       margin-right:10em;
+       margin-left:10em;
+
+    }
+
+    .form-control{
+
+    }
+
+    .label{
+        position: relative;
+        top:0.7em;  
+    }
+
+    #salvar{
+        font-size: 1.5em;
+    }
+
+}

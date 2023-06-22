@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+{% load static %}
+ {% csrf_token %}
+
+
+
+<html lang="pt-br">
+<head>
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Antherus</title>
+
+	
+	<!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Boostrap 4 CDN  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+	<!-- FontAwesome CDN -->
+	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="fontawesome/css/all.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.8/jquery.mask.min.js" integrity="sha512-hAJgR+pK6+s492clbGlnrRnt2J1CJK6kZ82FZy08tm6XG2Xl/ex9oVZLE6Krz+W+Iv4Gsr8U2mGMdh0ckRH61Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    <!-- ----------------------------------- Jquery Ui 1.13.2 ----------------------------------------------------- -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
+
+     
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-add-itens-empreendimento.css' %}">
+
+	
+
+	
+</head>
+
+<!-- Corpo do HTML -->
+<body >
+	<!-- Container -->
+	<div class="container ">
+
+		<!-- Header da Pagina -->
+		<header id="header">
+			<!-- Imagem da Logo -->
+			<img src="{% static 'img/logo-marca.png' %}" id="img-logo" class="img img-fluid">
+		</header>
+		<hr>
+
+		<!-- Area do ADD ITENS DO EMPREENDIMENTO-->
+		<div id="are-add-itens-empreendimento">
+			<div class="text-center">
+				<h3>Adicione os itens de destaque do Empreendimento</h3>
+			</div>
+			<!-- Display do Empreendimento que recebeerá os itens -->
+			<div id="display-empreendimento" class="border border-dark rounded p-2 row ">
+
+				<form method="POST" enctype="multipart/form-data" class="col-12 m-1" id="formulario-itens">
+					<!-- CAMPO NOME DO EMPREENDIMENTO -->
+					<div class="p-1 ">
+						<label class="bg-warning p-2 font-weight-bold border rounded" for="nome-empreendimento">Nome Empreendimento</label>
+						<input type="text" name="" disabled id="nome-empreendimento" class="form-control" value="{{empreendimento.empreendimento_vinculado}}">
+					</div>
+					<br>
+
+					<!-- CAMPO ADD ITEM -->
+					<div class="p-1 campo-add-item col-12">
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 1</label>
+							<select name="item_adicionado" id="item-adicionado" class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+								<option class="p-2" value="Àrea de Lazer">Àrea de Lazer</option>
+								<option class="p-2" value="Àrea de Lazer">1 Vaga de Garagem</option>
+							</select>
+							
+						</div>
+						
+
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 2</label>
+							<select name="item_adicionado" id="item-adicionado" class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+							</select>
+
+						</div>
+
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 3</label>
+							<select name="item_adicionado" id="item-adicionado" class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+							</select>
+								
+						</div>
+						
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 4</label>
+							<select name="item_adicionado" id="item-adicionado" class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+							</select>
+							
+						</div>
+
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 5</label>
+							<select name="item_adicionado" id="item-adicionado" class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+							</select>
+							
+						</div>
+
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 6</label>
+							<select name="item_adicionado"  class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+							</select>
+							
+						</div>
+
+						<div>
+							<label class="bg-warning p-2 font-weight-bold border rounded" for="item-adicionado">Item 7</label>
+							<select name="item_adicionado"  class=" form-control">
+								<option class="p-2" value="Selecione Item">Selecione Item</option>
+								<option class="p-2" value="1 Quarto">1 Quarto</option>
+								<option class="p-2" value="2 Quartos">2 Quartos</option>
+								<option class="p-2" value="3 Quartos">3 Quartos</option>
+								<option class="p-2" value="4 Quartos">4 Quartos</option>
+								<option class="p-2" value="5 Quartos">5 Quartos</option>
+								<option class="p-2" value="Sala">Sala</option>
+								<option class="p-2" value="Sala">Sala/Jantar</option>
+								<option class="p-2" value="Cozinha">Cozinha</option>
+							</select>
+							
+						</div>
+
+						
+
+					</div>
+					<div class="text-center p-5">
+						<button type="submit" class="btn btn-lg btn-primary p-3">Salvar Itens</button>
+					</div>
+					
+					
+				</form>
+				 
+
+
+
+
+			</div>
+		
+		</div>
+
+
+
+	<footer class="text-center mt-5 " >
+		<i class="fa fa-copyright" aria-hidden="true">Copyright</i>
+		<div>Antherus - Desenvolvimento Web</div>
+		<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+	</footer>
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+
+ <script>
+
+
+
+
+
+      var list_of_files = new Array();
+      Dropzone.autoDiscover = false;  //prevent dropzone to automatically discover the dropzone object in your html
+       var myDropzone = new Dropzone('#my-dropzone',{
+            parallelUploads:5,
+            uploadMultiple: true, // allow multiple upload
+            autoProcessQueue: false, // prevent dropzone from uploading automatically
+            url: "/", //dropzone needs a url attribute or it complains, what value you put here does not really matter. It is only purpose is to prevent a javascript error message from chrome console
+            maxFiles: 5, //set max uploads to 5 since you only have 5 image files in your model
+            maxFilesize:2,
+            acceptedFiles:'.jpg,.jpeg,.png',
+            addRemoveLinks : true,
+            clickable: true,
+            init: function(){
+                    //everytime a file is uploaded, save the file object
+                    //for later use
+                    this.on("addedfile", function(file)
+                        {
+
+                            if (list_of_files.length < 5)
+                            {
+                                list_of_files.push(file)
+
+                                console.log("file added");
+                            }
+
+
+
+                        });
+
+                        //this.on('drop', function(file){
+                            console.log("dropou")
+
+                        // });
+
+
+
+
+
+                }
+
+
+
+
+
+        });
+
+
+
+
+
+
+         // the following function override the "submit" button in the form
+		  $(document).on("click", "#salvar", function(e){
+				e.preventDefault() //prevent the form from submitting
+				console.log('num of files: ' + list_of_files.length);
+				var formData = new FormData(); // construct our own upload data
+				var inputs = $("#my-dropzone input");
+
+				//get
+				$.each(inputs, function(obj, v){
+					var name = $(v).attr("name")
+					var val = $(v).val();
+					alert('name: ' + name + ' value: ' + val);
+					formData.append(name, val);
+				});
+
+				//get the file object from dropzone and put it into our formdata
+				for(i=0;i<list_of_files.length;i++)
+				{
+					console.log(i)
+					console.log(list_of_files[i])
+					formData.append('file', list_of_files[i]);
+					const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+					var request = new XMLHttpRequest();
+					request.open("POST", "http://127.0.0.1:8000/accounts/login/gerenciador-lp/upload-img/", true); //config your post url here
+					request.setRequestHeader("X-CSRFToken", csrftoken);
+					request.send(formData);  //send the post request to server
+					//alert("Enviou"+  list_of_files[i])
+
+
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			});
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    
+</body>
+</html>

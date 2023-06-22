@@ -136,7 +136,7 @@
 								//alert(' 25 ou menor')
 							};
 						</script>
-						<div id="config-perfil" class="btn btn-outline-primary  " ><a href="{% url 'configuracao' request.user %}" class="fa fa-cog d-inline text-decoration-none">Configurações</a></div>
+						<div id="config-perfil" class="btn btn-primary   " ><a href="{% url 'dashboard-lp' %}" class="fa fa-cog d-inline text-decoration-none">Configurações Landing Pages</a></div>
 
 					</div>
 					<!-- BTNS DO MENU -->
@@ -342,9 +342,14 @@
 					         	<i   class="   fa fa-whatsapp font-weight-bold link-whatsapp"><span class="text-dark " id="whatsapp-leads">{{leads.whatsapp}}<span></i>
 				         	 </div>
 
-				         	 <!-- BTN INICIAR ATENDIMENTO -->
+							<!-- FALAR PELO WHATSAPP -->
 							<div class="text-center">
-								 <a href="{% url 'atendimento' pk=leads.pk %}" id="iniciar-atendimento" class="btn btn-lg btn-primary  ">Iniciar Atendimento</a>
+
+								<a id="btn-falar-whatsapp"  href="https://wa.me/55{{leads.whatsapp|slice:'1:3'}}{{leads.whatsapp|slice:'4:'}}?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn btn-success m-3 p-2">
+									<span class="">Falar pelo</span>
+									<span class="fa fa-whatsapp mx-1" ></span>
+									<span id="whatsapp-leads-atendimento">{{leads.whatsapp}}</span>
+								</a>
 							</div>
 
 

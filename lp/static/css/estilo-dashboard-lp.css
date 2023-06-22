@@ -1,0 +1,259 @@
+*{
+	 margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+
+}
+
+li{
+    list-style: none;
+    border-radius:5%;
+}
+
+li:hover{
+
+}
+
+ .fa-times-circle-o{
+        position:relative;
+        left:-1.7em;
+        top:0em;
+        font-size:1.5em;
+    }
+
+
+
+
+
+
+
+
+
+@media(max-width:  767.98px){
+
+    body{
+        overflow-x:hidden;
+        background: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container{
+        max-width: 769px;
+        padding: 0;
+        margin: 0;
+    }
+
+    header{
+        background: black;
+        padding: 0;
+        margin: 0;
+        min-width: 769px;
+    }
+
+    #img-logo{
+        max-width:50%;
+        max-height: 5em;
+    }
+
+    .form-control{
+
+    }
+
+    .label{
+        position: relative;
+        top:0.7em;
+
+        
+    }
+
+    #barra-pesquisa{
+        font-size:1.3em;
+       min-width:85%;
+
+    }
+
+    #btn-pesquisar{
+        position:relative;
+        left:85%;
+        top:-3em;
+        border-radius:10%;
+    }
+
+    #apagar-pesquisa{
+        font-size:1.8em;
+        position:relative;
+        top:0.1em;
+    }
+
+
+}
+
+
+@media(min-width:  768px) and (max-width: 1023.97px){
+    body{
+        overflow-x:hidden;
+        background: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+    .container{
+        max-width: 1024px;
+        padding: 0;
+        margin: 0;
+    }
+
+    header{
+        background: black;
+        padding: 0;
+        margin: 0;
+        min-width: 2014px;
+    }
+
+    #img-logo{
+        max-width:50%;
+        max-height: 5em;
+    }
+
+    .form-control{
+
+    }
+
+    .label{
+        position: relative;
+        top:0.7em;
+
+        
+    }
+
+    #btn-cadastrar-lp{
+        font-size:1.5em;
+
+    }
+
+    #barra-pesquisa{
+        min-height:3.5em;
+        position:relative;
+        left:2em;
+        top:0;
+         font-size:1.5em;
+
+    }
+
+    #btn-pesquisar{
+        position:relative;
+        left:0em;
+        top:0;
+        border-radius:10%;
+        font-size:1.5em;
+
+    }
+
+    #apagar-pesquisa{
+        font-size:2.2em;
+        position:relative;
+        top:0.5em;
+        left:-0.5em;
+    }
+}
+
+@media(min-width:  1024px) {
+    body{
+        overflow-x:hidden;
+        background: whitesmoke;
+        padding: 0;
+        margin: 0;
+    }
+
+     .container{
+         max-width: 100%;
+        padding: 0;
+        margin: 0;
+        margin-left: auto;
+        margin-right: auto;
+         
+    }
+
+    header{
+        background: black;
+        padding: 0;
+        margin: 0;
+       width: 100%;
+        position: relative;
+        left: 0em;
+    }
+
+    #area-dashboard{
+       padding-right: 10%;
+       padding-left: 10%;
+       border:1px solid black;
+       border-bottom-right-radius: 5%;
+       border-bottom-left-radius: 5%;
+       position: relative;
+       top:0em;
+       margin-right:10em;
+       margin-left:10em;
+
+    }
+
+    #listagem-lp{
+        position:relative;
+        top:-10em;
+    }
+
+    #img-logo{
+        max-width:50%;
+        max-height: 5em;
+
+    }
+
+    .form-control{
+
+    }
+
+    .label{
+        position: relative;
+        top:0.7em;
+
+        
+    }
+
+    #btn-cadastrar-lp{
+        font-size:1.5em;
+        position:relative;
+        top:-5em;
+
+    }
+
+    #barra-pesquisa{
+       min-width:95%;
+        position:relative;
+        left:0em;
+        top:-2em;
+         font-size:1.5em;
+
+    }
+
+    #btn-pesquisar{
+        position:relative;
+        left:90%;
+        top:-5em;
+        border-radius:10%;
+        font-size:1.2em;
+
+    }
+
+    #apagar-pesquisa{
+        font-size:2.2em;
+        position:relative;
+        top:-2.7em;
+        left:88%;
+    }
+
+
+}

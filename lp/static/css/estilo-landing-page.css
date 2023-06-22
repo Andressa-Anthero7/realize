@@ -1,8 +1,10 @@
-
 *{
-	 margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+.container{
+	display: none;
 }
 
 
@@ -10,2400 +12,147 @@
 
 
 
-/* Celular Pequeno */
-@media(max-width: 320.98px){
 
+
+
+
+@media(max-width: 320.97px){
 	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
 
 
-	    margin: 0 ;
-	    padding: 0;
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
 
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		height: 700px;
+	      overflow-x:hidden;
 
 
-	}
 
-	html{
-		 overflow-x: hidden;
+
 
 	}
 
-	.container-fluid{
-
-		 width: 400px;
-
-	}
-
-	#header{
-		width:410px;
-		background: #0E0816;
+	header{
 		position: relative;
 		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:0.5em;
-
-
-	}
-
-	#head-line{
-		max-width: 320px;
-
-		bold:800;
-
-		position: relative;
-		left: -1em;
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:0em;
-		white-space: nowrap;
-		font-size:1.1em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:0em;
-		top:-0.5em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:-1em;
-		left:-1.5em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		min-height: 450px;
-		max-width: 320px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:0.4em;
-		left:0em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-	}
-
-
-	/* Check Flag Verde */
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:8.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:8.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:8.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		width: 300px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:1em;
-		left:1em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-5em;
-		left:1em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-7em;
-		left:1.5em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:0.5em;
-		top:-6em;
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-		max-width: 300px;
-		font-size: 1em;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 290px;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:-1.5em;
-		left:1em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 1.2em;
-		position: relative;
-		left:1em;
-		max-width: 300px;
-	}
-
-	#text-header-video{
-		font-size: 0.9em;
-		align-self: center;
-		position: relative;
-		left:4em;
-
-		max-width: 220px;
-
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-1em;
-		top:1em;
-	}
-
-	iframe{
-		height: 12em;
-		border-radius:5px;
 		min-width: 320px;
-		min-height: 350px;
+		max-height: 3em;
 	}
 
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-0.4em;
-		top:25em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 1.5em;
-	}
-
-	#lista-beneficios{
-		max-width:300px;
-		position: relative;
-		top:-23em;
-		left:0em;
-
+	li{
 		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin:0.5em;
-		font-size: 1.1em;
-		text-shadow:none;
-		align-self: center;
-		position: relative;
-		left:0.5em;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
 	}
 
 
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:6em;
-		left: 2em;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		align-self: center;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-3em;
-		top:15em;
-		text-align: center;
-		color:white;
-	}
-
-
-
-}
-
-/* Celulares Moto G*/
-@media (min-width: 321px) and (max-width:  360.97px) {
-	body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		height: 700px;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-
-	}
-
-	#header{
-		width:410px;
-		background: #0E0816;
-		position: relative;
-		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:2em;
-
-
-	}
 
 	#head-line{
-		min-width: 345px;
-
-		bold:800;
-
-		position: relative;
-		left: -1em;
-
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:0em;
-		white-space: nowrap;
-		font-size:1.2em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:0em;
-		top:0em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:0.5em 0.5em 0.5em 0.5em;
-
-
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		max-height: 420px;
-		width: 310px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:0.4em;
-		left:0.5em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-		left:-0.5em;
-		width: 290px;
-	}
-
-
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:8.2em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:8.2em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:8.2em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		max-width: 370px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:1em;
-		left:1em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-5em;
-		left:1em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-8em;
-		left:1.5em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:1em;
-		top:-10em;
-
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-		max-width: 280px;
-		font-size: 1em;
-	}
-
-
-
-
-
-
-
-
-
-	#text-aceita-termos{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 1.4em;
-		position: relative;
-		left:0.5em;
-		white-space: nowrap;
-	}
-
-	#text-header-video{
-		font-size: 1.3em;
-		position: relative;
-		left:1.5em;
-		white-space: nowrap;
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-0.7em;
-		top:1em;
-		max-width: 350px;
-	}
-
-	iframe{
-		height: 12em;
-		border-radius:5px;
-		min-width: 350px;
-		min-height: 350px;
-	}
-
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-1.5em;
-		top:25em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 1.5em;
-	}
-
-	#lista-beneficios{
-		max-width:360px;
-		position: relative;
-		top:-23em;
-		left:0.5em;
-
-		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin:0.5em;
 		font-size: 1.2em;
-		text-shadow:none;
-		align-self: center;
-		position: relative;
-		left:0em;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:6em;
-		left: 0em;
-
-		max-width: 330px;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		position: relative;
-		left:2.5em;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-1.5em;
-		top:15em;
-		text-align: center;
-		color:white;
-	}
-
-
-
-}
-
-
-
-
-
-/* Celulares até 4,7 Polegadas Tamanho Médio*/
-@media (min-width: 361px) and (max-width:  375.97px) {
-	body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		max-height: 850px;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-
-	}
-
-	#header{
-		width:410px;
-		background: #0E0816;
-		position: relative;
-		left:-1em;
 	}
 
 	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:2em;
-
+		max-height: 3em;
 
 	}
 
-	#head-line{
-		min-width: 345px;
-
-		bold:800;
-
-		position: relative;
-		left: -1em;
-
-
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
 	}
 
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:0em;
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
 		white-space: nowrap;
-		font-size:1.2em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:0em;
-		top:0em;
-		font-size: 1.5em;
-
+		font-size:0.9em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
 
 	}
 
-	#div-formulario{
-		margin:0.5em 0.5em 0.5em 0.5em;
+	.neon-texto{
+		text-shadow:
 
-
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		max-height: 420px;
-		width: 330px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:0.4em;
-		left:0.5em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-		left:-0.5em;
-		max-width: 310px;
-	}
-
-
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:9em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:9em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:9em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		max-width: 370px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:1em;
-		left:1em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-5em;
-		left:1em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-8em;
-		left:1.5em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:1em;
-		top:-10em;
-
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-		max-width: 280px;
-		font-size: 1em;
-	}
-
-
-
-
-
-
-
-
-
-	#text-aceita-termos{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 1.4em;
-		position: relative;
-		left:0.5em;
-		white-space: nowrap;
-	}
-
-	#text-header-video{
-		font-size: 1.3em;
-		position: relative;
-		left:1.5em;
-		white-space: nowrap;
-	}
-
-
-
-
-
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
 
 	#video{
+		max-width: 320px;
+		min-height: 320px;
+		border:1px solid white;
 
-		position: relative;
-		left:-0.2em;
-		top:1em;
-		max-width: 360px;
-	}
-
-	iframe{
-		height: 12em;
-		border-radius:5px;
-		min-width: 350px;
-		min-height: 350px;
 	}
 
 
-	#texto-auxiliar{
-
-		position: relative;
-		left:-0.5em;
-		top:25em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 1.5em;
-	}
 
 	#lista-beneficios{
-		max-width:350px;
-		position: relative;
-		top:-23em;
-		left:0.3em;
-
-		list-style: none;
-		background: yellow;
+		box-shadow: 1px 5px yellowgreen;
 	}
 
 	.item-lista-beneficios{
-		margin:0.5em;
-		font-size: 1.2em;
-		text-shadow:none;
-		align-self: center;
-		position: relative;
-		left:0em;
+		padding: 0.5em;
 	}
 
-	#texto-chamada-final{
 
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
 
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:6em;
-		left: 0em;
-
-		max-width: 330px;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		position: relative;
-		left:3em;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-1em;
-		top:15em;
-		text-align: center;
-		color:white;
-	}
-
-
-
-}
-
-
-
-
-
-/* Celulares até 5,5 Polegadas Tamanho G */
-@media (min-width: 376px) and (max-width:  428.98px) {
-	body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		max-height: 900px;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-         overflow-x: hidden;
-	}
-
-	#header{
-		width:410px;
-		background: #0E0816;
-		position: relative;
-		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:4em;
-
-
-	}
-
-	#head-line{
-		max-width: 380px;
-
-		bold:800;
-		/*border:1px solid white;*/
-		position: relative;
-		left: 0em;
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:0em;
-		white-space: nowrap;
-		font-size:1.3em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:0em;
-		top:-0.5em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:-1em;
-		left:-1.5em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		min-height: 450px;
-		min-width: 400px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:0.4em;
-		left:0.5em;
-		font-size: 1.5em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-	}
-
-
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:11em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:11em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:11em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		min-width: 350px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:1em;
-		left:1em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-5em;
-		left:1em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-7em;
-		left:1.5em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:1.7em;
-		top:-6em;
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 365px;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:0em;
-		left:0em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 1.6em;
-		position: relative;
-		left:0.5em;
-	}
-
-	#text-header-video{
-		font-size: 1.3em;
-		position: relative;
-		left:2em;
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-0.7em;
-		top:1em;
-	}
-
-	iframe{
-		height: 12em;
-		border-radius:5px;
-		min-width: 395px;
-		min-height: 350px;
-	}
-
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-1.5em;
-		top:25em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 1.5em;
-	}
-
-	#lista-beneficios{
-		min-width:389px;
-		position: relative;
-		top:-23em;
-		left:0.9em;
-
-		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin:0.5em;
-		font-size: 1.5em;
-		text-shadow:none;
-		align-self: center;
-		position: relative;
-		left:0.5em;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:6em;
-		left: 4.5em;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		align-self: center;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:0em;
-		top:15em;
-		text-align: center;
-		color:white;
-	}
-
-
-}
-
-
-
-
-
-
-
-
-
-/* Tablet Menor */
-@media (min-width: 429.00px) and (max-width:  768.98px) {
-	body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		min-height: 700px;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-
-	}
-
-	#header{
-		width:410px;
-		background: #0E0816;
-		position: relative;
-		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:4em;
-
-
-	}
-
-	#head-line{
-		max-width: 380px;
-
-		bold:800;
-
-		position: relative;
-		left: 0em;
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:0em;
-		white-space: nowrap;
-		font-size:1.3em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:0em;
-		top:-0.5em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:-1em;
-		left:-1.5em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		min-height: 450px;
-		min-width: 400px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:0.4em;
-
-		font-size: 1.7em;
-
-
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-	}
-
-	#formulario{
-		position: relative;
-		top:2em;
-	}
-
-
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:11em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:11em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:11em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		min-width: 350px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:1em;
-		left:1em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:-1.6em;
-		left:1em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-5em;
-		left:1em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-7em;
-		left:2em;
-
-		font-size: 1.2em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:0em;
-		top:-6em;
-
-		max-width: 400px;
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-		position: relative;
-		left: 1.5em;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 365px;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:-1.5em;
-		left:1em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 2.2em;
-		position: relative;
-		left:1em;
-	}
-
-	#text-header-video{
-		font-size: 1.7em;
-		position: relative;
-		left:3.5em;
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-7em;
-		top:1em;
-
-		min-width: 580px;
-	}
-
-	iframe{
-		height: 12em;
-		border-radius:5px;
-		min-width: 580px;
-		min-height: 450px;
-	}
-
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-7em;
-		top:30em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 2em;
-	}
-
-	#lista-beneficios{
-		min-width: 580px;
-		position: relative;
-		top:-17em;
-		left:0em;
-		font-size: 1.5em;
-		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin:0.5em;
-
-		text-shadow:none;
-		white-space: normal;
-		position: relative;
-		left:0.1em;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:10em;
-		left: 4.5em;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		align-self: center;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-1em;
-		top:15em;
-		text-align: center;
-		color:white;
-
-	}
-
-}
-
-
-/*Tablet G */
-@media (min-width: 769.00px) and (max-width:  1024.98px) {
-	body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		min-height: 1024px;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-
-	}
-
-	#header{
-		width:410px;
-		background: #0E0816;
-		position: relative;
-		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:4em;
-
-
-	}
-
-	#head-line{
-		max-width: 380px;
-
-		bold:800;
-		/*border:1px solid white;*/
-		position: relative;
-		left: 0em;
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:-2em;
-		white-space: nowrap;
-		font-size:2em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:0em;
-		top:-0.5em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:-1em;
-		left:-4.5em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		min-height: 450px;
-		min-width: 500px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:0.4em;
-		left:0.5em;
-		font-size: 2em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-	}
-
-
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		min-width: 350px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:4em;
-		left:2em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:2em;
-		left:2em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-1em;
-		left:2em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-3em;
-		left:2em;
-		font-size:20px;
-
-	}
-
-
-	#btn-enviar{
-		position: relative;
-		left:5em;
-		top:-2em;
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 440px;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:0em;
-		left:0em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 2.6em;
-		position: relative;
-		left:2em;
-		white-space: nowrap;
-		max-width: 470px;
-		align-self: center;
-
-	}
-
-	#text-header-video{
-		font-size: 2em;
-		position: relative;
-		left:5em;
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-12em;
-		top:1em;
-
-		min-width: 750px;
-	}
-
-	iframe{
-		height: 12em;
-		border-radius:5px;
-		min-width: 750px;
+	#mapa-localizacao,#tag-video{
+		max-width: 100%;
 		min-height: 500px;
 	}
 
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-12em;
-		top:5em;
-		font-weight: 600;
-
-		min-width: 750px;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 2em;
-	}
-
-	#lista-beneficios{
-		min-width:500px;
-		position: relative;
-		top:0em;
-		left:0em;
-		font-size: 1.5em;
-		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin:0.5em;
-		font-size: 1.4em;
-		text-shadow:none;
-
-		position: relative;
-		left:0.5em;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.5em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:11em;
-		left: 4em;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		align-self: center;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-0.5em;
-		top:15em;
-		text-align: center;
-		color:white;
-	}
-
-}
-
-
-
-
-
-
-
-
-/* Laptop */
-@media (min-width: 1025.00px) and (max-width:  1440.98px) {
-		body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		max-height: 1700px;
-		 overflow-y: hidden;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-
-
-	}
-
-	#header{
-		width:410px;
-
-		position: relative;
-		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:3em;
-
-
-	}
-
-	#head-line{
-		max-width: 380px;
-
-		bold:800;
-
-		position: relative;
-		left: -18em;
-		top:2em;
-
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:-1.5em;
-		white-space: nowrap;
-		font-size:2em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:1em;
-		top:-0.5em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:-8em;
-		left:15em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
+	#localizacao{
+		border-radius:2%;
 		border:1px solid white;
-		min-height: 430px;
-		min-width: 500px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:1em;
-		left:0em;
-		font-size: 2em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
 	}
 
 
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:13em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
+		.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-40px; /* -1/2 height */
 	}
 
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:13em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:13em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		min-width: 350px;
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
 	}
 
 
-
-	#campo-formulario-nome{
-		position: relative;
-		top:3em;
-		left:2em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:1em;
-		left:2em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-2em;
-		left:2em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-4em;
-		left:5em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:5em;
-		top:-3em;
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 440px;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:0em;
-		left:0em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 3em;
-		position: relative;
-		left:0em;
-
-		max-width: 470px;
-		align-self: center;
-		white-space: nowrap;
-
-	}
-
-	#text-header-video{
-		font-size: 1.7em;
-		position: relative;
-		left:6em;
-		top:-0.7em;
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-10em;
-		top:-7em;
-
-		min-width:700px;
-	}
-
-	iframe{
-
-		border-radius:5px;
-		min-width: 700px;
-		min-height: 450px;
-		position: relative;
-		top:-2em;
-	}
-
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-20em;
-		top:-70em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:1em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 1.5em;
-	}
-
-	#lista-beneficios{
-		min-width:500px;
-		min-height: 380px;
-		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin-bottom: 1.2em;
-
-		text-shadow:none;
-
-		position: relative;
-		left:0.5em;
-		top:3em;
-		font-size: 0.9em;
-		max-width:480px;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-		 position: relative;
-		 top:1em;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:-28em;
-		left: 5em;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		align-self: center;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-0.5em;
-		top:-20em;
-		text-align: center;
-		color:white;
-	}
 
 }
 
@@ -2413,699 +162,1672 @@
 
 
 
-
-
-/* LaptopG */
-@media (min-width: 1400.00px) and (max-width:  2560.98px) {
-		body{
-
-
-	    margin: 0 ;
-	    padding: 0;
-
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		max-height: 2000px;
-		 overflow-y: hidden;
-
-
-	}
-
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
-
-
-	}
-
-	#header{
-		width:410px;
-
-		position: relative;
-		left:-1em;
-	}
-
-	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:3em;
-
-
-	}
-
-	#head-line{
-		max-width: 380px;
-
-		bold:800;
-		/*border:1px solid white;*/
-		position: relative;
-		left: -18em;
-		top:2em;
-
-
-	}
-
-	#header-head-line{
-		position: relative;
-		top:0.1em;
-		left:-1.5em;
-		white-space: nowrap;
-		font-size:2em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:1em;
-		top:-0.5em;
-		font-size: 1.5em;
-
-
-	}
-
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:-7em;
-		left:15em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
-		border:1px solid white;
-		min-height: 430px;
-		min-width: 500px;
-
-	}
-
-	#header-formulario{
-		position: relative;
-		top:1em;
-		left:0em;
-		font-size: 2em;
-	}
-
-	.form-control{
-		position: relative;
-		top:-0.7em;
-	}
-
-
-
-	#campo-nome-ok{
-		position: relative;
-		top:-1.5em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-email-ok{
-		position: relative;
-		top:-1.8em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		min-width: 350px;
-	}
-
-
-
-	#campo-formulario-nome{
-		position: relative;
-		top:3em;
-		left:2em;
-
-	}
-
-	#campo-formulario-email{
-		position: relative;
-		top:1em;
-		left:2em;
-
-
-	}
-
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:-2em;
-		left:2em;
-
-	}
-
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-4em;
-		left:5em;
-
-	}
-
-	#btn-enviar{
-		position: relative;
-		left:5em;
-		top:-3em;
-
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 440px;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:0em;
-		left:0em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 3em;
-		position: relative;
-		left:4em;
-
-		max-width: 470px;
-		align-self: center;
-		white-space: nowrap;
-
-	}
-
-	#text-header-video{
-		font-size: 1.7em;
-		position: relative;
-		left:12em;
-		top:-0.7em;
-	}
-
-
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-20em;
-		top:-7em;
-
-		min-width:1070px;
-		min-height: 700px;
-	}
-
-	iframe{
-
-		border-radius:5px;
-		min-width: 1070px;
-		min-height: 700px;
-		position: relative;
-		top:-2em;
-	}
-
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-20em;
-		top:-86em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:0.5em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 1.5em;
-	}
-
-	#lista-beneficios{
-		min-width:500px;
-		min-height: 380px;
-		list-style: none;
-		background: yellow;
-	}
-
-	.item-lista-beneficios{
-		margin-bottom: 1em;
-
-		text-shadow:none;
-
-		position: relative;
-		left:0.8em;
-		top:1.5em;
-		font-size: 1.2em;
-		max-width:480px;
-	}
-
-	#texto-chamada-final{
-
-		font-size: 1.3em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-		 position: relative;
-		 top:0em;
-	}
-
-
-
-
-
-	.check-lista-beneficios{
-		color:green;
-	}
-
-	#btn-retorno-formulario{
-		position: relative;
-		top:-25em;
-		left: 5em;
-	}
-
-	#retorno-formulario{
-		text-decoration: none;
-		align-self: center;
-
-	}
-
-
-
-	footer{
-		position: relative;
-		left:-0.5em;
-		top:-15em;
-		text-align: center;
-		color:white;
-	}
-}
-
-/* Telas Wide Screen */
-@media (min-width: 2559.00px){
+@media (min-width:  321.00px) and (max-width:360.98px) {
 	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
 
 
-	    margin: 0 ;
-	    padding: 0;
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
 
-		 overflow-x: hidden;
-		  font-family:Noto Sans, sans-serif;
-		 color:#ffd700;
-		 text-shadow: 0.1em 0.1em 0.2em black;
-
-		 background: rgb(71,23,246);
-		background: linear-gradient(360deg, rgba(71,23,246,0.9560866582961309) 0%, rgba(0,0,0,1) 95%);
-		background-repeat: no-repeat;
-		max-height: 2000px;
-		 overflow-y: hidden;
+	      overflow-x:hidden;
+	      overflow-y:hidden;
 
 
-	}
 
-	html{
-		 overflow-x: hidden;
-
-	}
-
-	.container-fluid{
-
-		 width: 400px;
 
 
 	}
 
-	#header{
-		width:410px;
-
+	header{
 		position: relative;
 		left:-1em;
+		min-width: 360px;
+		max-height: 3em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+		font-size: 1.2em;
 	}
 
 	#img-logo{
-		max-width:300px;
-		position: relative;
-		left:4em;
-
+		max-height: 3em;
 
 	}
 
-	#head-line{
-		min-width: 1500px;
-
-		bold:800;
-
-		position: relative;
-		left: -35em;
-		top:2em;
-
-
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
 	}
 
-	#header-head-line{
-		position: relative;
-		top:0.5em;
-		left:1em;
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
 		white-space: nowrap;
-		font-size:4em;
-	}
-
-	.texto-head-line{
-		padding-top: 1em;
-
-		position: relative;
-		left:1em;
-		top:-0.5em;
-		font-size: 3em;
-
+		font-size:0.9em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
 
 	}
 
-	#div-formulario{
-		margin:1em 0.5em 0.5em 0.5em;
-		position: relative;
-		top:2em;
-		left:15em;
-		/* From https://css.glass */
-		background: rgba(17, 15, 15, 0.28);
-		border-radius: 16px;
-		box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-		backdrop-filter: blur(5px);
-		-webkit-backdrop-filter: blur(5px);
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#video,#localizacao{
+		max-width: 360px;
+		min-height: 320px;
 		border:1px solid white;
-		min-height: 700px;
-		min-width: 700px;
+		border-radius:2%;
 
 	}
 
-	#header-formulario{
-		position: relative;
-		top:1em;
-		left:0em;
-		font-size: 3em;
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
 	}
 
-	.form-control{
-		position: relative;
-		top:-0.7em;
-		height:2.5em;
+	.item-lista-beneficios{
+		padding: 0.5em;
 		font-size: 1em;
 	}
 
 
 
-	#campo-nome-ok{
+	#tag-video{
+		max-width: 100%;
+		min-height: 500px;
+	}
+
+	#mapa-localizacao{
+		min-width: 99%;
+		min-height: 500px;
 		position: relative;
-		top:-1.7em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-		font-size: 1.7em;
+		left: 0.2em;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+}
+
+
+
+
+
+
+@media (min-width: 361px) and (max-width:  375.98px){
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+
+
+
+
+
 
 
 	}
 
-	#campo-email-ok{
+	header{
 		position: relative;
-		top:-1.8em;
-		left:13.5em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-		font-size: 1.7em;
-
-
+		left:-1em;
+		min-width: 360px;
+		max-height: 3em;
 	}
 
-	#campo-whatsapp-ok{
-		position: relative;
-		top:-1.8em;
-		left:13em;
-		color:#00ff11;
-		font-size:30px;
-		z-index: -1;
-
-
-	}
-
-	#validacao-whatsapp{
-		position: relative;
-		top:-3.5em;
-		min-width: 350px;
+	li{
+		list-style: none;
 	}
 
 
 
-	#campo-formulario-nome{
-		position: relative;
-		top:4em;
-		left:2em;
+	#head-line{
+		font-size: 1.2em;
+	}
+
+	#img-logo{
+		max-height: 3em;
 
 	}
 
-	#campo-formulario-email{
-		position: relative;
-		top:2em;
-		left:2em;
-
-
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
 	}
 
-	#campo-formulario-whatsapp{
-		position: relative;
-		top:0em;
-		left:2em;
-
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
 	}
 
-	#campo-formulario-aceita-termos{
-		position: relative;
-		top:-1em;
-		left:3em;
-
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
 	}
 
-	#btn-enviar{
-		position: relative;
-		left:11em;
-		top:-1em;
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
 
-
-	}
-
-	#enviar{
-		color:gray;
-		align-self: center;
-	}
-
-
-
-
-
-
-
-	.campo-formulario{
-		max-width: 600px;
-		font-size: 1.5em;
-
-	}
-
-	#text-aceita-termos{
-		position: relative;
-		top:0em;
-		left:0em;
-
-
-
-	}
-
-	#aceita-termos{
-		position: relative;
-		left:0em;
-	}
-
-
-
-	#header-video{
-
-		font-size: 4em;
-		position: relative;
-		left:3em;
-
-		max-width: 470px;
-		align-self: center;
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
 		white-space: nowrap;
+		font-size:1em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
 
 	}
 
-	#text-header-video{
-		font-size: 3em;
-		position: relative;
-		left:6em;
-		top:-0.7em;
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#video,#localizacao{
+		max-width: 360px;
+		min-height: 320px;
+		border:1px solid white;
+		border-radius:2%;
+
 	}
 
 
-
-
-
-
-	#video{
-
-		position: relative;
-		left:-30em;
-		top:4em;
-
-		min-width:1300px;
-	}
-
-	iframe{
-
-		border-radius:5px;
-		min-width: 1300px;
-		min-height: 780px;
-		position: relative;
-		top:-2em;
-	}
-
-
-	#texto-auxiliar{
-
-		position: relative;
-		left:-35em;
-		top:-102em;
-		font-weight: 600;
-	}
-
-	#header-lista-benificios{
-		position: relative;
-		top:1em;
-		color: #0E0816;
-		margin:0.5em;
-		font-size: 2.5em;
-	}
 
 	#lista-beneficios{
-		min-width:800px;
-		min-height: 695px;
-		list-style: none;
-		background: yellow;
-		border-radius:10px;
+		box-shadow: 1px 5px yellowgreen;
 	}
 
 	.item-lista-beneficios{
-		margin-bottom: 1.2em;
+		padding: 0.5em;
+		font-size: 1.2em;
+	}
 
-		text-shadow:none;
 
+
+	#tag-video{
+		max-width: 100%;
+		min-height: 500px;
+	}
+
+	#mapa-localizacao{
+		min-width: 99%;
+		min-height: 500px;
 		position: relative;
-		left:1em;
-		top:2em;
-		font-size: 1.7em;
-		max-width:750px;
+		left: 0.2em;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+}
+
+
+
+
+
+
+
+@media (min-width: 376px) and (max-width:  411.98px) {
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+	}
+
+	header{
+		position: relative;
+		left:-1em;
+		min-width: 412px;
+		max-height: 3em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+		font-size: 1.2em;
+	}
+
+	#img-logo{
+		max-height: 3em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
+		white-space: nowrap;
+		font-size:1.2em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+
+	}
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#video,#localizacao{
+		max-width: 412px;
+		min-height: 320px;
+		border:1px solid white;
+
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.5em;
+		font-size: 1.5em;
+	}
+
+
+
+	#tag-video{
+		max-width: 100%;
+		min-height: 500px;
+	}
+
+	#mapa-localizacao{
+		min-width: 99%;
+		min-height: 500px;
+		position: relative;
+		left: 0.2em;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+
+
+}
+
+
+
+
+
+
+
+@media (min-width: 412px) and (max-width:  428.98px) {
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+	}
+
+	header{
+		position: relative;
+		left:-1em;
+		min-width: 412px;
+		max-height: 3em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+		font-size: 1.2em;
+	}
+
+	#img-logo{
+		max-height: 3em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
+		white-space: nowrap;
+		font-size:1.2em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+
+	}
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#video,#localizacao{
+		max-width: 412px;
+		min-height: 320px;
+		border:1px solid white;
+
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.5em;
+		font-size: 1.5em;
+	}
+
+
+
+	#tag-video{
+		max-width: 100%;
+		min-height: 500px;
+	}
+
+	#mapa-localizacao{
+		min-width: 99%;
+		min-height: 500px;
+		position: relative;
+		left: 0.2em;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+
+}
+
+
+
+
+
+
+
+@media (min-width: 429.00px) and (max-width:  768.98px) {
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+	}
+
+	header{
+		position: relative;
+		left:-2.5em;
+		min-width: 768px;
+		max-height: 5em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+		font-size: 1.2em;
+	}
+
+	#header-head-line{
+		font-size: 2.5em;
+	}
+
+	.texto-head-line{
+		font-size: 2em;
+	}
+
+	#img-logo{
+		max-height: 5em;
+		position: relative;
+		left:0.5em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	#area-btn-whatsapp,#area-btn-whatsapp-2,#area-btn-whatsapp-3{
+		box-shadow: 1px 5px yellowgreen;
+		position: relative;
+		left: 10%;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
+		white-space: nowrap;
+		font-size:1.7em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+
+
+	}
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#video,#localizacao{
+		max-width: 768px;
+		min-height: 320px;
+		border:1px solid white;
+
+	}
+
+	#header-video{
+		font-size: 3em;
+	}
+
+	#text-header-video{
+		font-size: 2em;
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.5em;
+		font-size: 2em;
 	}
 
 	#texto-chamada-final{
+		font-size: 1.8em;
+		padding: 1em;
 
-		font-size: 2em;
-		 text-shadow: 0.1em 0.1em 0.5em black;
-
-		 max-width: 350px;
-		 white-space: normal;
-		 bold:900;
-		 text-shadow:none ;
-		 align-self: center;
-		 position: relative;
-		 top:1em;
 	}
 
 
 
-
-
-	.check-lista-beneficios{
-		color:green;
+	#tag-video{
+		max-width: 100%;
+		min-height: 200px;
 	}
 
-	#btn-retorno-formulario{
+	#mapa-localizacao{
+		min-width: 99%;
+		min-height: 500px;
 		position: relative;
-		top:-20em;
-		left: 5em;
+		left: 0.2em;
 	}
 
-	#retorno-formulario{
+	#header-localizacao{
+		font-size: 3em;
+	}
+
+	#texto-localizacao{
+		font-size: 1.7em;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+}
+
+
+
+
+
+@media (min-width: 769.00px) and (max-width:  1024.98px) {
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+	}
+
+	header{
+		position: relative;
+		left:-6em;
+		min-width: 1024px;
+		max-height: 5em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+		font-size: 1.2em;
+	}
+
+	#header-head-line{
+		font-size: 2.5em;
+	}
+
+	.texto-head-line{
+		font-size: 2em;
+	}
+
+	#img-logo{
+		max-height: 5em;
+		position: relative;
+		left:3em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	#area-btn-whatsapp,#area-btn-whatsapp-2,#area-btn-whatsapp-3{
+		box-shadow: 1px 5px yellowgreen;
+		position: relative;
+		left: 10%;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
 		text-decoration: none;
-		align-self: center;
+		color:white;
+		white-space: nowrap;
+		font-size:1.7em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+
+
+	}
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#video,#localizacao{
+		max-width: 768px;
+		min-height: 320px;
+		border:1px solid white;
+
+	}
+
+	#header-video{
+		font-size: 3em;
+	}
+
+	#text-header-video{
+		font-size: 2em;
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.5em;
+		font-size: 2em;
+	}
+
+	#texto-chamada-final{
+		font-size: 1.8em;
+		padding: 1em;
 
 	}
 
 
+
+	#tag-video{
+		max-width: 100%;
+		min-height: 200px;
+	}
+
+	#mapa-localizacao{
+		min-width: 99%;
+		min-height: 500px;
+		position: relative;
+		left: 0.2em;
+	}
+
+	#header-localizacao{
+		font-size: 3em;
+	}
+
+	#texto-localizacao{
+		font-size: 1.7em;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+}
+
+@media (min-width: 1025.00px) and (max-width:  1440.98px) {
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+	}
+
+	header{
+		position: relative;
+		left:-10em;
+		min-width: 1441px;
+		max-height: 5em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+
+	}
+
+	#header-head-line{
+		font-size: 1.7em;
+	}
+
+	.texto-head-line{
+		font-size: 1.7em;
+	}
+
+	#img-logo{
+		max-height: 5em;
+		position: relative;
+		left:4em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		position: relative;
+		top:2em;
+		max-width: 48%;
+		min-height: 300px;
+
+	}
+
+	.img{
+		border-top-right-radius: 2%;
+		border-top-left-radius: 2%;
+	}
+
+
+
+
+
+
+
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+		position: relative;
+		left: -0.5em;
+		top:0.5em;
+
+	}
+
+	#area-btn-whatsapp-2{
+		display: none;
+	}
+
+	#area-btn-whatsapp-3{
+		box-shadow: 1px 5px yellowgreen;
+		position: absolute;
+		top: 120em;
+		left: 30%;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
+		white-space: nowrap;
+		font-size:1.7em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+	}
+
+
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#localizacao{
+		min-width: 90%;
+		min-height: 320px;
+		border:1px solid white;
+		position: absolute;
+		top:80em;
+		left: 5%;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+
+	}
+
+	#video{
+		max-width: 520px;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		position: relative;
+		top:0.5em;
+
+
+	}
+
+	#header-video{
+		font-size: 1.5em;
+	}
+
+	#text-header-video{
+		font-size: 1.3em;
+	}
+
+	#texto-auxiliar{
+		max-width: 550px;
+		min-height: 400px;
+		position: absolute;
+		left:50%;
+		top:12em;
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.2em;
+		font-size: 1.5em;
+	}
+
+	#texto-chamada-final{
+		font-size: 1.5em;
+		padding:0em 1em;
+
+	}
+
+
+
+	#tag-video{
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		max-height: 400px;
+
+	}
+
+	#mapa-localizacao{
+		min-width: 100%;
+		min-height: 500px;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+
+	}
+
+	#header-localizacao{
+		font-size: 3em;
+	}
+
+	#texto-localizacao{
+		font-size: 1.7em;
+	}
 
 	footer{
-		position: relative;
-		left:-0.5em;
-		top:-7em;
-		text-align: center;
-		color:white;
+		position: absolute;
+		top:140em;
+		left: 40%;
+		border:1px solid white;
 	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+
+
+
+}
+
+@media (min-width: 1400.00px) and (max-width:  2560.98px) {
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+
+
+	}
+
+	.container{
+		max-width: 2561px;
+	}
+
+	header{
+		position: relative;
+		left:-1em;
+		min-width: 2561px;
+		max-height: 5em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+
+	}
+
+	#header-head-line{
+		font-size: 3em;
+	}
+
+	.texto-head-line{
+		font-size: 3em;
+	}
+
+	#img-logo{
+		max-height: 5em;
+		position: relative;
+		left:4em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		position: relative;
+		top:13em;
+		max-width: 48%;
+		min-height: 300px;
+
+	}
+
+	.img{
+		border-top-right-radius: 2%;
+		border-top-left-radius: 2%;
+	}
+
+
+
+
+
+
+
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+		position: relative;
+		left: 25em;
+		top:5em;
+
+	}
+
+	#area-btn-whatsapp-2{
+		display: none;
+	}
+
+	#area-btn-whatsapp-3{
+		box-shadow: 1px 5px yellowgreen;
+		position: absolute;
+		top: 125em;
+		left: 63%;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
+		white-space: nowrap;
+		font-size:1.7em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+	}
+
+
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#localizacao{
+		min-width: 45%;
+		min-height: 320px;
+		border:1px solid white;
+		position: absolute;
+		top:80em;
+		left: 50%;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+
+	}
+
+	#video{
+		max-width: 30%;
+		max-height: 900px;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		position: relative;
+		top:1em;
+		left: 20em;
+
+
+	}
+
+	#header-video{
+		font-size: 1.5em;
+	}
+
+	#text-header-video{
+		font-size: 1.3em;
+	}
+
+	#texto-auxiliar{
+		max-width: 45%;
+		min-height: 400px;
+		position: absolute;
+		left:50%;
+		top:17em;
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.2em;
+		font-size: 1.5em;
+	}
+
+	#texto-chamada-final{
+		font-size: 1.5em;
+		padding:0em 1em;
+
+	}
+
+
+
+	#tag-video{
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		max-height: 40em;
+
+	}
+
+	#mapa-localizacao{
+		min-width: 100%;
+		min-height: 500px;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+
+	}
+
+	#header-localizacao{
+		font-size: 3em;
+	}
+
+	#texto-localizacao{
+		font-size: 1.7em;
+	}
+
+	footer{
+		position: absolute;
+		top:150em;
+		left: 45%;
+		border:1px solid blue;
+	}
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+}
+
+@media(min-width:2561px){
+
+	body{
+		background: rgb(8,7,8);
+		background: linear-gradient(0deg, rgba(8,7,8,1) 3%, rgba(0,0,0,1) 87%);
+		color:floralwhite;
+		font-family:Trebuchet MS ;
+		font-weight: 900;
+		text-shadow:
+
+
+	      0 0 99px gray,
+	      0 0 102px #ffffff,
+	      0 0 122px #ffffff,
+	      0 0 150px #ffffff;
+
+	      overflow-x:hidden;
+
+
+
+
+
+
+
+	}
+
+	.container{
+		max-width: 10000px;
+	}
+
+	header{
+		position: relative;
+		left:-1em;
+		min-width: 10000px;
+		max-height: 5em;
+	}
+
+	li{
+		list-style: none;
+	}
+
+
+
+	#head-line{
+
+	}
+
+	#header-head-line{
+		font-size: 3em;
+	}
+
+	.texto-head-line{
+		font-size: 3em;
+	}
+
+	#img-logo{
+		max-height: 5em;
+		position: relative;
+		left:4em;
+
+	}
+
+	#carousel{
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		position: relative;
+		top:13em;
+		left:10em;
+		max-width: 40%;
+		min-height: 300px;
+
+	}
+
+	.img{
+		border-top-right-radius: 2%;
+		border-top-left-radius: 2%;
+	}
+
+
+
+
+
+
+
+	#area-btn-whatsapp{
+		box-shadow: 1px 5px yellowgreen;
+		position: relative;
+		left: 30em;
+		top:5em;
+
+	}
+
+	#area-btn-whatsapp-2{
+		display: none;
+	}
+
+	#area-btn-whatsapp-3{
+		box-shadow: 1px 5px yellowgreen;
+		position: absolute;
+		top: 125em;
+		left: 63%;
+	}
+
+	.icone-whatsapp{
+		font-size:2.5em ;
+		animation: blink 5s 5s infinite;
+	}
+
+	@keyframes blink{
+        0%{opacity: 0;}
+        50%{opacity: .5;}
+        100%{opacity: 1;}
+    }
+
+	#btn-falar-whatsapp,#btn-falar-whatsapp-2,#btn-falar-whatsapp-3{
+		text-decoration: none;
+		color:white;
+		white-space: nowrap;
+		font-size:1.7em;
+		font-weight:bold;
+		text-shadow: 1px 1px black;
+		animation: blink 5s 5s infinite;
+	}
+
+
+
+	.neon-texto{
+		text-shadow:
+
+	      0 0 41px #fff,
+	      0 0 62px #0fa,
+	      0 0 82px #0fa,
+	      0 0 92px #0fa,
+	      0 0 102px #0fa,
+	      0 0 151px #0fa,
+	      0 0 181px green;
+		}
+
+	#localizacao{
+		min-width: 45%;
+		min-height: 320px;
+		border:1px solid white;
+		position: absolute;
+		top:80em;
+		left: 50%;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+
+	}
+
+	#video{
+		max-width: 30%;
+		max-height: 900px;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		position: relative;
+		top:1em;
+		left: 20em;
+
+
+	}
+
+	#header-video{
+		font-size: 1.5em;
+	}
+
+	#text-header-video{
+		font-size: 1.3em;
+	}
+
+	#texto-auxiliar{
+		max-width: 45%;
+		min-height: 400px;
+		position: absolute;
+		left:50%;
+		top:17em;
+	}
+
+
+
+	#lista-beneficios{
+		box-shadow: 1px 5px yellowgreen;
+	}
+
+	.item-lista-beneficios{
+		padding: 0.2em;
+		font-size: 1.5em;
+	}
+
+	#texto-chamada-final{
+		font-size: 1.5em;
+		padding:0em 1em;
+
+	}
+
+
+
+	#tag-video{
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+		max-height: 40em;
+
+	}
+
+	#mapa-localizacao{
+		min-width: 100%;
+		min-height: 500px;
+		box-shadow: 1px 5px yellowgreen;
+		border-radius: 2%;
+
+	}
+
+	#header-localizacao{
+		font-size: 3em;
+	}
+
+	#texto-localizacao{
+		font-size: 1.7em;
+	}
+
+	footer{
+		position: absolute;
+		top:150em;
+		left: 45%;
+		border:1px solid blue;
+	}
+
+	.loader {
+	  border: 16px solid #f3f3f3; /* Light grey */
+	  border-top: 16px solid #3498db; /* Blue */
+	  border-radius: 50%;
+	  width: 120px;
+	  height: 120px;
+	  animation: spin 2s linear 3;
+	  left:50%;
+	  top:50%;
+	  position: absolute;
+	  margin-left:-60px; /* -1/2 width */
+	  margin-top:-50px; /* -1/2 height */
+	}
+
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+
 }

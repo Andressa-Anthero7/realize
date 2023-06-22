@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+{% load static %}
+
+
+
+<html>
+<head>
+
+
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Antherus</title>
+
+	
+
+	<!-- Jquery CDN -->
+	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+
+	<!-- Boostrap 4 CDN  -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+	<!-- FontAwesome CDN -->
+	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+     <link rel="stylesheet" href="fontawesome/css/all.css">
+     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+
+
+
+	<!-- CSS -->
+	 <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-dashboard-lp.css' %}">
+
+
+	<!-- Java Script -->
+	 <script type="text/javascript" src="{% static 'js/script-dashboard-lp.js' %}"></script>
+
+
+</head>
+
+<!-- Corpo do HTML -->
+<body >
+	<!-- Container -->
+	<div class="container ">
+
+		<!-- Header da Pagina -->
+		<header id="header">
+			<!-- Imagem da Logo -->
+			<img src="{% static 'img/logo-2.png' %}" id="img-logo" class="img img-fluid">
+		</header>
+
+		<!-- Area do Dashboard -->
+		<div id="area-dashboard">
+			<div class="p-1 m-1">
+					<div class="btn btn-danger p-1 btn-voltar">Voltar</div>
+				</div>
+				<script>
+					$(document).on('click','.btn-voltar',function(){
+						window.location.href = "http://127.0.0.1:8000/dashboard/";
+					});
+				</script>
+			<div id="dashboard">
+
+				<h3 id="header-dashboard" class="text-center p-2">Gerenciador de Landing Pages</h3>
+				<section class="text-center">
+					<nav class="pb-5" >
+						<!--BARRA DE PESQUISA -->
+						<div id="pesquisa" class="py-5">
+
+								<form method="GET"  id="form-pesquisa"  class="row m-1 text-center">
+										<!-- BTN MENU HAMBURGUER -->
+											
+
+											<!--INPUT DA BARRA DE PESQUISA -->
+											<input type="text" name="barra-pesquisa" id="barra-pesquisa" class="form-control col-9" placeholder="Pesquisar" value="{{busca|default_if_none:''}}" >
+											<i class="fa fa-times-circle-o  btn " id="apagar-pesquisa" aria-hidden="true"></i>
+
+											<script>
+
+
+
+												$(document).on('focus','#barra-pesquisa', function(){
+													$(this).val('');
+												})
+
+												$(document).on('click','#apagar-pesquisa', function(){
+													window.location.href = "http://127.0.0.1:8000/accounts/login/dashboard-lp/";
+												})
+
+											</script>
+
+											<!--BTN PESQUISAR -->
+											<button type="submit" id="btn-pesquisar" class=" btn-sm btn-primary  py-2 px-3 ">Ok</button>
+								</form>
+
+
+						</div>
+					
+
+						<!--BTN CADASTRAR LANDING PAGE -->
+						<div id="btn-cadastrar-lp" class="btn btn-warning rounded m-3 p-3 text-dark font-weight-bold"  data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-plus mx-1"></i>Cadastrar Landing Page</div>
+
+						<!-- MODAL CADASTRAMENTO LANDING PAGE -->
+						<!-- Modal -->
+						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+						  <div class="modal-dialog" role="document">
+						    <div class="modal-content">
+						      <div class="modal-header">
+						        <h6 class="modal-title text-center" id="exampleModalLabel">Cadastre Imóvel da Landing Page</h6>
+						      </div>
+						      <div class="modal-body">
+						        <form id="formulario-lp" enctype="multipart/form-data"  method="POST" action="">
+									{% csrf_token %}
+						        	<div id="campo-nome-empreendimento" class="p-2">
+						        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Nome Empreendimento</label>
+						        		<input type="text"  id="nome-empreendimento" name="nome_empreendimento" class="form-control">
+						        		
+						        	</div>
+
+						        	<div id="campo-localizacao-empreendimento" class="p-2">
+						        		<label for="localizacao-empreendimento" class="btn-warning rounded p-2 label">Localização Empreendimento</label>
+										<textarea type="text" name="localizacao_empreendimento" id="localizacao-empreendimento" class="form-control" rows="8" ></textarea>
+						        		<small>* Preencha com o link de localização do googlemaps</small>
+						        	</div>
+
+
+								<!-- CAMPO ADD ITEM -->
+								<div class="p-1 campo-add-item col-12">
+									<div class="p-2">
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 1</label>
+										<select name="item_adicionado"  class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+											<option class="p-2" value="Àrea de Lazer">Àrea de Lazer</option>
+											<option class="p-2" value="Àrea de Lazer">1 Vaga de Garagem</option>
+										</select>
+
+									</div>
+
+
+									<div class="p-2">
+										<label class="bg-warning p-2 font-weight-bold border rounded label">Item 2</label>
+										<select name="item_adicionado"  class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+										</select>
+
+									</div>
+
+									<div>
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 3</label>
+										<select name="item_adicionado" class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+										</select>
+
+									</div>
+
+									<div>
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 4</label>
+										<select name="item_adicionado" class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+										</select>
+
+									</div>
+
+									<div>
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 5</label>
+										<select name="item_adicionado"  class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+										</select>
+
+									</div>
+
+									<div>
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 6</label>
+										<select name="item_adicionado"  class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+										</select>
+
+									</div>
+
+									<div>
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 7</label>
+										<select name="oitem_adicionad"  class=" form-control">
+											<option class="p-2" value="Selecione Item">Selecione Item</option>
+											<option class="p-2" value="1 Quarto">1 Quarto</option>
+											<option class="p-2" value="2 Quartos">2 Quartos</option>
+											<option class="p-2" value="3 Quartos">3 Quartos</option>
+											<option class="p-2" value="4 Quartos">4 Quartos</option>
+											<option class="p-2" value="5 Quartos">5 Quartos</option>
+											<option class="p-2" value="Sala">Sala</option>
+											<option class="p-2" value="Sala">Sala/Jantar</option>
+											<option class="p-2" value="Cozinha">Cozinha</option>
+										</select>
+
+									</div>
+
+
+
+
+
+
+
+
+
+
+						        	<div class="modal-footer">
+								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+								        <button type="submit" id="salvar-lp" class="btn btn-primary">Cadastrar</button>
+							      	</div>
+
+
+						        </form>
+						      </div>
+						      
+						    </div>
+						  </div>
+						</div>
+
+					</nav>
+
+
+
+
+
+					<!-- LISTAGEM DE LANDING PAGES -->
+					<div id="listagem-lp" class="border border-dark rounded">
+						{% if busca %}
+						<h3 class="p-1">O resultado para <p class="text-danger">{{busca|upper}}</p></h3>
+						{% endif %}
+						<ul class="p-1">
+							{% for lista_lp in lista_lp %}
+
+							<li class="border border-dark p-3 mb-1 ">{{lista_lp.nome_empreendimento}}</li>
+							<script>
+								$('li').click(function(){
+									var texto = '{{lista_lp.slug}}';
+									alert(texto)
+									window.location.href = "http://127.0.0.1:8000/accounts/login/cadastro-lp/"+texto+"/";
+								})
+							</script>
+
+							{% empty %}
+							<li class="border border-dark p-3 mb-1 ">Não Há Empreendimento Cadastrado</li>
+							{% endfor %}
+
+
+
+
+						</ul>
+
+					</div>
+
+					<div></div>
+				</section>
+			</div>
+			
+		</div>
+
+
+
+	<footer class="text-center " >
+		<i class="fa fa-copyright" aria-hidden="true">Copyright</i>
+		<div>Antherus - Desenvolvimento Web</div>
+		<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+	</footer>
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+
+
+
+
+
+
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

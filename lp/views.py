@@ -1,8 +1,10 @@
-from django.shortcuts import render, redirect
-from .models import Leads, Agendamento, Atendimento, Clientes, Perfil, Tagmeta, TagGoogle
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, Carousel, ItemEmprrendimento
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime, timedelta, time
+from django.db.models import Q
+from django.views.decorators.csrf import csrf_protect
 
 
 # Create your views here.
@@ -24,11 +26,11 @@ def index(request):
                              data_recebimento=data_recebimento)
         leads = Leads.objects.last()
 
-        return render(request, 'site/index.html')
+        return render(request, 'site/vale-dos-campos-.html')
     else:
         tag_meta = Tagmeta.objects.all()
 
-        return render(request, 'site/index.html', {'tag_meta': tag_meta})
+        return render(request, 'site/vale-dos-campos-.html', {'tag_meta': tag_meta})
 
 
 def abrirleads(request, pk):
@@ -42,93 +44,12 @@ def dashboard(request):
     return render(request, 'site/dashboard-v3.html', {'leads': leads})
 
 
-@login_required
-def atendimento(request, pk):
-    leads_atendimento = Leads.objects.filter(pk=pk)
-    atendimento_vinculado = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
-
-    agendamentos = Agendamento.objects.all()
-    anotacoes = Atendimento.objects.filter(leads_atendimento=pk).order_by('-data_inclusao_atendimento')
-    return render(request, 'site/atendimento.html', {'agendamentos': agendamentos,
-                                                     'leads_atendimento': leads_atendimento,
-                                                     'anotacoes': anotacoes,
-                                                     'atendimento_vinculado': atendimento_vinculado})
-
-
 def qualificar_leads(request, pk):
     if request.method == 'POST':
         status_leads = request.POST.get('opcionais-leads')
         print(status_leads)
         Leads.objects.filter(pk=pk).update(status_leads=status_leads)
         return redirect('atendimento', pk=pk)
-
-
-def criar_agendamento(request):
-    if request.method == 'POST':
-        nome_agendamento = request.POST.get('nome_agendamento')
-        data_evento = request.POST.get('data_evento')
-        data_termino = request.POST.get('data_termino')
-        data_agendamento = datetime.now()
-        user_agendamento = request.user
-        atendimento_vinculado = request.POST.get('atendimento-vinculado')
-        Agendamento.objects.create(
-            nome_agendamento=nome_agendamento,
-            data_evento=data_evento,
-            data_termino=data_termino,
-            data_agendamento=data_agendamento,
-            user_agendamento=user_agendamento,
-            vinculado_ao_atendimento=atendimento_vinculado
-        )
-
-        return redirect('atendimento', pk=atendimento_vinculado)
-    else:
-        atendimento_vinculado = request.GET.get('atendimento-vinculado')
-        return redirect('atendimento', pk=atendimento_vinculado)
-
-
-def criar_atendimento(request):
-    if request.method == 'POST':
-        print('anotacoes_atendimento')
-        anotacoes_atendimento = request.POST.get('anotacoes')
-
-        atendimento_vinculado = request.POST.get('id_atendimento')
-        data_inclusao_atendimento = datetime.now()
-        user_logado_inclusao = request.user
-
-        Atendimento.objects.create(
-            anotacoes_atendimento=anotacoes_atendimento,
-            leads_atendimento=atendimento_vinculado,
-            data_inclusao_atendimento=data_inclusao_atendimento,
-            user_inclusao_atendimento=user_logado_inclusao,
-
-        )
-
-        return redirect('atendimento', pk=atendimento_vinculado)
-    else:
-        atendimento_vinculado = request.GET.get('id_atendimento')
-        return redirect('atendimento', pk=atendimento_vinculado)
-
-
-def cadastrar_clientes(request):
-    if request.method == 'POST':
-        atendimento_vinculado = request.POST.get('atendimento_vinculado')
-        nome_cliente = request.POST.get('nome_cliente')
-        print(nome_cliente)
-        email_cliente = request.POST.get('email_cliente')
-        whatsapp_cliente = request.POST.get('whatsapp_cliente')
-
-        Clientes.objects.create(
-            atendimento_vinculados_cliente=atendimento_vinculado,
-            nome_cliente=nome_cliente,
-            email_cliente=email_cliente,
-            whatsapp_cliente=whatsapp_cliente,
-
-        )
-
-
-def cadastro_cliente(request, pk):
-    cliente = Clientes.objects.filter(atendimento_vinculados_cliente=pk)
-    return render(request, 'site/cadastro_cliente.html', {'cliente': cliente})
 
 
 def excluir_leads(request, pk):
@@ -138,38 +59,6 @@ def excluir_leads(request, pk):
         return redirect('dashboard')
     else:
         return redirect('index')
-
-
-def editar_agendamento(request, pk):
-    if request.method == 'POST':
-        nome_agendamento = request.POST.get('nome_agendamento')
-        data_evento = request.POST.get('data_evento')
-        data_termino = request.POST.get('data_termino')
-        print(data_termino)
-        data_agendamento = datetime.now()
-        user = request.user
-        user_agendamento = user.username
-        print(user_agendamento)
-        Agendamento.objects.filter(pk=pk).update(
-            nome_agendamento=nome_agendamento,
-            data_evento=data_evento,
-            data_termino=data_termino,
-            data_agendamento=data_agendamento,
-            user_agendamento=user_agendamento,
-        )
-
-        return redirect('atendimento', pk=pk)
-    else:
-        return redirect('atendimento', pk=pk)
-
-
-def deletar_agendamento(request, pk):
-    if request.method == 'POST':
-        agendamento_excluir = Agendamento.objects.filter(pk=pk)
-        agendamento_excluir.delete()
-        return redirect('atendimento', pk=pk)
-    else:
-        return redirect('atendimento', pk=pk)
 
 
 @login_required
@@ -207,33 +96,79 @@ def editar_img_perfil(request):
         return redirect(reverse('configuracao', args=[request.user]))
 
 
-def add_meta_tag(request):
-    if request.method == 'POST':
-        editado_por = request.user.username
-        data_atualizacao = datetime.now()
-        tag_meta = request.POST.get('textarea-tag-pixel')
-        tagmeta = Tagmeta.objects.all()
-        for tagmeta in tagmeta:
-            tagmeta.delete()
-        Tagmeta.objects.create(editado_por=editado_por,
-                               data_atualizacao=data_atualizacao,
-                               tag_meta=tag_meta)
-        return redirect(reverse('configuracao', args=[request.user]))
-    else:
-        return redirect(reverse('configuracao', args=[request.user]))
+def landingpage(request, slug):
+    empreendimento = get_object_or_404(LandingPage, slug=slug)
+    nome_relacionado = empreendimento.nome_empreendimento
+    # print(nome_relacionado)
+    carroussel_vinculado = Carousel.objects.filter(empreendimento_relacionado=nome_relacionado)
+    itens_vinculado = ItemEmprrendimento.objects.filter(empreendimento_relacinado=nome_relacionado)
+    print(itens_vinculado)
+    # print(carroussel_vinculado)
+    return render(request, 'site/landing-page.html', {'empreendimento': empreendimento,
+                                                      'carroussel_vinculado': carroussel_vinculado,
+                                                      'itens_vinculado': itens_vinculado})
 
 
-def add_tag_google(request):
+@login_required
+def dashboard_lp(request):
     if request.method == 'POST':
-        editado_por = request.user.username
-        data_atualizacao = datetime.now()
-        tag_google = request.POST.get('textarea-tag-google')
-        tag_google_analitycs = TagGoogle.objects.all()
-        for tag_google_analitycs in tag_google_analitycs:
-            tag_google_analitycs.delete()
-        TagGoogle.objects.create(editado_por=editado_por,
-                                 data_atualizacao=data_atualizacao,
-                                 tag_google=tag_google)
-        return redirect(reverse('configuracao', args=[request.user]))
+        nome_empreendimento = request.POST.get('nome_empreendimento')
+        localizacao_empreendimento = request.POST.get('localizacao_empreendimento')
+        data_atual = datetime.now()
+        user_logado = request.user.username
+        itens = request.POST.getlist('item_adicionado')
+        for i in itens:
+            ItemEmprrendimento.objects.create(empreendimento_relacinado=nome_empreendimento,
+                                              item_empreendimento=i
+                                              )
+        LandingPage.objects.create(nome_empreendimento=nome_empreendimento,
+                                   localizacao=localizacao_empreendimento,
+                                   data_cadastramento=data_atual,
+                                   user_cadastramento=user_logado
+                                   )
+        lp = LandingPage.objects.last()
+        return render(request, 'site/upload-img.html', {'lp': lp})
     else:
-        return redirect(reverse('configuracao', args=[request.user]))
+        lista_lp = LandingPage.objects.all()
+        busca = request.GET.get('barra-pesquisa')
+        if busca:
+            lista_lp = LandingPage.objects.filter(Q(nome_empreendimento__icontains=busca))
+
+        return render(request, 'site/dashboard-lp.html', {'lista_lp': lista_lp, 'busca': busca})
+
+
+@login_required
+def cadastro_lp(request, slug):
+    nome_empreendimento = get_object_or_404(LandingPage, slug=slug)
+    return render(request, 'site/cadastro-lp.html', {'nome_empreendimento': nome_empreendimento.nome_empreendimento})
+
+
+def cadastrar_lp(request):
+    if request.method == 'POST':
+        nome_empreendimento = request.POST.get('nome_empreendimento')
+        localizacao_empreendimento = request.POST.get('localizacao_empreendimento')
+
+        LandingPage.objects.create(nome_empreendimento=nome_empreendimento, localizacao=localizacao_empreendimento)
+        lp = LandingPage.objects.last()
+        print(lp)
+
+        return redirect(reverse('upload_img', args=[lp.nome_empreendimento]))
+    else:
+
+        return render(request, 'site/dashboard-lp.html')
+
+
+def upload_img(request):
+    if request.method == 'POST':
+        empreendimento_vinculado = request.POST.get('empreendimento_vinculado')
+        print(empreendimento_vinculado)
+        imagem = request.FILES.get('file')
+        print(imagem)
+        Carousel.objects.create(empreendimento_relacionado=empreendimento_vinculado, imagens=imagem)
+        return redirect('add-itens-destaque', args=[empreendimento_vinculado])
+    else:
+        return render(request, 'site/upload-img.html')
+
+
+def add_itens_destaque(request, slug):
+    return render(request, 'site/add-itens-empreendimento.html')
