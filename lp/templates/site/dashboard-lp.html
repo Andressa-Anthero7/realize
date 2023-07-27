@@ -34,6 +34,16 @@
 	<!-- Java Script -->
 	 <script type="text/javascript" src="{% static 'js/script-dashboard-lp.js' %}"></script>
 
+	<!-- API GOOGLE MAPS -->
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY&callback=initMap" async defer></script>
+
+	<style>
+		#map {
+		  height: 400px;
+		}
+	</style>
+
+
 
 </head>
 
@@ -100,7 +110,7 @@
 						<div id="btn-cadastrar-lp" class="btn btn-warning rounded m-3 p-3 text-dark font-weight-bold"  data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-plus mx-1"></i>Cadastrar Landing Page</div>
 
 						<!-- MODAL CADASTRAMENTO LANDING PAGE -->
-						<!-- Modal -->
+						<!-- MODAL CADASTRAMENTO LANDING PAGE-->
 						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog" role="document">
 						    <div class="modal-content">
@@ -110,6 +120,44 @@
 						      <div class="modal-body">
 						        <form id="formulario-lp" enctype="multipart/form-data"  method="POST" action="">
 									{% csrf_token %}
+
+									<div id="campo-tipo-imovel" class="p2">
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Tipo do Imovél</label>
+										<select name="tipo_imovel"  class=" form-control">
+												<option class="p-2" value="Selecione Tipo do Imovél">Selecione Tipo do Imovél</option>
+												<option class="p-2" value="Apartamento">Apartamento</option>
+												<option class="p-2" value="Casa">Casa</option>
+										</select>
+
+									</div>
+
+									<div id="campo-status" class="p2">
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Status do Imovél</label>
+										<select name="status_imovel"  class=" form-control">
+												<option class="p-2" value="Selecione Item">Selecione Status do Imovél</option>
+												<option class="p-2" value="Na Planta">Na Planta</option>
+												<option class="p-2" value="Em obras">Em obras</option>
+												<option class="p-2" value="Pronto para Morar">Pronto para Morar</option>
+										</select>
+
+									</div>
+
+									<div id="campo-padrao-imovel" class="p2">
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Padrão do Imovél</label>
+										<select name="padrao_imovel"  class=" form-control">
+												<option class="p-2" value="Selecione Padrão do Imovél">Selecione Padrão do Imovél</option>
+												<option class="p-2" value="Minha Casa Minha Vida">Minha Casa Minha Vida</option>
+												<option class="p-2" value="Padrão">Padrão</option>
+												<option class="p-2" value="Alto Padrão">Alto Padrão</option>
+												<option class="p-2" value="Altíssimo Padrão">Altíssimo Padrão</option>
+										</select>
+
+									</div>
+
+
+
+
+
 						        	<div id="campo-nome-empreendimento" class="p-2">
 						        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Nome Empreendimento</label>
 						        		<input type="text"  id="nome-empreendimento" name="nome_empreendimento" class="form-control">
@@ -118,128 +166,101 @@
 
 						        	<div id="campo-localizacao-empreendimento" class="p-2">
 						        		<label for="localizacao-empreendimento" class="btn-warning rounded p-2 label">Localização Empreendimento</label>
-										<textarea type="text" name="localizacao_empreendimento" id="localizacao-empreendimento" class="form-control" rows="8" ></textarea>
+										<textarea type="text" name="localizacao_empreendimento" id="localizacao-empreendimento" class="form-control" rows="3" ></textarea>
 						        		<small>* Preencha com o link de localização do googlemaps</small>
 						        	</div>
+
+									<div id="campo-logo-empreendimento" class="p-2">
+						        		<label for="logo_empreendimento" class="btn-warning rounded p-2 label">Logo Marca Empreendimento</label>
+										<input type="file" name="logo_empreendimento" id="logo_empreendimento" class="form-control"  >
+
+						        	</div>
+
+									<input type="text" id="lat" name="latitude">
+									<input type="text" id="long" name="longitude">
+
+									<!-- IMPLEMENTAÇÃO DO MAPA DE PESQUISA COM LOCAL DO EMPREENDIMENTO À CADASTRAR E OS DEMAIS JÁ CADASTRADOS -->
+									 <div id="map"></div>
+									<script src="{% static 'js/geolocation.js' %}"></script>
 
 
 								<!-- CAMPO ADD ITEM -->
 								<div class="p-1 campo-add-item col-12">
-									<div class="p-2">
+									<div>
 										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 1</label>
-										<select name="item_adicionado"  class=" form-control">
+										<select name="item_adicionado_1"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
-											<option class="p-2" value="Àrea de Lazer">Àrea de Lazer</option>
-											<option class="p-2" value="Àrea de Lazer">1 Vaga de Garagem</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
 
-
-									<div class="p-2">
-										<label class="bg-warning p-2 font-weight-bold border rounded label">Item 2</label>
-										<select name="item_adicionado"  class=" form-control">
+									<div>
+										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 2</label>
+										<select name="item_adicionado_2"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
 
 									<div>
 										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 3</label>
-										<select name="item_adicionado" class=" form-control">
+										<select name="item_adicionado_3"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
-
 									<div>
 										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 4</label>
-										<select name="item_adicionado" class=" form-control">
+										<select name="item_adicionado_4"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
 
 									<div>
 										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 5</label>
-										<select name="item_adicionado"  class=" form-control">
+										<select name="item_adicionado_5"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
 
 									<div>
 										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 6</label>
-										<select name="item_adicionado"  class=" form-control">
+										<select name="item_adicionado_6"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
 
 									<div>
 										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 7</label>
-										<select name="oitem_adicionad"  class=" form-control">
+										<select name="item_adicionado_7"  class=" form-control">
 											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											<option class="p-2" value="1 Quarto">1 Quarto</option>
-											<option class="p-2" value="2 Quartos">2 Quartos</option>
-											<option class="p-2" value="3 Quartos">3 Quartos</option>
-											<option class="p-2" value="4 Quartos">4 Quartos</option>
-											<option class="p-2" value="5 Quartos">5 Quartos</option>
-											<option class="p-2" value="Sala">Sala</option>
-											<option class="p-2" value="Sala">Sala/Jantar</option>
-											<option class="p-2" value="Cozinha">Cozinha</option>
+											{% for lista_itens_destaque in lista_itens_destaque %}
+												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
+											{% endfor %}
 										</select>
 
 									</div>
-
 
 
 
@@ -276,18 +297,17 @@
 						<ul class="p-1">
 							{% for lista_lp in lista_lp %}
 
-							<li class="border border-dark p-3 mb-1 ">{{lista_lp.nome_empreendimento}}</li>
-							<script>
-								$('li').click(function(){
-									var texto = '{{lista_lp.slug}}';
-									alert(texto)
-									window.location.href = "http://127.0.0.1:8000/accounts/login/cadastro-lp/"+texto+"/";
-								})
-							</script>
+							<li class="border border-dark p-3 mb-1  ">
+								<a href="{% url 'cadastro-lp' slug=lista_lp.slug %}" >{{lista_lp.nome_empreendimento}}</a>
+							</li>
+
+
 
 							{% empty %}
 							<li class="border border-dark p-3 mb-1 ">Não Há Empreendimento Cadastrado</li>
 							{% endfor %}
+
+
 
 
 

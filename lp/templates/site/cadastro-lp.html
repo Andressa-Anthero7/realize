@@ -3,8 +3,7 @@
 {% load static %}
 
 
-
-<html>
+<html xmlns="http://www.w3.org/1999/html">
 <head>
 
 
@@ -57,27 +56,32 @@
 				<div class="btn btn-danger" id="btbn-voltar">Voltar</div>
 				<script type="text/javascript">
 					$('#btbn-voltar').click(function(){
-						window.location.href = "http://127.0.0.1:8000/dashboard-lp/";
+						window.location.href = "http://127.0.0.1:8000/accounts/login/gerenciador-lp/";
 					})
 				</script>
 			</div>
 			<!-- Conteudo e dados da landing page -->
 			<div id="conteudo" class="">
 
-				<h4 class="text-center p-2">LANDING PAGE<br>{{nome_empreendimento.nome_empreendimento|upper}}</h4>
+
+				<h4 class="text-center p-2">LANDING PAGE<br>{{empreendimento_relacionado.nome_empreendimento|upper}}</h4>
+				<div class="text-center p-2">
+					<a href="{% url 'landingpage' slug=empreendimento_relacionado.slug %}" target="_blank">www.realizeseuimovel/{{empreendimento_relacionado.slug|lower}}</a>
+
+				</div>
 				<div class="div-info-lp">
 			 		<div id="info-lp">
 			 			<!-- CAMPO NOME EMPREENDIMENTO -->
 			 			<div id="campo-nome-empreendimento" class="p-2">
 			        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Nome Empreendimento</label>
-			        		<input type="text"  id="nome-empreendimento" name="nome-empreendimento" class="form-control" disabled value="{{nome_empreendimento.nome_empreendimento|upper}}">
+			        		<input type="text"  id="nome-empreendimento" name="nome-empreendimento" class="form-control" disabled value="{{empreendimento_relacionado.nome_empreendimento|upper}}">
 			        		<span class=""><i class="fa fa-pencil-square p-1 editar-empreendimento btn" id="editar-empreendimento" aria-hidden="true"></i></span>
 			        	</div>
 
 			        	<!-- CAMPO LOCALIZACAO EMPREENDIMENTO -->
 			        	<div id="campo-localizacao-empreendimento" class="p-2 m-1">
 			        		<label for="localizacao-empreendimento" class="btn-warning rounded p-2 label">Localização Empreendimento</label>
-			        		<input type="text" name="localizacao-empreendimento" id="localizacao-empreendimento" class="form-control" disabled value="{{nome_empreendimento.localizacao|upper}}" >
+							<textarea  name="localizacao-empreendimento" id="localizacao-empreendimento" class="form-control" disabled >{{empreendimento_relacionado.localizacao|upper}}</textarea>
 			        		<span class=""><i class="fa fa-pencil-square p-1 editar-localizacao btn" id="editar-localizacao" aria-hidden="true"></i></span>
 			        		
 			        	</div>
@@ -85,7 +89,7 @@
 			        	<!-- CAMPO TAG META -->
 			        	<div id="campo-tag-meta" class="p-2 m-1">
 			        		<label for="tag-meta" class="btn-warning rounded p-2 label">Tag Meta</label>
-			        		<input type="text" name="tag-meta" id="tag-meta" class="form-control" disabled value="{{nome_empreendimento.tag_meta|upper}}" >
+			        		<textarea  name="tag-meta" id="tag-meta" class="form-control" disabled value="{{nome_empreendimento.tag_meta|upper}}" ></textarea>
 			        		<span class=""><i class="fa fa-pencil-square p-1 editar-tag-meta btn" id="editar-tag-meta" aria-hidden="true"></i></span>
 			        		
 			        	</div>
@@ -93,7 +97,7 @@
 			        	<!-- CAMPO TAG GOOGLE -->
 			        	<div id="campo-tag-google" class="p-2 m-1">
 			        		<label for="tag-google" class="btn-warning rounded p-2 label">Tag Google</label>
-			        		<input type="text" name="tag-google" id="tag-google" class="form-control" disabled value="{{nome_empreendimento.tag_google|upper}}">
+							<textarea  name="tag-google" id="tag-google" class="form-control" disabled value="{{nome_empreendimento.tag_google|upper}}"></textarea>
 			        		<span class=""><i class="fa fa-pencil-square p-1 editar-tag-google btn" id="editar-tag-google" aria-hidden="true"></i></span>
 			        		
 			        	</div>
@@ -208,19 +212,26 @@
 
 			        	</script>
 			        	<!-- GALERIA DE IMAGENS -->
-			        	<div id="geleria-imagens" class="mt-1 border border-dark rounded p-5">
-			        		<h4 class="text-center p-2">GALERIA DA LADINGPAGE</h4>
+			        	<div id="" class=" border border-dark rounded  p-3 ">
+			        		<h4 class="text-center p-4">GALERIA DA LADINGPAGE</h4>
 			        		<!-- MOLDURAS COM IMAGENS -->
-			        		<div class="moldura-imagens  p-1 border border-dark rounded">
-			        			<img src="" class="img img-fluid" alt="Imagem do Empreendimento">
-			        			<hr>
-			        			<div class="btn-opcao p-1">
-			        				<div><i class="fa fa-trash-o" aria-hidden="true"></i></div>
-			        				<div class=""><i class="fa fa-pencil-square p-1" aria-hidden="true"></i></div>
-			        				
-			        			</div>
-			        		</div>
-			        		<!-- FINAL MODLURAS -->
+
+
+							<div class="card-group col-12 border border-dark ">
+								{% for carousel_relacionado in carousel_relacionado %}
+								  <div class="card col-12 bg-light text-center">
+									<img class="img img-fluid " src="{{carousel_relacionado.imagens.url}}" alt="{{carousel_relacionado.imagens}}">
+
+										<a href="" class="btn btn-danger m-3 p-3">Excluir</a>
+										<a href="" class="btn btn-primary m-3 p-3">Editar</a>
+
+
+								  </div>
+								{% endfor %}
+
+							</div>
+
+			        		<!-- FINAL MODULRAS -->
 
 			        		
 
@@ -266,6 +277,8 @@
 			
 		</div>
 		<!-- FINAL CONTEUDO -->
+
+
 
 
 

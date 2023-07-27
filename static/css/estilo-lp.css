@@ -464,7 +464,7 @@ li{
     #localizacao{
         position: relative;
         left:0;
-        top:-32em;
+        top:-28em;
     }
 
     #header-localizacao{
@@ -516,7 +516,7 @@ li{
 }
 
 /* Laptop */
-@media (min-width: 1024.00px) and (max-width: 1400px) {
+@media (min-width: 1024.00px) and (max-width: 1281px) {
       body{
         margin:0;
         padding:0;
@@ -525,6 +525,7 @@ li{
         -webkit-overflow-x:hidden;
         min-height: 900px;
         min-width:100%;
+        background:hotpink;
 
     }
 
@@ -563,6 +564,7 @@ li{
     #carousel-capa{
         background:red;
          max-width:45%;
+
          position:relative;
          left:4%;
          top:0em;
@@ -615,12 +617,12 @@ li{
     #copy-lp{
         font-weight: 700;
          text-shadow: 2px 2px 4px #ffffff;
-         font-size: 1.9em;
+         font-size:1.7em;
          max-width:45%;
-         min-height:37em;
+         max-height:45em;
          position:relative;
          left:52%;
-         top:-20em;
+         top:-21em;
 
     }
 
@@ -659,10 +661,15 @@ li{
 
     }
 
+    #area-formulario{
+        position:relative;
+        top:3em;
+    }
+
     #header-formulario{
 
         font-weight: 700;
-        font-size: 1.8em;
+        font-size: 1.5em;
 
     }
 
@@ -670,7 +677,7 @@ li{
 
     #form{
         position: relative;
-        top:-72em;
+        top:-69em;
         left:4%;
         /* From https://css.glass */
         background: rgba(255, 255, 255, 0.2);
@@ -678,7 +685,7 @@ li{
 
         border: 1px solid rgba(255, 255, 255, 0.3);
         text-shadow: 1px 1px 1px 1px;
-        min-height:30em;
+        max-height:30em;
         max-width:45%;
          border:1px solid black;
     }
@@ -703,9 +710,11 @@ li{
 
     #caracteristica-imovel{
         position: relative;
-        top:-65em;
+        top:-60em;
         left:52%;
         max-width: 45%;
+        min-height:30em;
+        font-size:1em;
 
     }
 
@@ -737,7 +746,7 @@ li{
     #localizacao{
         position: relative;
         left:3%;
-        top:-98em;
+        top:-90em;
         max-width:45%;
     }
 
@@ -750,7 +759,7 @@ li{
     }
 
     #mapa-localizacao{
-        height: 450px;
+        height: 430px;
         width:95%;
         margin: 0.5em;
     }
@@ -789,37 +798,26 @@ li{
     }
 }
 
-@media (min-width: 1400.01px) and (max-width:  2559.97px) {
-     body{
+@media (min-width: 1281.00px) and (max-width: 2559.97px) {
+      body{
         margin:0;
         padding:0;
         overflow-x:hidden;
         -moz-overflow-x:hidden;
         -webkit-overflow-x:hidden;
-        height: 2000px;
-
-
-
-
-
-
+        min-height: 900px;
+        min-width:100%;
+        background:hotpink;
 
     }
 
 
 
     .container-fluid{
-
-        max-width:100%;
+        margin: 0;
+        padding:0;
+        min-width:100%;
     }
-
-    header{
-        position:relative;
-        left:-1em;
-        width:110%;
-    }
-
-
 
 
 
@@ -832,10 +830,8 @@ li{
     }
 
     #logomarca{
-        min-height: 5em;
+        max-height: 5em;
         animation: diminuilogo 5s 3s;
-        margin-left:3em;
-        padding:1em;
     }
 
     li{
@@ -848,50 +844,54 @@ li{
     }
 
     #carousel-capa{
-        width:50%;
+        background:red;
+         max-width:45%;
 
-        position:relative;
-        top:1.1em;
-        left:8em;
-        padding:0.5em;
+         position:relative;
+         left:4%;
+         top:0em;
+
+
 
 
     }
 
+    .carousel-inner{
+        max-width:100%;
+    }
 
+    .carousel-item{
+
+
+
+
+    }
 
     .img-carousel{
-        min-height:18em;
-
-
-
-    }
-
-    #logo-casa-verde-amarela{
-        max-width:30%;
-        min-height:30%;
-        position: relative;
-        top:0em;
-        left:65%;
 
 
     }
 
-    #header-copy-lp, #header-copy-lp-2{
-        position: relative;
-        top:0em;
-        left: 30%;
-        font-size: 1.5em;
-
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: scale(2);
+      }
+      51% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
-    #texto-copy-lp{
-        max-width: 55%;
-        position: relative;
-        left:20em;
-        top:-5.5em;
-        font-size: 1.2em;
-        padding: 0.2em;
+    #header-copy-lp-2{
+         animation: blink 1s  10;
     }
 
 
@@ -899,22 +899,30 @@ li{
     #copy-lp{
         font-weight: 700;
          text-shadow: 2px 2px 4px #ffffff;
-         font-size: 1.5em;
-         max-width: 90%;
-         padding:auto;
-         margin:auto;
-         z-index:-1;
+         font-size:1.8em;
+         max-width:45%;
+         max-height:40em;
          position:relative;
-         top:-12em;
+         left:52%;
+         top:-21em;
 
     }
 
+    #header-copy-lp,  #header-copy-lp-2{
+        font-size:1.9em;
+        padding:1em;
+    }
 
+    #texto-copy-lp{
+        text-align: center;
+        font-size:2em;
+
+    }
 
     #faixa-giratoria{
         background: black;
         position:relative;
-        top:-17em;
+        top:-35em;
     }
 
     @keyframes blink{
@@ -935,12 +943,15 @@ li{
 
     }
 
+    #area-formulario{
+        position:relative;
+        top:1.5em;
+    }
+
     #header-formulario{
 
         font-weight: 700;
-        font-size: 2em;
-
-
+        font-size: 1.8em;
 
     }
 
@@ -948,24 +959,22 @@ li{
 
     #form{
         position: relative;
-        top:-16em;
+        top:-69em;
+        left:4%;
         /* From https://css.glass */
         background: rgba(255, 255, 255, 0.2);
-        border-radius: 2%;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-        backdrop-filter: blur(5px);
-        -webkit-backdrop-filter: blur(5px);
+        border-radius: 16px;
+
         border: 1px solid rgba(255, 255, 255, 0.3);
         text-shadow: 1px 1px 1px 1px;
-        max-width:49%;
-        min-height: 35.5em;
-        border:1px solid black;
-
+        max-height:30em;
+        max-width:45%;
+         border:1px solid black;
     }
 
     .label-form{
         position: relative;
-        top:4.5em;
+        top:0.7em;
         background: gold;
         border-radius: 10%;
         padding: 0.5em;
@@ -977,34 +986,17 @@ li{
         font-weight: 700;
         font-size: 1.5em;
         text-shadow: none;
-         max-width: 100%;
-         position: relative;
-         top:1.9em;
-
     }
 
 
-
-    .form-group{
-        position: relative;
-        left:2em;
-
-        max-width: 90%;
-    }
-
-
-    #btn-salvar{
-        position:relative;
-        top:5em;
-
-    }
 
     #caracteristica-imovel{
         position: relative;
-        top:-52em;
-        left:55%;
+        top:-60em;
+        left:52%;
         max-width: 45%;
-         border-radius: 10%;
+        min-height:30em;
+        font-size:1em;
 
     }
 
@@ -1014,8 +1006,7 @@ li{
         background-repeat: no-repeat;
          background-position: center;
          background-size: cover;
-
-          min-height: 36em;
+          border-radius: 5%;
     }
 
     #header-caracteristica{
@@ -1036,8 +1027,9 @@ li{
 
     #localizacao{
         position: relative;
-        left:0;
-        top:-50em;
+        left:3%;
+        top:-90em;
+        max-width:45%;
     }
 
     #header-localizacao{
@@ -1049,15 +1041,15 @@ li{
     }
 
     #mapa-localizacao{
-        height: 500px;
-        width:100%;
+        height: 430px;
+        width:95%;
         margin: 0.5em;
     }
 
     #copy-final{
         position: relative;
         left:0;
-        top:-25em;
+        top:-45em;
         font-size: 2em;
     }
 
@@ -1084,45 +1076,33 @@ li{
 
     footer{
         position: relative;
-        top:10em;
+        top:-20em;
     }
 }
 
 
-
-/* Telas Wide Screen */
-@media (min-width: 2560.00px){
+@media (min-width: 2560px) {
       body{
         margin:0;
         padding:0;
         overflow-x:hidden;
         -moz-overflow-x:hidden;
         -webkit-overflow-x:hidden;
-
-
-
-        max-width:2500px;
-
-        min-height:5000px;
-
-
-
+        min-height: 900px;
+        min-width:100%;
+        background:green;
 
     }
 
 
 
     .container-fluid{
-        margin: auto;
-        padding:auto;
+        margin: 0;
+        padding:0;
         min-width:100%;
-
     }
 
-    header{
-        position:relative;
-        left:-1em;
-    }
+
 
      @keyframes diminuilogo {
         0%   {min-height: 4em;}
@@ -1133,10 +1113,8 @@ li{
     }
 
     #logomarca{
-        min-height: 5em;
+        max-height: 5em;
         animation: diminuilogo 5s 3s;
-        margin-left:3em;
-        padding:1em;
     }
 
     li{
@@ -1145,74 +1123,89 @@ li{
 
     ul{
         position: relative;
-        left:0em;
-        padding:1em;
+        left:-1.5em;
     }
 
     #carousel-capa{
-        max-width:80%;
-        padding:auto;
-        margin:auto;
+        background:red;
+         max-width:45%;
+
+         position:relative;
+         left:4%;
+         top:0em;
+
+
+
+
+    }
+
+    .carousel-inner{
+        max-width:100%;
+    }
+
+    .carousel-item{
+
+
 
 
     }
 
     .img-carousel{
-        min-height: 350px;
-
-    }
-
-    #logo-casa-verde-amarela{
-        max-width:20%;
-        min-height:20%;
-        position: relative;
-        top:0em;
-        left:10em;
 
 
     }
 
-    #header-copy-lp{
-        position: relative;
-        top:-2em;
-        left: 7.5em;
-        font-size: 4em;
-
+    @keyframes blink {
+      0% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0;
+        transform: scale(2);
+      }
+      51% {
+        opacity: 0;
+        transform: scale(0);
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
     }
 
     #header-copy-lp-2{
-        marg:auto;
-        padding:auto;
-        font-size: 4em;
-
+         animation: blink 1s  10;
     }
-
-    #texto-copy-lp{
-        max-width: 55%;
-        position: relative;
-        left:25em;
-        top:-5.5em;
-        font-size:2em;
-        padding: 0.2em;
-    }
-
-
 
 
 
     #copy-lp{
         font-weight: 700;
          text-shadow: 2px 2px 4px #ffffff;
-
-         max-height: 10em;
-
+         font-size:2em;
+         max-width:45%;
+         max-height:35em;
+         position:relative;
+         left:52%;
+         top:-37em;
 
     }
 
+    #header-copy-lp,  #header-copy-lp-2{
+        font-size:1.9em;
+        padding:1em;
+    }
 
+    #texto-copy-lp{
+        text-align: center;
+        font-size:2em;
+
+    }
 
     #faixa-giratoria{
         background: black;
+        position:relative;
+        top:-68em;
     }
 
     @keyframes blink{
@@ -1233,10 +1226,15 @@ li{
 
     }
 
+    #area-formulario{
+        position:relative;
+        top:1.7em;
+    }
+
     #header-formulario{
 
         font-weight: 700;
-        font-size: 2em;
+        font-size: 1.8em;
 
     }
 
@@ -1244,29 +1242,27 @@ li{
 
     #form{
         position: relative;
-        top:35em;
+        top:-65em;
+        left:4%;
         /* From https://css.glass */
         background: rgba(255, 255, 255, 0.2);
-        border-radius: 2%;
-        box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        border-radius: 16px;
 
         border: 1px solid rgba(255, 255, 255, 0.3);
         text-shadow: 1px 1px 1px 1px;
-        max-width:49%;
-        min-height: 40em;
-        border:1px solid black;
-        padding:5em;
-
+        min-height:45em;
+        max-width:30%;
+         border:1px solid black;
+         padding:3em;
     }
 
     .label-form{
         position: relative;
-        top:4.1em;
+        top:0.7em;
         background: gold;
         border-radius: 10%;
         padding: 0.5em;
         line-height:0.7em;
-        font-size:2em;
 
     }
 
@@ -1274,61 +1270,33 @@ li{
         font-weight: 700;
         font-size: 1.5em;
         text-shadow: none;
-         max-width: 100%;
-
-         position: relative;
-         top:1.9em;
-    }
-
-    .form-control{
-        min-height:5em;
-        border-radius:10px;
-    }
-
-    #btn-salvar{
-        margin:5em;
-        border-radius:10px;
     }
 
 
-
-    .form-group{
-        position: relative;
-        left:2em;
-        padding:1.5em;
-        max-width: 90%;
-    }
 
     #caracteristica-imovel{
         position: relative;
-        top:-22em;
-        left:52%;
-        max-width: 45%;
-         border-radius: 10%;
+        top:-109em;
+        left:67%;
+         max-width:30%;
+        min-height:45em;
+        font-size:1em;
 
     }
 
     .caracteristica-imovel{
-
          background-image: url("https://andressa-anthero7.github.io/LP-CORRETORES-IMOB/fundo-caracteristica-imovel.png");
         background-color: yellow;
         background-repeat: no-repeat;
          background-position: center;
          background-size: cover;
-
-
-          min-height: 40em;
-    }
-
-    .item-caracteristica-imovel{
-        font-size:3.5em;
-
+          border-radius: 5%;
     }
 
     #header-caracteristica{
         white-space: nowrap;
         font-weight: 700;
-        font-size:2em;
+
         background:gold;
         border-radius: 5%;
 
@@ -1343,8 +1311,9 @@ li{
 
     #localizacao{
         position: relative;
-        left:0;
-        top:-15em;
+        left:35%;
+        top:-154em;
+        max-width:30%;
     }
 
     #header-localizacao{
@@ -1356,21 +1325,21 @@ li{
     }
 
     #mapa-localizacao{
-        height: 800px;
-        width:100%;
+        height: 650px;
+        width:95%;
         margin: 0.5em;
     }
 
     #copy-final{
         position: relative;
         left:0;
-        top:0em;
+        top:-45em;
         font-size: 2em;
     }
 
     #texto-copy-final{
         position: relative;
-        left:13em;
+        left:1em;
     }
 
     h6{
@@ -1390,8 +1359,11 @@ li{
     }
 
     footer{
-        position: absolute;
-        top:4900px;
-        left:45%;
+        position: relative;
+        top:-20em;
     }
 }
+
+
+
+

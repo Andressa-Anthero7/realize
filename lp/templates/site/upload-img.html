@@ -241,7 +241,7 @@
 				$.each(inputs, function(obj, v){
 					var name = $(v).attr("name")
 					var val = $(v).val();
-					alert('name: ' + name + ' value: ' + val);
+					//alert('name: ' + name + ' value: ' + val);
 					formData.append(name, val);
 				});
 
@@ -257,6 +257,14 @@
 					request.setRequestHeader("X-CSRFToken", csrftoken);
 					request.send(formData);  //send the post request to server
 					//alert("Enviou"+  list_of_files[i])
+
+					contagem = i+1
+					// alert(list_of_files.length)
+					if(contagem == list_of_files.length){
+
+						window.location.replace('http://127.0.0.1:8000/accounts/login/gerenciador-lp/');
+					}
+
 
 
 

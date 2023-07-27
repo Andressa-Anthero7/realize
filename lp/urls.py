@@ -15,6 +15,5 @@ urlpatterns = [
     path('accounts/login/gerenciador-lp/', views.dashboard_lp, name='dashboard-lp'),
     path('accounts/login/cadastro-lp/<slug:slug>/', views.cadastro_lp, name='cadastro-lp'),
     path('accounts/login/gerenciador-lp/upload-img/', views.upload_img, name='upload-img'),
-    path('accounts/login/gerenciador-lp/upload-img/add-itens-destaque/<slug:slug>/', views.add_itens_destaque, name='add-itens-destaque'),
 
 ]

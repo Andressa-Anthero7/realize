@@ -216,6 +216,11 @@
         color: red;
     }
 
+    .card{
+        min-width:20em;
+
+    }
+
 
     
 

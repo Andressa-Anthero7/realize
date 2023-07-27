@@ -1,36 +1,142 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, Carousel, ItemEmprrendimento
+from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, Carousel, ItensDestaque
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
-from datetime import datetime, timedelta, time
+from datetime import datetime
 from django.db.models import Q
-from django.views.decorators.csrf import csrf_protect
-
+from geopy.geocoders import Nominatim
+from geopy.distance import geodesic
+import spacy
+import requests
 
 # Create your views here.
 
+# Substitua "SUA_CHAVE_DE_API" pela sua chave de API do Google Maps
+chave = "AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY"
+
+
+def juntar_palavras_compostas(palavras):
+    # Defina aqui os termos compostos e suas respectivas junções.
+    termos_compostos = {
+        "1": "1 quarto",
+        "2": "2 quartos",
+        "Sacada": "Sacada",
+        "Sacada Gourmet": "Sacada Gourmet",
+        "2 vagas": "2 vagas na garagem",
+        "vagas": "2 vagas na garagem",  # Apenas para ilustrar que "vagas" pode ser parte de uma palavra composta
+        "Casa": "Casa",
+        # Adicione mais termos compostos e suas respectivas junções, se necessário.
+    }
+
+    # Verifica se as palavras estão presentes no dicionário de termos compostos.
+    termo_composto = " ".join(palavras)
+    if termo_composto in termos_compostos:
+        return termos_compostos[termo_composto]
+
+    # Se as palavras não formam um termo composto, simplesmente retorna as palavras individuais concatenadas.
+    return
+
 
 def index(request):
-    if request.method == 'POST':
-        nome_leads = request.POST.get('nome')
-        email_leads = request.POST.get('email')
-        whatsapp_leads = request.POST.get('whatsapp')
-        status_aberto = 'fa-envelope'
-        status_leads = 'NEUTRO'
-        data_recebimento = datetime.now()
-        Leads.objects.create(nome_leads=nome_leads,
-                             email=email_leads,
-                             whatsapp=whatsapp_leads,
-                             status_aberto=status_aberto,
-                             status_leads=status_leads,
-                             data_recebimento=data_recebimento)
-        leads = Leads.objects.last()
+    pesquisa = request.GET.get('barra-pesquisa')
 
-        return render(request, 'site/vale-dos-campos-.html')
-    else:
-        tag_meta = Tagmeta.objects.all()
+    # se é pesquisa
+    if pesquisa:
+        base_url = "https://maps.googleapis.com/maps/api/geocode/json"
+        params = {"address": pesquisa, "key": chave}
 
-        return render(request, 'site/vale-dos-campos-.html', {'tag_meta': tag_meta})
+        response = requests.get(base_url, params=params)
+        data = response.json()
+
+        if data["status"] == "OK":
+            # Obter as coordenadas geográficas
+            location = data["results"][0]["geometry"]["location"]
+            lat = location["lat"]
+            long = location["lng"]
+            coordenadas = lat, long
+            print('coordenadas são', coordenadas)
+            listagem = LandingPage.objects.all()
+            # Calcular a distância entre a geolocalização e Araraquara
+            araraquara_coords = (-21.7845, -48.1783)  # Coordenadas de Araraquara
+            distance_to_araraquara = geodesic(coordenadas, araraquara_coords).kilometers
+            # Se a distância da pesquisa  for maior que 25 km, não fazer a pesquisa
+            print('distancia araraquara', distance_to_araraquara)
+            distancia_araraquara = int(distance_to_araraquara)
+            landing_page_proxima = []
+            print(distancia_araraquara)
+            print(type(distancia_araraquara))
+            raio = int(25)
+            print(type(raio))
+            if distancia_araraquara < raio:
+                print('pesquisa esta no raio de 25 km Araraquara')
+                # para cada landing page na lista eu vou fazer a consulta do ponto de pesquisa ate a mesma
+                for landing_page in listagem:
+                    distancia_ponto_pesquisa = geodesic((landing_page.latitude, landing_page.longitude),
+                                                        coordenadas).kilometers
+                    distancia_ponto_pesquisa = int(distancia_ponto_pesquisa)
+                    if distancia_ponto_pesquisa < 3:
+                        landing_page_proxima.append(landing_page)
+
+                    print('distancia ponto de pesquisa', distancia_ponto_pesquisa)
+                print('pesquisa por proximdade geografica')
+                return render(request, 'site/index.html', {'listagem': landing_page_proxima})
+            return render(request, 'site/index.html')
+        else:
+            lista_split = ['com', 'que tenha', 'que tem', 'c/', 'perto', 'da', 'de', 'di', 'do', 'du', 'proximo',
+                           'próximo', 'na', 'no', 'em', 'e', 'ou', 'que', 'tem', 'area']
+
+            palavras_chaves = []
+
+            pesquisa = pesquisa.split()
+
+            for palavra in pesquisa:
+                if palavra not in lista_split:
+                    palavras_chaves.append(palavra)
+            print('as palavras chaves processada:', palavras_chaves)
+
+            conditions = Q()
+            for keyword in palavras_chaves:
+                keywords_compostas = juntar_palavras_compostas(keyword)
+                # se for palavra composta
+                if keywords_compostas is not None:
+                    print('keywords composta', keywords_compostas)
+                    conditions |= Q(tipo_imovel__iexact=keywords_compostas)
+                    conditions |= Q(status_imovel__iexact=keywords_compostas)
+                    conditions |= Q(padrao_imovel__iexact=keywords_compostas)
+                    conditions |= Q(nome_empreendimento__iexact=keywords_compostas)
+                    conditions |= Q(localizacao__iexact=keywords_compostas)
+                    conditions |= Q(item_1__iexact=keywords_compostas)
+                    conditions |= Q(item_2__iexact=keywords_compostas)
+                    conditions |= Q(item_3__iexact=keywords_compostas)
+                    conditions |= Q(item_4__iexact=keywords_compostas)
+                    conditions |= Q(item_5__iexact=keywords_compostas)
+                    conditions |= Q(item_6__iexact=keywords_compostas)
+                    conditions |= Q(item_7__iexact=keywords_compostas)
+                    listagem = LandingPage.objects.filter(conditions)
+                    print('Pesquisa por palavra-chave composta', listagem)
+                    return render(request, 'site/index.html', {'listagem': listagem})
+                # se NAO FOR palavra simples
+                if keywords_compostas is None:
+                    keyword_separada = keyword
+                    print('key word não composta', keyword_separada)
+                    conditions |= Q(tipo_imovel__iexact=keyword_separada)
+                    conditions |= Q(status_imovel__iexact=keyword_separada)
+                    conditions |= Q(padrao_imovel__iexact=keyword_separada)
+                    conditions |= Q(nome_empreendimento__iexact=keyword_separada)
+                    conditions |= Q(localizacao__iexact=keyword_separada)
+                    conditions |= Q(item_1__iexact=keyword_separada)
+                    conditions |= Q(item_2__iexact=keyword_separada)
+                    conditions |= Q(item_3__iexact=keyword_separada)
+                    conditions |= Q(item_4__iexact=keyword_separada)
+                    conditions |= Q(item_5__iexact=keyword_separada)
+                    conditions |= Q(item_6__iexact=keyword_separada)
+                    conditions |= Q(item_7__iexact=keyword_separada)
+                    listagem = LandingPage.objects.filter(conditions)
+                    print('Pesquisa por palavra-chave simples', listagem)
+                    return render(request, 'site/index.html', {'listagem': listagem})
+
+    listagem = LandingPage.objects.all()
+    return render(request, 'site/index.html', {'listagem': listagem})
 
 
 def abrirleads(request, pk):
@@ -99,56 +205,97 @@ def editar_img_perfil(request):
 def landingpage(request, slug):
     empreendimento = get_object_or_404(LandingPage, slug=slug)
     nome_relacionado = empreendimento.nome_empreendimento
-    # print(nome_relacionado)
     carroussel_vinculado = Carousel.objects.filter(empreendimento_relacionado=nome_relacionado)
-    itens_vinculado = ItemEmprrendimento.objects.filter(empreendimento_relacinado=nome_relacionado)
-    print(itens_vinculado)
-    # print(carroussel_vinculado)
     return render(request, 'site/landing-page.html', {'empreendimento': empreendimento,
                                                       'carroussel_vinculado': carroussel_vinculado,
-                                                      'itens_vinculado': itens_vinculado})
+                                                      })
 
 
 @login_required
 def dashboard_lp(request):
     if request.method == 'POST':
+        tipo_imovel = request.POST.get('tipo_imovel')
+        status_imovel = request.POST.get('status_imovel')
+        padrao_imovel = request.POST.get('padrao_imovel')
         nome_empreendimento = request.POST.get('nome_empreendimento')
         localizacao_empreendimento = request.POST.get('localizacao_empreendimento')
+        logomarca_empreendimento = request.FILES.get('logo_empreendimento')
+        longitude = request.POST.get('longitude')
+        latitude = request.POST.get('latitude')
+        item_1 = request.POST.get('item_adicionado_1')
+        item_2 = request.POST.get('item_adicionado_2')
+        item_3 = request.POST.get('item_adicionado_3')
+        item_4 = request.POST.get('item_adicionado_4')
+        item_5 = request.POST.get('item_adicionado_5')
+        item_6 = request.POST.get('item_adicionado_6')
+        item_7 = request.POST.get('item_adicionado_7')
         data_atual = datetime.now()
         user_logado = request.user.username
-        itens = request.POST.getlist('item_adicionado')
-        for i in itens:
-            ItemEmprrendimento.objects.create(empreendimento_relacinado=nome_empreendimento,
-                                              item_empreendimento=i
-                                              )
-        LandingPage.objects.create(nome_empreendimento=nome_empreendimento,
+        print(tipo_imovel)
+        LandingPage.objects.create(tipo_imovel=tipo_imovel,
+                                   status_imovel=status_imovel,
+                                   padrao_imovel=padrao_imovel,
+                                   nome_empreendimento=nome_empreendimento,
                                    localizacao=localizacao_empreendimento,
+                                   logomarca_icone=logomarca_empreendimento,
                                    data_cadastramento=data_atual,
-                                   user_cadastramento=user_logado
+                                   user_cadastramento=user_logado,
+                                   item_1=item_1,
+                                   item_2=item_2,
+                                   item_3=item_3,
+                                   item_4=item_4,
+                                   item_5=item_5,
+                                   item_6=item_6,
+                                   item_7=item_7,
+                                   longitude=longitude,
+                                   latitude=latitude
                                    )
         lp = LandingPage.objects.last()
         return render(request, 'site/upload-img.html', {'lp': lp})
     else:
-        lista_lp = LandingPage.objects.all()
+        lista_itens_destaque = ItensDestaque.objects.all()
+        lista_lp = LandingPage.objects.all().order_by('-pk')
         busca = request.GET.get('barra-pesquisa')
         if busca:
-            lista_lp = LandingPage.objects.filter(Q(nome_empreendimento__icontains=busca))
-
-        return render(request, 'site/dashboard-lp.html', {'lista_lp': lista_lp, 'busca': busca})
+            lista_lp = LandingPage.objects.filter(Q(nome_empreendimento__icontains=busca)).order_by('-pk')
+        return render(request, 'site/dashboard-lp.html', {'lista_lp': lista_lp,
+                                                          'busca': busca,
+                                                          'lista_itens_destaque': lista_itens_destaque})
 
 
 @login_required
 def cadastro_lp(request, slug):
-    nome_empreendimento = get_object_or_404(LandingPage, slug=slug)
-    return render(request, 'site/cadastro-lp.html', {'nome_empreendimento': nome_empreendimento.nome_empreendimento})
+    empreendimento_relacionado = get_object_or_404(LandingPage, slug=slug)
+    nome = empreendimento_relacionado.nome_empreendimento
+    carousel_relacionado = Carousel.objects.filter(empreendimento_relacionado=nome)
+    # print(carousel_relacionado.imagens)
+    return render(request, 'site/cadastro-lp.html', {'empreendimento_relacionado': empreendimento_relacionado,
+                                                     'carousel_relacionado': carousel_relacionado})
 
 
 def cadastrar_lp(request):
     if request.method == 'POST':
         nome_empreendimento = request.POST.get('nome_empreendimento')
         localizacao_empreendimento = request.POST.get('localizacao_empreendimento')
-
-        LandingPage.objects.create(nome_empreendimento=nome_empreendimento, localizacao=localizacao_empreendimento)
+        img_icone = request.FILES.get('logo_empreendimento')
+        item_adicionado_1 = request.POST.get('item_adicionado-1')
+        item_adicionado_2 = request.POST.get('item_adicionado-2')
+        item_adicionado_3 = request.POST.get('item_adicionado-3')
+        item_adicionado_4 = request.POST.get('item_adicionado-4')
+        item_adicionado_5 = request.POST.get('item_adicionado-5')
+        item_adicionado_6 = request.POST.get('item_adicionado-6')
+        item_adicionado_7 = request.POST.get('item_adicionado-7')
+        LandingPage.objects.create(nome_empreendimento=nome_empreendimento,
+                                   localizacao=localizacao_empreendimento,
+                                   logomarca_icone=img_icone,
+                                   item_1=item_adicionado_1,
+                                   item_2=item_adicionado_2,
+                                   item_3=item_adicionado_3,
+                                   item_4=item_adicionado_4,
+                                   item_5=item_adicionado_5,
+                                   item_6=item_adicionado_6,
+                                   item_7=item_adicionado_7,
+                                   )
         lp = LandingPage.objects.last()
         print(lp)
 
@@ -161,14 +308,6 @@ def cadastrar_lp(request):
 def upload_img(request):
     if request.method == 'POST':
         empreendimento_vinculado = request.POST.get('empreendimento_vinculado')
-        print(empreendimento_vinculado)
         imagem = request.FILES.get('file')
-        print(imagem)
         Carousel.objects.create(empreendimento_relacionado=empreendimento_vinculado, imagens=imagem)
-        return redirect('add-itens-destaque', args=[empreendimento_vinculado])
-    else:
-        return render(request, 'site/upload-img.html')
-
-
-def add_itens_destaque(request, slug):
-    return render(request, 'site/add-itens-empreendimento.html')
+        return render(request, 'site/dashboard-lp.html')

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Leads, LandingPage, Carousel, Perfil, Tagmeta, TagGoogle, ItemEmprrendimento
+from .models import Leads, LandingPage, Carousel, Perfil, Tagmeta, TagGoogle, ItensDestaque
 
 # Register your models here.
 
@@ -9,4 +9,4 @@ admin.site.register(Carousel)
 admin.site.register(Perfil)
 admin.site.register(Tagmeta)
 admin.site.register(TagGoogle)
-admin.site.register(ItemEmprrendimento)
+admin.site.register(ItensDestaque)
