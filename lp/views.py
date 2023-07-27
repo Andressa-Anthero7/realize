@@ -244,10 +244,15 @@ def index(request):
                         listagem = LandingPage.objects.filter(conditions)
                         print('é listagem vazia  por palavra chave simples passando', keyword_separada)
                         return render(request, 'site/index.html', {'listagem': listagem})
-    carossel = LandingPage.objects.order_by('?')[:3]
+    carossel_display = Carousel.objects.order_by('?')[:3]
+    carossel_display_2 = Carousel.objects.order_by('?')[3:]
+    print('saido docarossel_display', carossel_display)
     listagem = LandingPage.objects.all()
+    carroussel_vinculado = Carousel.objects.all()
     return render(request, 'site/index.html', {'listagem': listagem,
-                                               'carossel': carossel})
+                                               'carossel_display': carossel_display,
+                                               'carossel_display_2': carossel_display_2,
+                                               'carroussel_vinculado': carroussel_vinculado})
 
 
 def abrirleads(request, pk):
