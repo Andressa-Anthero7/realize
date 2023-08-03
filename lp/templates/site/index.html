@@ -127,6 +127,8 @@
 						$('#display-imoveis').show();
 
 					});
+
+
 				</script>
 			</div>
 
@@ -366,16 +368,18 @@
 
 
 		<!-- CARROUSSEL -->
-		<div class="mt-3 border border-dark rounded">
-			<h5 class="text-center font-weight-bold p-2">Recomendações</h5>
-			<div id="carousel-display" class="carousel slide" data-ride="carousel" data-interval="10000" data-pause="hover">
-				<div class="carousel-inner">
 
-					<div class="carousel-item active btn">
-						<div class="card-deck">
+
+			<div id="carousel-display" class="carousel slide mt-4 " data-ride="carousel" data-interval="10000" data-pause="hover">
+				<div class="text-center  p-2"><h5 class=" font-weight-bold ">Recomendações</h5></div>
+
+				<div class="carousel-inner ">
+
+					<div class="carousel-item active btn col-12">
+						<div class="card-deck   ">
 
 							{% for  carossel_display in  carossel_display %}
-							<span class=" col-lg-4 col-12 border border-dark">
+							<span class=" card col-lg-4 col-12 border border-dark  ">
 								<img class="img img-fluid img-caroussel"  style="max-height:300px; min-height:" src="{{carossel_display.imagem_1.url}}" alt="img">
 								<script>
 									$('.img-caroussel').click(function(){
@@ -396,11 +400,11 @@
 					</div>
 
 
-					<div class="carousel-item btn">
-						<div class="card-deck">
+					<div class="carousel-item  btn col-12">
+						<div class="card-deck   ">
 
 							{% for  carossel_display in  carossel_display %}
-							<span class=" col-lg-4 col-12 border border-dark">
+							<span class=" card col-lg-4 col-12 border border-dark  ">
 								<img class="img img-fluid img-caroussel"  style="max-height:300px; min-height:" src="{{carossel_display.imagem_1.url}}" alt="img">
 								<script>
 									$('.img-caroussel').click(function(){
@@ -423,15 +427,15 @@
 
 				</div>
 				<a class="carousel-control-prev" href="#carousel-display" role="button" data-slide="prev">
-					<span class="carousel-control-prev-icon bg-warning" aria-hidden="true"></span>
+					<span class="carousel-control-prev-icon p-5" aria-hidden="true"></span>
 					<span class="sr-only">Previous</span>
 				</a>
 				<a class="carousel-control-next" href="#carousel-display" role="button" data-slide="next">
-					<span class="carousel-control-next-icon bg-warning" aria-hidden="true"></span>
+					<span class="carousel-control-next-icon  p-5 " aria-hidden="true"></span>
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-		</div>
+
 
 
 
