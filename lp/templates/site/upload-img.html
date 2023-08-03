@@ -182,11 +182,11 @@
       var list_of_files = new Array();
       Dropzone.autoDiscover = false;  //prevent dropzone to automatically discover the dropzone object in your html
        var myDropzone = new Dropzone('#my-dropzone',{
-            parallelUploads:5,
+            parallelUploads:10,
             uploadMultiple: true, // allow multiple upload
             autoProcessQueue: false, // prevent dropzone from uploading automatically
             url: "/", //dropzone needs a url attribute or it complains, what value you put here does not really matter. It is only purpose is to prevent a javascript error message from chrome console
-            maxFiles: 5, //set max uploads to 5 since you only have 5 image files in your model
+            maxFiles: 10, //set max uploads to 5 since you only have 5 image files in your model
             maxFilesize:2,
             acceptedFiles:'.jpg,.jpeg,.png',
             addRemoveLinks : true,
@@ -197,7 +197,7 @@
                     this.on("addedfile", function(file)
                         {
 
-                            if (list_of_files.length < 5)
+                            if (list_of_files.length < 10)
                             {
                                 list_of_files.push(file)
 
@@ -251,18 +251,23 @@
 					console.log(i)
 					console.log(list_of_files[i])
 					formData.append('file', list_of_files[i]);
-					const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-					var request = new XMLHttpRequest();
-					request.open("POST", "http://127.0.0.1:8000/accounts/login/gerenciador-lp/upload-img/", true); //config your post url here
-					request.setRequestHeader("X-CSRFToken", csrftoken);
-					request.send(formData);  //send the post request to server
-					//alert("Enviou"+  list_of_files[i])
+
+
 
 					contagem = i+1
 					// alert(list_of_files.length)
 					if(contagem == list_of_files.length){
 
-						window.location.replace('http://127.0.0.1:8000/accounts/login/gerenciador-lp/');
+						const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+						var request = new XMLHttpRequest();
+						request.open("POST", "http://127.0.0.1:8000/accounts/login/gerenciador-lp/upload-img/", true); //config your post url here
+						request.setRequestHeader("X-CSRFToken", csrftoken);
+						request.send(formData);  //send the post request to server
+						setTimeout(() => {
+						  window.location.href = "http://127.0.0.1:8000/{{carossel_display.nome_empreendimento}}/";
+						}, 3000);
+
+
 					}
 
 

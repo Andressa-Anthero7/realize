@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, Carousel, ItensDestaque
+from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, ItensDestaque
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
@@ -244,15 +244,12 @@ def index(request):
                         listagem = LandingPage.objects.filter(conditions)
                         print('é listagem vazia  por palavra chave simples passando', keyword_separada)
                         return render(request, 'site/index.html', {'listagem': listagem})
-    carossel_display = Carousel.objects.order_by('?')[:3]
-    carossel_display_2 = Carousel.objects.order_by('?')[3:]
-    print('saido docarossel_display', carossel_display)
+
     listagem = LandingPage.objects.all()
-    carroussel_vinculado = Carousel.objects.all()
+    carossel_display = LandingPage.objects.order_by('?')[:3]
+
     return render(request, 'site/index.html', {'listagem': listagem,
-                                               'carossel_display': carossel_display,
-                                               'carossel_display_2': carossel_display_2,
-                                               'carroussel_vinculado': carroussel_vinculado})
+                                               'carossel_display': carossel_display})
 
 
 def abrirleads(request, pk):
@@ -320,11 +317,8 @@ def editar_img_perfil(request):
 
 def landingpage(request, slug):
     empreendimento = get_object_or_404(LandingPage, slug=slug)
-    nome_relacionado = empreendimento.nome_empreendimento
-    carroussel_vinculado = Carousel.objects.filter(empreendimento_relacionado=nome_relacionado)
-    return render(request, 'site/landing-page.html', {'empreendimento': empreendimento,
-                                                      'carroussel_vinculado': carroussel_vinculado,
-                                                      })
+
+    return render(request, 'site/landing-page.html', {'empreendimento': empreendimento})
 
 
 @login_required
@@ -424,6 +418,19 @@ def cadastrar_lp(request):
 def upload_img(request):
     if request.method == 'POST':
         empreendimento_vinculado = request.POST.get('empreendimento_vinculado')
-        imagem = request.FILES.get('file')
-        Carousel.objects.create(empreendimento_relacionado=empreendimento_vinculado, imagens=imagem)
+        # Obtém a instância do objeto LandingPage ou retorna 404 se não existir
+        landing_page = get_object_or_404(LandingPage, nome_empreendimento=empreendimento_vinculado)
+
+        # Obtém as imagens enviadas através do campo 'file' no formulário
+        imagens = request.FILES.getlist('file')
+
+        # Lógica para salvar as imagens na instância do objeto LandingPage
+        for idx, img in enumerate(imagens, start=1):
+            if idx <= 10:  # Certifique-se de que não estamos excedendo o número máximo de imagens
+                image_field = 'imagem_' + str(idx)
+                landing_page.image_field = img
+                setattr(landing_page, image_field, img)
+        # Salva o objeto LandingPage no banco de dados após adicionar as imagens
+        landing_page.save()
+
         return render(request, 'site/dashboard-lp.html')

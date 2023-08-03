@@ -17,11 +17,11 @@ class Leads(models.Model):
 
 
 class LandingPage(models.Model):
-    tipo_imovel = models.CharField(max_length=15,null=False, blank=False)
-    status_imovel = models.CharField(max_length=20,null=False, blank=False)
-    padrao_imovel = models.CharField(max_length=30,null=False, blank=False)
-    nome_empreendimento = models.CharField(max_length=50,null=False, blank=False)
-    localizacao = models.CharField(max_length=256,null=False, blank=False)
+    tipo_imovel = models.CharField(max_length=15, null=False, blank=False)
+    status_imovel = models.CharField(max_length=20, null=False, blank=False)
+    padrao_imovel = models.CharField(max_length=30, null=False, blank=False)
+    nome_empreendimento = models.CharField(max_length=50, null=False, blank=False)
+    localizacao = models.CharField(max_length=256, null=False, blank=False)
     latitude = models.CharField(max_length=50)
     longitude = models.CharField(max_length=50)
     logomarca_icone = ResizedImageField(size=[50, 50], quality=100, upload_to='media/', force_format='PNG')
@@ -37,7 +37,26 @@ class LandingPage(models.Model):
     item_5 = models.CharField(max_length=200, null=True, blank=True)
     item_6 = models.CharField(max_length=200, null=True, blank=True)
     item_7 = models.CharField(max_length=200, null=True, blank=True)
-
+    imagem_1 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_2 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_3 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_4 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_5 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_6 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_7 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_8 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_9 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                 null=True)
+    imagem_10 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                  null=True)
 
     def __str__(self):
         return self.nome_empreendimento
@@ -49,15 +68,6 @@ class LandingPage(models.Model):
         if not self.slug:
             self.slug = slugify(self.nome_empreendimento)
         return super().save(*args, **kwargs)
-
-
-class Carousel(models.Model):
-    empreendimento_relacionado = models.CharField(max_length=50)
-    imagens = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
-                                null=True)
-
-    def __str__(self):
-        return self.empreendimento_relacionado
 
 
 class Perfil(models.Model):

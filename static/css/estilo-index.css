@@ -19,6 +19,8 @@
 
 
 
+
+
 @media (max-width: 320.97px) {
 
 	body{
@@ -188,6 +190,8 @@
         font-size:12px;
     }
 
+
+
 }
 
 @media (min-width: 429.00px) and (max-width:  768.98px) {
@@ -277,6 +281,10 @@
 
 	.prediction.description:hover{
 	    background:aliceblue;
+	}
+
+	.card-display-imoveis{
+	    display:inline;
 	}
 
 
