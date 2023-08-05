@@ -179,13 +179,9 @@
 		left:65%;
 	}
 
-	#display-imoveis{
-        display: initial;
-    }
 
-    #mapa-pesquisa{
-        display: none;
-    }
+
+
 
     .custom-marker{
         font-size:12px;
@@ -233,16 +229,112 @@
 	}
 }
 
-@media (min-width: 769.00px){
+@media (min-width: 769.00px) and (max-width: 1023.97px){
+
+
+
 
 	body{
 		min-width: 100%;
 		background: white;
+		height:1800px;
+	}
+
+	#header{
+      height: 200px;
+      background-position: bottom;
+      background-repeat: no-repeat;
+      background-size: cover;
+      min-width:800px;
+
+
+    }
+
+	#img-logo{
+		max-height: 5em;
+	}
+
+
+
+
+	#barra-pesquisa{
+		min-width: 90%;
+		position: relative;
+		left: -1em;
+	}
+
+	#apagar-pesquisa{
+		position: relative;
+		left:0em;
+		top:0;
+	}
+
+	#btn-pesquisar{
+		position: relative;
+		left:0em;
+		top:0;
+	}
+
+	#whatsapp-flutuante{
+         position: fixed;
+		top:10em;
+		left:80%;
+
+		border-radius:50%;
+		height:0.9em;
+		width:0.9em;
+		color:white;
+		font-size:2.5em;
+
+
+
+	}
+
+	.prediction.description:hover{
+	    background:aliceblue;
+	}
+
+	#container-footer{
+	    position:absolute:
+	    bottom:-5em;
+	}
+
+
+
+
+
+
+
+
+}
+
+@media (min-width: 1024px){
+
+
+
+    #header{
+      height: 200px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      position: relative;
+
+      min-width:1350px;
+    }
+
+
+
+	body{
+		 width:100%;
+		background: white;
+		height:1200px;
 	}
 
 	#img-logo{
-		max-height: 3em;
+		max-height: 6em;
 	}
+
+	#
 
 
 
@@ -283,6 +375,15 @@
 	.prediction.description:hover{
 	    background:aliceblue;
 	}
+
+	#container-footer{
+	    position:absolute:
+	    bottom:-5em;
+	}
+
+
+
+
 
 
 

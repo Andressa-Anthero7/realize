@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('pesquisa-display/', views.index_pesquisa_display, name='pesquisa-display'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('accounts/login/dashboard/', views.dashboard, name='dashboard'),
     path('abrirleads/<int:pk>/', views.abrirleads, name='abrirleads'),
@@ -15,5 +16,6 @@ urlpatterns = [
     path('accounts/login/gerenciador-lp/', views.dashboard_lp, name='dashboard-lp'),
     path('accounts/login/cadastro-lp/<slug:slug>/', views.cadastro_lp, name='cadastro-lp'),
     path('accounts/login/gerenciador-lp/upload-img/', views.upload_img, name='upload-img'),
+
 
 ]

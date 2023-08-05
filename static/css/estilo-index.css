@@ -158,6 +158,7 @@
 		max-width: 80%;
 		position: relative;
 		left: -1em;
+
 	}
 
 	#apagar-pesquisa{
@@ -234,6 +235,8 @@
 
 @media (min-width: 769.00px){
 
+
+
 	body{
 		min-width: 100%;
 		background: white;
@@ -283,9 +286,13 @@
 	    background:aliceblue;
 	}
 
-	.card-display-imoveis{
-	    display:inline;
+	#container-footer{
+	    position:absolute:
+	    bottom:-5em;
 	}
+
+
+
 
 
 
