@@ -4,10 +4,6 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.db.models import Q
-from geopy.geocoders import Nominatim
-from geopy.distance import geodesic
-import spacy
-import requests
 
 # Create your views here.
 
@@ -15,453 +11,8 @@ import requests
 chave = "AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY"
 
 
-def juntar_palavras_compostas(palavras):
-    # Defina aqui os termos compostos e suas respectivas junções.
-    termos_compostos = {
-        "1": "1 quarto",
-        "2": "2 quartos",
-        "Sacada": "Sacada",
-        "Sacada Gourmet": "Sacada Gourmet",
-        "2 vagas": "2 vagas na garagem",
-        "vagas": "2 vagas na garagem",
-        "Casa": "Casa",
-        "Casas": "Casa",  # Inclusão de "Casas" como sinônimo de "Casa"
-        "Alto Padrao": "Alto Padrão",
-        "Apartamentos": "Apartamento",  # Inclusão de "Apartamentos" como sinônimo de "Apartamento"
-        # Adicione mais termos compostos e suas respectivas junções, se necessário.
-    }
-
-    # Verifica se as palavras estão presentes no dicionário de termos compostos.
-    termo_composto = " ".join(palavras)
-    if termo_composto in termos_compostos:
-        return termos_compostos[termo_composto]
-
-    # Se as palavras não formam um termo composto, simplesmente retorna as palavras individuais concatenadas.
-    return
-
-
 def index(request):
-    pesquisa = request.GET.get('barra-pesquisa')
-
-    # se é pesquisa
-    if pesquisa:
-        base_url = "https://maps.googleapis.com/maps/api/geocode/json"
-        params = {"address": pesquisa, "key": chave}
-
-        response = requests.get(base_url, params=params)
-        data = response.json()
-
-        if data["status"] == "OK" and pesquisa not in 'alto':
-            # Obter as coordenadas geográficas
-            location = data["results"][0]["geometry"]["location"]
-            lat = location["lat"]
-            long = location["lng"]
-            coordenadas = lat, long
-            print('coordenadas são', coordenadas)
-            listagem = LandingPage.objects.all()
-            # Calcular a distância entre a geolocalização e Araraquara
-            araraquara_coords = (-21.7845, -48.1783)  # Coordenadas de Araraquara
-            distance_to_araraquara = geodesic(coordenadas, araraquara_coords).kilometers
-            # Se a distância da pesquisa  for maior que 25 km, não fazer a pesquisa
-            print('distancia araraquara', distance_to_araraquara)
-            distancia_araraquara = int(distance_to_araraquara)
-            landing_page_proxima = []
-            print(distancia_araraquara)
-            print(type(distancia_araraquara))
-            raio = int(25)
-            print(type(raio))
-            # se distancia de araraquara maiaor que 25
-            if distancia_araraquara < raio:
-                print('pesquisa esta no raio de 25 km Araraquara')
-                # para cada landing page na lista eu vou fazer a consulta do ponto de pesquisa ate a mesma
-                for landing_page in listagem:
-                    distancia_ponto_pesquisa = geodesic((landing_page.latitude, landing_page.longitude),
-                                                        coordenadas).kilometers
-                    distancia_ponto_pesquisa = int(distancia_ponto_pesquisa)
-                    if distancia_ponto_pesquisa < 3:
-                        landing_page_proxima.append(landing_page)
-
-                    print('distancia ponto de pesquisa', distancia_ponto_pesquisa)
-                print('pesquisa por proximdade geografica')
-                return render(request, 'site/index.html', {'listagem': landing_page_proxima})
-            else:
-                lista_split = ['com', 'que tenha', 'que tem', 'c/', 'perto', 'da', 'de', 'di', 'do', 'du', 'proximo',
-                               'próximo', 'na', 'no', 'em', 'e', 'ou', 'que', 'tem', 'area']
-
-                palavras_chaves = []
-
-                pesquisa = pesquisa.split()
-
-                for palavra in pesquisa:
-                    if palavra not in lista_split:
-                        palavras_chaves.append(palavra)
-                    if palavra == 'casas':
-                        palavra = 'casa'
-                        palavras_chaves.append(palavra)
-                    if palavra == 'apartamentos':
-                        palavra = 'apartamento'
-                        palavras_chaves.append(palavra)
-                print('as palavras chaves processada:', palavras_chaves)
-
-                conditions = Q()
-                for keyword in palavras_chaves:
-                    keywords_compostas = juntar_palavras_compostas(keyword)
-                    # se for palavra composta
-                    if keywords_compostas is not None:
-                        print('keywords composta', keywords_compostas)
-                        conditions |= Q(tipo_imovel__iexact=keywords_compostas)
-                        conditions |= Q(status_imovel__iexact=keywords_compostas)
-                        conditions |= Q(padrao_imovel__iexact=keywords_compostas)
-                        conditions |= Q(nome_empreendimento__iexact=keywords_compostas)
-                        conditions |= Q(localizacao__iexact=keywords_compostas)
-                        conditions |= Q(item_1__iexact=keywords_compostas)
-                        conditions |= Q(item_2__iexact=keywords_compostas)
-                        conditions |= Q(item_3__iexact=keywords_compostas)
-                        conditions |= Q(item_4__iexact=keywords_compostas)
-                        conditions |= Q(item_5__iexact=keywords_compostas)
-                        conditions |= Q(item_6__iexact=keywords_compostas)
-                        conditions |= Q(item_7__iexact=keywords_compostas)
-                        listagem = LandingPage.objects.filter(conditions)
-                        print('Pesquisa por palavra-chave composta', listagem)
-                        return render(request, 'site/index.html', {'listagem': listagem})
-                    # se NAO FOR palavra simples
-                    if keywords_compostas is None:
-                        keyword_separada = keyword
-                        print('key word não composta', keyword_separada)
-                        conditions |= Q(tipo_imovel__iexact=keyword_separada)
-                        conditions |= Q(status_imovel__iexact=keyword_separada)
-                        conditions |= Q(padrao_imovel__iexact=keyword_separada)
-                        conditions |= Q(nome_empreendimento__iexact=keyword_separada)
-                        conditions |= Q(localizacao__iexact=keyword_separada)
-                        conditions |= Q(item_1__iexact=keyword_separada)
-                        conditions |= Q(item_2__iexact=keyword_separada)
-                        conditions |= Q(item_3__iexact=keyword_separada)
-                        conditions |= Q(item_4__iexact=keyword_separada)
-                        conditions |= Q(item_5__iexact=keyword_separada)
-                        conditions |= Q(item_6__iexact=keyword_separada)
-                        conditions |= Q(item_7__iexact=keyword_separada)
-                        listagem = LandingPage.objects.filter(conditions)
-                        print('Pesquisa por palavra-chave simples', listagem)
-                        if listagem:
-                            print('é listagem por palavra chave simples cheia')
-                            return render(request, 'site/index.html', {'listagem': listagem})
-                        else:
-                            conditions |= Q(tipo_imovel__icontains=keyword_separada)
-                            conditions |= Q(status_imovel__icontains=keyword_separada)
-                            conditions |= Q(padrao_imovel__icontains=keyword_separada)
-                            conditions |= Q(nome_empreendimento__icontains=keyword_separada)
-                            conditions |= Q(localizacao__icontains=keyword_separada)
-                            conditions |= Q(item_1__icontains=keyword_separada)
-                            conditions |= Q(item_2__icontains=keyword_separada)
-                            conditions |= Q(item_3__icontains=keyword_separada)
-                            conditions |= Q(item_4__icontains=keyword_separada)
-                            conditions |= Q(item_5__icontains=keyword_separada)
-                            conditions |= Q(item_6__icontains=keyword_separada)
-                            conditions |= Q(item_7__icontains=keyword_separada)
-                            listagem = LandingPage.objects.filter(conditions)
-                            print('é listagem vazia  por palavra chave simples passando', keyword_separada)
-                            return render(request, 'site/index.html', {'listagem': listagem})
-        else:
-            lista_split = ['com', 'que tenha', 'que tem', 'c/', 'perto', 'da', 'de', 'di', 'do', 'du', 'proximo',
-                           'próximo', 'na', 'no', 'em', 'e', 'ou', 'que', 'tem', 'area']
-
-            palavras_chaves = []
-
-            pesquisa = pesquisa.split()
-
-            for palavra in pesquisa:
-                if palavra not in lista_split:
-                    palavras_chaves.append(palavra)
-                if palavra == 'casas':
-                    singular = 'casa'
-                    palavras_chaves.append(singular)
-                if palavra == 'apartamentos':
-                    singular = 'apartamento'
-                    palavras_chaves.append(singular)
-            print('as palavras chaves processada:3', palavras_chaves)
-
-            conditions = Q()
-            for keyword in palavras_chaves:
-                keywords_compostas = juntar_palavras_compostas(keyword)
-                # se for palavra composta
-                if keywords_compostas is not None:
-                    print('keywords composta', keywords_compostas)
-                    conditions |= Q(tipo_imovel__iexact=keywords_compostas)
-                    conditions |= Q(status_imovel__iexact=keywords_compostas)
-                    conditions |= Q(padrao_imovel__iexact=keywords_compostas)
-                    conditions |= Q(nome_empreendimento__iexact=keywords_compostas)
-                    conditions |= Q(localizacao__iexact=keywords_compostas)
-                    conditions |= Q(item_1__iexact=keywords_compostas)
-                    conditions |= Q(item_2__iexact=keywords_compostas)
-                    conditions |= Q(item_3__iexact=keywords_compostas)
-                    conditions |= Q(item_4__iexact=keywords_compostas)
-                    conditions |= Q(item_5__iexact=keywords_compostas)
-                    conditions |= Q(item_6__iexact=keywords_compostas)
-                    conditions |= Q(item_7__iexact=keywords_compostas)
-                    listagem = LandingPage.objects.filter(conditions)
-                    print('Pesquisa por palavra-chave composta', listagem)
-                    return render(request, 'site/index.html', {'listagem': listagem})
-                # se NAO FOR palavra simples
-                if keywords_compostas is None:
-                    keyword_separada = keyword
-                    if keyword_separada == 'casas':
-                        singular = 'casa'
-                        keyword_separada = singular
-                    if keyword_separada == 'apartamentos':
-                        singular = 'apartamento'
-                        keyword_separada = singular
-                    print('key word não composta', keyword_separada)
-                    conditions |= Q(tipo_imovel__iexact=keyword_separada)
-                    conditions |= Q(status_imovel__iexact=keyword_separada)
-                    conditions |= Q(padrao_imovel__iexact=keyword_separada)
-                    conditions |= Q(nome_empreendimento__iexact=keyword_separada)
-                    conditions |= Q(localizacao__iexact=keyword_separada)
-                    conditions |= Q(item_1__iexact=keyword_separada)
-                    conditions |= Q(item_2__iexact=keyword_separada)
-                    conditions |= Q(item_3__iexact=keyword_separada)
-                    conditions |= Q(item_4__iexact=keyword_separada)
-                    conditions |= Q(item_5__iexact=keyword_separada)
-                    conditions |= Q(item_6__iexact=keyword_separada)
-                    conditions |= Q(item_7__iexact=keyword_separada)
-                    listagem = LandingPage.objects.filter(conditions)
-                    print('Pesquisa por palavra-chave simples', listagem)
-                    if listagem:
-                        print('é listagem por palavra chave simples cheia')
-                        return render(request, 'site/index.html', {'listagem': listagem})
-                    else:
-                        conditions |= Q(tipo_imovel__icontains=keyword_separada)
-                        conditions |= Q(status_imovel__icontains=keyword_separada)
-                        conditions |= Q(padrao_imovel__icontains=keyword_separada)
-                        conditions |= Q(nome_empreendimento__icontains=keyword_separada)
-                        conditions |= Q(localizacao__icontains=keyword_separada)
-                        conditions |= Q(item_1__icontains=keyword_separada)
-                        conditions |= Q(item_2__icontains=keyword_separada)
-                        conditions |= Q(item_3__icontains=keyword_separada)
-                        conditions |= Q(item_4__icontains=keyword_separada)
-                        conditions |= Q(item_5__icontains=keyword_separada)
-                        conditions |= Q(item_6__icontains=keyword_separada)
-                        conditions |= Q(item_7__icontains=keyword_separada)
-                        listagem = LandingPage.objects.filter(conditions)
-                        print('é listagem vazia  por palavra chave simples passando', keyword_separada)
-                        return render(request, 'site/index.html', {'listagem': listagem})
-
-    listagem = LandingPage.objects.all()
-    carossel_display = LandingPage.objects.order_by('?')[:3]
-
-    return render(request, 'site/index.html', {'listagem': listagem,
-                                               'carossel_display': carossel_display})
-
-
-def index_pesquisa_display(request):
-    pesquisa = request.GET.get('barra-pesquisa')
-
-    # se é pesquisa
-    if pesquisa:
-        base_url = "https://maps.googleapis.com/maps/api/geocode/json"
-        params = {"address": pesquisa, "key": chave}
-
-        response = requests.get(base_url, params=params)
-        data = response.json()
-
-        if data["status"] == "OK" and pesquisa not in 'alto':
-            # Obter as coordenadas geográficas
-            location = data["results"][0]["geometry"]["location"]
-            lat = location["lat"]
-            long = location["lng"]
-            coordenadas = lat, long
-            print('coordenadas são', coordenadas)
-            listagem = LandingPage.objects.all()
-            # Calcular a distância entre a geolocalização e Araraquara
-            araraquara_coords = (-21.7845, -48.1783)  # Coordenadas de Araraquara
-            distance_to_araraquara = geodesic(coordenadas, araraquara_coords).kilometers
-            # Se a distância da pesquisa  for maior que 25 km, não fazer a pesquisa
-            print('distancia araraquara', distance_to_araraquara)
-            distancia_araraquara = int(distance_to_araraquara)
-            landing_page_proxima = []
-            print(distancia_araraquara)
-            print(type(distancia_araraquara))
-            raio = int(25)
-            print(type(raio))
-            # se distancia de araraquara maiaor que 25
-            if distancia_araraquara < raio:
-                print('pesquisa esta no raio de 25 km Araraquara')
-                # para cada landing page na lista eu vou fazer a consulta do ponto de pesquisa ate a mesma
-                for landing_page in listagem:
-                    distancia_ponto_pesquisa = geodesic((landing_page.latitude, landing_page.longitude),
-                                                        coordenadas).kilometers
-                    distancia_ponto_pesquisa = int(distancia_ponto_pesquisa)
-                    if distancia_ponto_pesquisa < 3:
-                        landing_page_proxima.append(landing_page)
-
-                    print('distancia ponto de pesquisa', distancia_ponto_pesquisa)
-                print('pesquisa por proximdade geografica')
-                return render(request, 'site/index-pesquisa-display.html', {'listagem': landing_page_proxima})
-            else:
-                lista_split = ['com', 'que tenha', 'que tem', 'c/', 'perto', 'da', 'de', 'di', 'do', 'du', 'proximo',
-                               'próximo', 'na', 'no', 'em', 'e', 'ou', 'que', 'tem', 'area']
-
-                palavras_chaves = []
-
-                pesquisa = pesquisa.split()
-
-                for palavra in pesquisa:
-                    if palavra not in lista_split:
-                        palavras_chaves.append(palavra)
-                    if palavra == 'casas':
-                        palavra = 'casa'
-                        palavras_chaves.append(palavra)
-                    if palavra == 'apartamentos':
-                        palavra = 'apartamento'
-                        palavras_chaves.append(palavra)
-                print('as palavras chaves processada:', palavras_chaves)
-
-                conditions = Q()
-                for keyword in palavras_chaves:
-                    keywords_compostas = juntar_palavras_compostas(keyword)
-                    # se for palavra composta
-                    if keywords_compostas is not None:
-                        print('keywords composta', keywords_compostas)
-                        conditions |= Q(tipo_imovel__iexact=keywords_compostas)
-                        conditions |= Q(status_imovel__iexact=keywords_compostas)
-                        conditions |= Q(padrao_imovel__iexact=keywords_compostas)
-                        conditions |= Q(nome_empreendimento__iexact=keywords_compostas)
-                        conditions |= Q(localizacao__iexact=keywords_compostas)
-                        conditions |= Q(item_1__iexact=keywords_compostas)
-                        conditions |= Q(item_2__iexact=keywords_compostas)
-                        conditions |= Q(item_3__iexact=keywords_compostas)
-                        conditions |= Q(item_4__iexact=keywords_compostas)
-                        conditions |= Q(item_5__iexact=keywords_compostas)
-                        conditions |= Q(item_6__iexact=keywords_compostas)
-                        conditions |= Q(item_7__iexact=keywords_compostas)
-                        listagem = LandingPage.objects.filter(conditions)
-                        print('Pesquisa por palavra-chave composta', listagem)
-                        return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem})
-                    # se NAO FOR palavra simples
-                    if keywords_compostas is None:
-                        keyword_separada = keyword
-                        print('key word não composta', keyword_separada)
-                        conditions |= Q(tipo_imovel__iexact=keyword_separada)
-                        conditions |= Q(status_imovel__iexact=keyword_separada)
-                        conditions |= Q(padrao_imovel__iexact=keyword_separada)
-                        conditions |= Q(nome_empreendimento__iexact=keyword_separada)
-                        conditions |= Q(localizacao__iexact=keyword_separada)
-                        conditions |= Q(item_1__iexact=keyword_separada)
-                        conditions |= Q(item_2__iexact=keyword_separada)
-                        conditions |= Q(item_3__iexact=keyword_separada)
-                        conditions |= Q(item_4__iexact=keyword_separada)
-                        conditions |= Q(item_5__iexact=keyword_separada)
-                        conditions |= Q(item_6__iexact=keyword_separada)
-                        conditions |= Q(item_7__iexact=keyword_separada)
-                        listagem = LandingPage.objects.filter(conditions)
-                        print('Pesquisa por palavra-chave simples', listagem)
-                        if listagem:
-                            print('é listagem por palavra chave simples cheia')
-                            return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem})
-                        else:
-                            conditions |= Q(tipo_imovel__icontains=keyword_separada)
-                            conditions |= Q(status_imovel__icontains=keyword_separada)
-                            conditions |= Q(padrao_imovel__icontains=keyword_separada)
-                            conditions |= Q(nome_empreendimento__icontains=keyword_separada)
-                            conditions |= Q(localizacao__icontains=keyword_separada)
-                            conditions |= Q(item_1__icontains=keyword_separada)
-                            conditions |= Q(item_2__icontains=keyword_separada)
-                            conditions |= Q(item_3__icontains=keyword_separada)
-                            conditions |= Q(item_4__icontains=keyword_separada)
-                            conditions |= Q(item_5__icontains=keyword_separada)
-                            conditions |= Q(item_6__icontains=keyword_separada)
-                            conditions |= Q(item_7__icontains=keyword_separada)
-                            listagem = LandingPage.objects.filter(conditions)
-                            print('é listagem vazia  por palavra chave simples passando', keyword_separada)
-                            return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem})
-        else:
-            lista_split = ['com', 'que tenha', 'que tem', 'c/', 'perto', 'da', 'de', 'di', 'do', 'du', 'proximo',
-                           'próximo', 'na', 'no', 'em', 'e', 'ou', 'que', 'tem', 'area']
-
-            palavras_chaves = []
-
-            pesquisa = pesquisa.split()
-
-            for palavra in pesquisa:
-                if palavra not in lista_split:
-                    palavras_chaves.append(palavra)
-                if palavra == 'casas':
-                    singular = 'casa'
-                    palavras_chaves.append(singular)
-                if palavra == 'apartamentos':
-                    singular = 'apartamento'
-                    palavras_chaves.append(singular)
-            print('as palavras chaves processada:3', palavras_chaves)
-
-            conditions = Q()
-            for keyword in palavras_chaves:
-                keywords_compostas = juntar_palavras_compostas(keyword)
-                # se for palavra composta
-                if keywords_compostas is not None:
-                    print('keywords composta', keywords_compostas)
-                    conditions |= Q(tipo_imovel__iexact=keywords_compostas)
-                    conditions |= Q(status_imovel__iexact=keywords_compostas)
-                    conditions |= Q(padrao_imovel__iexact=keywords_compostas)
-                    conditions |= Q(nome_empreendimento__iexact=keywords_compostas)
-                    conditions |= Q(localizacao__iexact=keywords_compostas)
-                    conditions |= Q(item_1__iexact=keywords_compostas)
-                    conditions |= Q(item_2__iexact=keywords_compostas)
-                    conditions |= Q(item_3__iexact=keywords_compostas)
-                    conditions |= Q(item_4__iexact=keywords_compostas)
-                    conditions |= Q(item_5__iexact=keywords_compostas)
-                    conditions |= Q(item_6__iexact=keywords_compostas)
-                    conditions |= Q(item_7__iexact=keywords_compostas)
-                    listagem = LandingPage.objects.filter(conditions)
-                    print('Pesquisa por palavra-chave composta', listagem)
-                    return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem})
-                # se NAO FOR palavra simples
-                if keywords_compostas is None:
-                    keyword_separada = keyword
-                    if keyword_separada == 'casas':
-                        singular = 'casa'
-                        keyword_separada = singular
-                    if keyword_separada == 'apartamentos':
-                        singular = 'apartamento'
-                        keyword_separada = singular
-                    print('key word não composta', keyword_separada)
-                    conditions |= Q(tipo_imovel__iexact=keyword_separada)
-                    conditions |= Q(status_imovel__iexact=keyword_separada)
-                    conditions |= Q(padrao_imovel__iexact=keyword_separada)
-                    conditions |= Q(nome_empreendimento__iexact=keyword_separada)
-                    conditions |= Q(localizacao__iexact=keyword_separada)
-                    conditions |= Q(item_1__iexact=keyword_separada)
-                    conditions |= Q(item_2__iexact=keyword_separada)
-                    conditions |= Q(item_3__iexact=keyword_separada)
-                    conditions |= Q(item_4__iexact=keyword_separada)
-                    conditions |= Q(item_5__iexact=keyword_separada)
-                    conditions |= Q(item_6__iexact=keyword_separada)
-                    conditions |= Q(item_7__iexact=keyword_separada)
-                    listagem = LandingPage.objects.filter(conditions)
-                    print('Pesquisa por palavra-chave simples', listagem)
-                    if listagem:
-                        print('é listagem por palavra chave simples cheia')
-                        return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem})
-                    else:
-                        conditions |= Q(tipo_imovel__icontains=keyword_separada)
-                        conditions |= Q(status_imovel__icontains=keyword_separada)
-                        conditions |= Q(padrao_imovel__icontains=keyword_separada)
-                        conditions |= Q(nome_empreendimento__icontains=keyword_separada)
-                        conditions |= Q(localizacao__icontains=keyword_separada)
-                        conditions |= Q(item_1__icontains=keyword_separada)
-                        conditions |= Q(item_2__icontains=keyword_separada)
-                        conditions |= Q(item_3__icontains=keyword_separada)
-                        conditions |= Q(item_4__icontains=keyword_separada)
-                        conditions |= Q(item_5__icontains=keyword_separada)
-                        conditions |= Q(item_6__icontains=keyword_separada)
-                        conditions |= Q(item_7__icontains=keyword_separada)
-                        listagem = LandingPage.objects.filter(conditions)
-                        print('é listagem vazia  por palavra chave simples passando', keyword_separada)
-                        return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem})
-
-    listagem = LandingPage.objects.all()
-    carossel_display = LandingPage.objects.order_by('?')[:3]
-
-    return render(request, 'site/index-pesquisa-display.html', {'listagem': listagem,
-                                                                'carossel_display': carossel_display})
+    return render(request, 'site/index.html')
 
 
 def abrirleads(request, pk):
@@ -527,51 +78,166 @@ def editar_img_perfil(request):
         return redirect(reverse('configuracao', args=[request.user]))
 
 
-def landingpage(request, slug):
-    empreendimento = get_object_or_404(LandingPage, slug=slug)
-
-    return render(request, 'site/landing-page.html', {'empreendimento': empreendimento})
+def landingpage(request, pk, slug):
+    if request.method == 'POST':
+        nome_leads = request.POST.get('nome_leads')
+        whatsapp_leads = request.POST.get('whatsapp_leads')
+        recebido_em = datetime.now()
+        Leads.objects.create(nome_leads=nome_leads,
+                             whatsapp=whatsapp_leads,
+                             data_recebimento=recebido_em)
+        return render(request, 'site/landingpage.html', {'veiculo': veiculo})
+    veiculo = get_object_or_404(LandingPage, pk=pk, slug=slug)
+    return render(request, 'site/landingpage.html', {'veiculo': veiculo})
 
 
 @login_required
 def dashboard_lp(request):
     if request.method == 'POST':
-        tipo_imovel = request.POST.get('tipo_imovel')
-        status_imovel = request.POST.get('status_imovel')
-        padrao_imovel = request.POST.get('padrao_imovel')
-        nome_empreendimento = request.POST.get('nome_empreendimento')
-        localizacao_empreendimento = request.POST.get('localizacao_empreendimento')
-        logomarca_empreendimento = request.FILES.get('logo_empreendimento')
-        longitude = request.POST.get('longitude')
-        latitude = request.POST.get('latitude')
-        item_1 = request.POST.get('item_adicionado_1')
-        item_2 = request.POST.get('item_adicionado_2')
-        item_3 = request.POST.get('item_adicionado_3')
-        item_4 = request.POST.get('item_adicionado_4')
-        item_5 = request.POST.get('item_adicionado_5')
-        item_6 = request.POST.get('item_adicionado_6')
-        item_7 = request.POST.get('item_adicionado_7')
-        data_atual = datetime.now()
-        user_logado = request.user.username
-        print(tipo_imovel)
-        LandingPage.objects.create(tipo_imovel=tipo_imovel,
-                                   status_imovel=status_imovel,
-                                   padrao_imovel=padrao_imovel,
-                                   nome_empreendimento=nome_empreendimento,
-                                   localizacao=localizacao_empreendimento,
-                                   logomarca_icone=logomarca_empreendimento,
-                                   data_cadastramento=data_atual,
-                                   user_cadastramento=user_logado,
-                                   item_1=item_1,
-                                   item_2=item_2,
-                                   item_3=item_3,
-                                   item_4=item_4,
-                                   item_5=item_5,
-                                   item_6=item_6,
-                                   item_7=item_7,
-                                   longitude=longitude,
-                                   latitude=latitude
-                                   )
+        marca = request.POST.get('field-marca')
+        modelo = request.POST.get('field-modelo')
+        ano = request.POST.get('field-ano')
+        combustivel = request.POST.get('combustivel')
+        cor = request.POST.get('cor')
+        portas = request.POST.get('portas')
+        cambio = request.POST.get('cambio')
+        ipva = request.POST.get('ipva')
+        placa = request.POST.get('placa')
+        valor = request.POST.get('valor')
+        acendedor_cigarros = request.POST.get('acendedor_cigarros')
+        air_bags = request.POST.get('air_bags')
+        alarme = request.POST.get('alarme')
+        ar_condicionado = request.POST.get('ar_condicionado')
+        ar_condicionado_digital = request.POST.get('ar_condicionado_digital')
+        ar_condicionado_dual_zone = request.POST.get('ar_condicionado_dual_zone')
+        ar_quente = request.POST.get('ar_quente')
+        assistente_saida_aclive = request.POST.get('assistente_saida_aclive')
+        sistema_audio = request.POST.get('sistema audio')
+        banco_apoio_braco = request.POST.get('banco_apoio_banco')
+        banco_regulagem_eletrica = request.POST.get('banco_regulagem_eletrica')
+        blindado = request.POST.get('blindado')
+        bluetooth = request.POST.get('bluetooth')
+        calotas = request.POST.get('calotas')
+        camera_re = request.POST.get('camera_re')
+        carregador_dispositivo_wireless = request.POST.get('carregador_dispositivo_wireless')
+        cd_mp3 = request.POST.get('cd_mp3')
+        chaves_keyless = request.POST.get('chaves_keyless')
+        chaves_sensor_presenca = request.POST.get('chaves_sensor_presenca')
+        computador_bordo = request.POST.get('computador_bordo')
+        controle_som_volante = request.POST.get('controle_som_volante')
+        controle_eletronico_descida = request.POST.get('controle_eletronico_descida')
+        desembacador_traseiro = request.POST.get('desembacador_traseiro')
+        direcao_eletrica = request.POST.get('direcao_eletrica')
+        direcao_hidraulica = request.POST.get('direcao_hidraulica')
+        encosto_cabeca_traseiro = request.POST.get('encosto_cabeca_traseiro')
+        estribo = request.POST.get('estribo')
+        farois_automatico = request.POST.get('farois_automatico')
+        farois_milhas = request.POST.get('farois_milhas')
+        farois_neblina = request.POST.get('farois_neblina')
+        freio_abs = request.POST.get('freio_abs')
+        gps = request.POST.get('gps')
+        insulfilm = request.POST.get('insulfilm')
+        lona_maritima = request.POST.get('lona_maritima')
+        multimidia = request.POST.get('multimidia')
+        painel_lcd = request.POST.get('painel_lcd')
+        painel_digital = request.POST.get('paienl_digital')
+        parachoque_cor_veiculo = request.POST.get('parachoque_cor_veiculo')
+        park_assist = request.POST.get('park_assist')
+        partida_start_stop = request.POST.get('partida_start_stop')
+        piloto_automatico = request.POST.get('piloto_automatico')
+        pintura_metalica = request.POST.get('pintura_metalica')
+        porta_copo = request.POST.get('porta_copo')
+        protecao_cacamba = request.POST.get('protecao_cacamba')
+        radio = request.POST.get('radio')
+        rebatimento_retrovisores_externos = request.POST.get('rebatimento_retrovisores_externos')
+        retrovisor_fotocromatico = request.POST.get('retrovisor_fotocromatico')
+        retrovisor_interno_eletrocromico = request.POST.get('retrovisor_interno_eletrocromico')
+        retrovisor_eletrico = request.POST.get('retrovisor_eletrico')
+        roda_liga_leve = request.POST.get('roda_liga_leve')
+        sensor_chuva = request.POST.get('sensor_chuva')
+        sensor_estacionamento_dianteiro = request.POST.get('sensor_estacionamento_dianteiro')
+        sensor_estacionamento_traseiro = request.POST.get('sensor_estacionamento_traseiro')
+        teto_solar = request.POST.get('teto_solar')
+        teto_panoramico = request.POST.get('teto_panoramico')
+        tracao = request.POST.get('tracao')
+        trava_eletrica = request.POST.get('trava_eletrica')
+        usb = request.POST.get('usb')
+        vidro_eletrico = request.POST.get('vidro_eletrico')
+        vidro_verdes = request.POST.get('vidro_verdes')
+        volante_regulagem_altura = request.POST.get('volante_regulagem_altura')
+        anunciado_por = request.user
+        LandingPage.objects.create(nome_modelo=modelo,
+                                   nome_marca=marca,
+                                   combustivel=combustivel,
+                                   cor=cor,
+                                   ano=ano,
+                                   portas=portas,
+                                   cambio=cambio,
+                                   ipva=ipva,
+                                   placa=placa,
+                                   valor=valor,
+                                   acendedor_cigarros=acendedor_cigarros,
+                                   air_bags=air_bags,
+                                   alarme=alarme,
+                                   ar_condicionado=ar_condicionado,
+                                   ar_condicionado_digital=ar_condicionado_digital,
+                                   ar_condicionado_dual_zone=ar_condicionado_dual_zone,
+                                   ar_quente=ar_quente,
+                                   assistente_saida_aclive=assistente_saida_aclive,
+                                   sistema_audio=sistema_audio,
+                                   banco_apoio_braco=banco_apoio_braco,
+                                   banco_regulagem_eletrica=banco_regulagem_eletrica,
+                                   blindado=blindado,
+                                   bluetooth=bluetooth,
+                                   calotas=calotas,
+                                   camera_re=camera_re,
+                                   carregador_dispositivo_wireless=carregador_dispositivo_wireless,
+                                   cd_mp3=cd_mp3,
+                                   chaves_keyless=chaves_keyless,
+                                   chaves_sensor_presenca=chaves_sensor_presenca,
+                                   computador_bordo=computador_bordo,
+                                   controle_eletronico_descida=controle_eletronico_descida,
+                                   controle_som_volante=controle_som_volante,
+                                   desembacador_traseiro=desembacador_traseiro,
+                                   direcao_eletrica=direcao_eletrica,
+                                   direcao_hidraulica=direcao_hidraulica,
+                                   encosto_cabeca_traseiro=encosto_cabeca_traseiro,
+                                   estribo=estribo,
+                                   farois_automatico=farois_automatico,
+                                   farois_milhas=farois_milhas,
+                                   farois_neblina=farois_neblina,
+                                   freio_abs=freio_abs,
+                                   gps=gps,
+                                   insulfilm=insulfilm,
+                                   lona_maritima=lona_maritima,
+                                   multimidia=multimidia,
+                                   painel_lcd=painel_lcd,
+                                   painel_digital=painel_digital,
+                                   parachoque_cor_veiculo=parachoque_cor_veiculo,
+                                   park_assist=park_assist,
+                                   partida_start_stop=partida_start_stop,
+                                   piloto_automatico=piloto_automatico,
+                                   pintura_metalica=pintura_metalica,
+                                   porta_copo=porta_copo,
+                                   protecao_cacamba=protecao_cacamba,
+                                   radio=radio,
+                                   rebatimento_retrovisores_externos=rebatimento_retrovisores_externos,
+                                   retrovisor_fotocromatico=retrovisor_fotocromatico,
+                                   retrovisor_interno_eletrocromico=retrovisor_interno_eletrocromico,
+                                   retrovisor_eletrico=retrovisor_eletrico,
+                                   roda_liga_leve=roda_liga_leve,
+                                   sensor_chuva=sensor_chuva,
+                                   sensor_estacionamento_dianteiro=sensor_estacionamento_dianteiro,
+                                   sensor_estacionamento_traseiro=sensor_estacionamento_traseiro,
+                                   teto_solar=teto_solar,
+                                   teto_panoramico=teto_panoramico,
+                                   tracao=tracao,
+                                   trava_eletrica=trava_eletrica,
+                                   usb=usb,
+                                   vidro_eletrico=vidro_eletrico,
+                                   vidro_verdes=vidro_verdes,
+                                   volante_regulagem_altura=volante_regulagem_altura,
+                                   anunciado_por=anunciado_por)
         lp = LandingPage.objects.last()
         return render(request, 'site/upload-img.html', {'lp': lp})
     else:
@@ -629,9 +295,9 @@ def cadastrar_lp(request):
 
 def upload_img(request):
     if request.method == 'POST':
-        empreendimento_vinculado = request.POST.get('empreendimento_vinculado')
+        veiculo_vinculado = request.POST.get('veiculo_vinculado')
         # Obtém a instância do objeto LandingPage ou retorna 404 se não existir
-        landing_page = get_object_or_404(LandingPage, nome_empreendimento=empreendimento_vinculado)
+        landing_page = get_object_or_404(LandingPage, pk=veiculo_vinculado)
 
         # Obtém as imagens enviadas através do campo 'file' no formulário
         imagens = request.FILES.getlist('file')

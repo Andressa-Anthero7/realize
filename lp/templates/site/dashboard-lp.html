@@ -1,349 +1,975 @@
 <!DOCTYPE html>
+
 {% load static %}
-
-
-
 <html>
 <head>
 
-
-	<meta charset="utf-8">
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Antherus</title>
+    <title>Lá em Casa Veículos - Ribeirão Preto</title>
 
-	
-
-	<!-- Jquery CDN -->
-	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
-
-	<!-- Boostrap 4 CDN  -->
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
 
-	<!-- FontAwesome CDN -->
-	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
-     <link rel="stylesheet" href="fontawesome/css/all.css">
-     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
+    <!-- Fontawesome CSS -->
+    <script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
 
 
+     <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-dashboard-lp.css' %}">
 
-	<!-- CSS -->
-	 <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-dashboard-lp.css' %}">
-
-
-	<!-- Java Script -->
-	 <script type="text/javascript" src="{% static 'js/script-dashboard-lp.js' %}"></script>
-
-	<!-- API GOOGLE MAPS -->
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY&callback=initMap" async defer></script>
-
-	<style>
-		#map {
-		  height: 400px;
-		}
-	</style>
-
-
+     <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-area-anunciante.css' %}">
 
 </head>
+<body>
 
-<!-- Corpo do HTML -->
-<body >
-	<!-- Container -->
-	<div class="container ">
-
-		<!-- Header da Pagina -->
-		<header id="header">
-			<!-- Imagem da Logo -->
-			<img src="{% static 'img/logo-2.png' %}" id="img-logo" class="img img-fluid">
-		</header>
-
-		<!-- Area do Dashboard -->
-		<div id="area-dashboard">
-			<div class="p-1 m-1">
-					<div class="btn btn-danger p-1 btn-voltar">Voltar</div>
-				</div>
-				<script>
-					$(document).on('click','.btn-voltar',function(){
-						window.location.href = "http://127.0.0.1:8000/dashboard/";
-					});
-				</script>
-			<div id="dashboard">
-
-				<h3 id="header-dashboard" class="text-center p-2">Gerenciador de Landing Pages</h3>
-				<section class="text-center">
-					<nav class="pb-5" >
-						<!--BARRA DE PESQUISA -->
-						<div id="pesquisa" class="py-5">
-
-								<form method="GET"  id="form-pesquisa"  class="row m-1 text-center">
-										<!-- BTN MENU HAMBURGUER -->
-											
-
-											<!--INPUT DA BARRA DE PESQUISA -->
-											<input type="text" name="barra-pesquisa" id="barra-pesquisa" class="form-control col-9" placeholder="Pesquisar" value="{{busca|default_if_none:''}}" >
-											<i class="fa fa-times-circle-o  btn " id="apagar-pesquisa" aria-hidden="true"></i>
-
-											<script>
+<div class=" container-fluid w-100" id="container-principal">
+    
 
+   <header id="header" class="  row p-3">
+        
 
-
-												$(document).on('focus','#barra-pesquisa', function(){
-													$(this).val('');
-												})
-
-												$(document).on('click','#apagar-pesquisa', function(){
-													window.location.href = "http://127.0.0.1:8000/accounts/login/dashboard-lp/";
-												})
-
-											</script>
-
-											<!--BTN PESQUISAR -->
-											<button type="submit" id="btn-pesquisar" class=" btn-sm btn-primary  py-2 px-3 ">Ok</button>
-								</form>
-
-
-						</div>
-					
-
-						<!--BTN CADASTRAR LANDING PAGE -->
-						<div id="btn-cadastrar-lp" class="btn btn-warning rounded m-3 p-3 text-dark font-weight-bold"  data-toggle="modal" data-target="#exampleModal" ><i class="fa fa-plus mx-1"></i>Cadastrar Landing Page</div>
-
-						<!-- MODAL CADASTRAMENTO LANDING PAGE -->
-						<!-- MODAL CADASTRAMENTO LANDING PAGE-->
-						<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						  <div class="modal-dialog" role="document">
-						    <div class="modal-content">
-						      <div class="modal-header">
-						        <h6 class="modal-title text-center" id="exampleModalLabel">Cadastre Imóvel da Landing Page</h6>
-						      </div>
-						      <div class="modal-body">
-						        <form id="formulario-lp" enctype="multipart/form-data"  method="POST" action="">
-									{% csrf_token %}
-
-									<div id="campo-tipo-imovel" class="p2">
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Tipo do Imovél</label>
-										<select name="tipo_imovel"  class=" form-control">
-												<option class="p-2" value="Selecione Tipo do Imovél">Selecione Tipo do Imovél</option>
-												<option class="p-2" value="Apartamento">Apartamento</option>
-												<option class="p-2" value="Casa">Casa</option>
-										</select>
-
-									</div>
-
-									<div id="campo-status" class="p2">
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Status do Imovél</label>
-										<select name="status_imovel"  class=" form-control">
-												<option class="p-2" value="Selecione Item">Selecione Status do Imovél</option>
-												<option class="p-2" value="Na Planta">Na Planta</option>
-												<option class="p-2" value="Em obras">Em obras</option>
-												<option class="p-2" value="Pronto para Morar">Pronto para Morar</option>
-										</select>
-
-									</div>
-
-									<div id="campo-padrao-imovel" class="p2">
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Padrão do Imovél</label>
-										<select name="padrao_imovel"  class=" form-control">
-												<option class="p-2" value="Selecione Padrão do Imovél">Selecione Padrão do Imovél</option>
-												<option class="p-2" value="Minha Casa Minha Vida">Minha Casa Minha Vida</option>
-												<option class="p-2" value="Padrão">Padrão</option>
-												<option class="p-2" value="Alto Padrão">Alto Padrão</option>
-												<option class="p-2" value="Altíssimo Padrão">Altíssimo Padrão</option>
-										</select>
-
-									</div>
-
-
-
-
-
-						        	<div id="campo-nome-empreendimento" class="p-2">
-						        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Nome Empreendimento</label>
-						        		<input type="text"  id="nome-empreendimento" name="nome_empreendimento" class="form-control">
-						        		
-						        	</div>
-
-						        	<div id="campo-localizacao-empreendimento" class="p-2">
-						        		<label for="localizacao-empreendimento" class="btn-warning rounded p-2 label">Localização Empreendimento</label>
-										<textarea type="text" name="localizacao_empreendimento" id="localizacao-empreendimento" class="form-control" rows="3" ></textarea>
-						        		<small>* Preencha com o link de localização do googlemaps</small>
-						        	</div>
 
-									<div id="campo-logo-empreendimento" class="p-2">
-						        		<label for="logo_empreendimento" class="btn-warning rounded p-2 label">Logo Marca Empreendimento</label>
-										<input type="file" name="logo_empreendimento" id="logo_empreendimento" class="form-control"  >
+        <!-- USER LOGADO -->
+        <span id="user" class="col-8" >
+            <span class="bg-warning ml-1 p-1 rounded" id="label-user">User</span>
+            <!-- Passa o usuário logado no sistema -->
+            <span class="px-1" id="user-logado">{% if user.is_authenticated %} {{ user.get_username }}{% endif %}</span>
 
-						        	</div>
+        </span>
 
-									<input type="text" id="lat" name="latitude">
-									<input type="text" id="long" name="longitude">
 
-									<!-- IMPLEMENTAÇÃO DO MAPA DE PESQUISA COM LOCAL DO EMPREENDIMENTO À CADASTRAR E OS DEMAIS JÁ CADASTRADOS -->
-									 <div id="map"></div>
-									<script src="{% static 'js/geolocation.js' %}"></script>
 
+          
+          <!-- SUPORTE TÉCNICO-->
+          <a href="https://wa.me/5516993379492?text=suporte"  target="_blank" id="icone-suporte" class="btn btn-warning text-center col-3">
+               Suporte Técnico
+          </a>
 
-								<!-- CAMPO ADD ITEM -->
-								<div class="p-1 campo-add-item col-12">
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 1</label>
-										<select name="item_adicionado_1"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
 
-									</div>
 
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 2</label>
-										<select name="item_adicionado_2"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
+    </header>
 
-									</div>
+    <script type="text/javascript" src="{% static 'js/script-api-marca-modelos-veiculos.js' %}"></script>
 
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 3</label>
-										<select name="item_adicionado_3"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
 
-									</div>
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 4</label>
-										<select name="item_adicionado_4"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
 
-									</div>
 
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 5</label>
-										<select name="item_adicionado_5"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
 
-									</div>
+     <!-- Field Select do Tipo do Anuncio -->
+    <div  id="escolha-tipo-field" class="">
+        <label id="escolha-tipo-veiculo" class=" bg-warning p-2  etiqueta rounded">Escolha tipo veículo *</label>
 
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 6</label>
-										<select name="item_adicionado_6"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
+        <select name="tipo-veiculo" id="tipo-veiculo" class="form-control " >
+            <option value="escolha">Escolha Tipo</option>
+            <option value="carros" >Carro</option>
+            <option value="motos">Moto</option>
+            <option value="caminhoes">Caminhão</option>
+        </select>
 
-									</div>
 
-									<div>
-										<label class="bg-warning p-2 font-weight-bold border rounded label" >Item 7</label>
-										<select name="item_adicionado_7"  class=" form-control">
-											<option class="p-2" value="Selecione Item">Selecione Item</option>
-											{% for lista_itens_destaque in lista_itens_destaque %}
-												<option class="p-2" value="{{lista_itens_destaque.item_cadastrado}}">{{lista_itens_destaque.item_cadastrado}}</option>
-											{% endfor %}
-										</select>
 
-									</div>
+        <div class="m-1"><small>* Campos  obrigatórios</small></div>
 
 
+    </div>
 
 
 
+    <!-- Formulário Carros -->
+    <form enctype="multipart/form-data" method="POST" id="formulario" class=" rounded p-2 form  " >
 
+        {% csrf_token %}
+        <div class=" p-0 m-0">
+            <h3 class="  text-center text-nowrap" id="header-formulario">Formulário<span class="px-2 " id="variavel-header-form"></span></h3>
+            <hr class="mx-0 mt-0 mb-1 p-0">
+        </div>
 
 
+        <!-- CAMPO MARCA -->
+        <div class="campo-desktop" id="campo-marca" >
+            <label for="Marca" class="bg-warning border rounded p-2 etiqueta">Marca *</label>
+            <select class="form-control" id="Marca" name="marca">
+                <option>Marca</option>
+            </select>
+            <input name="field-marca" id="field-marca" hidden  >
+            <br>
+        </div>
 
-						        	<div class="modal-footer">
-								        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-								        <button type="submit" id="salvar-lp" class="btn btn-primary">Cadastrar</button>
-							      	</div>
 
+         <!-- CAMPO MODELO -->
 
-						        </form>
-						      </div>
-						      
-						    </div>
-						  </div>
-						</div>
+        <div class="campo-desktop" id="campo-modelo">
+             <label class="bg-warning p-2 border rounded  etiqueta">Modelo *</label>
+            <select class="form-control" id="Modelo" name="modelo">
+                <option>Modelo</option>
+            </select>
+            <input id="field-modelo" name="field-modelo" hidden >
+            <br>
+        </div>
 
-					</nav>
 
 
+         <!-- CAMPO ANO -->
+        <div class="campo-desktop" id="campo-ano">
+             <label class="bg-warning p-2 border rounded  etiqueta">Ano *</label>
+            <select class="form-control" id="Ano" name="ano">
+                <option>Ano</option>
+            </select>
+             <input id="field-ano" name="field-ano" hidden >
+            <br>
+        </div>
 
 
+         <!-- CAMPO COMBUSTIVEL -->
+        <div class="campo-desktop" id="campo-combustivel">
+            <label  class="bg-warning p-2 border rounded  etiqueta">Combustível</label>
+            <select class="form-control " id="Combustivel" name="combustivel">
+                 <option>Combustível</option>
+                 <option value="gasolina">GASOLINA</option>
+                 <option value="etanol">ETANOL</option>
+                 <option value="diesel">DIESEL</option>
+                  <option value="flex">FLEX</option>
+                  <option value="eletrico">ELÉTRICO</option>
+                  <option value="híbrido">HÍBRIDO</option>
+                  <option value="gnv">GNV</option>
+             </select>
 
-					<!-- LISTAGEM DE LANDING PAGES -->
-					<div id="listagem-lp" class="border border-dark rounded">
-						{% if busca %}
-						<h3 class="p-1">O resultado para <p class="text-danger">{{busca|upper}}</p></h3>
-						{% endif %}
-						<ul class="p-1">
-							{% for lista_lp in lista_lp %}
+            <br>
+        </div>
 
-							<li class="border border-dark p-3 mb-1  ">
-								<a href="{% url 'cadastro-lp' slug=lista_lp.slug %}" >{{lista_lp.nome_empreendimento}}</a>
-							</li>
 
 
+             <!-- CAMPO COR -->
+        <div class="campo-desktop" id="campo-cor">
+            <label  class="bg-warning p-2 border rounded  etiqueta">Cor</label>
+            <select class="form-control " id="Cor" name="cor">
+                <option>Selecionar Cor</option>
+                 {% for cores in cores %}
+                 <option value="{{cores.nome_cor}}" id="{{cores.id}}">{{cores.nome_cor}}</option>
+                 {% endfor %}
+            </select>
 
-							{% empty %}
-							<li class="border border-dark p-3 mb-1 ">Não Há Empreendimento Cadastrado</li>
-							{% endfor %}
+            <br>
+        </div>
+     <!--Acessórios Carros -->
+     <div id="complemento-carros">
 
 
+         <!-- CAMPO PORTAS -->
+         <div id="campo-portas" class="campo-desktop">
+             <label  class="bg-warning p-2 border rounded  etiqueta">Portas</label>
+             <select class="form-control " id="portas" name="portas">
+                 <option>Portas</option>
+                 <option value="2 Portas">2 PORTAS</option>
+                 <option value="3 Portas">3 PORTAS</option>
+                 <option value="4 Portas">4 PORTAS</option>
+                  <option value="5 Portas">5 PORTAS</option>
+                  <option value="6 Portas">6 PORTAS</option>
+             </select>
+         </div>
 
+             <!-- CAMPO CAMBIO -->
+         <div id="campo-cambio" class="campo-desktop">
+             <label  class="bg-warning p-2 border rounded  etiqueta">Câmbio</label>
+             <select class="form-control" id="cambio" name="cambio">
+                 <option>CÂMBIO</option>
+                 <option value="MANUAL">MANUAL</option>
+                 <option value="AUTOMÁTICO">AUTOMÁTICO</option>
+                 <option value="AUTOMÁTIZADO">AUTOMÁTZADO</option>
 
+             </select>
+         </div>
 
 
-						</ul>
 
-					</div>
+          <!-- CAMPO IPVA -->
+         <div id="campo-ipva" class="campo-desktop">
+             <label  class="bg-warning p-2 border rounded  etiqueta">IPVA</label>
+             <select class="form-control " id="ipva" name="ipva">
+                 <option value="ipva pago">SIM</option>
+                 <option value="ipva nao pago">NÃO</option>
 
-					<div></div>
-				</section>
-			</div>
-			
-		</div>
+             </select>
+         </div>
 
 
+             <!-- CAMPO PLACA -->
+         <div id='campo-placa' class="campo-desktop">
+            <label  class="bg-warning p-2 border rounded  etiqueta">Placa</label>
+            <input type="text" maxlength="7" name="placa" id="placa" class="form-control " placeholder="ABC - 1B34"  onkeyup="validaPlaca();" >
+            <span id="validacao"></span>
+            <span class="" id="validacao-2"></span>
 
-	<footer class="text-center " >
-		<i class="fa fa-copyright" aria-hidden="true">Copyright</i>
-		<div>Antherus - Desenvolvimento Web</div>
-		<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
-	</footer>
+         </div>
 
+                 
 
+    </div>
+    <!-- FINAL COMPLEMENTO -->
 
-	</div>
-	<!-- FINAL CONTAINER -->
 
 
+         <!-- CAMPO VALOR -->
+    <div id="campo-valor" class="campo-desktop">
+        <label  for="valor" class="bg-warning p-2 border rounded  etiqueta" style="font-weight:bold;" >VALOR *</label>
 
+        <div><input type="text"  name="valor" id="valor" value="" class="form-control "   onKeyUp="mascaraMoeda(this, event)">
+            <div id="validacao-input-valor"></div>
 
+    </div>
 
+    <!-- Mascára de Formataçao valor em valor monetério -->
 
+    <script type="text/javascript">
 
-	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+         $(document).on('focus', '#campo-valor input', function(){
+
+                $('#validacao-input-valor').html('Atençao digite somente números')
+        });
+
+         $(document).on('blur', '#campo-valor input', function(){
+
+                $('#validacao-input-valor').html('')
+
+
+        });
+
+          $(document).on('keyup', '#campo-valor input', function(){
+
+               var precoDigitado = $(this).val();
+
+               if(precoDigitado[3] > 0){
+                    $('#salvar').attr('disabled', false);
+               }
+               if(precoDigitado[3] == 0){
+                    $('#salvar').attr('disabled', true);
+               }
+
+
+
+        });
+
+
+    </script>
+
+
+    <div id="advertencias">
+        <p>* As informações cadastradas são de responsabilidade do anunciante.</p>
+        <p>* Caso não encontre Marca, Modelo e/ou Ano do modelo,entre em contato com suporte técnico.</p>
+    </div>
+
+    <span id="itens-carros">
+
+
+        <div id="itens-opcionais">
+            <div>
+                <label class="bg-warning p-2 border rounded  etiqueta" id="header-itens-opcionais">Itens Opcionais</label>
+            </div>
+            <!--Scoll -->
+                <div id="scroll-itens-opcionais" class="rounded">
+                <!-- CHECK BOX OPCIONAIS VEÍCULOS----------------------------- -->
+
+
+                <!-- CKECK BOX ACENDEDOR DE CIGARROS -->
+
+                 <div class="" id="check-acendedor-cigarros ">
+                     <label for="acendedor-cigarros" class="">Acendedor de Cigarros</label>
+                     <input type="checkbox" id="acendedor-cigarros" name="acendedor_cigarros" value="Acendedor de Cigarros">
+                 </div>
+
+
+
+
+                <!-- FINAL CKECK BOX ACENDEDOR DE CIGARROS -->
+
+
+                <!-- CKECK AIRBAGS -->
+
+                 <div class="" id="check-air-bags">
+                     <label for="airbags" class="">Air Bags</label>
+                     <input type="checkbox" id="airbags" name="air_bags" value="Air Bags">
+                 </div>
+
+
+                <!-- FINAL CKECK AIRBAGS -->
+
+                <!-- CKECK ALARME-->
+
+                     <div class="" id="check-alarme">
+                         <label for="alarme" class="">Alarme</label>
+                         <input type="checkbox" id="alarme" name="alarme" value="Alarme">
+                     </div>
+
+
+                <!-- FINAL CKECK ALARME-->
+
+                <!-- CKECK AR CONDICIONADO-->
+
+                 <div  class="" id="check-ar-condicionado" >
+                     <label for="ar-condicionado"  class="" >Ar Condicionado</label>
+                     <input type="checkbox" id="ar-condicionado" name="ar_condicionado" value="Ar Condicionado">
+                 </div>
+
+
+                <!-- FINAL CKECK AR CONDICIONADO-->
+
+                <!-- CKECK CONDICIONADO DIGITAL -->
+
+                 <div class="" id="check-condicionado-digital" >
+                     <label for="ar-condicionado-digital" class="">Ar Condicionado Digital</label>
+                     <input type="checkbox" id="ar-condicionado-digital" name="ar_condicionado_digital" value="Ar Condicionado Digital">
+                 </div>
+
+
+                <!-- FINAL CKECK CONDICIONADO DIGITAL-->
+
+
+                 <!-- CKECK CONDICIONADO DUAL ZONE -->
+
+                 <div class="" id="check-condicionado-dual-zone">
+                     <label for="ar-condicionado-digital-dual-zone" class=""  >Ar Condicionado Dual Zone</label>
+                     <input type="checkbox" id="ar-condicionado-digital-dual-zone" name="ar_condicionado_dual_zone" value="Ar Condicionado Dual Zone">
+                 </div>
+
+
+                <!-- FINAL CKECK CONDICIONADO DUAL ZONE-->
+
+                <!-- CKECK AR QUENTE -->
+
+                 <div class="" id="check-ar-quente">
+                     <label for="ar-quente" class="">Ar Quente</label>
+                     <input type="checkbox" id="ar-quente" name="ar_quente" value="Ar Quente">
+                 </div>
+
+
+                <!-- FINAL CKECK AR QUENTE-->
+
+                <!-- CKECK ASSISTENTE DE SAIDA EM ACLIVES -->
+
+                 <div class="" id="check-assistente-saida-declive" >
+                     <label for="assistente-saida-aclive" class="">Assistente de Saída em Aclive</label>
+                     <input type="checkbox" id="assistente-saida-aclive" name="assistente_saida_aclive" value="Assistente de Saída em Aclives">
+                 </div>
+
+
+                <!-- FINAL CKECK ASSISTENTE DE SAIDA EM DECLIVE-->
+
+                <!-- CKECK ASSISTENTE DE SAIDA EM AUDIO SISTEMA DE SOM -->
+
+                 <div class="" id="check-sistema-som" >
+                     <label for="sistema-som" class="">Sistema de Áudio</label>
+                     <input type="checkbox" id="sistema-som" name="sistema_som" value="Sistema de Som">
+                 </div>
+
+                <!-- FINAL CKECK ASSISTENTE DE SAIDA EM DECLIVE-->
+
+
+                <!-- CKECK BANCO COM APOIO DE BRAÇO-->
+
+                 <div class="" id="check-banco-apoio-braco" >
+                     <label for="banco-apoio-braco" class="">Banco com Apoio de Braço</label>
+                     <input type="checkbox" id="banco-apoio-braco" name="banco_apoio_braco" value="Banco com Apoio de Braço">
+                 </div>
+
+                <!-- FINAL CKECK BANCO COM APOIO DE BRAÇO-->
+
+                 <!-- CKECK BANCO DIANTEIROS COM REGULAGEM ELÉTRICA-->
+
+                 <div class="" id="check-banco-regulagem-eletrica" >
+                     <label for="banco-regulagem-eletrica" class=" ">Banco com Regulagem Elétrica</label>
+                     <input type="checkbox" id="banco-regulagem-eletrica" class="input-checkbox" name="banco_regulagem_eletrica" value="Banco com Regulagem Elétrica">
+                 </div>
+
+                <!-- FINAL CKECK DIANTEIROS COM REGULAGEM ELÉTRICA-->
+
+                <!-- CHECK BLINDADO -->
+
+                 <div class="" id="check-blindado" >
+                     <label for="blindado"  class="">Blindado</label>
+                     <input type="checkbox" id="blindado"   name="blindado" value="Blindado">
+                 </div>
+
+                <!-- FINAL   CD/MP3 -->
+
+                <!-- CKECK BLUETOOTH-->
+
+                 <div class="" id="check-bluetooth" >
+                     <label for="bluetooth"  class="">Bluetooth</label>
+                     <input type="checkbox" id="bluetooth"  name="bluetooth" value="Bluetooth">
+                 </div>
+
+                <!-- FINAL BLUETOOTH-->
+
+                <!-- CKECK CALOTAS -->
+
+                     <div class="" id="check-calota" >
+                         <label for="calotas"  class="">Calotas</label>
+                         <input type="checkbox" id="calotas"  name="calotas" value="Calotas">
+                     </div>
+
+                <!-- FINAL  CALOTAS-->
+
+
+
+                <!-- CKECK CÂMERA DE RÉ -->
+
+                 <div class="" id="check-camera-re" >
+                     <label for="camera-re"  class="">Câmera de Ré</label>
+                     <input type="checkbox" id="camera-re" class="input-checkbox-camera"  name="camera_re" value="Câmera de Ré">
+                 </div>
+
+                <!-- FINAL  CÂMERA DE RÉ-->
+
+                <!-- CHECK CARREGADOR DE DISPOSITIVOS SEM FIO(WIRELESS) -->
+
+                 <div class="" id="check-carregador-dispositivo-wireless" >
+                     <label for="carregador-dispositivo-wireless"  class="">Carregador Dispositivo Wireless</label>
+                     <input type="checkbox" id="carregador-dispositivo-wireless" class="input-checkbox"  name="carregador_dispositivo_wireless" value="Carregador Dispositivo sem fio(Wireless)">
+                 </div>
+
+                <!-- FINAL  CARREGADOR DE DISPOSITIVOS SEM FIO(WIRELESS)-->
+
+
+            <!-- CHECK CD/MP3 -->
+
+             <div class="" id="check-cd-mp3" >
+                 <label for="cd-mp3"  class="">CD/MP3</label>
+                 <input type="checkbox" id="cd-mp3"   name="cd_mp3" value="CD/MP3">
+             </div>
+
+            <!-- FINAL   CD/MP3 -->
+
+            <!-- CHECK CHAVE COM CONTROLE REMOTO DE ABERTURA(KEYLESS) -->
+
+             <div class="" id="check-chaves-keyless" >
+                 <label for="chaves-keyless"  class="">Chave Keyless</label>
+                 <input type="checkbox" id="chaves-keyless"   name="chaves_keyless" value="Chave com controle remoto(keyless)">
+             </div>
+
+            <!-- FINAL  CHAVE COM CONTROLE REMOTO DE ABERTURA(KEYLESS)-->
+
+            <!-- CHECK CHAVE COM SENSOR DE PRESENÇA -->
+
+             <div class="" id="check-chaves-sensor-presenca" >
+                 <label for="chaves-sensor-presenca"  class="">Chave com Sensor de Presença</label>
+                 <input type="checkbox" id="chaves-sensor-presenca" class="input-checkbox"   name="chaves_sensor-presenca" value="Chave com Sensor de Presença">
+             </div>
+
+            <!-- FINAL  CHAVE CHAVE COM SENSOR DE PRESENÇA -->
+
+            <!-- CHECK COMPUTADOR DE BORDO -->
+
+             <div class="" id="check-computador-bordo" >
+                 <label for="computador-bordo"  class="">Computador de Bordo</label>
+                 <input type="checkbox" id="computador-bordo"    name="computador_bordo" value="Computador de Bordo">
+             </div>
+
+            <!-- FINAL  COMPUTADOR DE BORDO  -->
+
+             <!-- CHECK CONTROLE DE SOM NO VOLANTE -->
+
+             <div class="" id="check-controle-som-volante" >
+                 <label for="controle-som-volante"  class="">Controle Som Volante</label>
+                 <input type="checkbox" id="controle-som-volante"    name="controle_som_volante" value="Controle Som Volante">
+             </div>
+
+            <!-- FINAL  CONTROLE DE SOM NO VOLANTE  -->
+
+            <!-- CHECK CONTROLE ELETRÔNICO DE DESCIDA -->
+
+             <div class="" id="check-controle-eletronico-descida" >
+                 <label for="controle-eletronico-descida"  class="">Controle Eletrônico de Descida(HDC)</label>
+                 <input type="checkbox" id="controle-eletronico-descida"    name="controle_eletronico_descida" value="Controle Eletrônico de Descida(HDC)">
+             </div>
+
+            <!-- FINAL  CONTROLE ELETRÔNICO DE DESCIDA  -->
+
+            <!-- CHECK DESEMBAÇADOR TRASEIRO -->
+
+             <div class="" id="check-desembacador-traseiro" >
+                 <label for="desembacador-traseiro"  class="">Desembacador Traseiro</label>
+                 <input type="checkbox" id="desembacador-traseiro"    name="desembacador_traseiro" value="Desembacador Traseiro">
+             </div>
+
+            <!-- FINAL  DESEMBAÇADOR TRASEIRO  -->
+
+            <!-- CHECK DIREÇÃO ELÉTRICA -->
+
+             <div class="" id="check-direcao-eletrica" >
+                 <label for="direcao-eletrica"  class="">Direção Elétrica(EPS)</label>
+                 <input type="checkbox" id="direcao-eletrica"    name="direcao_eletrica" value="Direção Elétrica(EPS)">
+             </div>
+
+            <!-- FINAL  DIREÇÃO ELÉTRICA -->
+
+             <!-- CHECK DIREÇÃO HIDRAÚLICA -->
+
+             <div class="" id="check-direcao-hidraulica" >
+                 <label for="direcao-hidraulica"  class="">Direção Hidraúlica</label>
+                 <input type="checkbox" id="direcao-hidraulica" class="input-checkbox"   name="direcao_hidraulica" value="Direção Hidraúlica">
+             </div>
+
+            <!-- FINAL  DIREÇÃO HIDRAÚLICA-->
+
+            <!-- CHECK ENCOSTO DE CABEÇA TRASEIRO -->
+
+             <div class="" id="check-encosto-cabeca-traseiro" >
+                 <label for="encosto-cabeca-traseiro"  class="">Encosto de Cabeça Traseiro</label>
+                 <input type="checkbox" id="encosto-cabeca-traseiro" class="input-checkbox"   name="encosto_cabeca_traseiro" value="Encosto de Cabeça Traseiro">
+             </div>
+
+            <!-- FINAL  ENCOSTO DE CABEÇA TRASEIRO-->
+
+            <!-- CHECK ESTRIBO -->
+
+             <div class="" id="check-estribo" >
+                 <label for="estribo"  class="">Estribo</label>
+                 <input type="checkbox" id="estribo"    name="estribo" value="Estribo">
+             </div>
+
+            <!-- FINAL  ESTRIBO-->
+
+             <!-- CHECK FAROIS AUTOMÁTICO-->
+
+             <div class="" id="check-farois-automatico" >
+                 <label for="farois-automatico"  class="">Fárois Automático</label>
+                 <input type="checkbox" id="farois-automatico" class="input-checkbox"   name="farois_automatico" value="Fárois Automático">
+             </div>
+
+            <!-- FINAL FAROIS AUTOMÁTICO-->
+
+
+             <!-- CHECK FAROIS MILHAS-->
+
+             <div class="" id="check-farois-milhas" >
+                 <label for="farois-milhas"  class="">Fárois de Milhas</label>
+                 <input type="checkbox" id="farois-milhas" class="input-checkbox"   name="farois_automatico" value="Fárois de Milhas">
+             </div>
+
+            <!-- FINAL  FAROIS MILHAS-->
+
+            <!-- CHECK FAROIS NEBLINA-->
+
+             <div class="" id="check-farois-neblina" >
+                 <label for="farois-neblina"  class="">Fárois de Neblinas</label>
+                 <input type="checkbox" id="farois-neblina" class="input-checkbox"   name="farois_neblina" value="Fárois de Neblinas">
+             </div>
+
+                <!-- FINAL  FAROIS NEBLINA-->
+
+            <!-- CHECK FREIO ABS-->
+
+             <div class="" id="check-freio-abs" >
+                 <label for="freio-abs"  class="">Freio Abs</label>
+                 <input type="checkbox" id="freio-abs"   name="freio-abs" value="Freio Abs">
+             </div>
+
+            <!-- FINAL  FREIO ABS-->
+
+            <!-- CHECK GPS-->
+
+             <div class="" id="check-gps" >
+                 <label for="gps"  class="">GPS</label>
+                 <input type="checkbox" id="gps" class="input-checkbox"  name="gps" value="GPS">
+             </div>
+
+            <!-- FINAL  GPS-->
+
+            <!-- CHECK INSULFILM-->
+
+             <div class="" id="check-insulfilm" >
+                 <label for="insulfilm"  class="">Insulfilm</label>
+                 <input type="checkbox" id="insulfilm"   name="insulfilm" value="Insulfilm">
+             </div>
+
+            <!-- FINAL  INSULFILM-->
+
+
+           <!-- CHECK LONA MARÍTIMA-->
+
+             <div class="" id="check-lona-maritima" >
+                 <label for="lona-maritima"  class="">Lona Marítima</label>
+                 <input type="checkbox" id="lona-maritima" class="input-checkbox-2"  name="lona-maritima" value="Lona Marítima">
+             </div>
+
+            <!-- FINAL   LONA MARÍTIMA-->
+
+            <!-- CHECK LONA MULTIMÍDIA-->
+
+             <div class="" id="check-multimidia" >
+                 <label for="multimidia"  class="">Multimídia</label>
+                 <input type="checkbox" id="multimidia"   name="multimidia" value="Multimídia">
+             </div>
+
+            <!-- FINAL   LONA MULTIMÍDIA-->
+
+            <!-- CHECK PAINEL LCD-->
+
+             <div class="" id="check-painel-lcd" >
+                 <label for="painel-lcd"  class="">Painel LCD</label>
+                 <input type="checkbox" id="painel-lcd"   name="painel_lcd" value="Painel LCD">
+             </div>
+
+            <!-- FINAL   PAINEL LCD-->
+
+            <!-- CHECK PAINEL DIGITAL-->
+
+             <div class="1" id="check-painel-digital" >
+                 <label for="painel-digital"  class="">Painel Digital</label>
+                 <input type="checkbox" id="painel-digital"   name="painel_digital" value="Painel Digital">
+             </div>
+
+            <!-- FINAL   PAINEL DIGITAL-->
+
+            <!-- CHECK PARACHOQUE DA COR DO VEÍCULO-->
+
+             <div class="" id="check-parachoque-na-cor" >
+                 <label for="parachoque-na-cor"  class="">Parachoque na Cor do Veículo</label>
+                 <input type="checkbox" id="parachoque-na-cor"  class="input-checkbox" name="parachoque_na_cor" value="Parachoque na Cor do Veículol">
+             </div>
+
+            <!-- FINAL   PARACHOQUE DA COR DO VEÍCULO-->
+
+            <!-- CHECK PARK ASSIST-->
+
+             <div class="" id="check-parK-assist" >
+                 <label for="park-assist"  class="">Park Assist</label>
+                 <input type="checkbox" id="park-assist"   name="park_assist" value="Park Assist">
+             </div>
+
+            <!-- FINAL   PARK ASSIST-->
+
+            <!-- CHECK PARTIDA START STOP-->
+
+             <div class="" id="check-partida-start-stop" >
+                 <label for="partida-start-stop"  class="">Partida Start Stop</label>
+                 <input type="checkbox" id="partida-start-stop" class="input-checkbox"   name="partida_start_stop" value="Partida Start Stop">
+             </div>
+
+            <!-- FINAL   PARTIDA START STOP-->
+
+            <!-- CHECK PILOTO AUTOMÁTICO-->
+
+             <div class="" id="check-piloto-automatico" >
+                 <label for="piloto-automatico"  class="">Piloto Automático</label>
+                 <input type="checkbox" id="piloto-automatico" class="input-checkbox"   name="piloto_automatico" value="Piloto Automático">
+             </div>
+
+            <!-- FINAL   PILOTO AUTOMATICO-->
+
+            <!-- CHECK PINTURA METÁLICA-->
+
+             <div class="" id="check-pintura-metalica" >
+                 <label for="pintura-metalica"  class="">Pintura Metálica</label>
+                 <input type="checkbox" id="pintura-metalica" class="input-checkbox"   name="pintura-metalica" value="Pintura Metálica">
+             </div>
+
+            <!-- FINAL   PINTURA METÁLICA   -->
+
+
+            <!-- CHECK PORTA COPO-->
+
+             <div class="" id="check-porta-copo" >
+                 <label for="porta-copo"  class="">Porta Copo</label>
+                 <input type="checkbox" id="porta-copo" class="input-checkbox-3"   name="porta_copo" value="Porta Copo">
+             </div>
+
+            <!-- FINAL   PORTA COPO   -->
+
+            <!-- CHECK PROTETOR DE CAÇAMBA-->
+
+             <div class="" id="check-protetor-cacamba" >
+                 <label for="protecao-cacamba"  class="texto-checkbox">Proteção Caçamba</label>
+                 <input type="checkbox" id="protecao-cacamba" class="input-checkbox"   name="protecao_cacamba" value="Proteção Caçamba">
+             </div>
+
+            <!-- FINAL   PROTETOR CACAMBA   -->
+
+            <!-- CHECK RÁDIO-->
+
+             <div class="" id="check-radio" >
+                 <label for="radio"  class="">Rádio</label>
+                 <input type="checkbox" id="radio" class="input-checkbox"   name="radio" value="Rádio">
+             </div>
+
+            <!-- FINAL   RÁDIO   -->
+
+            <!-- CHECK REBATIMENTO DE RETROVISORES EXTERNOS-->
+
+             <div class="" id="check-rebatimento-retrovisores-externos" >
+                 <label for="rebatimento-retrovisores-externos"  class="">Rebatimento Retrovisores Externos</label>
+                 <input type="checkbox" id="rebatimento-retrovisores-externos"    name="rebatimento_retrovisores_externos" value="Rebatimento Retrovisores Externos">
+             </div>
+
+            <!-- FINAL   REBATIMENTO DE RETROVISORES EXTERNOS   -->
+
+            <!-- CHECK RETROVISOR FOTOCROMÁTICO-->
+
+             <div class="" id="check-retrovisor-fotocromatico" >
+                 <label for="retrovisor-fotocromatico"  class="">Retrovisor Fotocromático</label>
+                 <input type="checkbox" id="retrovisor-fotocromatico" class="input-checkbox-2" name="retrovisor_fotocromatico" value="Retrovisor Fotocromático">
+             </div>
+
+            <!-- FINAL   RETROVISOR FOTOCROMÁTICO   -->
+
+            <!-- CHECK RETROVISOR INTERNO ELÉTROCRÔMICO-->
+
+             <div class="" id="check-retrovisor-interno-eletrocromico" >
+                 <label for="retrovisor-interno-eletrocromico"  class="">Retrovisor Interno Eletrocrômico</label>
+                 <input type="checkbox" id="retrovisor-interno-eletrocromico"  name="retrovisor_interno_eletrocromico" value="Retrovisor Interno Eletrocrômico">
+             </div>
+
+            <!-- FINAL   RETROVISOR FOTOCROMÁTICO   -->
+
+            <!-- CHECK RETROVISOR ELÉTRICO-->
+
+             <div class="" id="check-retrovisor-eletrico" >
+                 <label for="retrovisor-eletrico"  class="">Retrovisor Elétrico</label>
+                 <input type="checkbox" id="retrovisor-eletrico" class=""  name="retrovisor_eletrico" value="Retrovisor Elétrico">
+             </div>
+
+            <!-- FINAL   RETROVISOR ELÉTRICO   -->
+
+            <!-- CHECK RODA DE LIGA LIEVE-->
+
+             <div class="" id="check-roda-liga-leve" >
+                 <label for="roda-liga-leve"  class="">Roda Liga leve</label>
+                 <input type="checkbox" id="roda-liga-leve" class=""  name="roda_liga_leve" value="Roda Liga Leve">
+             </div>
+
+            <!-- FINAL   RODA LIGA LEVE   -->
+
+            <!-- CHECK SENSOR DE CHUVA-->
+
+             <div class="" id="check-sensor-chuva" >
+                 <label for="sensor-chuva"  class="">Sensor Chuva</label>
+                 <input type="checkbox" id="sensor-chuva" class="input-checkbox-2"  name="sensor_chuva" value="Sensor Chuva">
+             </div>
+
+            <!-- FINAL   SENSOR DE CHUVA   -->
+
+            <!-- CHECK SENSOR DE ESTACIONAMENTO DIANTEIRO-->
+
+             <div class="" id="check-sensor-estacionamento-dianteiro" >
+                 <label for="sensor-estacionamento-dianteiro"  class="">Sensor Estacionamento Dianteiro</label>
+                 <input type="checkbox" id="sensor-estacionamento-dianteiro"   name="sensor_estacionamento_dianteiro" value="Sensor Estaciomento Dianteiro">
+             </div>
+
+            <!-- FINAL   SENSOR DE ESTACIONAMENTO DIANTEIRO  -->
+
+            <!-- CHECK SENSOR DE ESTACIONAMENTO TRASEIRO-->
+
+             <div class="" id="check-sensor-estacionamento-traseiro" >
+                 <label for="sensor-estacionamento-traseiro"  class="">Sensor Estacionamento Traseiro</label>
+                 <input type="checkbox" id="sensor-estacionamento-traseiro"   name="sensor_estacionamento_traseiro" value="Sensor Estaciomento Traseiro">
+             </div>
+
+            <!-- FINAL   SENSOR DE ESTACIONAMENTO TRASEIRO  -->
+
+            <!-- CHECK SOM-->
+
+             <div class="" id="check-som" >
+                 <label for="som"  class="">Som</label>
+                 <input type="checkbox" id="som"   name="som" value="Som">
+             </div>
+
+            <!-- FINAL   SOM  -->
+
+            <!-- CHECK TETO SOLAR-->
+
+             <div class="" id="check-teto-solar" >
+                 <label for="teto-solar"  class="">Teto Solar</label>
+                 <input type="checkbox" id="teto-solar"    name="teto_solar" value="Teto Solar">
+             </div>
+
+            <!-- FINAL   TETO SOLAR  -->
+
+            <!-- CHECK TETO PANORÂMICO-->
+
+             <div class="" id="check-teto-panoramico" >
+                 <label for="teto-panoramico"  class="">Teto Panorâmico</label>
+                 <input type="checkbox" id="teto-panoramico" class=""  name="teto_panoramico" value="Teto Panorâmico">
+             </div>
+
+            <!-- FINAL   TETO PANORÂMICO  -->
+
+            <!-- CHECK TRAÇÃO-->
+
+             <div class="" id="check-tracao" >
+                 <label for="tracao"  class="">Tração</label>
+                 <input type="checkbox" id="tracao" class=""  name="tracao" value="Tração">
+             </div>
+
+            <!-- FINAL   TRAÇÃO  -->
+
+            <!-- CHECK TRAVA ELÉTRICA-->
+
+             <div class="" id="check-trava-eletrica" >
+                 <label for="trava-eletrica"  class="">Trava Elétrica</label>
+                 <input type="checkbox" id="trava-eletrica" class=""  name="trava_eletrica" value="Trava Elétrica">
+             </div>
+
+            <!-- FINAL   TRAVA ELÉTRICA  -->
+
+            <!-- CHECK USB-->
+
+             <div class="" id="check-usb" >
+                 <label for="usb"  class="">USB</label>
+                 <input type="checkbox" id="usb" class="input-checkbox"  name="usb" value="USB">
+             </div>
+
+            <!-- FINAL   USB  -->
+
+            <!-- CHECK VIDRO ELÉTRICO -->
+
+             <div class="" id="check-vidro-eletrico" >
+                 <label for="vidro-eletrico"  class="">Vidro Elétrico</label>
+                 <input type="checkbox" id="vidro-eletrico" class="input-checkbox-2"  name="vidro_eletrico" value="Vidro Elétrico">
+             </div>
+
+            <!-- FINAL   VIDRO ELÉTRICO  -->
+
+            <!-- CHECK VIDRO VERDES -->
+
+             <div class="" id="check-vidro-verdes" >
+                 <label for="vidro-verdes"  class="">Vidro Verdes</label>
+                 <input type="checkbox" id="vidro-verdes" class="input-checkbox-2"  name="vidro_verdes" value="Vidro Verdes">
+             </div>
+
+            <!-- FINAL   VIDRO VERDES  -->
+
+             <!-- CHECK VOLANTE COM REGULAGEM DE ALTURA -->
+
+             <div class="" id="check-volante-regulagem-altura" >
+                 <label for="regulagem-altura"  class="texto-checkbox">Volante com Regulagem Altura</label>
+                 <input type="checkbox" id="regulagem-altura" class="input-checkbox"  name="regulagem_altura" value="Volante com Regulagem Altura">
+             </div>
+
+            <!-- FINAL   VOLANTE COM REGULAGEM DE ALTURA  -->
+
+        </span>
+    </div>
+
+<!-- FINAL CONTAINER -->
+
+                    <script type="text/javascript">
+
+
+
+                        // Inicia um array vazio
+                        var lista = new Array();
+                        i = 0
+
+                       
+
+                        //evento clicar no
+                         $(document).on('click', '#itens-opcionais input', function(){
+                                checado = $(this).prop('checked');
+
+                                if(checado == true ){
+                                    item = $(this).val();
+                                    lista.push(item+'<i class="fa fa-check-circle ml-1 check-cor-verde" aria-hidden="true"></i><br>')
+                                    $('#lista').html(lista)
+
+                                }
+
+                                if(checado == false){
+                                    item = $(this).val();
+
+                                    lista.splice(lista.indexOf(item+'<i class="fa fa-check-circle ml-1 check-cor-verde" aria-hidden="true"></i><br>'), 1);
+                                    $('#lista').html(lista)
+
+                                }
+
+                                if(lista.length == 0){
+                                    $('#lista').html('Não há item opcional cadastrado!!');
+                                }
+
+                                if(lista.length == 1){
+                                    $('#display-itens-opcionais').show();
+                                }
+
+
+
+
+
+                            });
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    </script>
+
+
+
+
+                    <!-- Display do itens opcionais -->
+                    <span id="display-itens-opcionais" class="p-1">
+                        <div>
+                            <label class="bg-warning p-2 border rounded  etiqueta">Lista Opcionais</label>
+                        </div>
+
+                        <div id="scroll-itens" class="bg-white rounded">
+                            <span id="lista"  class=""></span>
+                        </div>
+
+
+
+                    </span>
+
+
+                    <!-- Caixa de texto informações completamentares -->
+                    <div class="px-1 mt-1" id="div-info-complementares">
+                        <label for="info-complementares" class="bg-warning p-2 border rounded  etiqueta">Informações Complementares</label>
+                        <textarea id="info-complementares"  rows="5" wrap="hard"  class="border border-dark rounded" ></textarea>
+                    </div>
+
+
+
+
+                <!-- BTN SALVAR -->
+
+
+                    <button type="submit"  class="btn btn-warning m-5" id="salvar" >Próximo Passo - Adicionar Fotos</button>
+
+
+
+         </form>
+
+        
+
+</div>
+
+<!-- RODAPÉ -->
+        <footer class="text-center " >
+            <i class="fa fa-copyright" aria-hidden="true">Copyright</i>
+            <div>Antherus - Desenvolvimento Web</div>
+            <small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
+        </footer>
+
+
+
+
+
+
+
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 </body>
 </html>

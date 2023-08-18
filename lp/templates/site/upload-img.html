@@ -120,15 +120,9 @@
 			 		<div id="info-lp">
 			 			<div id="campo-nome-empreendimento" class="p-2">
 			        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Nome Empreendimento</label>
-			        		<input type="text"  id="nome-empreendimento" name="nome-empreendimento" class="form-control" value="{{lp.nome_empreendimento}}">
+			        		<input type="text"  id="nome-empreendimento" name="nome-empreendimento" class="form-control" value="{{lp.nome_marca}} {{lp.nome_modelo}} {{lp.ano}}">
 			        	</div>
 
-			        	<div id="campo-localizacao-empreendimento" class="p-2">
-			        		<label for="localizacao-empreendimento" class="btn-warning rounded p-2 label">Localização Empreendimento</label>
-			        		<input type="text" name="localizacao-empreendimento" id="localizacao-empreendimento" class="form-control" value="{{lp.localizacao}}">
-			        		
-			        	</div>
-			        	
 			 		</div>
 
 
@@ -139,7 +133,7 @@
 
 
 							<div class="dropzone dz" id="my-dropzone">
-								<input  name="empreendimento_vinculado" value="{{lp.nome_empreendimento}}">
+								<input  name="veiculo_vinculado" value="{{lp.pk}}">
 								<div class="fallback">
 								  <input class="img" name="file" type="file" multiple />
 								</div>
