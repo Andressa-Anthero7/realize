@@ -23,7 +23,7 @@ def abrirleads(request, pk):
 @login_required
 def dashboard(request):
     leads = Leads.objects.all().order_by('-data_recebimento')
-    return render(request, 'site/dashboard-v3.html', {'leads': leads})
+    return render(request, 'site/dashboard.html', {'leads': leads})
 
 
 def qualificar_leads(request, pk):

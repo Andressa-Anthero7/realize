@@ -74,7 +74,7 @@
 
 			<!-- LOGO REDES SOCIAIS -->
 			<span  id="logos-redes-sociais" class="col-6  m-0 p-0">
-				<div class="text-white text-center p-1">Siga nossas páginas</div>
+				<div class="text-white text-center p-2" id="siga-nossas-redes">Siga nossas páginas</div>
 				<a href="" class="fa fa-facebook-official p-1  fa-fw   " aria-hidden="true" ></a>
 				<a href="" class="fa  fa-instagram  fa-fw   " id="insta" aria-hidden="true"></a>
 				
@@ -88,13 +88,13 @@
 		<main class="text-white rounded" id="conteudo">
 			<!-- HEADER DA AREA PRINCIPAL COM O TITULO DO VEÍCULO DA LP -->
 			{% if veiculo %}
-			<div class="text-center">
+			<div class="text-center" id="div-titulo-lp">
 				<!-- TITULO LP -->
-				<h5 class="p-3" id="titulo-lp">
+				<h4 class="p-3 titulo-lp" id="titulo-lp" >
 					<span class="mx-1" >{{veiculo.nome_marca}}</span>
 					<span  class="mx-1">{{veiculo.nome_modelo}}</span>
 					<span  class="mx-1">{{veiculo.ano}}</span>
-				</h5>
+				</h4>
 			</div>
 			<!-- CARROUSSEL -->
 			<div id="carousel" class="carousel slide" data-ride="carousel">

@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+
+
 	$('#header').css({'height':'200em','width':'100%'})
 	
 	setTimeout(() => {
