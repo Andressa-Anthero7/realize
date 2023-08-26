@@ -322,6 +322,7 @@ def upload_img(request):
         veiculo_vinculado = request.POST.get('veiculo_vinculado')
         # Obtém a instância do objeto LandingPage ou retorna 404 se não existir
         landing_page = get_object_or_404(LandingPage, pk=veiculo_vinculado)
+        print('lp é', landing_page)
 
         # Obtém as imagens enviadas através do campo 'file' no formulário
         imagens = request.FILES.getlist('file')
