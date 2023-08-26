@@ -23,15 +23,34 @@ def abrirleads(request, pk):
 @login_required
 def dashboard(request):
     leads = Leads.objects.all().order_by('-data_recebimento')
-    return render(request, 'site/dashboard.html', {'leads': leads})
+    leads_novos = Leads.objects.filter(status_aberto='fa-envelope')
+    leads_abertos = Leads.objects.filter(status_aberto='fa-envelope-open')
+    perfil_user = Perfil.objects.last()
+    return render(request, 'site/dashboard.html', {'leads': leads,
+                                                   'perfil_user': perfil_user,
+                                                   'leads_novos': leads_novos,
+                                                   'leads_abertos': leads_abertos})
 
 
-def qualificar_leads(request, pk):
-    if request.method == 'POST':
-        status_leads = request.POST.get('opcionais-leads')
-        print(status_leads)
-        Leads.objects.filter(pk=pk).update(status_leads=status_leads)
-        return redirect('atendimento', pk=pk)
+def estoque_veiculos(request):
+    veiculo = LandingPage.objects.all()
+    busca = request.GET.get('barra-pesquisa')
+    if busca:
+        veiculo = LandingPage.objects.filter(
+            Q(nome_modelo__icontains=busca) | Q(nome_marca__icontains=busca) | Q(ano__icontains=busca) | Q(
+                combustivel__icontains=busca) | Q(cambio__icontains=busca) | Q(
+                cor__icontains=busca) | Q(portas__icontains=busca)
+        )
+
+    return render(request, 'site/dashboard-gerenciador-estoque.html', {'veiculo': veiculo})
+
+
+def deletar_lp(request, pk):
+    if request.method == "POST":
+        lp = LandingPage.objects.filter(pk=pk)
+        print(lp)
+        lp.delete()
+        return redirect('estoque-veiculos')
 
 
 def excluir_leads(request, pk):
@@ -57,6 +76,11 @@ def configuracao(request, user):
                                                           'tag_google': tag_google})
     else:
         return redirect(reverse('configuracao', args=[request.user]))
+
+
+def abrirleads(request, pk):
+    status_aberto = 'fa-envelope-open'
+    Leads.objects.filter(pk=pk).update(status_aberto=status_aberto)
 
 
 def add_img_perfil(request):

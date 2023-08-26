@@ -1,0 +1,1379 @@
+
+*{
+	 margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+
+/* Celulares Moto G*/
+@media (max-width:  320.97px) {
+    body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        min-height: 9000px;
+    }
+
+
+    #header{
+        width:360px;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:0em;
+        font-size: 1em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-1.5em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 300px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 45%;
+        top:-2.3em;
+        display: none;
+    }
+
+    #limpar-pesquisa{
+        position: relative;
+        left: 5%;
+        top:0.1em;
+        display:none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        left: 0.5em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+   
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+
+         max-width: 320px;
+         position: relative;
+        left:2em;
+
+    }
+
+   
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #dashboard-estoque{
+        margin-top:2em;
+    }
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+
+}
+
+
+
+
+
+
+
+@media (min-width:  321.00px) and (max-width:360.98px) {
+     body{
+
+
+        margin: 0 ;
+        padding: 0;
+
+         overflow-x: hidden;
+          font-family:Noto Sans, sans-serif;
+
+
+
+         background: lavender;
+
+        min-height: 9000px;
+
+
+    }
+
+   
+
+
+
+    #header{
+        width:360px;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:0em;
+        font-size: 1em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-1em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 50%;
+        top:-2.3em;
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        left: 0.5em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+   
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+        border:1px solid red;
+         max-width: 320px;
+         position: relative;
+        left:2em;
+
+    }
+
+   
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #dashboard-estoque{
+        margin-top:2em;
+    }
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+
+}
+
+/* Celulares Médio*/
+@media (min-width: 361px) and (max-width:  375.97px) {
+    body{
+
+
+        margin: 0 ;
+        padding: 0;
+
+         overflow-x: hidden;
+          font-family:Noto Sans, sans-serif;
+
+
+
+         background: lavender;
+
+        min-height: 9000px;
+
+
+    }
+
+   
+
+
+
+    #header{
+        width:360px;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:0em;
+        font-size: 1em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-1em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 50%;
+        top:-2.3em;
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        left: 0.5em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+   
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+        border:1px solid red;
+         max-width: 320px;
+         position: relative;
+        left:2em;
+
+    }
+
+   
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+
+    #dashboard-estoque{
+        margin-top:2em;
+    }
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+
+}
+
+
+
+
+/* Celulares até 5,5 Polegadas Tamanho G */
+@media (min-width: 376px) and (max-width:  428.98px) {
+	body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        min-height: 9000px;
+    }
+
+   
+
+
+
+    #header{
+        width:120%;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:0em;
+        font-size: 1.2em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-0.5em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 50%;
+        top:-2.3em;
+        display: none;
+    }
+
+    
+    
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #dashboard-estoque{
+        margin-top:2em;
+    }
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+}
+
+
+/* Tablet Menor */
+@media (min-width: 429.00px) and (max-width:  575.98px) {
+    body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        min-height: 9000px;
+    }
+
+   
+
+
+
+    #header{
+        width:110%;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:1em;
+        font-size: 1.7em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-0.5em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 80%;
+        top:-1.5em;
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        left: 0.5em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+   
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+        border:1px solid red;
+         max-width: 320px;
+         position: relative;
+        left:2em;
+
+    }
+
+   
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+}
+
+@media (min-width: 576.00px) and (max-width:  767.98px) {
+     body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        min-height: 9000px;
+    }
+
+   
+
+
+
+    #header{
+        width:110%;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:20%;
+        font-size: 1.7em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-0.5em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 70%;
+        top:-2em;
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        left: 0.5em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+   
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+        border:1px solid red;
+         max-width: 320px;
+         position: relative;
+        left:2em;
+
+    }
+
+   
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+}
+
+/*Tablet G */
+@media (min-width: 768.00px) and (max-width:  1024.98px) {
+    body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        min-height: 9000px;
+    }
+
+
+    #header{
+        width:110%;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:20%;
+        font-size: 1.7em;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-0.5em;
+    }
+
+
+    #pesquisa{
+         max-height: 70px;
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+        min-height: 40px;
+        z-index: 0;
+        font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 80%;
+        top:-2.3em;
+        display: none;
+    }
+
+    #menu-deslizante{
+        position: relative;
+        top:1em;
+        left: 0.5em;
+        z-index: 1;
+        background: white;
+        border:1px solid black;
+    }
+
+   
+
+    #nome-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1em;
+        border:1px solid red;
+         max-width: 320px;
+         position: relative;
+        left:2em;
+
+    }
+
+   
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #info-veiculo-estoque{
+        font-size: 1.7em;
+    }
+
+
+
+
+
+
+    footer{
+        position: relative;
+        left:0em;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+
+}
+
+/* Laptop */
+@media (min-width: 1025.00px) and (max-width:  1439.98px) {
+     body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        max-height: 9000px;
+
+    }
+
+   
+
+
+
+    #header{
+        width:110%;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:30%;
+        font-size: 1.7em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        min-width: 320px;
+        position: relative;
+        left:-0.5em;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+    
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 85%;
+        top:-2.5em;
+        display: none;
+    }
+
+    
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #display-estoque{
+        max-height: 28em;
+    }
+
+    #info-veiculo-estoque{
+        font-size: 0.8em;
+    }
+
+    .carousel{
+        max-width: 30%;
+        padding: 1em;
+       
+    }
+
+    #info-veiculo-estoque{
+        position: relative;
+        left:35%;
+        top:-28em;
+    }
+
+    .botao-copiar{
+        position: relative;
+        left:-10em;
+        top:-5em;
+
+    }
+
+    #botao-acessar-lp{
+        position: relative;
+        left:-8em;
+        top:-5em;
+
+    }
+
+    #area-btn-editar-deletar{
+        position: relative;
+        top:-30em;
+        left: -11em;
+    }
+
+    hr{
+        display: none;
+    }
+
+    .veiculo-estoque{
+        max-height:27em;
+    }
+
+    #form-deletar{
+        display:inline;
+    }
+
+
+
+
+
+
+    footer{
+        position: absolute;
+        left:40%;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+
+
+
+}
+
+
+/* LaptopG */
+@media (min-width: 1400.00px) and (max-width:  2560.98px) {
+     body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        max-height: 9000px;
+
+    }
+
+    .container-fluid{
+        max-width:2559px
+    }
+
+
+
+
+
+    #header{
+        min-width:2559px;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:30%;
+        font-size: 1.7em;
+        font-weight: 600;
+        white-space: nowrap;
+    }
+
+
+    #navegacao{
+        min-width: 100%;
+        position: relative;
+        left:10%;
+    }
+
+
+    #pesquisa{
+         max-height: 70px;
+    }
+
+    #barra-pesquisa{
+        max-width: 2559px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+        min-height: 40px;
+        z-index: 0;
+        font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 90%;
+        top:-2em;
+        display: none;
+    }
+
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #dashboard-estoque{
+        position:relative;
+        left:10%;
+    }
+
+    #display-estoque{
+        max-height: 28em;
+    }
+
+    #info-veiculo-estoque{
+        font-size: 0.8em;
+    }
+
+    .carousel{
+        max-width: 30%;
+        padding: 1em;
+
+    }
+
+    #info-veiculo-estoque{
+        position: relative;
+        left:35%;
+        top:-28em;
+    }
+
+    .botao-copiar{
+        position: relative;
+        left:-10em;
+        top:-5em;
+
+    }
+
+    #botao-acessar-lp{
+        position: relative;
+        left:-8em;
+        top:-5em;
+
+    }
+
+    #area-btn-editar-deletar{
+        position: relative;
+        top:-30em;
+        left: -11em;
+    }
+
+    hr{
+        display: none;
+    }
+
+    .veiculo-estoque{
+        max-height:40em;
+    }
+
+    #form-deletar{
+        display:inline;
+    }
+
+
+    footer{
+        position: absolute;
+        left:40%;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+}
+
+
+/* Telas Wide Screen */
+@media (min-width: 2559.00px){
+   body{
+        margin: 0 ;
+        padding: 0;
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
+        max-height: 9000px;
+        max-width:2000px
+
+    }
+
+
+    #header{
+        width:110%;
+       background:#000000;
+        position: relative;
+        left:-2em;
+    }
+
+    #img-logo{
+        max-width:300px;
+        max-height: 70px;
+        position: relative;
+        left:1.5em;
+    }
+
+    #data-hora-header{
+        max-width: 320px;
+        position: relative;
+        left:50%;
+        font-size: 1.7em;
+        font-weight: 600;
+
+        white-space: nowrap;
+
+    }
+
+
+    #navegacao{
+        max-width: 100%;
+        position: relative;
+        left:10%;
+    }
+
+
+    #pesquisa{
+
+         max-height: 70px;
+
+    }
+
+    #barra-pesquisa{
+        min-width: 310px;
+        padding-left:0.5em;
+        position: relative;
+        left:0.3em;
+        top:0em;
+
+        min-height: 40px;
+         z-index: 0;
+         font-size: 2em;
+
+    }
+    .form-control{
+        border:1px solid black;
+    }
+
+
+
+    #btn-pesquisar{
+        font-size:1.5em;
+        padding:0.5em;
+        line-height: 0.5em;
+        position: relative;
+        left: 80%;
+        top:-1.5em;
+        display: none;
+    }
+
+
+
+    .text-decoration-none{
+          text-decoration: none;
+    }
+
+    #display-estoque{
+        max-height: 28em;
+    }
+
+    #info-veiculo-estoque{
+        font-size: 0.8em;
+    }
+
+    .carousel{
+        max-width: 30%;
+        padding: 1em;
+
+    }
+
+    #info-veiculo-estoque{
+        position: relative;
+        left:35%;
+        top:-25em;
+        font-size:1.3em;
+    }
+
+    .botao-copiar{
+        position: relative;
+        left:-10em;
+        top:-5em;
+
+    }
+
+    #botao-acessar-lp{
+        position: relative;
+        left:-8em;
+        top:-5em;
+
+    }
+
+    #area-btn-editar-deletar{
+        position: relative;
+        top:-30em;
+        left: -11em;
+    }
+
+    hr{
+        display: none;
+    }
+
+    .img{
+        max-height:35em;
+    }
+
+
+    footer{
+        position: absolute;
+        left:40%;
+        top:9000px;
+        text-align: center;
+        color:black;
+
+    }
+
+
+
+}
+
