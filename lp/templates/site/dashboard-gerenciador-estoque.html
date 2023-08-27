@@ -31,6 +31,33 @@
      <link rel="stylesheet" type="text/css" href="{% static 'css/estilo-gerenciador-lp-lecv.css' %}">
       <link rel="stylesheet" type="text/css" href="estilo-gerenciador-lp-lecv.css">
 
+    <style>
+            /* Modificações para o modal tela inteira */
+            .modal-fullscreen {
+              width: 100vw;
+              max-width: 100%;
+              height: 100vh;
+              max-height: 100%;
+              margin: 0;
+              top: 0;
+              left: 0;
+            }
+
+            .modal-dialog.modal-fullscreen {
+              width: 100%;
+              max-width: 100%;
+              height: 100%;
+              margin: 0;
+            }
+
+            .modal-content {
+              height: 100%;
+              border: 0;
+              border-radius: 0;
+            }
+
+    </style>
+
 
 
     <!-- Java Script -->
@@ -66,6 +93,8 @@
         <header id="header">
             <!-- Imagem da Logo -->
             <img src="{% static 'img/logo-marca-5.png' %}" id="img-logo">
+            <!-- BTN VOLTAR AO DASHBOARD -->
+			<a href="{% url 'dashboard' %}"  id="retorno-leads" class="btn btn-warning p-1">LEADS</a>
         </header>
 
 
@@ -184,7 +213,7 @@
 
                      <div class="m-5 text-center" id="area-btn-editar-deletar" >
 
-                         <button type="submit" id="editar" class="btn btn-outline-primary mr-5">Editar</button>
+                         <a href="{% url 'editar-lp' pk=veiculo.pk %}"  id="editar" class="btn btn-outline-primary mr-5" ">Editar</a>
 
 
 
@@ -221,10 +250,14 @@
                 </div>
             </div>
             <br>
-             {% endfor %}
+
+         {% endfor %}
         </div>
 
-        <!-- FINAL DASHBOARD -->                
+        <!-- FINAL DASHBOARD -->
+
+
+
 
             <!-- FOOTER -->
         <footer >

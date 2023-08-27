@@ -8,30 +8,17 @@
 /* Celulares Moto G*/
 @media (max-width:  320.97px) {
     body{
-
-
         margin: 0 ;
         padding: 0;
-
-         overflow-x: hidden;
-          font-family:Noto Sans, sans-serif;
-
-
-
-         background: lavender;
-
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
         min-height: 900px;
-
-
     }
 
 
-
-
     .container-fluid{
-
          max-width:320px;
-
     }
 
     #header{
@@ -47,6 +34,8 @@
         position: relative;
         left:1em;
     }
+
+
 
     #data-hora-header{
         max-width: 330px;
@@ -2802,7 +2791,7 @@
 	    padding: 0;
 		overflow-x: hidden;
 		font-family:Noto Sans, sans-serif;
-		background: red;
+		background: lavender;
 		min-height: 2000px;
 	}
 
@@ -2901,11 +2890,11 @@
     #nome-perfil{
     	font-weight: 800;
     	white-space: nowrap;
-    	font-size: 1em;
+    	font-size: 2.5em;
 
          max-width: 360px;
          position: relative;
-        left:10em;
+        left:40%;
 
     }
 
@@ -2928,6 +2917,15 @@
     }
 
     #config-perfil{
+        font-weight: 800;
+        white-space: nowrap;
+        font-size: 1.5em;
+        position: relative;
+        left:-0.5em;
+
+    }
+
+    #estoque-veiculos{
         font-weight: 800;
         white-space: nowrap;
         font-size: 1.5em;

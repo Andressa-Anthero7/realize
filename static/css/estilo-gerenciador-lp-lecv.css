@@ -33,6 +33,11 @@
         left:1.5em;
     }
 
+    #retorno-leads{
+        position:relative;
+        left:45%;
+    }
+
     #data-hora-header{
         max-width: 320px;
         position: relative;
@@ -151,24 +156,13 @@
 @media (min-width:  321.00px) and (max-width:360.98px) {
      body{
 
-
         margin: 0 ;
         padding: 0;
-
-         overflow-x: hidden;
-          font-family:Noto Sans, sans-serif;
-
-
-
-         background: lavender;
-
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
         min-height: 9000px;
-
-
     }
-
-   
-
 
 
     #header{
@@ -183,6 +177,11 @@
         max-height: 70px;
         position: relative;
         left:1.5em;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:45%;
     }
 
     #data-hora-header{
@@ -312,7 +311,7 @@
 
 
     #header{
-        width:360px;
+        width:375px;
        background:#000000;
         position: relative;
         left:-2em;
@@ -323,6 +322,11 @@
         max-height: 70px;
         position: relative;
         left:1.5em;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:50%;
     }
 
     #data-hora-header{
@@ -457,7 +461,12 @@
         max-width:300px;
         max-height: 70px;
         position: relative;
-        left:1.5em;
+        left:2em;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:50%;
     }
 
     #data-hora-header{
@@ -563,6 +572,11 @@
         max-height: 70px;
         position: relative;
         left:1.5em;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:50%;
     }
 
     #data-hora-header{
@@ -672,9 +686,6 @@
         min-height: 9000px;
     }
 
-   
-
-
 
     #header{
         width:110%;
@@ -688,6 +699,11 @@
         max-height: 70px;
         position: relative;
         left:1.5em;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:50%;
     }
 
     #data-hora-header{
@@ -810,7 +826,7 @@
         max-width:300px;
         max-height: 70px;
         position: relative;
-        left:1.5em;
+        left:3em;
     }
 
     #data-hora-header{
@@ -820,6 +836,11 @@
         font-size: 1.7em;
         font-weight: 600;
         white-space: nowrap;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:70%;
     }
 
 
@@ -938,6 +959,11 @@
         max-height: 70px;
         position: relative;
         left:1.5em;
+    }
+
+    #retorno-leads{
+        position:relative;
+        left:80%;
     }
 
     #data-hora-header{
@@ -1083,7 +1109,7 @@
     }
 
     .container-fluid{
-        max-width:2559px
+        min-width:2000px
     }
 
 
@@ -1104,10 +1130,15 @@
         left:1.5em;
     }
 
+    #retorno-leads{
+        position:relative;
+        left:80%;
+    }
+
     #data-hora-header{
         max-width: 320px;
         position: relative;
-        left:30%;
+        left:50%;
         font-size: 1.7em;
         font-weight: 600;
         white-space: nowrap;
@@ -1167,9 +1198,6 @@
         max-height: 28em;
     }
 
-    #info-veiculo-estoque{
-        font-size: 0.8em;
-    }
 
     .carousel{
         max-width: 30%;
@@ -1180,19 +1208,20 @@
     #info-veiculo-estoque{
         position: relative;
         left:35%;
-        top:-28em;
+        top:-25em;
+        font-size:1.3em;
     }
 
     .botao-copiar{
         position: relative;
-        left:-10em;
+        left:-16em;
         top:-5em;
 
     }
 
     #botao-acessar-lp{
         position: relative;
-        left:-8em;
+        left:-12em;
         top:-5em;
 
     }

@@ -8,30 +8,17 @@
 /* Celulares Moto G*/
 @media (max-width:  320.97px) {
     body{
-
-
         margin: 0 ;
         padding: 0;
-
-         overflow-x: hidden;
-          font-family:Noto Sans, sans-serif;
-
-
-
-         background: lavender;
-
+        overflow-x: hidden;
+        font-family:Noto Sans, sans-serif;
+        background: lavender;
         min-height: 900px;
-
-
     }
 
 
-
-
     .container-fluid{
-
          max-width:320px;
-
     }
 
     #header{
@@ -47,6 +34,8 @@
         position: relative;
         left:1em;
     }
+
+
 
     #data-hora-header{
         max-width: 330px;

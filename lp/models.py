@@ -19,6 +19,7 @@ class Leads(models.Model):
 
 
 class LandingPage(models.Model):
+    tipo_veiculo = models.CharField(max_length=100, blank=False, null=False, default='Tipo Veículo')
     nome_marca = models.CharField(max_length=100, blank=False, null=False)
     nome_modelo = models.CharField(max_length=100, blank=False, null=False)
     ano = models.CharField(max_length=4, blank=False, null=False)
