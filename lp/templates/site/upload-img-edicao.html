@@ -12,14 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Antherus</title>
 
-	
+
 
 	 <script src="https://rawgit.com/enyo/dropzone/master/dist/dropzone.js"></script>
     <link rel="stylesheet" href="https://rawgit.com/enyo/dropzone/master/dist/dropzone.css">
 
 
 
-	
+
 
 	<!-- Jquery CDN -->
 	 <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
@@ -38,7 +38,7 @@
     <!-- ----------------------------------- Jquery Ui 1.13.2 ----------------------------------------------------- -->
     <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js" integrity="sha256-lSjKY0/srUM9BE3dPm+c4fBo1dky2v27Gdjm2uoZaL0=" crossorigin="anonymous"></script>
 
-     
+
 
 
 
@@ -89,7 +89,7 @@
 
 
 
-	 
+
 
 
 </head>
@@ -129,21 +129,143 @@
 					<div id="div-upload-img">
 						<h6 class="m-1 text-center">UPLOAD ATÉ 10 IMAGENS</h6>
 						<br>
-						<form enctype='multipart/form-data' action="" method='POST'  >
+<form enctype="multipart/form-data" action="" method="POST">
+    <div class="dropzone dz" id="my-dropzone">
+        <input name="veiculo_vinculado" value="{{ lp.pk }}">
+        <div class="fallback">
+            <input class="img" name="file" type="file" multiple />
+        </div>
+
+        <div class="images-container p-2 text-center row" style="display: flex;">
+            {% if lp.imagem_1 %}
+                <div class="image-box m-3 col-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_1.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if lp.imagem_2 %}
+                <div class="image-box m-3 col-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_2.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+            {% if lp.imagem_3 %}
+                <div class="image-box m-3 col-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_3.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
 
 
-							<div class="dropzone dz" id="my-dropzone">
-								<input  name="veiculo_vinculado" value="{{lp.pk}}">
-								<div class="fallback">
-								  <input class="img" name="file" type="file" multiple />
-								</div>
+            {% if lp.imagem_4 %}
+                <div class="image-box m-3 col-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_4.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
 
-							</div>
-							<div class="text-right p-3">
-								<button   id="salvar" class="mr-5 btn btn-warning" >Salvar</button>
-							</div>
+                </div>
+            {% endif %}
 
-						</form>
+
+            {% if lp.imagem_5 %}
+                <div class="image-box m-3 col-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_5.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if lp.imagem_6 %}
+                <div class="image-box m-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_6.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if lp.imagem_7 %}
+                <div class="image-box m-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_7.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if lp.imagem_8 %}
+                <div class="image-box m-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_8.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if lp.imagem_9 %}
+                <div class="image-box m-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_9.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+
+            {% if lp.imagem_10 %}
+                <div class="image-box m-3">
+                    <div class="dz-details">
+                        <img style="max-width: 300px; max-height: 200px;" src="{{ lp.imagem_10.url }}" alt="Foto" />
+                    </div>
+                    <div class="dz-progress">
+                        <span class="dz-upload" data-dz-uploadprogress></span>
+                    </div>
+                </div>
+            {% endif %}
+
+            <!-- Repita o padrão para as imagens restantes -->
+        </div>
+    </div>
+
+    <div class="text-right p-3">
+        <button id="salvar" class="mr-5 btn btn-warning">Salvar</button>
+    </div>
+</form>
+
+
+
 
 					</div>
 
@@ -301,6 +423,6 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    
+
 </body>
 </html>

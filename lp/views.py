@@ -428,7 +428,11 @@ def editar_lp(request, pk):
         # Salvar as mudanças de volta ao banco de dados
         lp_sendo_editada.save()
 
-        return render(request, 'site/upload-img.html', {'lp': lp_sendo_editada})
+        # lp relacionada para colocar as fotos
+        lp_relacionada = get_object_or_404(LandingPage, pk=pk)
+        print(lp_relacionada)
+
+        return render(request, 'site/upload-img-edicao.html', {'lp': lp_relacionada})
     else:
         lp_editar = get_object_or_404(LandingPage, pk=pk)
         print(lp_editar)

@@ -1081,9 +1081,6 @@
 	}
 
 
-
-
-
 	#area-formulario{
 		max-width:40%;
 		position: relative;
@@ -1094,14 +1091,6 @@
 		padding: 1em;
 		border-radius:5%;
 	}
-
-
-
-
-
-
-
-
 
 
 	#display-veiculo-lp{
@@ -1131,6 +1120,11 @@
 		z-index: 3;
 		font-size: 4em;
 		display: none;
+	}
+
+	#preco-veiculo{
+	    position:relative;
+	    left:25%
 	}
 
 }
