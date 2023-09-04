@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-45)3+-23ediw3s$q(*l2)2+^$o8j@q&!utxurs=&sjj(bv(yv4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['laemcasaveiculos.com.br', 'www.laemcasaveiculos.com.br']
+ALLOWED_HOSTS = ['laemcasaveiculos.com.br', 'www.laemcasaveiculos.com.br','34.235.170.97']
 
 
 # Application definition
