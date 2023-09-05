@@ -187,6 +187,7 @@ def dashboard_lp(request):
         vidro_eletrico = request.POST.get('vidro_eletrico')
         vidro_verdes = request.POST.get('vidro_verdes')
         volante_regulagem_altura = request.POST.get('volante_regulagem_altura')
+        info_complementares = request.POST.get('info_complementares')
         anunciado_por = request.user
         LandingPage.objects.create(nome_modelo=modelo,
                                    nome_marca=marca,
@@ -259,6 +260,7 @@ def dashboard_lp(request):
                                    vidro_eletrico=vidro_eletrico,
                                    vidro_verdes=vidro_verdes,
                                    volante_regulagem_altura=volante_regulagem_altura,
+                                   info_complementares=info_complementares,
                                    anunciado_por=anunciado_por)
         lp = LandingPage.objects.last()
         return render(request, 'site/upload-img.html', {'lp': lp})
