@@ -131,6 +131,13 @@ class LandingPage(models.Model):
         return super().save(*args, **kwargs)
 
 
+class Cores(models.Model):
+    nome_cor = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.nome_cor
+
+
 class Perfil(models.Model):
     user_vinculado = models.CharField(max_length=50)
     img_perfil = ResizedImageField(size=[150, 150], quality=100, upload_to='media/', force_format='PNG', blank=True,

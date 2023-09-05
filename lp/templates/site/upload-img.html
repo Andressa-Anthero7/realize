@@ -127,7 +127,7 @@
 
 
 					<div id="div-upload-img">
-						<h6 class="m-1 text-center">UPLOAD ATÉ 10 IMAGENS</h6>
+						<h6 class="m-1 text-center">UPLOAD ATÉ 15 IMAGENS</h6>
 						<br>
 						<form enctype='multipart/form-data' action="" method='POST'  >
 
@@ -176,7 +176,7 @@
       var list_of_files = new Array();
       Dropzone.autoDiscover = false;  //prevent dropzone to automatically discover the dropzone object in your html
        var myDropzone = new Dropzone('#my-dropzone',{
-            parallelUploads:10,
+            parallelUploads:15,
             uploadMultiple: true, // allow multiple upload
             autoProcessQueue: false, // prevent dropzone from uploading automatically
             url: "/", //dropzone needs a url attribute or it complains, what value you put here does not really matter. It is only purpose is to prevent a javascript error message from chrome console
@@ -218,6 +218,31 @@
 
 
         });
+
+        $(".dropzone").sortable({
+            items:'.dz-preview',
+            cursor: 'grab',
+            opacity: 0.5,
+            distance: 20,
+            tolerance: 'pointer',
+            stop: function () {
+            console.log("Aqui chega o Array principal" + list_of_files)
+              var queue = myDropzone.getAcceptedFiles();
+              newQueue = [];
+              console.log("A newQueue é " + newQueue)
+              $('#my-dropzone .dz-preview .dz-filename [data-dz-name]').each(function (count, el) {
+                    var name = el.innerHTML;
+                    queue.forEach(function(file) {
+                        if (file.name === name) {
+                            newQueue.push(file);
+                        }
+                    });
+              });
+			  myDropzone.Files = newQueue;
+			  list_of_files = newQueue;
+
+			}
+		});
 
 
 

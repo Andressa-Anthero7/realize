@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, ItensDestaque
+from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, Cores
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
@@ -265,14 +265,8 @@ def dashboard_lp(request):
         lp = LandingPage.objects.last()
         return render(request, 'site/upload-img.html', {'lp': lp})
     else:
-        lista_itens_destaque = ItensDestaque.objects.all()
-        lista_lp = LandingPage.objects.all().order_by('-pk')
-        busca = request.GET.get('barra-pesquisa')
-        if busca:
-            lista_lp = LandingPage.objects.filter(Q(nome_empreendimento__icontains=busca)).order_by('-pk')
-        return render(request, 'site/dashboard-lp.html', {'lista_lp': lista_lp,
-                                                          'busca': busca,
-                                                          'lista_itens_destaque': lista_itens_destaque})
+        cores = Cores.objects.all()
+        return render(request, 'site/dashboard-lp.html', {'cores': cores})
 
 
 @login_required
