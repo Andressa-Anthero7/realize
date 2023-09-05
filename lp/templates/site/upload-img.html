@@ -279,7 +279,7 @@
 
 						const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 						var request = new XMLHttpRequest();
-						request.open("POST", "http://54.196.120.245:8000/accounts/login/adicionar-veiculo/upload-img/", false); //config your post url here
+						request.open("POST", "http://laemcasaveiculos.com.br/accounts/login/adicionar-veiculo/upload-img/", false); //config your post url here
 						request.setRequestHeader("X-CSRFToken", csrftoken);
 						request.send(formData);  //send the post request to server
 						setTimeout(() => {
