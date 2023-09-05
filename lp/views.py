@@ -78,11 +78,6 @@ def configuracao(request, user):
         return redirect(reverse('configuracao', args=[request.user]))
 
 
-def abrirleads(request, pk):
-    status_aberto = 'fa-envelope-open'
-    Leads.objects.filter(pk=pk).update(status_aberto=status_aberto)
-
-
 def add_img_perfil(request):
     if request.method == 'POST':
         img_perfil = request.FILES.get('img_perfil_add')
@@ -110,6 +105,7 @@ def landingpage(request, pk, slug):
         Leads.objects.create(nome_leads=nome_leads,
                              whatsapp=whatsapp_leads,
                              data_recebimento=recebido_em)
+        veiculo = get_object_or_404(LandingPage, pk=pk, slug=slug)
         return render(request, 'site/landingpage.html', {'veiculo': veiculo})
     veiculo = get_object_or_404(LandingPage, pk=pk, slug=slug)
     return render(request, 'site/landingpage.html', {'veiculo': veiculo})

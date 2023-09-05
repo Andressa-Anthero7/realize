@@ -250,63 +250,36 @@
 
 
          // the following function override the "submit" button in the form
-		  $(document).on("click", "#salvar", function(e){
-				e.preventDefault() //prevent the form from submitting
-				console.log('num of files: ' + list_of_files.length);
-				var formData = new FormData(); // construct our own upload data
+		  $(document).on("click", "#salvar", function (e) {
+				e.preventDefault();
+
+				var formData = new FormData();
 				var inputs = $("#my-dropzone input");
 
-				//get
-				$.each(inputs, function(obj, v){
-					var name = $(v).attr("name")
+				$.each(inputs, function (obj, v) {
+					var name = $(v).attr("name");
 					var val = $(v).val();
-					//alert('name: ' + name + ' value: ' + val);
 					formData.append(name, val);
 				});
 
-				//get the file object from dropzone and put it into our formdata
-				for(i=0;i<list_of_files.length;i++)
-				{
-					console.log(i)
-					console.log(list_of_files[i])
+				// Adicionar as imagens ao FormData
+				for (var i = 0; i < list_of_files.length; i++) {
 					formData.append('file', list_of_files[i]);
-
-
-
-					contagem = i+1
-					// alert(list_of_files.length)
-					for(i=0;i<list_of_files.length;i++){
-
-						const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-						var request = new XMLHttpRequest();
-						request.open("POST", "http://laemcasaveiculos.com.br/accounts/login/adicionar-veiculo/upload-img/", false); //config your post url here
-						request.setRequestHeader("X-CSRFToken", csrftoken);
-						request.send(formData);  //send the post request to server
-						setTimeout(() => {
-						  window.location.href = "http://laemcasaveiculos.com.br/accounts/login/estoque-veiculos/";
-						}, 3000);
-
-
-					}
-
-
-
-
 				}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+				const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+				var request = new XMLHttpRequest();
+				request.open("POST", "http://laemcasaveiculos.com.br/accounts/login/adicionar-veiculo/upload-img/", false);
+				request.setRequestHeader("X-CSRFToken", csrftoken);
+				request.onload = function () {
+					if (request.status === 200) {
+						// Todas as imagens foram enviadas com sucesso
+						window.location.href = "http://laemcasaveiculos.com.br/accounts/login/estoque-veiculos/";
+					} else {
+						console.error("Erro no envio das imagens");
+					}
+				};
+				request.send(formData);
 			});
 
 
