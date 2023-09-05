@@ -101,9 +101,11 @@ def landingpage(request, pk, slug):
     if request.method == 'POST':
         nome_leads = request.POST.get('nome_leads')
         whatsapp_leads = request.POST.get('whatsapp_leads')
+        envelope_fechado = 'fa-envelope'
         recebido_em = datetime.now()
         Leads.objects.create(nome_leads=nome_leads,
                              whatsapp=whatsapp_leads,
+                             status_aberto=envelope_fechado,
                              data_recebimento=recebido_em)
         veiculo = get_object_or_404(LandingPage, pk=pk, slug=slug)
         return render(request, 'site/landingpage.html', {'veiculo': veiculo})
