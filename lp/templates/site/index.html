@@ -32,9 +32,10 @@
 
 
 	<style>
+
 	    
 
-		 	#insta {
+		#insta {
 	        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 0%, #fd5949 20%, #d6249f 60%, #285AEB 90%);
 	        -webkit-background-clip: text;
 	        /* Also define standard property for compatibility */
@@ -59,6 +60,11 @@
 
 
 
+
+
+
+
+
     </style>
 
 
@@ -70,6 +76,7 @@
 
 	<!-- Java Script -->
 	 <script type="text/javascript" >
+
 	 {% for listagem in listagem %}
 
 
@@ -124,6 +131,8 @@
 		 {% endfor %}
 	 </script>
 
+	<script type="text/javascript" src="{% static 'js/script-index.js' %}"></script>
+
 
 
 
@@ -132,6 +141,11 @@
 
 <!-- Corpo do HTML -->
 <body lang="pt-br" >
+	<div class="loader-container">
+    	<img src="{% static 'img/logo-marca-5.png' %}"  alt="Logo" class="logo">
+  	</div>
+	  <!-- O conteúdo do seu site viria aqui -->
+	  <script src="{% static 'js/script-loader.js' %}"></script>
 
 
 
@@ -151,8 +165,8 @@
 			
 			<!-- LOGO REDES SOCIAIS -->
 			<div id="logos-redes-sociais" class="col-3">
-					<a href="https://www.facebook.com/Drieli.Cosultora" class="fa fa-facebook-official mx-1 p-3 btn-redes-sociais " aria-hidden="true" style="color:#3b5998;"><a href="https://www.facebook.com/Drieli.Cosultora"></a>
-					<a href="https://www.instagram.com/realize_seu_imovel/" class="fa fa-instagram mx-1 p-3 btn  btn-redes-sociais" id="insta" aria-hidden="true"></a>
+					<a href="https://www.facebook.com/profile.php?id=100094631761273"  target="_blank" class="fa fa-facebook-official mx-1 p-3 btn-redes-sociais " aria-hidden="true" style="color:#3b5998;"><a href="https://www.facebook.com/Drieli.Cosultora"></a>
+					<a href="https://www.instagram.com/laemcasaveicrp/"  target="_blank" class="fa fa-instagram mx-1 p-3 btn  btn-redes-sociais" id="insta" aria-hidden="true"></a>
 				
 			</div>
 
@@ -169,71 +183,15 @@
 
 
 					<!--INPUT DA BARRA DE PESQUISA -->
-					<input type="text" name="barra-pesquisa" id="barra-pesquisa" class="form-control  mr-1 " placeholder="Pesquisar por Marca, Modelo, Ano, Combustível e/ou Câmbio. " value="" >
+					<input type="text" name="barra_pesquisa" id="barra-pesquisa" class="form-control  mr-1 " placeholder="Pesquisar por Marca, Modelo, Ano, Combustível e/ou Câmbio. " value="" >
 
 
-					<i class="fa fa-times-circle-o  btn    p-0 mr-3 " id="apagar-pesquisa" aria-hidden="true" style="font-size: 1.5em;"></i>
+					<a href="http://127.0.0.1:8000/" class="fa fa-times-circle-o  btn    p-0 mr-3 " id="apagar-pesquisa" aria-hidden="true" style="font-size: 1.5em;"></a>
 					<!--BTN PESQUISAR -->
 					<button type="submit" id="btn-pesquisar" class=" btn btn-primary  ">
 						<i class="fa fa-search"></i>
 					</button>
 					
-
-
-
-
-					<!--<script>
-
-
-
-						$('#barra-pesquisa').focusin(function(){
-							$('#barra-pesquisa').css({'width': '110%'});
-							$('.fa-times-circle-o').hide();
-							$('#btn-pesquisar').hide();
-
-							setTimeout(() => {
-							  	$(this).css({'min-width': '80%'});
-								$('.fa-times-circle-o').show();
-								$('#btn-pesquisar').show();
-							}, "3000");
-
-
-
-
-						});
-
-						$('#barra-pesquisa').focusout(function(){
-							$(this).css({'min-width': '80%'});
-							$('.fa-times-circle-o').show();
-							$('#btn-pesquisar').show();
-						});
-
-
-						$('#barra-pesquisa').keydown(function(){
-
-
-							$(this).css({'min-width': '110%'});
-							$('.fa-times-circle-o').hide();
-							$('#btn-pesquisar').hide();
-
-
-
-						});
-
-
-
-
-						$(document).on('click','#apagar-pesquisa', function(){
-							//$('#barra-pesquisa').val('');
-							location.href = 'http://127.0.0.1:8000/';
-						});
-
-
-
-
-
-					</script>-->
-
 
 				</form>
 
@@ -245,7 +203,7 @@
 		
 
 			<!-- DISPLAY IMOVEIS -->
-			<div id="display-anuncios" class="border border-darka rounded row m-2 p-1 text-center ">
+			<div id="display-anuncios" class="border border-dark rounded row m-2 p-1 text-center ">
 				<!-- HEADER DO DISPLAY -->
 				<div class="col-12"><h3 class="text-center p-2">Confira essas super ofertas!!!</h3></div>
 				<!--DECK DO DISPLAY -->
@@ -255,8 +213,73 @@
 					  <div class="card card-{{listagem.id}} col-12 col-lg-4 col-md-6 m-1 p-0 rounded">
 
 						<div class="card-body d-flex flex-column p-0 m-0">
-						  <h5 class="card-title p-2">{{listagem.nome_marca|upper}}{{listagem.nome_modelo|upper}}</h5>
-								<div id="itens-opcionais-{{listagem.id}}">
+						  <h5 class="card-title p-2">{{listagem.nome_marca|upper}}<br>{{listagem.nome_modelo|upper}}</h5>
+
+							<div id="caroussel-{{listagem.id}}" class="carousel slide" data-ride="carousel">
+							   <div class="carousel-inner text-center">
+									<div class="carousel-item active ">
+									  {% if listagem.imagem_1 %}
+										<img class="img img-fluid m-0 p-0 " src="{{listagem.imagem_1.url}}" alt="Slide 1">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_2 %}
+										<img class="img img-fluid" src="{{listagem.imagem_2.url}}" alt="Slide 2">
+									  {% endif %}
+									</div>
+									<!-- Adicione mais slides conforme necessário -->
+									<div class="carousel-item">
+									  {% if listagem.imagem_3 %}
+										<img class="img img-fluid" src="{{listagem.imagem_3.url}}" alt="Slide 3">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_4 %}
+										<img class="img img-fluid" src="{{listagem.imagem_4.url}}" alt="Slide 4">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_5 %}
+										<img class="img img-fluid" src="{{listagem.imagem_5.url}}" alt="Slide 5">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_6 %}
+										<img class="img img-fluid" src="{{listagem.imagem_6.url}}" alt="Slide 6">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_7 %}
+										<img class="img img-fluid" src="{{listagem.imagem_7.url}}" alt="Slide 7">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_8 %}
+										<img class="img img-fluid" src="{{listagem.imagem_8.url}}" alt="Slide 8">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_9 %}
+										<img class="img img-fluid" src="{{listagem.imagem_9.url}}" alt="Slide 9">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_10 %}
+										<img class="img img-fluid" src="{{listagem.imagem_10.url}}" alt="Slide 10">
+									  {% endif %}
+									</div>
+
+							   </div>
+							   <a class="carousel-control-prev" href="#caroussel-{{listagem.id}}" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							   </a>
+							   <a class="carousel-control-next" href="caroussel-{{listagem.id}}" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							   </a>
+						</div>
+							<div id="itens-opcionais-{{listagem.id}}">
 									{% if listagem.acendedor_cigarros %}
 										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.acendedor_cigarros }}</small>
 									{% endif %}
@@ -496,73 +519,9 @@
 									{% if listagem.vidro_verdes %}
 										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.vidro_verdes }}</small>
 									{% endif %}
-									<p>Passe e mouse ou dedo para ampliar...</p>
+									<p>Toque para ampliar...</p>
 
 								</div>
-							<div id="caroussel-{{listagem.id}}" class="carousel slide" data-ride="carousel">
-							   <div class="carousel-inner text-center">
-									<div class="carousel-item active ">
-									  {% if listagem.imagem_1 %}
-										<img class="img img-fluid m-0 p-0 " src="{{listagem.imagem_1.url}}" alt="Slide 1">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_2 %}
-										<img class="img img-fluid" src="{{listagem.imagem_2.url}}" alt="Slide 2">
-									  {% endif %}
-									</div>
-									<!-- Adicione mais slides conforme necessário -->
-									<div class="carousel-item">
-									  {% if listagem.imagem_3 %}
-										<img class="img img-fluid" src="{{listagem.imagem_3.url}}" alt="Slide 3">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_4 %}
-										<img class="img img-fluid" src="{{listagem.imagem_4.url}}" alt="Slide 4">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_5 %}
-										<img class="img img-fluid" src="{{listagem.imagem_5.url}}" alt="Slide 5">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_6 %}
-										<img class="img img-fluid" src="{{listagem.imagem_6.url}}" alt="Slide 6">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_7 %}
-										<img class="img img-fluid" src="{{listagem.imagem_7.url}}" alt="Slide 7">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_8 %}
-										<img class="img img-fluid" src="{{listagem.imagem_8.url}}" alt="Slide 8">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_9 %}
-										<img class="img img-fluid" src="{{listagem.imagem_9.url}}" alt="Slide 9">
-									  {% endif %}
-									</div>
-									<div class="carousel-item">
-									  {% if listagem.imagem_10 %}
-										<img class="img img-fluid" src="{{listagem.imagem_10.url}}" alt="Slide 10">
-									  {% endif %}
-									</div>
-
-							   </div>
-							   <a class="carousel-control-prev" href="#caroussel-{{listagem.id}}" role="button" data-slide="prev">
-								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-								<span class="sr-only">Previous</span>
-							   </a>
-							   <a class="carousel-control-next" href="caroussel-{{listagem.id}}" role="button" data-slide="next">
-								<span class="carousel-control-next-icon" aria-hidden="true"></span>
-								<span class="sr-only">Next</span>
-							   </a>
-						</div>
 
 						</div>
 					  </div>
@@ -585,13 +544,13 @@
 
 
 
-		<!-- CARROUSSEL -->
+		<!-- CARROUSSEL
 		<div class="mt-3" id="div-carousel">
 
 			<div id="carousel-display" class="carousel slide" data-ride="carousel" data-interval="5000">
 
 				<div class="carousel-inner">
-					<h4 class="text-center" id="header-caroussel">Sugestão de imóveis para você!!</h4>
+					<h4 class="text-center" id="header-caroussel">Sugestão de véiculos para você!!</h4>
 
 					<div class="carousel-item active  ">
 
@@ -639,13 +598,13 @@
 					<span class="sr-only">Next</span>
 				</a>
 			</div>
-		</div>
+		</div> -->
 
 
 
 		<!-- SOBRE NÓS -->
 		<div id="sobre" class="p-3 mt-3 text-center">
-			<h4 class="p-1">Sobre a Realize Seu Imóvel</h4>
+			<h4 class="p-1">Sobre a Lá em Casa Veículos</h4>
 			<p>Sabemos o quanto encontrar um carro acessível pode ser uma tarefa desafiadora. É por isso que estamos aqui para simplificar esse processo e ajudar você a encontrar o veículo perfeito que se encaixa no seu orçamento e atende às suas necessidades. Nossa concessionária de carros populares está pronta para guiá-lo em todas as etapas do caminho. Vamos entender suas preferências, e apresentar os carros ideais que combinam com o seu estilo de vida.
 			Faça uma pesquisa na nossa plataforma de busca e confira o nosso estoque!
 			</p>
@@ -660,7 +619,7 @@
 
 
 		<!-- RODAPÉ -->
-		<footer class="text-center my-5" >
+		<footer class="text-center my-5" id="footer" >
 			<i class="fa fa-copyright" aria-hidden="true">Copyright</i>
 			<div>Antherus - Desenvolvimento Web</div>
 			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>

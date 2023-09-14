@@ -8,6 +8,13 @@ from django.db.models import Q
 
 def index(request):
     listagem = LandingPage.objects.all()
+    busca = request.GET.get('barra_pesquisa')
+    if busca:
+        listagem = LandingPage.objects.filter(
+            Q(nome_modelo__icontains=busca) | Q(nome_marca__icontains=busca) | Q(
+                ano__icontains=busca) | Q(combustivel__icontains=busca) | Q(cambio__icontains=busca) | Q(
+                cor__icontains=busca) | Q(portas__icontains=busca) | Q(valor__icontains=busca)
+        )
     return render(request, 'site/index.html', {'listagem': listagem})
 
 
