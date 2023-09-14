@@ -5,14 +5,10 @@ from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.db.models import Q
 
-# Create your views here.
-
-# Substitua "SUA_CHAVE_DE_API" pela sua chave de API do Google Maps
-chave = "AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY"
-
 
 def index(request):
-    return render(request, 'site/index.html')
+    listagem = LandingPage.objects.all()
+    return render(request, 'site/index.html', {'listagem': listagem})
 
 
 def abrirleads(request, pk):

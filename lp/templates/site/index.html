@@ -7,8 +7,8 @@
 
 
 	<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lá em Casa Veículos</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Lá em Casa Veículos - Ribeirão Preto/SP</title>
 
 
 
@@ -31,7 +31,35 @@
      <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet" />
 
 
+	<style>
+	    
 
+		 	#insta {
+	        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 0%, #fd5949 20%, #d6249f 60%, #285AEB 90%);
+	        -webkit-background-clip: text;
+	        /* Also define standard property for compatibility */
+	        background-clip: text;
+	        -webkit-text-fill-color: transparent;
+	    }
+
+      #logos-redes-sociais{
+      	font-size: 2em;
+      }
+
+      .btn-redes-sociais:hover{
+      	transform: scale(1.5);
+      	text-decoration: none;
+      }
+
+      .hidden{
+      	display:none;
+      }
+
+
+
+
+
+    </style>
 
 
 
@@ -41,12 +69,27 @@
 
 
 	<!-- Java Script -->
-	 <script type="text/javascript" src="scripts.js"></script>
+	 <script type="text/javascript" >
+	 {% for listagem in listagem %}
+		 $(document).ready(function(){
+		 	 var elements = document.querySelectorAll(" #itens-opcionais-{{listagem.id}} .item-opcional");
+
+			// Mostra apenas os três primeiros elementos
+			for (var i = 0; i < elements.length; i++) {
+				if (i < 3) {
+					elements[i].classList.remove("hidden");
+				} else {
+					// Oculta os elementos restantes
+					elements[i].classList.remove("d-block");
+					elements[i].classList.add("hidden");
+				}
+			}
 
 
 
-
-
+		 });
+		 {% endfor %}
+	 </script>
 
 
 
@@ -65,36 +108,776 @@
 
 
 		<!-- Header da Pagina -->
-		<header id="header" class="  row ">
-			<div>
-					<span id="logo" class="col-9">
+		<header id="header" class="row">
+			<div id="logo" class="col-6">
 					<!-- Imagem da Logo -->
-					<img src="" id="img-logo"  alt="Lá em Casa Veículos">
+					<img src="{% static 'img/logo-marca-5.png' %}" id="img-logo"  alt="Lá em Casa Véiculos">
 
-					</span>
+				
+			</div>
+			
+			<!-- LOGO REDES SOCIAIS -->
+			<div id="logos-redes-sociais" class="col-3">
+					<a href="https://www.facebook.com/Drieli.Cosultora" class="fa fa-facebook-official mx-1 p-3 btn-redes-sociais " aria-hidden="true" style="color:#3b5998;"><a href="https://www.facebook.com/Drieli.Cosultora"></a>
+					<a href="https://www.instagram.com/realize_seu_imovel/" class="fa fa-instagram mx-1 p-3 btn  btn-redes-sociais" id="insta" aria-hidden="true"></a>
+				
+			</div>
 
-				<!-- LOGO REDES SOCIAIS -->
-				<span id="logos-redes-sociais" class="col-3">
-						<a href="" class="fa fa-facebook-official mx-1 p-3 btn btn-redes-sociais " aria-hidden="true" style="color:#3b5998;"><a href="https://www.facebook.com/Drieli.Cosultora"></a>
-						<a href="" class="fa fa-instagram mx-1 p-3 btn  btn-redes-sociais" id="insta" aria-hidden="true"></a>
 
-				</span>
+
+		</header>
+
+
+			<!--BARRA DE PESQUISA -->
+		<div id="pesquisa" class="p-2 row" >
+
+				<form method="GET"  id="form-pesquisa"  class=" text-center form-inline m-0 p-0 ">
+
+
+
+					<!--INPUT DA BARRA DE PESQUISA -->
+					<input type="text" name="barra-pesquisa" id="barra-pesquisa" class="form-control  mr-1 " placeholder="Pesquisar por Marca, Modelo, Ano, Combustível e/ou Câmbio. " value="" >
+
+
+					<i class="fa fa-times-circle-o  btn    p-0 mr-3 " id="apagar-pesquisa" aria-hidden="true" style="font-size: 1.5em;"></i>
+					<!--BTN PESQUISAR -->
+					<button type="submit" id="btn-pesquisar" class=" btn btn-primary  ">
+						<i class="fa fa-search"></i>
+					</button>
+					
+
+
+
+
+					<!--<script>
+
+
+
+						$('#barra-pesquisa').focusin(function(){
+							$('#barra-pesquisa').css({'width': '110%'});
+							$('.fa-times-circle-o').hide();
+							$('#btn-pesquisar').hide();
+
+							setTimeout(() => {
+							  	$(this).css({'min-width': '80%'});
+								$('.fa-times-circle-o').show();
+								$('#btn-pesquisar').show();
+							}, "3000");
+
+
+
+
+						});
+
+						$('#barra-pesquisa').focusout(function(){
+							$(this).css({'min-width': '80%'});
+							$('.fa-times-circle-o').show();
+							$('#btn-pesquisar').show();
+						});
+
+
+						$('#barra-pesquisa').keydown(function(){
+
+
+							$(this).css({'min-width': '110%'});
+							$('.fa-times-circle-o').hide();
+							$('#btn-pesquisar').hide();
+
+
+
+						});
+
+
+
+
+						$(document).on('click','#apagar-pesquisa', function(){
+							//$('#barra-pesquisa').val('');
+							location.href = 'http://127.0.0.1:8000/';
+						});
+
+
+
+
+
+					</script>-->
+
+
+				</form>
+
+
+
+		</div>
+
+
+		
+
+			<!-- DISPLAY IMOVEIS -->
+			<div id="display-anuncios" class="border border-darka rounded row m-2 p-1 text-center ">
+				<!-- HEADER DO DISPLAY -->
+				<div class="col-12"><h3 class="text-center p-2">Confira essas super ofertas!!!</h3></div>
+				<!--DECK DO DISPLAY -->
+				<div class="card-group p-0 m-0">
+					<!-- CARD -->
+					{% for listagem in listagem %}
+					  <div class="card col-12 col-lg-4 col-md-6 m-1 p-0 rounded">
+
+						<div class="card-body d-flex flex-column p-0 m-0">
+						  <h5 class="card-title p-2">{{listagem.nome_marca|upper}}{{listagem.nome_modelo|upper}}</h5>
+								<div id="itens-opcionais-{{listagem.id}}">
+									{% if listagem.acendedor_cigarros %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.acendedor_cigarros }}</small>
+									{% endif %}
+
+									{% if listagem.air_bags %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.air_bags }}</small>
+									{% endif %}
+
+									{% if listagem.alarme %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.alarme }}</small>
+									{% endif %}
+
+									{% if listagem.ar_condicionado %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_condicionado }}</small>
+									{% endif %}
+
+									{% if listagem.ar_condicionado_digital %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_condicionado_digital }}</small>
+									{% endif %}
+
+									{% if listagem.ar_condicionado_dual_zone %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_condicionado_dual_zone }}</small>
+									{% endif %}
+
+									{% if listagem.ar_quente %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_quente }}</small>
+									{% endif %}
+
+									{% if listagem.assistente_saida_aclive %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.assistente_saida_aclive }}</small>
+									{% endif %}
+
+									{% if listagem.sistema_audio %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sistema_audio }}</small>
+									{% endif %}
+
+									{% if listagem.banco_apoio_braco %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.banco_apoio_braco }}</small>
+									{% endif %}
+
+									{% if listagem.banco_regulagem_eletrica %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.banco_regulagem_eletrica }}</small>
+									{% endif %}
+
+									{% if listagem.blindado %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.blindado }}</small>
+									{% endif %}
+
+									{% if listagem.bluetooth %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.bluetooth }}</small>
+									{% endif %}
+
+									{% if listagem.calotas %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.calotas }}</small>
+									{% endif %}
+
+									{% if listagem.camera_re %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.camera_re }}</small>
+									{% endif %}
+
+									{% if listagem.carregador_dispositivo_wireless %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.carregador_dispositivo_wireless }}</small>
+									{% endif %}
+
+									{% if listagem.cd_mp3 %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.cd_mp3 }}</small>
+									{% endif %}
+
+									{% if listagem.chaves_keyless %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.chaves_keyless }}</small>
+									{% endif %}
+
+									{% if listagem.chaves_sensor_presenca %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.chaves_sensor_presenca }}</small>
+									{% endif %}
+
+									{% if listagem.computador_bordo %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.computador_bordo }}</small>
+									{% endif %}
+
+									{% if listagem.controle_som_volante %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.controle_som_volante }}</small>
+									{% endif %}
+
+									{% if listagem.controle_eletronico_descida %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.controle_eletronico_descida }}</small>
+									{% endif %}
+
+									{% if listagem.desembacador_traseiro %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.desembacador_traseiro }}</small>
+									{% endif %}
+
+									{% if listagem.direcao_eletrica %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.direcao_eletrica }}</small>
+									{% endif %}
+
+									{% if listagem.direcao_hidraulica %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.direcao_hidraulica }}</small>
+									{% endif %}
+
+									{% if listagem.encosto_cabeca_traseiro %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.encosto_cabeca_traseiro }}</small>
+									{% endif %}
+
+									{% if listagem.estribo %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.estribo }}</small>
+									{% endif %}
+
+									{% if listagem.farois_automatico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.farois_automatico }}</small>
+									{% endif %}
+
+									{% if listagem.farois_milhas %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.farois_milhas }}</small>
+									{% endif %}
+
+									{% if listagem.farois_neblina %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.farois_neblina }}</small>
+									{% endif %}
+
+									{% if listagem.freio_abs %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.freio_abs }}</small>
+									{% endif %}
+
+									{% if listagem.gps %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.gps }}</small>
+									{% endif %}
+
+									{% if listagem.insulfilm %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.insulfilm }}</small>
+									{% endif %}
+
+									{% if listagem.lona_maritima %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.lona_maritima }}</small>
+									{% endif %}
+
+									{% if listagem.multimidia %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.multimidia }}</small>
+									{% endif %}
+
+									{% if listagem.painel_lcd %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.painel_lcd }}</small>
+									{% endif %}
+
+									{% if listagem.painel_digital %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.painel_digital }}</small>
+									{% endif %}
+
+									{% if listagem.parachoque_cor_veiculo %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.parachoque_cor_veiculo }}</small>
+									{% endif %}
+
+									{% if listagem.park_assist %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.park_assist }}</small>
+									{% endif %}
+
+									{% if listagem.partida_start_stop %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.partida_start_stop }}</small>
+									{% endif %}
+
+									{% if listagem.piloto_automatico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.piloto_automatico }}</small>
+									{% endif %}
+
+									{% if listagem.pintura_metalica %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.pintura_metalica }}</small>
+									{% endif %}
+
+									{% if listagem.porta_copo %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.porta_copo }}</small>
+									{% endif %}
+
+									{% if listagem.protecao_cacamba %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.protecao_cacamba }}</small>
+									{% endif %}
+
+									{% if listagem.radio %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.radio }}</small>
+									{% endif %}
+
+									{% if listagem.rebatimento_retrovisores_externos %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.rebatimento_retrovisores_externos }}</small>
+									{% endif %}
+
+									{% if listagem.retrovisor_fotocromatico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.retrovisor_fotocromatico }}</small>
+									{% endif %}
+
+									{% if listagem.retrovisor_interno_eletrocromico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.retrovisor_interno_eletrocromico }}</small>
+									{% endif %}
+
+									{% if listagem.retrovisor_eletrico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.retrovisor_eletrico }}</small>
+									{% endif %}
+
+									{% if listagem.roda_liga_leve %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.roda_liga_leve }}</small>
+									{% endif %}
+
+									{% if listagem.sensor_chuva %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sensor_chuva }}</small>
+									{% endif %}
+
+									{% if listagem.sensor_estacionamento_dianteiro %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sensor_estacionamento_dianteiro }}</small>
+									{% endif %}
+
+									{% if listagem.sensor_estacionamento_traseiro %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sensor_estacionamento_traseiro }}</small>
+									{% endif %}
+
+									{% if listagem.teto_solar %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.teto_solar }}</small>
+									{% endif %}
+
+									{% if listagem.teto_panoramico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.teto_panoramico }}</small>
+									{% endif %}
+
+									{% if listagem.tracao %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.tracao }}</small>
+									{% endif %}
+
+									{% if listagem.trava_eletrica %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.trava_eletrica }}</small>
+									{% endif %}
+
+									{% if listagem.usb %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.usb }}</small>
+									{% endif %}
+
+									{% if listagem.vidro_eletrico %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.vidro_eletrico }}</small>
+									{% endif %}
+
+									{% if listagem.vidro_verdes %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.vidro_verdes }}</small>
+									{% endif %}
+
+								</div>
+							<div id="caroussel-{{listagem.id}}" class="carousel slide" data-ride="carousel">
+							   <div class="carousel-inner text-center">
+									<div class="carousel-item active ">
+									  {% if listagem.imagem_1 %}
+										<img class="img img-fluid m-0 p-0 " src="{{listagem.imagem_1.url}}" alt="Slide 1">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_2 %}
+										<img class="img img-fluid" src="{{listagem.imagem_2.url}}" alt="Slide 2">
+									  {% endif %}
+									</div>
+									<!-- Adicione mais slides conforme necessário -->
+									<div class="carousel-item">
+									  {% if listagem.imagem_3 %}
+										<img class="img img-fluid" src="{{listagem.imagem_3.url}}" alt="Slide 3">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_4 %}
+										<img class="img img-fluid" src="{{listagem.imagem_4.url}}" alt="Slide 4">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_5 %}
+										<img class="img img-fluid" src="{{listagem.imagem_5.url}}" alt="Slide 5">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_6 %}
+										<img class="img img-fluid" src="{{listagem.imagem_6.url}}" alt="Slide 6">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_7 %}
+										<img class="img img-fluid" src="{{listagem.imagem_7.url}}" alt="Slide 7">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_8 %}
+										<img class="img img-fluid" src="{{listagem.imagem_8.url}}" alt="Slide 8">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_9 %}
+										<img class="img img-fluid" src="{{listagem.imagem_9.url}}" alt="Slide 9">
+									  {% endif %}
+									</div>
+									<div class="carousel-item">
+									  {% if listagem.imagem_10 %}
+										<img class="img img-fluid" src="{{listagem.imagem_10.url}}" alt="Slide 10">
+									  {% endif %}
+									</div>
+
+							   </div>
+							   <a class="carousel-control-prev" href="#caroussel-{{listagem.id}}" role="button" data-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="sr-only">Previous</span>
+							   </a>
+							   <a class="carousel-control-next" href="caroussel-{{listagem.id}}" role="button" data-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="sr-only">Next</span>
+							   </a>
+						</div>
+
+						</div>
+					  </div>
+					{% endfor %}
+
+				</div>
+
+
+
+
+
+
 
 			</div>
-		</header>
-		<div>
-			<h1>Pagina em Construção</h1>
+			<!-- FECHA DISPLAY IMÓVEIS -->
+
 		</div>
 
 
 
 
-	<!-- RODAPÉ -->
+
+		<!-- CARROUSSEL -->
+		<div class="mt-3" id="div-carousel">
+
+			<div id="carousel-display" class="carousel slide" data-ride="carousel" data-interval="5000">
+
+				<div class="carousel-inner">
+					<h4 class="text-center" id="header-caroussel">Sugestão de imóveis para você!!</h4>
+
+					<div class="carousel-item active  ">
+
+						<div class="card-deck">
+							{% for  carossel_display in  carossel_display %}
+							<span class=" card col-4 border border-dark">
+								<img class="img img-fluid"  style="max-height:300px; min-height:" src="{{carossel_display.imagens.url}}" alt="img">
+								<div class="text-center p-1">
+									<h6>{{carossel_display.empreendimento_relacionado}}</h6>
+									{% for item in item %}
+										<small class="bg bg-warning"></small>
+									{% endfor %}
+
+								</div>
+
+							</span>
+
+							{% endfor %}
+						</div>
+					</div>
+
+					<div class="carousel-item   ">
+						<div class="card-deck">
+							{% for  carossel_display_2 in  carossel_display_2 %}
+							<span class=" card col-4 border border-dark">
+								<img class="img img-fluid" style="max-height:300px;" src="{{carossel_display_2.imagens.url}}" alt="img">
+								<div class="text-center p-1">
+									<h6>{{carossel_display_2.empreendimento_relacionado}}</h6>
+
+								</div>
+
+							</span>
+
+							{% endfor %}
+						</div>
+					</div>
+
+				</div>
+				<a class="carousel-control-prev" href="#carousel-display" role="button" data-slide="prev">
+					<span class="carousel-control-prev-icon bg-warning" aria-hidden="true"></span>
+					<span class="sr-only">Previous</span>
+				</a>
+				<a class="carousel-control-next" href="#carousel-display" role="button" data-slide="next">
+					<span class="carousel-control-next-icon bg-warning" aria-hidden="true"></span>
+					<span class="sr-only">Next</span>
+				</a>
+			</div>
+		</div>
+
+
+
+		<!-- SOBRE NÓS -->
+		<div id="sobre" class="p-3 mt-3 text-center">
+			<h4 class="p-1">Sobre a Realize Seu Imóvel</h4>
+			<p>Sabemos o quanto encontrar um carro acessível pode ser uma tarefa desafiadora. É por isso que estamos aqui para simplificar esse processo e ajudar você a encontrar o veículo perfeito que se encaixa no seu orçamento e atende às suas necessidades. Nossa concessionária de carros populares está pronta para guiá-lo em todas as etapas do caminho. Vamos entender suas preferências, e apresentar os carros ideais que combinam com o seu estilo de vida.
+			Faça uma pesquisa na nossa plataforma de busca e confira o nosso estoque!
+			</p>
+		</div>
+
+		<!-- BTN WHATSAPP FLUTUANTE -->
+		<div id="whatsapp-flutuante"  >
+			<a href="https://wa.me/5516993379492?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn fa fa-whatsapp" id="btn-whatsapp-flutuante"></a>
+
+		</div>
+
+
+
+		<!-- RODAPÉ -->
 		<footer class="text-center my-5" >
 			<i class="fa fa-copyright" aria-hidden="true">Copyright</i>
 			<div>Antherus - Desenvolvimento Web</div>
 			<small><i class="fa fa-whatsapp mr-1" aria-hidden="true"></i><span>(16) 99337-9492</span></small>
 		</footer>
+
+
+
+
+
+
+
+	</div>
+	<!-- FINAL CONTAINER -->
+
+
+
+
+
+
+
+	<script>
+	 var map;
+	 var autocomplete;
+	  function initMap() {
+	  	  map = new google.maps.Map(document.getElementById('map'), {
+			center: { lat: -21.7790843, lng: -48.1792643 },
+			zoom: 12.8
+		  });
+
+
+
+
+
+
+
+
+
+
+
+
+		  {% for listagem in listagem %}
+
+		     var address = '{{listagem.localizacao}}';
+
+
+		     var geocoder = new google.maps.Geocoder();
+		     geocoder.geocode({ address: address }, function(results, status) {
+
+		     	if (status === google.maps.GeocoderStatus.OK) {
+		     		var latitude = results[0].geometry.location.lat();
+          			var longitude = results[0].geometry.location.lng();
+
+          			var icon = {
+						url: '{{listagem.logomarca_icone.url}}',
+						scaledSize: new google.maps.Size(30, 30),
+
+					  };
+
+				  var label = {
+						color: '#292b2c',
+						fontWeight: '900',
+						fontSize: '12px',
+						text: '{{listagem.nome_empreendimento|upper}}',
+						className: 'custom-marker btn',
+
+				  }
+
+
+
+				  var url = 'http://127.0.0.1:8000/{{listagem.slug}}/'
+
+
+          			 // Adicione um marcador no local
+					  var marker = new google.maps.Marker({
+						position: { lat: latitude, lng: longitude },
+						map: map,
+						title: 'Clique para mais informações.',
+						icon:icon,
+						label: label,
+						zIndex: 1
+
+					  });
+
+						// Monitorar o evento de mouseover (quando o mouse entra no marcador)
+						google.maps.event.addListener(marker, 'mouseover', function() {
+						  marker.setZIndex(1000); // Definir um z-index maior ao passar o mouse sobre o marcador
+						  $('.custom-marker').setZIndex(1000);
+						});
+
+						// Monitorar o evento de mouseout (quando o mouse sai do marcador)
+						google.maps.event.addListener(marker, 'mouseout', function() {
+						  marker.setZIndex(1); // Restaurar o z-index original quando o mouse sai do marcador
+						  $('.custom-marker').setZIndex(0);
+						});
+
+						// Monitorar o evento de click (quando o mouse sai do marcador)
+						google.maps.event.addListener(marker, 'click', function() {
+						   window.open(url,'_blank');
+						});
+
+
+
+
+
+
+
+
+
+
+		     	}else{
+		     		var latitude = results[0].geometry.location.lat();
+          			var longitude = results[0].geometry.location.lng();
+          			alert(latitude)
+
+		     	}
+
+
+
+
+		     });
+
+
+
+		  {% endfor %}
+
+
+
+
+
+
+	  }
+
+	  function geocodeAddress() {
+		  var address = $('#barra-pesquisa').val();
+		  var geocoder = new google.maps.Geocoder();
+		  geocoder.geocode({ address: address }, function(results, status) {
+		  //alert(results[0].geometry.location.lat())
+			if (status === google.maps.GeocoderStatus.OK) {
+			  var latitude = results[0].geometry.location.lat();
+			  var longitude = results[0].geometry.location.lng();
+
+			    // Criar objetos LatLon para ambas as localizações
+				const araraquaraCoords = new LatLon(-21.7842, -48.1788);
+				const otherCoords = new LatLon(latitude, longitude);
+
+				// Calcular a distância entre as coordenadas em quilômetros
+				const distanceInKilometers = araraquaraCoords.distanceTo(otherCoords);
+
+				alert(`A distância até Araraquara é de aproximadamente ${distanceInKilometers.toFixed(2)} km.`);
+
+
+			  map.setCenter({ lat: latitude, lng: longitude });
+
+			  var marker = new google.maps.Marker({
+				position: { lat: latitude, lng: longitude },
+				map: map,
+				title: address,
+			  });
+			} else {
+			  $('#sugestoes-localidades').empty();
+			}
+		  });
+	  }
+
+
+	  // Função que será chamada no keyup do campo de pesquisa e também no clique do botão "Pesquisar"
+    function onSearch() {
+      geocodeAddress();
+
+      setTimeout(function() {
+        $('#barra-pesquisa').css({ 'min-width': '80%' });
+        $('.fa-times-circle-o').show();
+        $('#btn-pesquisar').show();
+      }, 1000);
+    }
+
+    $(document).ready(function() {
+      initMap();
+
+
+
+
+		$('#barra-pesquisa').keyup(function() {
+			onSearch();
+			var input = $(this).val();
+
+			// Criação do objeto de Autocompletar
+			var autocompleteService = new google.maps.places.AutocompleteService();
+
+			// Solicitar sugestões
+			autocompleteService.getPlacePredictions({ input: input }, function(predictions, status) {
+				if (status == google.maps.places.PlacesServiceStatus.OK) {
+					// Limpar a lista de sugestões anteriores
+					$('#sugestoes-localidades').empty();
+
+					// Exibir as novas sugestões
+					predictions.forEach(function(prediction) {
+						if (prediction.description.includes('Araraquara - SP, Brasil')) {
+							$('#sugestoes-localidades').append('<div class="prediction-description btn btn-light d-block text-left my-1">' + prediction.description + '</div>');
+						}
+					});
+				}
+			});
+		});
+
+
+
+	  $(document).on('click','.prediction-description',function(){
+	  		escolha = $(this).text();
+	  		$('#barra-pesquisa').val(escolha);
+	  		$('#sugestoes-localidades').empty();
+
+	  });
+
+
+
+
+
+
+
+
+
+
+      // Evento do clique do botão "Pesquisar"
+      $('#btn-pesquisar').click(function() {
+
+      });
+    });
+
+
+
+
+
+
+
+
+
+
+
+	</script>
+
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	 <!-- Inclua a API do Google Maps -->
+	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY&callback=initMap&libraries=places""></script>
+
+
+
+
 
 </body>
 </html>
