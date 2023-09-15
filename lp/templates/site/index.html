@@ -19,11 +19,7 @@
 	<!-- Boostrap 4 CDN  -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-	<script src="https://cdn.jsdelivr.net/npm/geodesy@1.1.3/latlon-ellipsoidal.js"></script>
-
-
-
-
+	
 
 	<!-- FontAwesome CDN -->
 	<script src="https://kit.fontawesome.com/a69cec9c91.js" crossorigin="anonymous"></script>
@@ -43,27 +39,18 @@
 	        -webkit-text-fill-color: transparent;
 	    }
 
-      #logos-redes-sociais{
-      	font-size: 2em;
-      }
+	    #logos-redes-sociais{
+	      	font-size: 2em;
+	    }
 
-      .btn-redes-sociais:hover{
-      	transform: scale(1.5);
-      	text-decoration: none;
-      }
+      	.btn-redes-sociais:hover{
+	      	transform: scale(1.5);
+	      	text-decoration: none;
+	     }
 
-      .hidden{
-      	display:none;
-      }
-
-
-
-
-
-
-
-
-
+	      .hidden{
+	      	display:none;
+	      }
 
     </style>
 
@@ -78,9 +65,6 @@
 	 <script type="text/javascript" >
 
 	 {% for listagem in listagem %}
-
-
-
 
 		 $(document).ready(function(){
 
@@ -141,6 +125,7 @@
 
 <!-- Corpo do HTML -->
 <body lang="pt-br" >
+	
 	<div class="loader-container">
     	<img src="{% static 'img/logo-marca-5.png' %}"  alt="Logo" class="logo">
   	</div>
@@ -199,7 +184,11 @@
 
 		</div>
 
+			<!-- BTN WHATSAPP FLUTUANTE -->
+		<div id="whatsapp-flutuante-" >
+			<a href="https://wa.me/5516991512265?text=Olá,%20estou%20no%20site%20lamecasaveiculos.com.br%20e%20tenho%20interesse%20em%20dos%20veículos%20anunciados"  class="btn fa fa-whatsapp" id="btn-whatsapp-flutuante"></a>
 
+		</div>
 		
 
 			<!-- DISPLAY IMOVEIS -->
@@ -610,11 +599,7 @@
 			</p>
 		</div>
 
-		<!-- BTN WHATSAPP FLUTUANTE -->
-		<div id="whatsapp-flutuante"  >
-			<a href="https://wa.me/5516993379492?text=Acabei%20de%20%20ver%20a%20promoção%20Landing%20Page%20por%20R$%20299,90"  class="btn fa fa-whatsapp" id="btn-whatsapp-flutuante"></a>
 
-		</div>
 
 
 
@@ -626,251 +611,13 @@
 		</footer>
 
 
-
-
-
-
-
 	</div>
 	<!-- FINAL CONTAINER -->
-
-
-
-
-
-
-
-	<script>
-	 var map;
-	 var autocomplete;
-	  function initMap() {
-	  	  map = new google.maps.Map(document.getElementById('map'), {
-			center: { lat: -21.7790843, lng: -48.1792643 },
-			zoom: 12.8
-		  });
-
-
-
-
-
-
-
-
-
-
-
-
-		  {% for listagem in listagem %}
-
-		     var address = '{{listagem.localizacao}}';
-
-
-		     var geocoder = new google.maps.Geocoder();
-		     geocoder.geocode({ address: address }, function(results, status) {
-
-		     	if (status === google.maps.GeocoderStatus.OK) {
-		     		var latitude = results[0].geometry.location.lat();
-          			var longitude = results[0].geometry.location.lng();
-
-          			var icon = {
-						url: '{{listagem.logomarca_icone.url}}',
-						scaledSize: new google.maps.Size(30, 30),
-
-					  };
-
-				  var label = {
-						color: '#292b2c',
-						fontWeight: '900',
-						fontSize: '12px',
-						text: '{{listagem.nome_empreendimento|upper}}',
-						className: 'custom-marker btn',
-
-				  }
-
-
-
-				  var url = 'http://127.0.0.1:8000/{{listagem.slug}}/'
-
-
-          			 // Adicione um marcador no local
-					  var marker = new google.maps.Marker({
-						position: { lat: latitude, lng: longitude },
-						map: map,
-						title: 'Clique para mais informações.',
-						icon:icon,
-						label: label,
-						zIndex: 1
-
-					  });
-
-						// Monitorar o evento de mouseover (quando o mouse entra no marcador)
-						google.maps.event.addListener(marker, 'mouseover', function() {
-						  marker.setZIndex(1000); // Definir um z-index maior ao passar o mouse sobre o marcador
-						  $('.custom-marker').setZIndex(1000);
-						});
-
-						// Monitorar o evento de mouseout (quando o mouse sai do marcador)
-						google.maps.event.addListener(marker, 'mouseout', function() {
-						  marker.setZIndex(1); // Restaurar o z-index original quando o mouse sai do marcador
-						  $('.custom-marker').setZIndex(0);
-						});
-
-						// Monitorar o evento de click (quando o mouse sai do marcador)
-						google.maps.event.addListener(marker, 'click', function() {
-						   window.open(url,'_blank');
-						});
-
-
-
-
-
-
-
-
-
-
-		     	}else{
-		     		var latitude = results[0].geometry.location.lat();
-          			var longitude = results[0].geometry.location.lng();
-          			alert(latitude)
-
-		     	}
-
-
-
-
-		     });
-
-
-
-		  {% endfor %}
-
-
-
-
-
-
-	  }
-
-	  function geocodeAddress() {
-		  var address = $('#barra-pesquisa').val();
-		  var geocoder = new google.maps.Geocoder();
-		  geocoder.geocode({ address: address }, function(results, status) {
-		  //alert(results[0].geometry.location.lat())
-			if (status === google.maps.GeocoderStatus.OK) {
-			  var latitude = results[0].geometry.location.lat();
-			  var longitude = results[0].geometry.location.lng();
-
-			    // Criar objetos LatLon para ambas as localizações
-				const araraquaraCoords = new LatLon(-21.7842, -48.1788);
-				const otherCoords = new LatLon(latitude, longitude);
-
-				// Calcular a distância entre as coordenadas em quilômetros
-				const distanceInKilometers = araraquaraCoords.distanceTo(otherCoords);
-
-				alert(`A distância até Araraquara é de aproximadamente ${distanceInKilometers.toFixed(2)} km.`);
-
-
-			  map.setCenter({ lat: latitude, lng: longitude });
-
-			  var marker = new google.maps.Marker({
-				position: { lat: latitude, lng: longitude },
-				map: map,
-				title: address,
-			  });
-			} else {
-			  $('#sugestoes-localidades').empty();
-			}
-		  });
-	  }
-
-
-	  // Função que será chamada no keyup do campo de pesquisa e também no clique do botão "Pesquisar"
-    function onSearch() {
-      geocodeAddress();
-
-      setTimeout(function() {
-        $('#barra-pesquisa').css({ 'min-width': '80%' });
-        $('.fa-times-circle-o').show();
-        $('#btn-pesquisar').show();
-      }, 1000);
-    }
-
-    $(document).ready(function() {
-      initMap();
-
-
-
-
-		$('#barra-pesquisa').keyup(function() {
-			onSearch();
-			var input = $(this).val();
-
-			// Criação do objeto de Autocompletar
-			var autocompleteService = new google.maps.places.AutocompleteService();
-
-			// Solicitar sugestões
-			autocompleteService.getPlacePredictions({ input: input }, function(predictions, status) {
-				if (status == google.maps.places.PlacesServiceStatus.OK) {
-					// Limpar a lista de sugestões anteriores
-					$('#sugestoes-localidades').empty();
-
-					// Exibir as novas sugestões
-					predictions.forEach(function(prediction) {
-						if (prediction.description.includes('Araraquara - SP, Brasil')) {
-							$('#sugestoes-localidades').append('<div class="prediction-description btn btn-light d-block text-left my-1">' + prediction.description + '</div>');
-						}
-					});
-				}
-			});
-		});
-
-
-
-	  $(document).on('click','.prediction-description',function(){
-	  		escolha = $(this).text();
-	  		$('#barra-pesquisa').val(escolha);
-	  		$('#sugestoes-localidades').empty();
-
-	  });
-
-
-
-
-
-
-
-
-
-
-      // Evento do clique do botão "Pesquisar"
-      $('#btn-pesquisar').click(function() {
-
-      });
-    });
-
-
-
-
-
-
-
-
-
-
-
-	</script>
 
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-	 <!-- Inclua a API do Google Maps -->
-	    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6EVGvxZFbZ1wg_5pP9onIn9FQeh1VBFY&callback=initMap&libraries=places""></script>
-
-
-
-
-
+	 
 </body>
 </html>

@@ -8,21 +8,15 @@
 	background: lightgray;
 }
 
-#btn-whatsapp-flutuante{
-	color:#25D366;
-	font-size: 3em;
-	position: relative;
-	left:80%;
-	text-shadow: 1px 3px 2px rgba(53,255,0,0.6);
-}
+
 
 .card:hover{
     transform: scale(1.1);
-    z-index:3;
-    box-shadow: 1px 4px 19px 0px rgba(0,0,0,0.75);
-    -webkit-box-shadow: 1px 4px 19px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 1px 4px 19px 0px rgba(0,0,0,0.75);
-}
+	    z-index:2;
+	    box-shadow: 1px 4px 19px 0px rgba(0,0,0,0.75);
+	    -webkit-box-shadow: 1px 4px 19px 0px rgba(0,0,0,0.75);
+	    -moz-box-shadow: 1px 4px 19px 0px rgba(0,0,0,0.75);
+	}
 
 
         #insta {
@@ -77,6 +71,10 @@
 		    display:block;
 		}
 
+		#whatsapp-flutuante-icone{
+		    z-index:3;
+		}
+
 
 
 
@@ -97,6 +95,7 @@
 	header{
 		background:#000000;
 		max-height: 6em;
+		min-width:320px;
 	}
 
 	#img-logo{
@@ -142,11 +141,25 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:14em;
-		left:65%;
+		top:10em;
+		left:10em;
+
+		 padding: 0;
+		
 	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
+	    
+	   
 
 
 
@@ -163,6 +176,7 @@
 	header{
 		background:#000000;
 		max-height: 6em;
+		min-width:360px;
 	}
 
 	#img-logo{
@@ -213,11 +227,23 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante{
+	#whatsapp-flutuante-icone{
 		position: fixed;
-		top:14em;
-		left:65%;
+		top:32em;
+		left:0em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 
 
 
@@ -232,6 +258,8 @@
 	header{
 		background:#000000;
 		max-height: 6em;
+		min-width:375px;
+
 	}
 
 	#img-logo{
@@ -282,11 +310,23 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante{
+	#whatsapp-flutuante-icone{
 		position: fixed;
-		top:14em;
-		left:65%;
+		top:34em;
+		left:0em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 
 }
 
@@ -300,6 +340,7 @@
 	header{
 		background:#000000;
 		max-height: 6em;
+		min-width:428px;
 	}
 
 	#img-logo{
@@ -314,12 +355,12 @@
 		font-size: 1.2em;
 		position: relative;
 		top:-0.1em;
-		left: -10%;
+		left: -15%;
 	}
 
 	.fa-instagram{
 		position: relative;
-		left: 120%;
+		left: 100%;
 		top:-2em;
 		font-size: 1.2em;
 	}
@@ -330,9 +371,6 @@
 	}
 
 
-
-
-	
 	#barra-pesquisa{
 		min-width: 83%;
 		position: relative;
@@ -351,23 +389,25 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante{
+	#whatsapp-flutuante-icone{
 		position: fixed;
-		top:14em;
-		left:65%;
+		top:34em;
+		left:0em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
 
-	#display-imoveis{
-        display: initial;
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
     }
 
-    #mapa-pesquisa{
-        display: none;
-    }
-
-    .custom-marker{
-        font-size:12px;
-    }
+	
 
 }
 
@@ -430,11 +470,23 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante{
+	#whatsapp-flutuante-icone{
 		position: fixed;
-		top:10em;
-		left:100%;
+		top:34em;
+		left:0em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 }
 
 @media (min-width: 768.00px) and (max-width: 1024.97px){
@@ -503,22 +555,23 @@
 		top:-2.2em;
 	}
 
-	#whatsapp-flutuante{
-         position: fixed;
-		top:18em;
-		left:80%;
-		border-radius:50%;
-		height:0.9em;
-		width:0.9em;
-		color:white;
-		font-size:2.5em;
-
+	#whatsapp-flutuante-icone{
+		position: fixed;
+		top:40em;
+		left:1em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
 
-	.card{
-
-	    min-width:5em;
-	}
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 
 
 
@@ -542,7 +595,7 @@
 @media (min-width: 1025px) and (max-width:1439.97px){
 	body{
 		min-width: 100%;
-		background: red;
+		background: aliceblue;
 	}
 
 	header{
@@ -604,18 +657,23 @@
 		top:-2.2em;
 	}
 
-	#whatsapp-flutuante{
-         position: fixed;
-		top:18em;
-		left:80%;
-
-		border-radius:50%;
-		height:0.9em;
-		width:0.9em;
-		color:white;
-		font-size:2.5em;
-
+	#whatsapp-flutuante-icone{
+		position: fixed;
+		top:40em;
+		left:1em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 
 	.card{
 	    min-width:10em;
@@ -700,16 +758,23 @@
 		top:-2.3em;
 	}
 
-	#whatsapp-flutuante{
-         position: fixed;
-		top:18em;
-		left:80%;
-		border-radius:50%;
-		height:0.9em;
-		width:0.9em;
-		color:white;
-		font-size:2.5em;
+	#whatsapp-flutuante-icone{
+		position: fixed;
+		top:40em;
+		left:1em;
+		z-index: 3;
+		 padding: 0;
+		
 	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 
 	.card{
 	    min-width:10em;
@@ -831,5 +896,23 @@
 	    min-width:10em;
 	    max-width:25em;
 	}
+
+	#whatsapp-flutuante-icone{
+		position: fixed;
+		top:40em;
+		left:1em;
+		z-index: 3;
+		 padding: 0;
+		
+	}
+
+	#btn-whatsapp-flutuante {
+	    color: #25D366;
+	    font-size: 3.1em;
+	    background: white;
+	    border-radius: 50%;
+	    padding: 0;
+	   
+    }
 
 }
