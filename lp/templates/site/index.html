@@ -52,6 +52,11 @@
 	      	display:none;
 	      }
 
+	       .modal-title {
+			text-align: center;
+			margin: 0 auto;
+		  }
+
     </style>
 
 
@@ -67,6 +72,7 @@
 	 {% for listagem in listagem %}
 
 		 $(document).ready(function(){
+
 
 		 	function hoverentra(){
 				 var elements = document.querySelectorAll(" #itens-opcionais-{{listagem.id}} .item-opcional");
@@ -102,10 +108,12 @@
 			$(".card-{{listagem.id}}").hover(
 				function() {
 					 hoversaida();
+					 $('.msg-ampliar-clicar-{{listagem.id}}').html('Clique para abrir').addClass('btn btn-primary');
 
 				},
 				function() {
 					hoverentra();
+					 $('.msg-ampliar-clicar-{{listagem.id}}').html('Toque para ampliar...').removeClass('btn btn-primary');
 				}
 			);
 
@@ -199,75 +207,89 @@
 				<div class="card-group p-0 m-0">
 					<!-- CARD -->
 					{% for listagem in listagem %}
-					  <div class="card card-{{listagem.id}} col-12 col-lg-4 col-md-6 m-1 p-0 rounded">
+						<!-- INICIO CARD -->
+					  <button class="card card-{{listagem.id}} col-12 col-lg-4 col-md-6 mx-1 mb-5 mt-0 p-0 rounded" >
 
 						<div class="card-body d-flex flex-column p-0 m-0">
 						  <h5 class="card-title p-2">{{listagem.nome_marca|upper}}<br>{{listagem.nome_modelo|upper}}</h5>
 
+
 							<div id="caroussel-{{listagem.id}}" class="carousel slide" data-ride="carousel">
 							   <div class="carousel-inner text-center">
+								   {% if listagem.imagem_1 %}
 									<div class="carousel-item active ">
-									  {% if listagem.imagem_1 %}
 										<img class="img img-fluid m-0 p-0 " src="{{listagem.imagem_1.url}}" alt="Slide 1">
-									  {% endif %}
 									</div>
+								   {% endif %}
+
+								   {% if listagem.imagem_2 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_2 %}
 										<img class="img img-fluid" src="{{listagem.imagem_2.url}}" alt="Slide 2">
-									  {% endif %}
 									</div>
-									<!-- Adicione mais slides conforme necessário -->
+								    {% endif %}
+
+								   {% if listagem.imagem_3 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_3 %}
 										<img class="img img-fluid" src="{{listagem.imagem_3.url}}" alt="Slide 3">
-									  {% endif %}
 									</div>
+								   {% endif %}
+
+								   {% if listagem.imagem_4 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_4 %}
 										<img class="img img-fluid" src="{{listagem.imagem_4.url}}" alt="Slide 4">
-									  {% endif %}
 									</div>
+								    {% endif %}
+
+								    {% if listagem.imagem_5 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_5 %}
 										<img class="img img-fluid" src="{{listagem.imagem_5.url}}" alt="Slide 5">
-									  {% endif %}
 									</div>
+								    {% endif %}
+
+								   {% if listagem.imagem_6 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_6 %}
 										<img class="img img-fluid" src="{{listagem.imagem_6.url}}" alt="Slide 6">
-									  {% endif %}
 									</div>
+								    {% endif %}
+
+								    {% if listagem.imagem_7 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_7 %}
 										<img class="img img-fluid" src="{{listagem.imagem_7.url}}" alt="Slide 7">
-									  {% endif %}
 									</div>
+								    {% endif %}
+
+								    {% if listagem.imagem_8 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_8 %}
 										<img class="img img-fluid" src="{{listagem.imagem_8.url}}" alt="Slide 8">
-									  {% endif %}
 									</div>
+								    {% endif %}
+
+								    {% if listagem.imagem_9 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_9 %}
 										<img class="img img-fluid" src="{{listagem.imagem_9.url}}" alt="Slide 9">
-									  {% endif %}
 									</div>
+								    {% endif %}
+
+								    {% if listagem.imagem_10 %}
 									<div class="carousel-item">
-									  {% if listagem.imagem_10 %}
 										<img class="img img-fluid" src="{{listagem.imagem_10.url}}" alt="Slide 10">
-									  {% endif %}
 									</div>
+								    {% endif %}
 
 							   </div>
-							   <a class="carousel-control-prev" href="#caroussel-{{listagem.id}}" role="button" data-slide="prev">
+							   <a class="carousel-control-prev controle-carousel" href="#caroussel-{{listagem.id}}" role="button" data-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span class="sr-only">Previous</span>
 							   </a>
-							   <a class="carousel-control-next" href="caroussel-{{listagem.id}}" role="button" data-slide="next">
+							   <a class="carousel-control-next controle-carousel" href="#caroussel-{{listagem.id}}" role="button" data-slide="next">
 								<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								<span class="sr-only">Next</span>
 							   </a>
+
 						</div>
+							<div class="p-1" data-toggle="modal" data-target=".bd-example-modal-lg-{{listagem.id}}"><p class="msg-ampliar-clicar-{{listagem.id}}">Toque para ampliar...</p></div>
+
+
 							<div id="itens-opcionais-{{listagem.id}}">
 									{% if listagem.acendedor_cigarros %}
 										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.acendedor_cigarros }}</small>
@@ -508,12 +530,33 @@
 									{% if listagem.vidro_verdes %}
 										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.vidro_verdes }}</small>
 									{% endif %}
-									<p>Toque para ampliar...</p>
+
 
 								</div>
 
 						</div>
-					  </div>
+					  </button>
+						<!-- MODAL DO CARD -->
+						<div class="modal fade bd-example-modal-lg-{{listagem.id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						  <div class="modal-dialog modal-lg">
+							<div class="modal-content">
+								<div class="modal-header ">
+									<h5 class="modal-title text-center col-11">{{listagem.nome_marca}} {{listagem.nome_modelo}} {{listagem.ano}}</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									  <span aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<div class="modal-body">
+									<!-- Aqui você adiciona o iframe para carregar a página -->
+        							<iframe id="iframe-{{listagem.id}}" src="http://laemcasaveiculos.com.br/{{listagem.id}}/{{listagem.slug}}/" frameborder="0" width="100%" height="500"></iframe>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-primary">Save changes</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						  </div>
+						</div>
 					{% endfor %}
 
 				</div>
