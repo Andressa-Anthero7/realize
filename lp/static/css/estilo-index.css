@@ -578,6 +578,26 @@
 	}
 
 
+	#area-formulario{
+	    position:absolute;
+	    top:18em;
+	    left:0.5em;
+	    border:1px solid black;
+	    margin:1em;
+	    padding-top:1em;
+	}
+
+	#carousel{
+	    position:relative;
+	    left:0.5em;
+	    top:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-wrap;
+	}
+
+
 
 
 
@@ -681,6 +701,30 @@
 	    min-height:6em;
 	}
 
+	#area-formulario{
+	    position:absolute;
+	    top:25em;
+	    left:0.5em;
+	    border:1px solid black;
+	    margin:1em;
+	    padding-top:1em;
+	}
+
+	#carousel{
+	    position:relative;
+	    left:0.5em;
+	    top:1.5em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-wrap;
+	}
+
+	small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
 
 
 
@@ -780,6 +824,16 @@
 
 	.card-title{
 	    min-height:6em;
+	}
+
+
+	#area-formulario{
+	    position:absolute;
+	    top:25em;
+	    left:0.5em;
+	    border:1px solid black;
+	    margin:1em;
+	    padding-top:1em;
 	}
 
 }
