@@ -536,9 +536,9 @@
 						</div>
 					  </button>
 						<!-- MODAL DO CARD -->
-						<div class="modal fade bd-example-modal-lg-{{listagem.id}} row p-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal fade bd-example-modal-lg-{{listagem.id}} row " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						  <div class="modal-dialog modal-lg ">
-							<div class="modal-content p-3">
+							<div class="modal-content p-4">
 								<div class="modal-header ">
 									<h5 class="modal-title text-center col-11">{{listagem.nome_marca}} {{listagem.nome_modelo}} {{listagem.ano}}</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -547,7 +547,7 @@
 								</div>
 								<div class="modal-body row">
 									<!-- CARROUSSEL -->
-									<div id="carousel" class="carousel slide col-6 " data-ride="carousel">
+									<div id="carousel" class="carousel slide col-lg-6 col-md-6 col-12" data-ride="carousel">
 
 										  <div class="carousel-inner">
 											{% if listagem.imagem_1 %}
@@ -622,7 +622,7 @@
 									</div>
 									<!-- FINAL CARROUSSEL -->
 									<!-- DISPLAY INFO VEICULOS DA LP -->
-									<div id="display-veiculo-lp" class="text-center  col-6 ">
+									<div id="display-veiculo-lp" class="text-center  col-lg-6 col-md-6 col-12 ">
 										<!--PREÇO VEICULO -->
 										<div id="preco-veiculo" class="text-center mt-3 ">
 											<h2 class="bg-white text-dark  rounded"><span class="ml-1 p-2 ">{{listagem.valor}}</span></h2>
@@ -923,7 +923,7 @@
 									</div>
 									<!-- FINAL INFO -->
 									<!-- FORMULARIO CAPTAÇAO DE LEADS -->
-									<div id="area-formulario" class=" col-6 rounded">
+									<div id="area-formulario" class=" col-lg-6 col-md-6 col-12 rounded">
 										<h6 id="header-formulario" class="text-center">Preencha para ter acesso essa incrível oferta</h6>
 										<form method="POST" enctype="multipart/form-data">
 											{% csrf_token %}

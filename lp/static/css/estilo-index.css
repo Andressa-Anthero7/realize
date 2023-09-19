@@ -158,6 +158,18 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
+
+
 	    
 	   
 
@@ -242,6 +254,16 @@
 	   
     }
 
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
+
 
 
 }
@@ -325,6 +347,16 @@
 	   
     }
 
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
+
 }
 
 
@@ -403,6 +435,15 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 	
 
@@ -484,6 +525,16 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 }
 
 @media (min-width: 768.00px) and (max-width: 1024.97px){
@@ -598,7 +649,15 @@
 	}
 
 
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
 
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 
 
@@ -725,6 +784,11 @@
 	    font-size:1em;
 	}
 
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
+
 
 
 
@@ -834,6 +898,11 @@
 	    border:1px solid black;
 	    margin:1em;
 	    padding-top:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
 	}
 
 }
@@ -964,6 +1033,12 @@
 	    border-radius: 50%;
 	    padding: 0;
 	   
+
     }
+
+    #descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 }
