@@ -11,7 +11,7 @@ $(document).ready(function(){
 
 	  $('#logos-redes-sociais').show();
 
-	  $('#conteudo').show().css({'position':'relative','top':'7em'});
+	  $('#conteudo').show().css({'position':'relative','top':'7.5em'});
 
 	  $('.loader-container').hide();
 
@@ -22,5 +22,7 @@ $(document).ready(function(){
 	  
 	  
 	}, "2000");
+
+
 
 });

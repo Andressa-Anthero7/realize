@@ -91,7 +91,7 @@ class LandingPage(models.Model):
     vidro_eletrico = models.CharField(max_length=30, blank=True, null=True)
     vidro_verdes = models.CharField(max_length=30, blank=True, null=True)
     volante_regulagem_altura = models.CharField(max_length=30, blank=True, null=True)
-    info_complementares = models.CharField(max_length=255, blank=True, null=True)
+    info_complementares = models.TextField(max_length=255, blank=True, null=True)
     anunciado_por = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(null=False, unique=True)
     imagem_1 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
@@ -147,17 +147,18 @@ class Perfil(models.Model):
 class Tagmeta(models.Model):
     editado_por = models.CharField(max_length=50)
     data_atualizacao = models.CharField(max_length=15)
-    tag_meta = models.CharField(max_length=256)
+    tag_meta = models.TextField(max_length=256)
 
 
 class TagGoogle(models.Model):
     editado_por = models.CharField(max_length=50)
     data_atualizacao = models.CharField(max_length=15)
-    tag_google = models.CharField(max_length=256)
+    tag_google = models.TextField()
 
 
-class ItensDestaque(models.Model):
-    item_cadastrado = models.CharField(max_length=100)
+class TagGoogleBody(models.Model):
+    editado_por = models.CharField(max_length=50)
+    data_atualizacao = models.CharField(max_length=15)
+    tag_google_body = models.TextField(max_length=256)
 
-    def __str__(self):
-        return self.item_cadastrado
+

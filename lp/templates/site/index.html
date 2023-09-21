@@ -4,10 +4,19 @@
 
 <html>
 <head>
+			   <!-- Google tag (gtag.js) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-K0XJYCTDYD"></script>
+			<script>
+			  window.dataLayer = window.dataLayer || [];
+			  function gtag(){dataLayer.push(arguments);}
+			  gtag('js', new Date());
+
+			  gtag('config', 'G-K0XJYCTDYD');
+			</script>
 
 
 	<meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Lá em Casa Veículos - Ribeirão Preto/SP</title>
 
 
@@ -286,7 +295,9 @@
 							   </a>
 
 						</div>
-							<div class="p-1" data-toggle="modal" data-target=".bd-example-modal-lg-{{listagem.id}}"><p class="msg-ampliar-clicar-{{listagem.id}}">Toque para ampliar...</p></div>
+							<div class="p-3" data-toggle="modal" data-target=".bd-example-modal-lg-{{listagem.id}}">
+								<h6 class="msg-ampliar-clicar-{{listagem.id}} font-weight-bold">Toque para ampliar...</h6>
+							</div>
 
 
 							<div id="itens-opcionais-{{listagem.id}}">
@@ -536,9 +547,9 @@
 						</div>
 					  </button>
 						<!-- MODAL DO CARD -->
-						<div class="modal fade bd-example-modal-lg-{{listagem.id}} row " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+						<div class="modal fade bd-example-modal-lg-{{listagem.id}} row p-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						  <div class="modal-dialog modal-lg ">
-							<div class="modal-content p-4">
+							<div class="modal-content p-3">
 								<div class="modal-header ">
 									<h5 class="modal-title text-center col-11">{{listagem.nome_marca}} {{listagem.nome_modelo}} {{listagem.ano}}</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -547,7 +558,7 @@
 								</div>
 								<div class="modal-body row">
 									<!-- CARROUSSEL -->
-									<div id="carousel" class="carousel slide col-lg-6 col-md-6 col-12" data-ride="carousel">
+									<div id="carousel" class="carousel slide col-lg-6 col-md-12 col-12" data-ride="carousel">
 
 										  <div class="carousel-inner">
 											{% if listagem.imagem_1 %}
@@ -622,10 +633,10 @@
 									</div>
 									<!-- FINAL CARROUSSEL -->
 									<!-- DISPLAY INFO VEICULOS DA LP -->
-									<div id="display-veiculo-lp" class="text-center  col-lg-6 col-md-6 col-12 ">
+									<div id="display-veiculo-lp" class="text-center  col-12 col-lg-6 col-xl-6 ">
 										<!--PREÇO VEICULO -->
 										<div id="preco-veiculo" class="text-center mt-3 ">
-											<h2 class="bg-white text-dark  rounded"><span class="ml-1 p-2 ">{{listagem.valor}}</span></h2>
+											<h2 class="bg-white text-dark p-md-3  rounded"><span class="ml-1 p-2 ">{{listagem.valor}}</span></h2>
 										</div>
 
 										<h4  class="p-3">Informações do Veículo</h4>
@@ -923,7 +934,7 @@
 									</div>
 									<!-- FINAL INFO -->
 									<!-- FORMULARIO CAPTAÇAO DE LEADS -->
-									<div id="area-formulario" class=" col-lg-6 col-md-6 col-12 rounded">
+									<div id="area-formulario" class=" col-12 col-lg-6 col-xl-6 col-md-11 rounded">
 										<h6 id="header-formulario" class="text-center">Preencha para ter acesso essa incrível oferta</h6>
 										<form method="POST" enctype="multipart/form-data">
 											{% csrf_token %}

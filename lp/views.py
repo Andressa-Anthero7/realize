@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
-from .models import Leads, Perfil, Tagmeta, TagGoogle, LandingPage, Cores
+from .models import Leads, Perfil, Tagmeta, TagGoogle, TagGoogleBody, LandingPage, Cores
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
@@ -15,7 +15,11 @@ def index(request):
                 ano__icontains=busca) | Q(combustivel__icontains=busca) | Q(cambio__icontains=busca) | Q(
                 cor__icontains=busca) | Q(portas__icontains=busca) | Q(valor__icontains=busca)
         )
-    return render(request, 'site/index.html', {'listagem': listagem})
+    tag_google_head = TagGoogle.objects.last()
+    tag_google_body = TagGoogleBody.objects.last()
+    return render(request, 'site/index.html', {'listagem': listagem,
+                                               'tag_google_head':tag_google_head,
+                                               'tag_google_body':tag_google_body})
 
 
 def abrirleads(request, pk):

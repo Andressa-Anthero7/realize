@@ -144,8 +144,8 @@
 	#whatsapp-flutuante-{
 		position: fixed;
 		top:10em;
-		left:10em;
-
+		left:0em;
+         z-index:3;
 		 padding: 0;
 		
 	}
@@ -158,6 +158,18 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
+
+
 	    
 	   
 
@@ -206,9 +218,6 @@
 		max-height: 5em;
 	}
 
-
-
-
 	#barra-pesquisa{
 		max-width: 83%;
 		position: relative;
@@ -227,11 +236,11 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:32em;
+		top:10em;
 		left:0em;
-		z-index: 3;
+        z-index:3;
 		 padding: 0;
 		
 	}
@@ -244,6 +253,16 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 
 
@@ -310,13 +329,13 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:34em;
+		top:9em;
 		left:0em;
 		z-index: 3;
 		 padding: 0;
-		
+
 	}
 
 	#btn-whatsapp-flutuante {
@@ -327,6 +346,16 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 }
 
@@ -389,13 +418,13 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:34em;
+		top:9em;
 		left:0em;
 		z-index: 3;
 		 padding: 0;
-		
+
 	}
 
 	#btn-whatsapp-flutuante {
@@ -406,6 +435,15 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 	
 
@@ -470,9 +508,9 @@
 		top:-2.5em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:34em;
+		top:9em;
 		left:0em;
 		z-index: 3;
 		 padding: 0;
@@ -487,6 +525,16 @@
 	    padding: 0;
 	   
     }
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 }
 
 @media (min-width: 768.00px) and (max-width: 1024.97px){
@@ -555,9 +603,9 @@
 		top:-2.2em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:40em;
+		top:9em;
 		left:1em;
 		z-index: 3;
 		 padding: 0;
@@ -581,7 +629,35 @@
 	}
 
 
+	#area-formulario{
+	    position:absolute;
+	    top:18em;
+	    left:0.5em;
+	    border:1px solid black;
+	    margin:1em;
+	    padding-top:1em;
+	}
 
+	#carousel{
+	    position:relative;
+	    left:0.5em;
+	    top:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-wrap;
+	}
+
+
+    small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 
 
@@ -657,9 +733,9 @@
 		top:-2.2em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:40em;
+		top:9em;
 		left:1em;
 		z-index: 3;
 		 padding: 0;
@@ -682,6 +758,35 @@
 
 	.card-title{
 	    min-height:6em;
+	}
+
+	#area-formulario{
+	    position:absolute;
+	    top:25em;
+	    left:0.5em;
+	    border:1px solid black;
+	    margin:1em;
+	    padding-top:1em;
+	}
+
+	#carousel{
+	    position:relative;
+	    left:0.5em;
+	    top:1.5em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-wrap;
+	}
+
+	small{
+	    font-weight:900;
+	    font-size:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
 	}
 
 
@@ -758,9 +863,9 @@
 		top:-2.3em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:40em;
+		top:10em;
 		left:1em;
 		z-index: 3;
 		 padding: 0;
@@ -783,6 +888,21 @@
 
 	.card-title{
 	    min-height:6em;
+	}
+
+
+	#area-formulario{
+	    position:absolute;
+	    top:25em;
+	    left:0.5em;
+	    border:1px solid black;
+	    margin:1em;
+	    padding-top:1em;
+	}
+
+	#descricao-veiculo{
+	    white-space:pre-line;
+
 	}
 
 }
@@ -897,9 +1017,9 @@
 	    max-width:25em;
 	}
 
-	#whatsapp-flutuante-icone{
+	#whatsapp-flutuante-{
 		position: fixed;
-		top:40em;
+		top:10em;
 		left:1em;
 		z-index: 3;
 		 padding: 0;
@@ -913,6 +1033,12 @@
 	    border-radius: 50%;
 	    padding: 0;
 	   
+
     }
+
+    #descricao-veiculo{
+	    white-space:pre-line;
+
+	}
 
 }
