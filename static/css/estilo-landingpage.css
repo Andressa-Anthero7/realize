@@ -30,8 +30,6 @@
 
 
 
-
-
 @media (max-width: 320.97px) {
 	body{
 		max-width:320px;
@@ -153,6 +151,19 @@
 
 	}
 
+	#btn-compartilhar-fb{
+       position:relative;
+       left:1em;
+       font-size:4em;
+
+
+	}
+
+
+
+
+
+	
 }
 
 
@@ -248,7 +259,6 @@
 		-webkit-box-shadow: -1px -1px 5px 4px rgba(218,165,32,1);
 		-moz-box-shadow: -1px -1px 5px 4px rgba(218,165,32,1);
 		box-shadow: -1px -1px 5px 4px rgba(218,165,32,1);
-
 	}
 
 	#display-veiculo-lp{
@@ -274,6 +284,12 @@
 		z-index: 3;
 		font-size: 4em;
 		display: none;
+	}
+
+	#btn-compartilhar-fb{
+       position:relative;
+       left:4.5em;
+       top:1em;
 	}
 
 }
@@ -398,6 +414,12 @@
 		display: none;
 	}
 
+	#btn-compartilhar-fb{
+       position:relative;
+       left:4.5em;
+       top:1em;
+	}
+
 }
 
 @media (min-width: 376px) and (max-width:  428.98px) {
@@ -517,6 +539,14 @@
 		font-size: 4em;
 		display: none;
 	}
+
+	#btn-compartilhar-fb{
+       position:relative;
+       left:5em;
+       top:3em;
+	}
+
+
 
 	
 
@@ -644,6 +674,12 @@
 		display: none;
 	}
 
+	#btn-compartilhar-fb{
+       position:relative;
+       left:4.5em;
+       top:1em;
+	}
+
 }
 
 @media (min-width: 576.00px) and (max-width:  767.98px) {
@@ -768,6 +804,13 @@
 		z-index: 3;
 		font-size: 4em;
 		display: none;
+	}
+
+	#btn-compartilhar-fb{
+       position:relative;
+       left:6em;
+       top:1em;
+
 	}
 
 }
@@ -921,6 +964,12 @@
 	#btn-enviar{
 		padding: 0.3em;
 		font-size: 1.3em;
+	}
+
+	#btn-compartilhar-fb{
+       position:relative;
+       left:5em;
+       top:1em;
 	}
 
 
@@ -1079,9 +1128,6 @@
 	}
 
 
-
-
-
 	#area-formulario{
 		max-width:40%;
 		position: relative;
@@ -1092,14 +1138,6 @@
 		padding: 1em;
 		border-radius:5%;
 	}
-
-
-
-
-
-
-
-
 
 
 	#display-veiculo-lp{
@@ -1129,6 +1167,17 @@
 		z-index: 3;
 		font-size: 4em;
 		display: none;
+	}
+
+	#preco-veiculo{
+	    position:relative;
+	    left:25%
+	}
+
+   #btn-compartilhar-fb{
+       position:relative;
+       left:-15em;
+       top:5em;
 	}
 
 }
@@ -1353,6 +1402,12 @@
 		z-index: 3;
 		font-size: 4em;
 		display: none;
+	}
+
+	#btn-compartilhar-fb{
+       position:relative;
+       left:-15em;
+       top:5em;
 	}
 }
 
@@ -1598,6 +1653,12 @@
 		font-size: 1.5em;
 		position: relative;
 		top:1em;
+	}
+
+	#btn-compartilhar-fb{
+       position:relative;
+       left:-25em;
+       top:5em;
 	}
 
 
