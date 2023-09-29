@@ -9,18 +9,36 @@ from django.db.models import Q
 
 def index(request):
     listagem = LandingPage.objects.all()
+    perfil_user = Perfil.objects.last()
     busca = request.GET.get('barra_pesquisa')
     if busca:
         listagem = LandingPage.objects.filter(
-            Q(nome_modelo__icontains=busca) | Q(nome_marca__icontains=busca) | Q(
-                ano__icontains=busca) | Q(combustivel__icontains=busca) | Q(cambio__icontains=busca) | Q(
-                cor__icontains=busca) | Q(portas__icontains=busca) | Q(valor__icontains=busca)
+            Q(padrao_imovel__icontains=busca)
+            | Q(tipo_imovel__icontains=busca)
+            | Q(status_imovel__icontains=busca)
+            | Q(nome_empreendimento__icontains=busca)
+            | Q(endereco_empreendimento__icontains=busca)
+            | Q(bairro__icontains=busca)
+            | Q(qtde_quartos__icontains=busca)
+            | Q(qtde_vaga_garagem__icontains=busca)
+            | Q(qtde_suites__icontains=busca)
+            | Q(item_opcional_1__icontains=busca)
+            | Q(item_opcional_2__icontains=busca)
+            | Q(item_opcional_3__icontains=busca)
+            | Q(item_opcional_4__icontains=busca)
+            | Q(item_opcional_5__icontains=busca)
+            | Q(item_opcional_6__icontains=busca)
+            | Q(item_opcional_7__icontains=busca)
+            | Q(item_opcional_8__icontains=busca)
+            | Q(item_opcional_9__icontains=busca)
+            | Q(item_opcional_10__icontains=busca)
         )
     tag_google_head = TagGoogle.objects.last()
     tag_google_body = TagGoogleBody.objects.last()
     return render(request, 'site/index.html', {'listagem': listagem,
                                                'tag_google_head': tag_google_head,
-                                               'tag_google_body': tag_google_body})
+                                               'tag_google_body': tag_google_body,
+                                               'perfil_user': perfil_user})
 
 
 def abrirleads(request, pk):
@@ -124,12 +142,38 @@ def landingpage(request, pk, slug):
 @login_required
 def dashboard_lp(request):
     if request.method == 'POST':
+        padrao_imovel = request.POST.get('status_padrao_imovel')
+        disponibilidade = request.POST.get('status_disponibilidade')
+        tipo_imovel = request.POST.get('tipo_imovel')
+        nome_construtora = request.POST.get('nome_construtora')
+        nome_empreendimento = request.POST.get('nome_empreendimento')
+        endereco_empreendimento = request.POST.get('endereco_empreendimento')
+        area_construida = request.POST.get('area_construida')
+        qtde_quartos = request.POST.get('qtde_quartos')
+        qtde_suites = request.POST.get('qtde_suites')
+        qtde_vaga_garagem = request.POST.get('qtde_vaga_garagem')
+        item_opcionais = request.POST.getlist('item_opcionais')
         info_complementares = request.POST.get('info_complementares')
-        anunciado_por = request.user
-        LandingPage.objects.create(
+        anunciado_por = request.user.username
+        lp = LandingPage.objects.create(
+            padrao_imovel=padrao_imovel,
+            status_imovel=disponibilidade,
+            tipo_imovel=tipo_imovel,
+            nome_construtora=nome_construtora,
+            nome_empreendimento=nome_empreendimento,
+            endereco_empreendimento=endereco_empreendimento,
+            area_construida=area_construida,
+            qtde_quartos=qtde_quartos,
+            qtde_suites=qtde_suites,
+            qtde_vaga_garagem=qtde_vaga_garagem,
             info_complementares=info_complementares,
             anunciado_por=anunciado_por)
-        lp = LandingPage.objects.last()
+        # Lógica para salvar od itens na instância do objeto LandingPage
+        for i, valor in enumerate(item_opcionais, start=1):
+            campo_nome = f'item_opcional_{i}'
+            setattr(lp, campo_nome, valor)
+        lp.save()
+        print('LP = ', lp)
         return render(request, 'site/upload-img.html', {'lp': lp})
     else:
         cores = Cores.objects.all()
@@ -354,9 +398,10 @@ def cadastrar_lp(request):
 
 def upload_img(request):
     if request.method == 'POST':
-        veiculo_vinculado = request.POST.get('veiculo_vinculado')
+        empreendimento_vinculado = request.POST.get('empreendimento_vinculado')
+        print('EMPREENDIMENHTO VINCULADO', empreendimento_vinculado)
         # Obtém a instância do objeto LandingPage ou retorna 404 se não existir
-        landing_page = get_object_or_404(LandingPage, pk=veiculo_vinculado)
+        landing_page = get_object_or_404(LandingPage, pk=empreendimento_vinculado)
         print('lp é', landing_page)
 
         # Obtém as imagens enviadas através do campo 'file' no formulário

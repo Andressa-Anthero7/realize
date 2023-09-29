@@ -68,7 +68,7 @@
 
 
 
-    <!-- Formulário Carros -->
+    <!-- Formulário Imovéis -->
     <form enctype="multipart/form-data" method="POST" id="formulario" class=" rounded p-5 m-5 form  " >
 
         {% csrf_token %}
@@ -87,19 +87,19 @@
                 <small class=" m-3">Escolha umas das opções a seguir:</small>
                 <div class="m-3">
                     <label  for="status-padrao" class=" bg-warning px-3 py-1 rounded">Padrão</label>
-                    <input type="checkbox" id="status-padrao"  class="check-status-imovel"   name="status_padrao" value="Padrão">
+                    <input type="checkbox" id="status-padrao"  class="check-status-imovel"   name="status_padrao_imovel" value="Padrão">
                     
                 </div>
 
                 <div class="m-3">
                     <label  for="status-minha-casa-minha-vida" class=" bg-warning px-3 py-1 rounded">Minha Casa Minha Vida</label>
-                    <input type="checkbox" id="status-minha-casa-minha-vida" class="check-status-imovel" name="status_minha_casa_minha_vida" value="Minha Casa Minha Vida">
+                    <input type="checkbox" id="status-minha-casa-minha-vida" class="check-status-imovel" name="status_padrao_imovel" value="Minha Casa Minha Vida">
                     
                 </div>
 
                 <div class="m-3">
                     <label  for="status-premium" class=" bg-warning px-3 py-1 rounded">Premium</label>
-                    <input type="checkbox" id="status-premium"  name="status_premium" class="check-status-imovel" value="Premium">
+                    <input type="checkbox" id="status-premium"  name="status_padrao_imovel" class="check-status-imovel" value="Premium">
                     
                 </div>
                 <script>
@@ -107,6 +107,7 @@
                       const checkboxes = document.querySelectorAll('.check-status-imovel');
                       checkboxes.forEach(checkbox => {
                         checkbox.addEventListener('click', () => {
+                            alert('marcou')
                           // Desmarca todos os checkboxes
                           checkboxes.forEach(cb => {
                             cb.checked = false;
@@ -127,25 +128,25 @@
                 <small class=" m-3">Escolha umas das opções a seguir:</small>
                 <div class="m-3">
                     <label  for="status-planta" class=" bg-warning px-3 py-1 rounded">Planta</label>
-                    <input type="checkbox" id="status-planta"  class="check-status-disponibilidade"   name="status_planta" value="Planta">
+                    <input type="checkbox" id="status-planta"  class="check-status-disponibilidade"   name="status_disponibilidade" value="Na Planta">
                     
                 </div>
 
                 <div class="m-3">
                     <label  for="status-em-obras" class=" bg-warning px-3 py-1 rounded">Em obras</label>
-                    <input type="checkbox" id="status-em-obras" class="check-status-disponibilidade" name="status_em_obras" value="Em Obras">
+                    <input type="checkbox" id="status-em-obras" class="check-status-disponibilidade" name="status_disponibilidade" value="Em Obras">
                     
                 </div>
 
                 <div class="m-3">
                     <label  for="status-pronto-morar" class=" bg-warning px-3 py-1 rounded">Pronto para Morar</label>
-                    <input type="checkbox" id="status-pronto-morar"  name="status_pronto_morar" class="check-status-disponibilidade" value="Pronto para Morar">
+                    <input type="checkbox" id="status-pronto-morar"  name="status_disponibilidade" class="check-status-disponibilidade" value="Pronto para Morar">
                     
                 </div>
 
                 <div class="m-3">
                     <label  for="status-disponivel" class=" bg-warning px-3 py-1 rounded">Disponível</label>
-                    <input type="checkbox" id="status-disponivel"  name="status_disponivel" class="check-status-disponibilidade" value="Disponível ( Desocupada ou Vaga)">
+                    <input type="checkbox" id="status-disponivel"  name="status_disponibilidade" class="check-status-disponibilidade" value="Disponível (Desocupada ou Vaga)">
                     
                 </div>
 
@@ -171,8 +172,8 @@
             <div  id="escolha-tipo-field"  class="p-2  border border-dark col-3 rounded m-1">
                 <label id="escolha-tipo-imovel" class=" bg-warning p-2  rounded  etiqueta">Escolha tipo Imóvel *</label>
 
-                <select name="tipo-veiculo" id="tipo-veiculo" class="form-control  " >
-                    <option value="">Escolha Tipo</option>
+                <select name="tipo_imovel" id="tipo-veiculo" class="form-control  " >
+                    <option value="">Escolha Tipo do Imóvel</option>
                     <option value="CASA" >CASA</option>
                     <option value="APARTAMENTO">APARTAMENTO</option>
                 </select>
@@ -206,7 +207,7 @@
         <!--CAMPO DO ENDEREÇO -->
         <div id="campo-endereco-empreendimento" class="p-2 m-3">
             <label for="endereco-empreendimento" class="bg-warning p-2 rounded col-3 text-center font-weight-bold etiqueta">Endereço Empreendimento</label>
-            <textarea  id="endereco-empreendimento" name="nome_empreendimento" class="form-control col-6 "></textarea>
+            <textarea  id="endereco-empreendimento" name="endereco_empreendimento" class="form-control col-6 "></textarea>
 
         </div>
 
@@ -270,16 +271,16 @@
                 <!-- CHECK BOX OPCIONAIS VEÍCULOS----------------------------- -->
 
 
-                <!-- CKECK BOX ACENDEDOR DE CIGARROS -->
+                <!-- CKECK BOX ITENS OPCIONAIS -->
                     {% for item in itens %}
                  <div class=" p-1" id="check-item-nome-{{item.nome_item}} ">
-                     <input type="checkbox" id="item-nome-{{item.nome_item}}" class="item-nome-{{item.id}}" name="item" value="{{item.nome_item}}">
+                     <input type="checkbox" id="item-nome-{{item.nome_item}}" class="item-nome-{{item.id}} itens-opcionais " name="item" value="{{item.nome_item}}">
                      <label for="item-nome-{{item.nome_item}}" class="">{{item.nome_item}}</label>
                  </div>
                  {% endfor %}
 
 
-            </div>
+        </div>
 
 
                     <script type="text/javascript">
@@ -294,25 +295,14 @@
                        
 
                         //evento clicar no
-                         $(document).on('click', '#itens-opcionais input', function(){
+                         $(document).on('click', '.itens-opcionais', function(){
                                 checado = $(this).prop('checked');
 
-                                function slugify(text) {
-                                  return text
-                                     .normalize('NFD') // Remove acentos
-                                     .replace(/[\u0300-\u036f]/g, '') // Remove caracteres acentuados
-                                     .toLowerCase() // Converte para letras minúsculas
-                                     .trim() // Remove espaços em branco no início e no final
-                                     .replace(/\s+/g, '-'); // Substitui espaços em branco por hífens
 
-                                }
 
                                 if(checado == true ){
-                                    item = $(this).val();
-                                    var slugId = slugify(item);
-                                    var tamanho = (lista.length) + 1
-                                    alert(slugId)
-                                    lista.push('<i class="fa fa-check-circle ml-1 check-cor-verde" aria-hidden="true">'+item+'<input  name="item-'+slugId+'" value="'+item+'"></i>')
+                                    item = $(this).val()
+                                    lista.push('<i class="fa fa-check-circle ml-1 check-cor-verde" aria-hidden="true">'+item+'<input  name="item_opcionais" value="'+item+'"></i>')
                                     $('#lista').html(lista)
                                     alert(lista)
 
@@ -320,10 +310,7 @@
 
                                 if(checado == false){
                                     item = $(this).val();
-                                    alert(item)
-                                    var slugId = slugify(item);
-                                    var tamanho = (lista.length) + 1
-                                    var itemProcurado = '<i class="fa fa-check-circle ml-1 check-cor-verde" aria-hidden="true">'+item+'<input  name="item-'+slugId+'" value="'+item+'"></i>'
+                                    var itemProcurado = '<i class="fa fa-check-circle ml-1 check-cor-verde" aria-hidden="true">'+item+'<input  name="item_opcionais" value="'+item+'"></i>'
                                     alert(itemProcurado)
                                     var indice = lista.indexOf(itemProcurado);
                                    if (indice !== -1) {
@@ -374,10 +361,11 @@
                     </span>
 
 
+
                     <!-- Caixa de texto informações completamentares -->
                     <div class="px-1 mt-1" id="div-info-complementares">
-                        <label for="info-complementares" class="bg-warning p-2 border rounded  etiqueta">Informações Complementares</label>
-                        <textarea  name="info_complementares" id="info-complementares"  rows="5" wrap="hard"  class="border border-dark rounded p-2 col-12" ></textarea>
+                        <label for="info-complementar" class="bg-warning p-2 border rounded  etiqueta">Informações Complementares</label>
+                        <textarea  name="info_complementares" id="info-complementar"  rows="3" wrap="hard"  class="border border-dark rounded p-2 col-12" ></textarea>
                     </div>
 
 
@@ -385,7 +373,7 @@
                     <div id="advertencias">
                         <div class="m-1"><small>* Campos  obrigatórios</small></div>
                         <p>* As informações cadastradas são de responsabilidade do anunciante.</p>
-                        <p>* Caso não encontre Marca, Modelo e/ou Ano do modelo,entre em contato com suporte técnico.</p>
+                        <p>* Caso não encontre dificuldade ao cadastrar imovél,entre em contato com suporte o técnico.</p>
                     </div>
 
     

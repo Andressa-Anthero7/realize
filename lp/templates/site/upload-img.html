@@ -119,8 +119,8 @@
 			 	<div class="">
 			 		<div id="info-lp">
 			 			<div id="campo-nome-empreendimento" class="p-2">
-			        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Veículo Vinculado</label>
-			        		<input type="text"  id="nome-empreendimento" name="nome-empreendimento" class="form-control" value="{{lp.nome_marca}} {{lp.nome_modelo}} {{lp.ano}}">
+			        		<label for="nome-empreendimento" class="btn-warning rounded p-2 label">Empreendimento Vinculado</label>
+			        		<input type="text"  id="nome-empreendimento" name="nome_empreendimento" class="form-control" value="{{lp.nome_empreendimento}}">
 			        	</div>
 
 			 		</div>
@@ -133,7 +133,7 @@
 
 
 							<div class="dropzone dz" id="my-dropzone">
-								<input  name="veiculo_vinculado" value="{{lp.pk}}">
+								<input  name="empreendimento_vinculado" value="{{lp.pk}}">
 								<div class="fallback">
 								  <input class="img" name="file" type="file" multiple />
 								</div>
@@ -262,6 +262,8 @@
 					formData.append(name, val);
 				});
 
+
+
 				// Adicionar as imagens ao FormData
 				for (var i = 0; i < list_of_files.length; i++) {
 					formData.append('file', list_of_files[i]);
@@ -269,14 +271,14 @@
 
 				const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
 				var request = new XMLHttpRequest();
-				request.open("POST", "http://laemcasaveiculos.com.br/accounts/login/adicionar-veiculo/upload-img/", false);
+				request.open("POST", "http://127.0.0.1:8000/accounts/login/adicionar-imovel/upload-img/", false);
 				request.setRequestHeader("X-CSRFToken", csrftoken);
 				request.onload = function () {
 					if (request.status === 200) {
 						// Todas as imagens foram enviadas com sucesso
-						window.location.href = "http://laemcasaveiculos.com.br/accounts/login/estoque-veiculos/";
+						window.location.href = "http://127.0.0.1:8000/accounts/login/estoque-imoveis/";
 					} else {
-						console.error("Erro no envio das imagens");
+						alert("Erro no envio das imagens");
 					}
 				};
 				request.send(formData);

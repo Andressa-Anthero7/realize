@@ -10,7 +10,18 @@
 
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title></title>
+
+	{% if perfil_user %}
+		<title>{{perfil_user}}</title>
+	{% endif %}
+
+	<meta property="og:url" content="http://realizeseuimovel.com.br/" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="{{perfil_user.user_vinculado}}" />
+	<meta property="og:description" content="{{listagem.tipo_imovel}} {{listagem.nome_empreendimento" />
+	<meta property="og:image" content="http://realizeseuimovel.com.br//media/{{veiculo.imagem_1}}" />
+	<meta property="fb:app_id" content="335082105648145" />
+
 
 
 
@@ -78,7 +89,7 @@
 		 $(document).ready(function(){
 
 		 	function hoverentra(){
-				 var elements = document.querySelectorAll(" #itens-opcionais-{{listagem.id}} .item-opcional");
+				 var elements = document.querySelectorAll(" .itens-opcionais-{{listagem.id}} .item-opcional");
 
 				// Mostra apenas os três primeiros elementos
 				for (var i = 0; i < elements.length; i++) {
@@ -93,7 +104,7 @@
 			}
 
 			function hoversaida(){
-				 var elements = document.querySelectorAll(" #itens-opcionais-{{listagem.id}} .item-opcional");
+				 var elements = document.querySelectorAll(" .itens-opcionais-{{listagem.id}} .item-opcional");
 
 				// Mostra apenas os três primeiros elementos
 				for (var i = 0; i < elements.length; i++) {
@@ -138,7 +149,7 @@
 <body lang="pt-br" >
 	
 	<div class="loader-container">
-    	<img src="{% static 'img/logo-marca.png' %}"  alt="Logo" class="logo">
+    	<img src="{% static 'img/img-loader.png' %}"  alt="Logo" class="logo p-4">
   	</div>
 	  <!-- O conteúdo do seu site viria aqui -->
 	  <script src="{% static 'js/script-loader.js' %}"></script>
@@ -154,15 +165,20 @@
 		<header id="header" class="row">
 			<div id="logo" class="col-6">
 					<!-- Imagem da Logo -->
-					<img src="{% static 'img/logo-marca.png' %}" id="img-logo"  alt="">
+					<img src="{% static 'img/logo-marca.png' %}" class="img img-fluid" id="img-logo"  alt="">
 
 				
 			</div>
 			
 			<!-- LOGO REDES SOCIAIS -->
 			<div id="logos-redes-sociais" class="col-3">
-					<a href=""  target="_blank" class="fa fa-facebook-official mx-1 p-3 btn-redes-sociais " aria-hidden="true" style="color:#3b5998;"><a href="https://www.facebook.com/Drieli.Cosultora"></a>
-					<a href=""  target="_blank" class="fa fa-instagram mx-1 p-3 btn  btn-redes-sociais" id="insta" aria-hidden="true"></a>
+					{% if perfil_user %}
+						<a href="{{perfil_user.perfil_facebook}}"  target="_blank" class="fa fa-facebook-official mx-1 p-3 btn-redes-sociais " aria-hidden="true" style="color:#3b5998;">
+					{% endif %}
+
+					{% if perfil_user %}
+					<a href="{{perfil_user.perfil_instagram}}"  target="_blank" class="fa fa-instagram mx-1 p-3 btn  btn-redes-sociais" id="insta" aria-hidden="true"></a>
+					{% endif %}
 				
 			</div>
 
@@ -179,10 +195,10 @@
 
 
 					<!--INPUT DA BARRA DE PESQUISA -->
-					<input type="text" name="barra_pesquisa" id="barra-pesquisa" class="form-control  mr-1 " placeholder="Pesquisar por Marca, Modelo, Ano, Combustível e/ou Câmbio. " value="" >
+					<input type="text" name="barra_pesquisa" id="barra-pesquisa" class="form-control  mr-1 " placeholder="Pesquisar" value="" >
 
 
-					<a href="http://127.0.0.1:8000/" class="fa fa-times-circle-o  btn    p-0 mr-3 " id="apagar-pesquisa" aria-hidden="true" style="font-size: 1.5em;"></a>
+					<a href=" " class="fa fa-times-circle-o  btn    p-0 mr-3 " id="apagar-pesquisa" aria-hidden="true" style="font-size: 1.5em;"></a>
 					<!--BTN PESQUISAR -->
 					<button type="submit" id="btn-pesquisar" class=" btn btn-primary  ">
 						<i class="fa fa-search"></i>
@@ -194,27 +210,29 @@
 
 
 		</div>
-
+				{% if perfil_user %}
 			<!-- BTN WHATSAPP FLUTUANTE -->
 		<div id="whatsapp-flutuante-" >
-			<a href="https://wa.me/5516991512265?text=Olá,%20estou%20no%20site%20lamecasaveiculos.com.br%20e%20tenho%20interesse%20em%20dos%20veículos%20anunciados"  class="btn fa fa-whatsapp" id="btn-whatsapp-flutuante"></a>
+			<a href="https://wa.me/55{{perfil_user.whatsa_app}}?text=Olá,%20estou%20no%20site%20realizeseuimovel.com.br%20e%20tenho%20interesse%20em%20dos%20imóveis%20anunciados"  target="_blank"  class="btn fa fa-whatsapp" id="btn-whatsapp-flutuante"></a>
 
 		</div>
+		{% endif %}
 		
 
 			<!-- DISPLAY IMOVEIS -->
-			<div id="display-anuncios" class="border border-dark rounded row m-2 p-1 text-center ">
+			<div id="display-anuncios" class="border border-dark rounded   p-1 text-center ">
 				<!-- HEADER DO DISPLAY -->
 				<div class="col-12"><h3 class="text-center p-2">Confira essas super ofertas!!!</h3></div>
 				<!--DECK DO DISPLAY -->
-				<div class="card-group p-0 m-0">
+				<div class=" card-deck p-0 m-1">
 					<!-- CARD -->
 					{% for listagem in listagem %}
+					<div class="col-md-4 mb-4">
 						<!-- INICIO CARD -->
-					  <button class="card card-{{listagem.id}} col-12 col-lg-4 col-md-6 mx-1 mb-5 mt-0 p-0 rounded" >
+					  <button class="card card-{{listagem.id}}  rounded" >
 
-						<div class="card-body d-flex flex-column p-0 m-0">
-						  <h5 class="card-title p-2">{{listagem.nome_marca|upper}}<br>{{listagem.nome_modelo|upper}}</h5>
+						<div class="card-body p-0 m-0">
+						  <h5 class="card-title pb-5 pt-2 px-2">{{listagem.tipo_imovel|upper}}  {{listagem.nome_empreendimento|upper}}</h5>
 
 
 							<div id="caroussel-{{listagem.id}}" class="carousel slide" data-ride="carousel">
@@ -290,636 +308,261 @@
 							   </a>
 
 						</div>
-							<div class="p-3" data-toggle="modal" data-target=".bd-example-modal-lg-{{listagem.id}}">
+							<div id="btn-toque" class="p-0" data-toggle="modal" data-target=".bd-example-modal-lg-{{listagem.id}}">
 								<h6 class="msg-ampliar-clicar-{{listagem.id}} font-weight-bold">Toque para ampliar...</h6>
 							</div>
 
-
-							<div id="itens-opcionais-{{listagem.id}}">
-									{% if listagem.acendedor_cigarros %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.acendedor_cigarros }}</small>
+							<!-- ITENS OPCIONAIS -->
+							<div id="itens-opcionais" class="itens-opcionais-{{listagem.id}}">
+									{% if listagem.item_opcional_1  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_1 }}</small>
 									{% endif %}
 
-									{% if listagem.air_bags %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.air_bags }}</small>
+									{% if listagem.item_opcional_2  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_2 }}</small>
 									{% endif %}
 
-									{% if listagem.alarme %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.alarme }}</small>
+									{% if listagem.item_opcional_3  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_3 }}</small>
 									{% endif %}
 
-									{% if listagem.ar_condicionado %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_condicionado }}</small>
+									{% if listagem.item_opcional_4  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_4 }}</small>
 									{% endif %}
 
-									{% if listagem.ar_condicionado_digital %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_condicionado_digital }}</small>
+									{% if listagem.item_opcional_5  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_5 }}</small>
 									{% endif %}
 
-									{% if listagem.ar_condicionado_dual_zone %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_condicionado_dual_zone }}</small>
+									{% if listagem.item_opcional_6  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_6 }}</small>
 									{% endif %}
 
-									{% if listagem.ar_quente %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.ar_quente }}</small>
+									{% if listagem.item_opcional_7  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_7 }}</small>
 									{% endif %}
 
-									{% if listagem.assistente_saida_aclive %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.assistente_saida_aclive }}</small>
+									{% if listagem.item_opcional_8  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_8 }}</small>
 									{% endif %}
 
-									{% if listagem.sistema_audio %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sistema_audio }}</small>
+									{% if listagem.item_opcional_9  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_9 }}</small>
 									{% endif %}
 
-									{% if listagem.banco_apoio_braco %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.banco_apoio_braco }}</small>
-									{% endif %}
-
-									{% if listagem.banco_regulagem_eletrica %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.banco_regulagem_eletrica }}</small>
-									{% endif %}
-
-									{% if listagem.blindado %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.blindado }}</small>
-									{% endif %}
-
-									{% if listagem.bluetooth %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.bluetooth }}</small>
-									{% endif %}
-
-									{% if listagem.calotas %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.calotas }}</small>
-									{% endif %}
-
-									{% if listagem.camera_re %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.camera_re }}</small>
-									{% endif %}
-
-									{% if listagem.carregador_dispositivo_wireless %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.carregador_dispositivo_wireless }}</small>
-									{% endif %}
-
-									{% if listagem.cd_mp3 %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.cd_mp3 }}</small>
-									{% endif %}
-
-									{% if listagem.chaves_keyless %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.chaves_keyless }}</small>
-									{% endif %}
-
-									{% if listagem.chaves_sensor_presenca %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.chaves_sensor_presenca }}</small>
-									{% endif %}
-
-									{% if listagem.computador_bordo %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.computador_bordo }}</small>
-									{% endif %}
-
-									{% if listagem.controle_som_volante %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.controle_som_volante }}</small>
-									{% endif %}
-
-									{% if listagem.controle_eletronico_descida %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.controle_eletronico_descida }}</small>
-									{% endif %}
-
-									{% if listagem.desembacador_traseiro %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.desembacador_traseiro }}</small>
-									{% endif %}
-
-									{% if listagem.direcao_eletrica %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.direcao_eletrica }}</small>
-									{% endif %}
-
-									{% if listagem.direcao_hidraulica %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.direcao_hidraulica }}</small>
-									{% endif %}
-
-									{% if listagem.encosto_cabeca_traseiro %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.encosto_cabeca_traseiro }}</small>
-									{% endif %}
-
-									{% if listagem.estribo %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.estribo }}</small>
-									{% endif %}
-
-									{% if listagem.farois_automatico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.farois_automatico }}</small>
-									{% endif %}
-
-									{% if listagem.farois_milhas %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.farois_milhas }}</small>
-									{% endif %}
-
-									{% if listagem.farois_neblina %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.farois_neblina }}</small>
-									{% endif %}
-
-									{% if listagem.freio_abs %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.freio_abs }}</small>
-									{% endif %}
-
-									{% if listagem.gps %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.gps }}</small>
-									{% endif %}
-
-									{% if listagem.insulfilm %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.insulfilm }}</small>
-									{% endif %}
-
-									{% if listagem.lona_maritima %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.lona_maritima }}</small>
-									{% endif %}
-
-									{% if listagem.multimidia %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.multimidia }}</small>
-									{% endif %}
-
-									{% if listagem.painel_lcd %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.painel_lcd }}</small>
-									{% endif %}
-
-									{% if listagem.painel_digital %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.painel_digital }}</small>
-									{% endif %}
-
-									{% if listagem.parachoque_cor_veiculo %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.parachoque_cor_veiculo }}</small>
-									{% endif %}
-
-									{% if listagem.park_assist %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.park_assist }}</small>
-									{% endif %}
-
-									{% if listagem.partida_start_stop %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.partida_start_stop }}</small>
-									{% endif %}
-
-									{% if listagem.piloto_automatico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.piloto_automatico }}</small>
-									{% endif %}
-
-									{% if listagem.pintura_metalica %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.pintura_metalica }}</small>
-									{% endif %}
-
-									{% if listagem.porta_copo %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.porta_copo }}</small>
-									{% endif %}
-
-									{% if listagem.protecao_cacamba %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.protecao_cacamba }}</small>
-									{% endif %}
-
-									{% if listagem.radio %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.radio }}</small>
-									{% endif %}
-
-									{% if listagem.rebatimento_retrovisores_externos %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.rebatimento_retrovisores_externos }}</small>
-									{% endif %}
-
-									{% if listagem.retrovisor_fotocromatico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.retrovisor_fotocromatico }}</small>
-									{% endif %}
-
-									{% if listagem.retrovisor_interno_eletrocromico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.retrovisor_interno_eletrocromico }}</small>
-									{% endif %}
-
-									{% if listagem.retrovisor_eletrico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.retrovisor_eletrico }}</small>
-									{% endif %}
-
-									{% if listagem.roda_liga_leve %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.roda_liga_leve }}</small>
-									{% endif %}
-
-									{% if listagem.sensor_chuva %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sensor_chuva }}</small>
-									{% endif %}
-
-									{% if listagem.sensor_estacionamento_dianteiro %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sensor_estacionamento_dianteiro }}</small>
-									{% endif %}
-
-									{% if listagem.sensor_estacionamento_traseiro %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.sensor_estacionamento_traseiro }}</small>
-									{% endif %}
-
-									{% if listagem.teto_solar %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.teto_solar }}</small>
-									{% endif %}
-
-									{% if listagem.teto_panoramico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.teto_panoramico }}</small>
-									{% endif %}
-
-									{% if listagem.tracao %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.tracao }}</small>
-									{% endif %}
-
-									{% if listagem.trava_eletrica %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.trava_eletrica }}</small>
-									{% endif %}
-
-									{% if listagem.usb %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.usb }}</small>
-									{% endif %}
-
-									{% if listagem.vidro_eletrico %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.vidro_eletrico }}</small>
-									{% endif %}
-
-									{% if listagem.vidro_verdes %}
-										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.vidro_verdes }}</small>
+									{% if listagem.item_opcional_10  %}
+										<small class="bg bg-warning m-1 rounded p-1 text-dark d-block item-opcional">{{ listagem.item_opcional_10 }}</small>
 									{% endif %}
 
 
-								</div>
+
+
+							</div>
+							<!-- FINAL ITENS OPCIONAIS -->
 
 						</div>
 					  </button>
+					</div>
 						<!-- MODAL DO CARD -->
 						<div class="modal fade bd-example-modal-lg-{{listagem.id}} row p-3" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 						  <div class="modal-dialog modal-lg ">
 							<div class="modal-content p-3">
 								<div class="modal-header ">
-									<h5 class="modal-title text-center col-11">{{listagem.nome_marca}} {{listagem.nome_modelo}} {{listagem.ano}}</h5>
+									<h5 class="modal-title text-center col-11">
+										{{listagem.tipo_imovel}}<span class="ml-2">{{listagem.nome_empreendimento}}</span></h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 									  <span aria-hidden="true">&times;</span>
 									</button>
 								</div>
 								<div class="modal-body row">
 									<!-- CARROUSSEL -->
-									<div id="carousel" class="carousel slide col-lg-6 col-md-12 col-12" data-ride="carousel">
+									<div id="carousel-modal-{{listagem.id}}" class="carousel carousel-modal slide col-lg-6 col-md-12 col-12 m-0 " data-ride="carousel">
 
 										  <div class="carousel-inner">
 											{% if listagem.imagem_1 %}
 											<div class="carousel-item active">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_1.url}}" alt="1 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_1.url}}" alt="1 slide">
 											</div>
 											{% endif %}
 
 											{% if listagem.imagem_2 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_2.url}}" alt="2 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_2.url}}" alt="2 slide">
 											</div>
 											{% endif %}
 
 											{% if listagem.imagem_3 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_3.url}}" alt="3 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_3.url}}" alt="3 slide">
 											</div>
 											  {%endif%}
 
 											  {% if listagem.imagem_4 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_4.url}}" alt="4 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_4.url}}" alt="4 slide">
 											</div>
 											  {%endif%}
 
 											{% if listagem.imagem_5 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_5.url}}" alt="5 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_5.url}}" alt="5 slide">
 											</div>
 											  {%endif%}
 
 										  {% if listagem.imagem_6 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_6.url}}" alt="6 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_6.url}}" alt="6 slide">
 											</div>
 										  {%endif%}
 
 										  {% if listagem.imagem_7 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_7.url}}" alt="7 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_7.url}}" alt="7 slide">
 											</div>
 										  {%endif%}
 
 										   {% if listagem.imagem_8 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_8.url}}" alt="8 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_8.url}}" alt="8 slide">
 											</div>
 										  {%endif%}
 
 										   {% if listagem.imagem_9 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{listagem.imagem_9.url}}" alt="9 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_9.url}}" alt="9 slide">
 											</div>
 										  {%endif%}
 
 										   {% if listagem.imagem_10 %}
 											<div class="carousel-item">
-											  <img class="d-block w-100 img img-fluid rounded" src="{{veiculo.imagem_8.url}}" alt="10 slide">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_10.url}}" alt="10 slide">
+											</div>
+										  {%endif%}
+
+										  {% if listagem.imagem_11 %}
+											<div class="carousel-item">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_11.url}}" alt="11 slide">
+											</div>
+										  {%endif%}
+
+										  {% if listagem.imagem_12 %}
+											<div class="carousel-item">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_12.url}}" alt="11 slide">
+											</div>
+										  {%endif%}
+
+										  {% if listagem.imagem_13 %}
+											<div class="carousel-item">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_13.url}}" alt="13 slide">
+											</div>
+										  {%endif%}
+
+										  {% if listagem.imagem_14 %}
+											<div class="carousel-item">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_14.url}}" alt="14 slide">
+											</div>
+										  {%endif%}
+
+										  {% if listagem.imagem_15 %}
+											<div class="carousel-item">
+											  <img class="d-block w-100 img img-fluid rounded img-caroussel" src="{{listagem.imagem_15.url}}" alt="15 slide">
 											</div>
 										  {%endif%}
 
 										  </div>
-										  <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
+										  <a class="carousel-control-prev "  href="#carousel-modal-{{listagem.id}}" role="button" data-slide="prev">
 											<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 											<span class="sr-only">Previous</span>
 										  </a>
-										  <a class="carousel-control-next" href="#carousel" role="button" data-slide="next">
+										  <a class="carousel-control-next" href="#carousel-modal-{{listagem.id}}" role="button" data-slide="next">
 											<span class="carousel-control-next-icon" aria-hidden="true"></span>
 											<span class="sr-only">Next</span>
 										  </a>
 									</div>
 									<!-- FINAL CARROUSSEL -->
 									<!-- DISPLAY INFO VEICULOS DA LP -->
-									<div id="display-veiculo-lp" class="text-center  col-12 col-lg-6 col-xl-6 ">
-										<!--PREÇO VEICULO -->
-										<div id="preco-veiculo" class="text-center mt-3 ">
-											<h2 class="bg-white text-dark p-md-3  rounded"><span class="ml-1 p-2 ">{{listagem.valor}}</span></h2>
-										</div>
+									<div id="display-imovel-lp" class="text-center  col-12 col-lg-6 col-xl-6 ">
 
-										<h4  class="p-3">Informações do Veículo</h4>
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark">MARCA :</span>
-												<span class="ml-1">{{listagem.nome_marca|upper}}</span>
+
+										<h4  class="p-3">Informações do Imóvel</h4>
+											<div class="m-1 p-1 campo-info-imovel">
+												<span class="font-weight-bold text-dark">TIPO:</span>
+												<span class="ml-1">{{listagem.tipo_imovel|upper}}</span>
 											</div>
 
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark">ANO/MODELO :</span>
-												<span class="ml-1">{{listagem.nome_modelo|upper}}</span>
+											<div class="m-1 p-1 campo-info-imovel">
+												<div class="font-weight-bold text-dark">NOME EMPREENDIMENTO</div>
+												<div class="ml-1">{{listagem.nome_empreendimento|upper}}</div>
 											</div>
 
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark">COMBUSTÍVEL :</span>
-												<span class="ml-1">{{listagem.combustivel|upper}}</span>
-											</div>
-
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark ">COR:</span>
-												<span class="ml-1">{{listagem.cor|upper}}</span>
-											</div>
-
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark">PORTAS :</span>
-												<span class="ml-1">{{listagem.portas|upper}}</span>
-											</div>
-
-											{% if listagem.placa %}
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark">PLACA :</span>
-												<span class="ml-1">{{listagem.placa|upper}}</span>
-											</div>
-											{% endif %}
-
-											{% if listagem.ipva %}
-											<div class="m-1 p-1 campo-info-veiculos">
-												<span class="font-weight-bold text-dark">IPVA</span>
-												<span class="ml-1">{{listagem.ipva|upper}}</span>
-											</div>
-											{%endif%}
 
 
 											<div class="mt-3 p-1 ">
 
 												<h4 class="text-center">Itens Opcionais</h4>
-												{% if listagem.acendedor_cigarros %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1">{{ listagem.acendedor_cigarros }}</small>
+
+												{% if listagem.item_opcional_1  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_1 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.air_bags %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1">{{listagem.air_bags }}</small>
+												{% if listagem.item_opcional_2  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_2 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.alarme %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1">{{ listagem.alarme }}</small>
+												{% if listagem.item_opcional_3  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_3 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.ar_condicionado %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.ar_condicionado }}</small>
+												{% if listagem.item_opcional_4  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_4 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.ar_condicionado_digital %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.ar_condicionado_digital }}</small>
+												{% if listagem.item_opcional_5  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_5 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.ar_condicionado_dual_zone %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.ar_condicionado_dual_zone }}</small>
+												{% if listagem.item_opcional_6  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_6 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.ar_quente %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagemo.ar_quente }}</small>
+												{% if listagem.item_opcional_7  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_7 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.assistente_saida_aclive %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.assistente_saida_aclive }}</small>
+												{% if listagem.item_opcional_8  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_8 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.sistema_audio %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.sistema_audio }}</small>
+												{% if listagem.item_opcional_9  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_9 }}
+												</small>
 												{% endif %}
 
-												{% if listagem.banco_apoio_braco %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.banco_apoio_braco }}</small>
-												{% endif %}
-
-												{% if listagem.banco_regulagem_eletrica %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.banco_regulagem_eletrica }}</small>
-												{% endif %}
-
-												{% if listagem.blindado %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.blindado }}</small>
-												{% endif %}
-
-												{% if listagem.bluetooth %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.bluetooth }}</small>
-												{% endif %}
-
-												{% if listagem.calotas %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.calotas }}</small>
-												{% endif %}
-
-												{% if listagem.camera_re %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.camera_re }}</small>
-												{% endif %}
-
-												{% if listagem.carregador_dispositivo_wireless %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.carregador_dispositivo_wireless }}</small>
-												{% endif %}
-
-												{% if listagem.cd_mp3 %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.cd_mp3 }}</small>
-												{% endif %}
-
-												{% if listagem.chaves_keyless %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.chaves_keyless }}</small>
-												{% endif %}
-
-												{% if listagem.chaves_sensor_presenca %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.chaves_sensor_presenca }}</small>
-												{% endif %}
-
-												{% if listagem.computador_bordo %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.computador_bordo }}</small>
-												{% endif %}
-
-												{% if listagem.controle_som_volante %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.controle_som_volante }}</small>
-												{% endif %}
-
-												{% if listagemveiculo.controle_eletronico_descida %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.controle_eletronico_descida }}</small>
-												{% endif %}
-
-												{% if listagem.desembacador_traseiro %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.desembacador_traseiro }}</small>
-												{% endif %}
-
-												{% if listagem.direcao_eletrica %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.direcao_eletrica }}</small>
-												{% endif %}
-
-												{% if listagem.direcao_hidraulica %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.direcao_hidraulica }}</small>
-												{% endif %}
-
-												{% if listagem.encosto_cabeca_traseiro %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.veiculo.encosto_cabeca_traseiro }}</small>
-												{% endif %}
-
-												{% if listagem.estribo %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.estribo }}</small>
-												{% endif %}
-
-												{% if listagem.farois_automatico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.farois_automatico }}</small>
-												{% endif %}
-
-												{% if listagem.farois_milhas %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.farois_milhas }}</small>
-												{% endif %}
-
-												{% if listagem.farois_neblina %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.farois_neblina }}</small>
-												{% endif %}
-
-												{% if listagem.freio_abs %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.freio_abs }}</small>
-												{% endif %}
-
-												{% if listagem.gps %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.gps }}</small>
-												{% endif %}
-
-												{% if listagem.insulfilm %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.insulfilm }}</small>
-												{% endif %}
-
-												{% if listagem.lona_maritima %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.veiculo.lona_maritima }}</small>
-												{% endif %}
-
-												{% if listagem.multimidia %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.multimidia }}</small>
-												{% endif %}
-
-												{% if listagem.painel_lcd %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.painel_lcd }}</small>
-												{% endif %}
-
-												{% if listagem.painel_digital %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagemveiculo.painel_digital }}</small>
-												{% endif %}
-
-												{% if listagem.parachoque_cor_veiculo %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.parachoque_cor_veiculo }}</small>
-												{% endif %}
-
-												{% if listagem.park_assist %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.park_assist }}</small>
-												{% endif %}
-
-												{% if listagem.partida_start_stop %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.partida_start_stop }}</small>
-												{% endif %}
-
-												{% if listagem.piloto_automatico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.piloto_automatico }}</small>
-												{% endif %}
-
-												{% if listagem.pintura_metalica %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.pintura_metalica }}</small>
-												{% endif %}
-
-												{% if listagem.porta_copo %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.porta_copo }}</small>
-												{% endif %}
-
-												{% if listagem.protecao_cacamba %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.protecao_cacamba }}</small>
-												{% endif %}
-
-												{% if listagem.radio %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.radio }}</small>
-												{% endif %}
-
-												{% if listagem.rebatimento_retrovisores_externos %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.rebatimento_retrovisores_externos }}</small>
-												{% endif %}
-
-												{% if listagem.retrovisor_fotocromatico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.retrovisor_fotocromatico }}</small>
-												{% endif %}
-
-												{% if listagem.retrovisor_interno_eletrocromico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.retrovisor_interno_eletrocromico }}</small>
-												{% endif %}
-
-												{% if listagem.retrovisor_eletrico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.retrovisor_eletrico }}</small>
-												{% endif %}
-
-												{% if listagem.roda_liga_leve %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.roda_liga_leve }}</small>
-												{% endif %}
-
-												{% if listagem.sensor_chuva %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.sensor_chuva }}</small>
-												{% endif %}
-
-												{% if listagem.sensor_estacionamento_dianteiro %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.sensor_estacionamento_dianteiro }}</small>
-												{% endif %}
-
-												{% if listagem.sensor_estacionamento_traseiro %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1">{<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{ listagem.sensor_estacionamento_traseiro }}</small>
-												{% endif %}
-
-												{% if listagem.teto_solar %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.teto_solar }}</small>
-												{% endif %}
-
-												{% if listagem.teto_panoramico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.teto_panoramico }}</small>
-												{% endif %}
-
-												{% if listagem.tracao %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ veiculo.tracao }}</small>
-												{% endif %}
-
-												{% if listagem.trava_eletrica %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.trava_eletrica }}</small>
-												{% endif %}
-
-												{% if listagem.usb %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.usb }}</small>
-												{% endif %}
-
-												{% if listagem.vidro_eletrico %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.vidro_eletrico }}</small>
-												{% endif %}
-
-												{% if listagem.vidro_verdes %}
-												<small class="bg-white text-dark d-block rounded p-1 m-1"><i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.vidro_verdes }}</small>
+												{% if listagem.item_opcional_10  %}
+												<small class="bg-white text-dark d-block rounded p-1 m-1">
+													<i class="fa fa-check" aria-hidden="true" style="color:green;"></i>{{ listagem.item_opcional_10 }}
+												</small>
 												{% endif %}
 
 												{% if listagem.info_complementares %}
-												<div id="descricao-veiculo" class="mt-3">
+												<div id="descricao-imovel" class=" col-12">
 													<h4 class="text-center">Descrição</h4>
 													<p class="">{{listagem.info_complementares}}</p>
 												</div>
@@ -929,8 +572,8 @@
 									</div>
 									<!-- FINAL INFO -->
 									<!-- FORMULARIO CAPTAÇAO DE LEADS -->
-									<div id="area-formulario" class=" col-12 col-lg-6 col-xl-6 col-md-11 rounded">
-										<h6 id="header-formulario" class="text-center">Preencha para ter acesso essa incrível oferta</h6>
+									<div id="area-formulario" class=" p-1 rounded">
+										<h6 id="header-formulario" class="text-center p-1">Preencha para ter acesso essa incrível oferta</h6>
 										<form method="POST" enctype="multipart/form-data">
 											{% csrf_token %}
 											<div class="p-2">
@@ -973,7 +616,13 @@
 							</div>
 						  </div>
 						</div>
+						<script>
+							$('.modal').on('shown.bs.modal', function () {
+								$('#carousel-modal').carousel();
+							});
+						</script>
 					{% endfor %}
+					<!-- FINAL DO MODAL -->
 
 				</div>
 
@@ -1051,12 +700,20 @@
 
 
 		<!-- SOBRE NÓS -->
-		<div id="sobre" class="p-3 mt-3 text-center">
-			<h4 class="p-1">Sobre a Lá em Casa Veículos</h4>
-			<p>Sabemos o quanto encontrar um carro acessível pode ser uma tarefa desafiadora. É por isso que estamos aqui para simplificar esse processo e ajudar você a encontrar o veículo perfeito que se encaixa no seu orçamento e atende às suas necessidades. Nossa concessionária de carros populares está pronta para guiá-lo em todas as etapas do caminho. Vamos entender suas preferências, e apresentar os carros ideais que combinam com o seu estilo de vida.
-			Faça uma pesquisa na nossa plataforma de busca e confira o nosso estoque!
-			</p>
+		<div id="sobre" class="p-3 mt-3 text-center row p-5">
+			<h4 class="p-1 col-12">Sobre a {{perfil_user.user_vinculado}}</h4>
+			<p class="col-12 text-center mx-3 p-5 " style="white-space:normal;">Bem-vindo à Realize Seu Imóvel, a sua porta de entrada para a realização dos seus sonhos!
+Sabemos que encontrar o lugar perfeito para chamar de lar ou investir em propriedades pode ser uma jornada desafiadora, e é por isso que estamos aqui para tornar esse processo mais simples e tranquilo.
+Na Realize Seu Imóvel, acreditamos que o seu próximo imóvel deve ser uma escolha que se alinhe com o seu estilo de vida e aspirações. Nossa missão é oferecer uma plataforma abrangente de busca de imóveis, repleta de opções  que atendam a todas as suas necessidades.
+Nossa equipe de especialistas está pronta para orientá-lo em cada etapa do caminho. Quer você esteja em busca do aconchego de um lar, de um investimento promissor ou de um espaço comercial para o seu negócio, a Realize Seu Imóvel tem a variedade e a qualidade que você procura.
+Explore nossa plataforma de busca e descubra imóveis que se encaixem perfeitamente nas suas expectativas. Estamos comprometidos em tornar a busca pelo seu próximo imóvel uma experiência empolgante e eficiente.
+Venha conosco na jornada para realizar seu sonho imobiliário. Junte-se à Realize Seu Imóvel e comece a transformar seus planos em realidade.</p>
 		</div>
+
+	<!-- BTN COMPARTILHAR FACEBOOK -->
+	<div class="text-center text-white">
+		<iframe class="btn btn-lg btn-primary" src="https://www.facebook.com/plugins/share_button.php?href=http%3A%2F%2Frealizeseuimovel.com.br%2F&layout&size&appId=335082105648145&width=115&height=20" width="115" height="30" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+	</div>
 
 
 

@@ -763,7 +763,7 @@
 	}
 
 	#area-formulario{
-	    position:absolute;
+	    position:relative;
 	    top:25em;
 	    left:0.5em;
 	    border:1px solid black;

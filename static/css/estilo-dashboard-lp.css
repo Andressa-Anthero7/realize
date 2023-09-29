@@ -28,6 +28,10 @@
         #info-complementares{
             min-width: 100%;
         }
+
+        #div-input-preco-imovel{
+            display:none;
+        }
 }
 
 
@@ -112,6 +116,10 @@
             left: 10em;
             top: 5em;
        }
+
+        #div-input-preco-imovel{
+            display:none;
+        }
 
 
 

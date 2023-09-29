@@ -19,79 +19,28 @@ class Leads(models.Model):
 
 
 class LandingPage(models.Model):
-    tipo_veiculo = models.CharField(max_length=100, blank=False, null=False, default='Tipo Veículo')
-    nome_marca = models.CharField(max_length=100, blank=False, null=False)
-    nome_modelo = models.CharField(max_length=100, blank=False, null=False)
-    ano = models.CharField(max_length=4, blank=False, null=False)
-    combustivel = models.CharField(max_length=10, blank=True, null=True)
-    cambio = models.CharField(max_length=10, blank=True, null=True)
-    cor = models.CharField(max_length=20, blank=True, null=True)
-    portas = models.CharField(max_length=10, blank=True, null=True)
-    ipva = models.CharField(max_length=10, blank=True, null=True)
-    placa = models.CharField(max_length=10, blank=True, null=True)
-    valor = models.CharField(max_length=10, blank=False, null=False)
-    acendedor_cigarros = models.CharField(max_length=50, blank=True, null=True)
-    air_bags = models.CharField(max_length=10, blank=True, null=True)
-    alarme = models.CharField(max_length=10, blank=True, null=True)
-    ar_condicionado = models.CharField(max_length=20, blank=True, null=True)
-    ar_condicionado_digital = models.CharField(max_length=30, blank=True, null=True)
-    ar_condicionado_dual_zone = models.CharField(max_length=30, blank=True, null=True)
-    ar_quente = models.CharField(max_length=30, blank=True, null=True)
-    assistente_saida_aclive = models.CharField(max_length=30, blank=True, null=True)
-    sistema_audio = models.CharField(max_length=30, blank=True, null=True)
-    banco_apoio_braco = models.CharField(max_length=30, blank=True, null=True)
-    banco_regulagem_eletrica = models.CharField(max_length=30, blank=True, null=True)
-    blindado = models.CharField(max_length=30, blank=True, null=True)
-    bluetooth = models.CharField(max_length=30, blank=True, null=True)
-    calotas = models.CharField(max_length=30, blank=True, null=True)
-    camera_re = models.CharField(max_length=30, blank=True, null=True)
-    carregador_dispositivo_wireless = models.CharField(max_length=50, blank=True, null=True)
-    cd_mp3 = models.CharField(max_length=30, blank=True, null=True)
-    chaves_keyless = models.CharField(max_length=30, blank=True, null=True)
-    chaves_sensor_presenca = models.CharField(max_length=30, blank=True, null=True)
-    computador_bordo = models.CharField(max_length=30, blank=True, null=True)
-    controle_som_volante = models.CharField(max_length=30, blank=True, null=True)
-    controle_eletronico_descida = models.CharField(max_length=20, blank=True, null=True)
-    desembacador_traseiro = models.CharField(max_length=30, blank=True, null=True)
-    direcao_eletrica = models.CharField(max_length=30, blank=True, null=True)
-    direcao_hidraulica = models.CharField(max_length=30, blank=True, null=True)
-    encosto_cabeca_traseiro = models.CharField(max_length=30, blank=True, null=True)
-    estribo = models.CharField(max_length=30, blank=True, null=True)
-    farois_automatico = models.CharField(max_length=30, blank=True, null=True)
-    farois_milhas = models.CharField(max_length=30, blank=True, null=True)
-    farois_neblina = models.CharField(max_length=30, blank=True, null=True)
-    freio_abs = models.CharField(max_length=30, blank=True, null=True)
-    gps = models.CharField(max_length=30, blank=True, null=True)
-    insulfilm = models.CharField(max_length=30, blank=True, null=True)
-    lona_maritima = models.CharField(max_length=30, blank=True, null=True)
-    multimidia = models.CharField(max_length=30, blank=True, null=True)
-    painel_lcd = models.CharField(max_length=30, blank=True, null=True)
-    painel_digital = models.CharField(max_length=30, blank=True, null=True)
-    parachoque_cor_veiculo = models.CharField(max_length=30, blank=True, null=True)
-    park_assist = models.CharField(max_length=30, blank=True, null=True)
-    partida_start_stop = models.CharField(max_length=30, blank=True, null=True)
-    piloto_automatico = models.CharField(max_length=30, blank=True, null=True)
-    pintura_metalica = models.CharField(max_length=30, blank=True, null=True)
-    porta_copo = models.CharField(max_length=30, blank=True, null=True)
-    protecao_cacamba = models.CharField(max_length=30, blank=True, null=True)
-    radio = models.CharField(max_length=30, blank=True, null=True)
-    rebatimento_retrovisores_externos = models.CharField(max_length=30, blank=True, null=True)
-    retrovisor_fotocromatico = models.CharField(max_length=30, blank=True, null=True)
-    retrovisor_interno_eletrocromico = models.CharField(max_length=30, blank=True, null=True)
-    retrovisor_eletrico = models.CharField(max_length=30, blank=True, null=True)
-    roda_liga_leve = models.CharField(max_length=30, blank=True, null=True)
-    sensor_chuva = models.CharField(max_length=30, blank=True, null=True)
-    sensor_estacionamento_dianteiro = models.CharField(max_length=30, blank=True, null=True)
-    sensor_estacionamento_traseiro = models.CharField(max_length=30, blank=True, null=True)
-    teto_solar = models.CharField(max_length=30, blank=True, null=True)
-    teto_panoramico = models.CharField(max_length=30, blank=True, null=True)
-    tracao = models.CharField(max_length=30, blank=True, null=True)
-    trava_eletrica = models.CharField(max_length=30, blank=True, null=True)
-    usb = models.CharField(max_length=30, blank=True, null=True)
-    vidro_eletrico = models.CharField(max_length=30, blank=True, null=True)
-    vidro_verdes = models.CharField(max_length=30, blank=True, null=True)
-    volante_regulagem_altura = models.CharField(max_length=30, blank=True, null=True)
-    info_complementares = models.TextField(max_length=255, blank=True, null=True)
+    padrao_imovel = models.CharField(max_length=30, blank=False, null=False)
+    status_imovel = models.CharField(max_length=30, blank=False, null=False)
+    tipo_imovel = models.CharField(max_length=30, blank=False, null=False)
+    nome_construtora = models.CharField(max_length=100, blank=True, null=True)
+    nome_empreendimento = models.CharField(max_length=100, blank=False, null=False)
+    endereco_empreendimento = models.CharField(max_length=300, blank=True, null=True)
+    bairro = models.CharField(max_length=300, blank=True, null=True)
+    area_construida = models.CharField(max_length=10, blank=False, null=False)
+    qtde_quartos = models.CharField(max_length=10, blank=True, null=True)
+    qtde_suites = models.CharField(max_length=10, blank=True, null=True)
+    qtde_vaga_garagem = models.CharField(max_length=20, blank=True, null=True)
+    item_opcional_1 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_2 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_3 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_4 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_5 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_6 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_7 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_8 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_9 = models.CharField(max_length=30, blank=True, null=True)
+    item_opcional_10 = models.CharField(max_length=30, blank=True, null=True)
+    info_complementares = models.TextField(max_length=1000, blank=True, null=True)
     anunciado_por = models.CharField(max_length=100, blank=True, null=True)
     slug = models.SlugField(null=False, unique=True)
     imagem_1 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
@@ -114,9 +63,19 @@ class LandingPage(models.Model):
                                  null=True)
     imagem_10 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
                                   null=True)
+    imagem_11 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                  null=True)
+    imagem_12 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                  null=True)
+    imagem_13 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                  null=True)
+    imagem_14 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                  null=True)
+    imagem_15 = ResizedImageField(size=[1440, 480], quality=100, upload_to='media/', force_format='PNG', blank=True,
+                                  null=True)
 
     def __str__(self):
-        combined_string = f"{self.nome_marca}/{self.nome_modelo}"
+        combined_string = f"{self.tipo_imovel}/{self.nome_empreendimento}"
         return combined_string
 
     def get_absolute_url(self):
@@ -126,7 +85,7 @@ class LandingPage(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            combined_string = f"{self.nome_marca}-{self.nome_modelo}"
+            combined_string = f"{self.tipo_imovel}-{self.nome_empreendimento}"
             self.slug = slugify(combined_string)
         return super().save(*args, **kwargs)
 
@@ -169,6 +128,8 @@ class QtdeVagaGaragem(models.Model):
 class Perfil(models.Model):
     user_vinculado = models.CharField(max_length=50)
     whatsa_app = models.CharField(max_length=15)
+    perfil_facebook = models.TextField(max_length=1000, null=True, blank=True)
+    perfil_instagram = models.TextField(max_length=1000, null=True, blank=True)
     img_perfil = ResizedImageField(size=[150, 150], quality=100, upload_to='media/', force_format='PNG', blank=True,
                                    null=True)
 
