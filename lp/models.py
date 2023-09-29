@@ -138,10 +138,42 @@ class Cores(models.Model):
         return self.nome_cor
 
 
+class ItensOpcioanis(models.Model):
+    nome_item = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.nome_item
+
+
+class QtdeQuartos(models.Model):
+    qtde_quartos = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.qtde_quartos
+
+
+class Qtdesuites(models.Model):
+    qtde_suites = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.qtde_suites
+
+
+class QtdeVagaGaragem(models.Model):
+    qtde_vagas_garagem = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.qtde_vagas_garagem
+
+
 class Perfil(models.Model):
     user_vinculado = models.CharField(max_length=50)
+    whatsa_app = models.CharField(max_length=15)
     img_perfil = ResizedImageField(size=[150, 150], quality=100, upload_to='media/', force_format='PNG', blank=True,
                                    null=True)
+
+    def __str__(self):
+        return self.user_vinculado
 
 
 class Tagmeta(models.Model):
@@ -160,5 +192,3 @@ class TagGoogleBody(models.Model):
     editado_por = models.CharField(max_length=50)
     data_atualizacao = models.CharField(max_length=15)
     tag_google_body = models.TextField(max_length=256)
-
-

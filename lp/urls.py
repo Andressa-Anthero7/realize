@@ -11,11 +11,11 @@ urlpatterns = [
     path('add_img_perfil/', views.add_img_perfil, name='add_img_perfil'),
     path('editar_img_perfil/', views.editar_img_perfil, name='editar_img_perfil'),
     path('<int:pk>/<slug:slug>/', views.landingpage, name='landingpage'),
-    path('accounts/login/adicionar-veiculo/', views.dashboard_lp, name='adicionar-veiculo'),
-    path('accounts/login/editar-veiculo/<int:pk>/', views.editar_lp, name='editar-lp'),
+    path('accounts/login/adicionar-imovel/', views.dashboard_lp, name='adicionar-veiculo'),
+    path('accounts/login/editar-imovel/<int:pk>/', views.editar_lp, name='editar-lp'),
     path('accounts/login/cadastro-lp/<slug:slug>/', views.cadastro_lp, name='cadastro-lp'),
-    path('accounts/login/adicionar-veiculo/upload-img/', views.upload_img, name='upload-img'),
-    path('accounts/login/estoque-veiculos/', views.estoque_veiculos, name='estoque-veiculos'),
+    path('accounts/login/adicionar-imovel/upload-img/', views.upload_img, name='upload-img'),
+    path('accounts/login/estoque-imoveis/', views.estoque_imoveis, name='estoque-imoveis'),
     path('deletar_lp/<int:pk>/', views.deletar_lp, name='deletar-lp'),
 
 

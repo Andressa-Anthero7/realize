@@ -1,4 +1,4 @@
-/*Media Queries Mobile Tamanho P*/
+
 @media (max-width: 1024.99px) {
           *{
             margin: 0;
@@ -12,6 +12,12 @@
 
 
         }
+
+        #img-logo{
+           display:block;
+        }
+
+
 
         .etiqueta{
             position: relative;
@@ -31,15 +37,18 @@
           *{
             margin: 0;
             padding: 0;
-        }
+          }
 
-        body{
+           body{
 
-            font-family: "Trebuchet MS", Helvetica, sans-serif;
-            background: #e6e6e6;
+                font-family: "Trebuchet MS", Helvetica, sans-serif;
+                 background: #e6e6e6;
 
 
+           }
 
+        #img-logo{
+           display:block;
         }
 
         .etiqueta{

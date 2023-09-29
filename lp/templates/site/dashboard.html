@@ -7,7 +7,9 @@
 
 	<meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Lá em Casa Veículos</title>
+	{% if perfil_user %}
+		<title>{{perfil_user}}</title>
+	{% endif %}
 
 
 	<!-- Jquery CDN -->
@@ -63,7 +65,9 @@
 		<!-- Header da Pagina -->
 		<header id="header">
 			<!-- Imagem da Logo -->
-			<img src="{% static 'img/logo-marca-5.png' %}" id="img-logo">
+			{% if perfil_user %}
+			<img src="{{perfil_user.img_perfil.url}}" id="img-logo" class="m-2  rounded">
+			{% endif %}
 
 		</header>
 
@@ -111,13 +115,13 @@
 						<div id="btn-config-estoque">
 							<div id="config-perfil" class="btn btn-outline-primary m-3  " >
 								<a href="{% url 'adicionar-veiculo' %}" class="fa fa-plus  text-decoration-none mr-1" >
-									<span>Adicionar Veículo</span>
+									<span>Adicionar Imóveis</span>
 								</a>
 							</div>
 
 							<div id="estoque-veiculos" class="btn btn-outline-primary m-3  " >
-								<a href="{% url 'estoque-veiculos'  %}" class="fa fa-car  text-decoration-none mr-1">
-									<span>Estoque Veículos</span>
+								<a href="{% url 'estoque-imoveis'  %}" class="fa fa-car  text-decoration-none mr-1">
+									<span>Estoque Imóveis</span>
 								</a>
 							</div>
 						</div>

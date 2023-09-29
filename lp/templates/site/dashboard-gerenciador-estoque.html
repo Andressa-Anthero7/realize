@@ -7,7 +7,7 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Lá em Casa Veículos</title>
+    <title>{{perfil.user_vinculado}}</title>
 
 
 
@@ -93,7 +93,7 @@
         <!-- Header da Pagina -->
         <header id="header">
             <!-- Imagem da Logo -->
-            <img src="{% static 'img/logo-marca-5.png' %}" id="img-logo">
+            <img src="{% static 'img/logo-marca.png' %}" id="img-logo">
             <!-- BTN VOLTAR AO DASHBOARD -->
 			<a href="{% url 'dashboard' %}"  id="retorno-leads" class="btn btn-warning p-1">LEADS</a>
         </header>
@@ -113,7 +113,7 @@
                     <form method="GET"  id="form-pesquisa" class="form-inline p-3" >
                         <!--INPUT DA BARRA DE PESQUISA -->
                         <input type="text" name="barra-pesquisa" id="barra-pesquisa" class="barra-pesquisa-closed form-control " placeholder="Pesquisar">
-                        <a href="http://54.196.120.245:8000/accounts/login/estoque-veiculos/" id="limpar-pesquisa" class="btn btn-warning m-1"><i class="fa fa-times-circle-o" aria-hidden="true">Limpar</i></a>
+                        <a href="" id="limpar-pesquisa" class="btn btn-warning m-1"><i class="fa fa-times-circle-o" aria-hidden="true">Limpar</i></a>
 
                         <!--BTN PESQUISAR -->
                         <button type="submit" id="btn-pesquisar" class=" btn-sm btn-primary p-3 rounded ">Ok</button>
