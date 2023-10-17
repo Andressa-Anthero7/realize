@@ -678,14 +678,14 @@
 	}
 
 	header{
-		max-height: 6em;
+		max-height: 5em;
 		min-width: 1439px;
 		position: relative;
 		left: -8em;
 	}
 
 	#img-logo{
-		min-height: 6em;
+		max-height: 3em;
 		margin-left: 4em;
 	}
 
@@ -696,24 +696,18 @@
 	}
 
 	.fa-facebook-official{
-		font-size: 1.2em;
+		font-size: 1em;
 		position: relative;
-		top:0em;
-		left: -10%;
+		top:-0.5em;
+		left: 0;
 	}
 
 	.fa-instagram{
 		position: relative;
-		left: 20%;
-		top:-0.2em;
-		font-size: 1.2em;
+		left: 5%;
+		top:-0.6em;
+		font-size: 1em;
 	}
-
-
-	#img-logo{
-		max-height: 3em;
-	}
-
 
 
 
@@ -753,32 +747,60 @@
 	   
     }
 
-	.card{
-	    min-width:10em;
-	    max-width:25em;
-	}
+
+    #display-anuncios{
+        position:relative;
+        top:-2em;
+    }
+
+
+    .modal{
+        min-height:30em;
+    }
+
+
 
 	.card-title{
 	    min-height:6em;
 	}
 
 	#area-formulario{
-	    position:relative;
-	    top:25em;
-	    left:0.5em;
+	    position:absolute;
+	    top:20em;
+	    left:3em;
 	    border:1px solid black;
 	    margin:1em;
-	    padding-top:1em;
+	    box-shadow: 0px 1px 12px 2px rgba(0,0,0,0.75);
+        -webkit-box-shadow: 0px 1px 12px 2px rgba(0,0,0,0.75);
+        -moz-box-shadow: 0px 1px 12px 2px rgba(0,0,0,0.75);
+
 	}
 
-	#carousel{
+	.carousel{
 	    position:relative;
-	    left:0.5em;
-	    top:1.5em;
+	    top:-5em;
 	}
 
-	#descricao-veiculo{
+	.carousel-modal{
+	    position:relative;
+	    left:2em;
+	    top:1.5em;
+	    max-height:15em;
+	}
+
+	#btn-toque{
+	    position:relative;
+	    top:-4em;
+	}
+
+	#itens-opcionais{
+	    position:relative;
+	    top:-4em;
+	}
+
+	#descricao-imovel{
 	    white-space:pre-wrap;
+	    min-height:30em;
 	}
 
 	small{
@@ -789,6 +811,13 @@
 	#descricao-veiculo{
 	    white-space:pre-line;
 
+	}
+
+
+
+	.img-caroussel{
+	    border:1px solid black;
+	    min-height:15em;
 	}
 
 
@@ -893,8 +922,8 @@
 
 
 	#area-formulario{
-	    position:absolute;
-	    top:25em;
+	    position:relative;
+	    top:1em;
 	    left:0.5em;
 	    border:1px solid black;
 	    margin:1em;

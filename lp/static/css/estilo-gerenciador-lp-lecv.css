@@ -943,9 +943,6 @@
 
     }
 
-   
-
-
 
     #header{
         width:110%;
@@ -1029,9 +1026,7 @@
         max-height: 28em;
     }
 
-    #info-veiculo-estoque{
-        font-size: 0.8em;
-    }
+
 
     .carousel{
         max-width: 30%;
@@ -1042,20 +1037,21 @@
     #info-veiculo-estoque{
         position: relative;
         left:35%;
-        top:-28em;
+        top:-15em;
+         font-size: 0.8em;
     }
 
     .botao-copiar{
         position: relative;
         left:-10em;
-        top:-5em;
+        top:-10em;
 
     }
 
     #botao-acessar-lp{
         position: relative;
         left:-8em;
-        top:-5em;
+        top:-10em;
 
     }
 
@@ -1070,7 +1066,7 @@
     }
 
     .veiculo-estoque{
-        max-height:27em;
+        max-height:22em;
     }
 
     #form-deletar{
