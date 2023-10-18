@@ -25,7 +25,11 @@ SECRET_KEY = 'django-insecure-45)3+-23ediw3s$q(*l2)2+^$o8j@q&!utxurs=&sjj(bv(yv4
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['.realizeseuimovel.com.br','*']
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 
 # Application definition
@@ -48,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'base.middleware.HTTPSRedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'base.urls'

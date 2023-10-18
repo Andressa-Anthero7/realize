@@ -5,7 +5,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from datetime import datetime
 from django.db.models import Q
-
+from django.views.decorators.csrf import requires_csrf_token
 
 def index(request):
     listagem = LandingPage.objects.all()
@@ -45,7 +45,7 @@ def abrirleads(request, pk):
     status_aberto = 'fa-envelope-open'
     Leads.objects.filter(pk=pk).update(status_aberto=status_aberto)
 
-
+@requires_csrf_token
 @login_required
 def dashboard(request):
     leads = Leads.objects.all().order_by('-data_recebimento')
@@ -398,7 +398,7 @@ def cadastrar_lp(request):
 
 def upload_img(request):
     if request.method == 'POST':
-        empreendimento_vinculado = request.POST.get('empreendimento_vinculado')
+        empreendimento_vinculado = request.POST.get('nome_empreendimento')
         print('EMPREENDIMENHTO VINCULADO', empreendimento_vinculado)
         # Obtém a instância do objeto LandingPage ou retorna 404 se não existir
         landing_page = get_object_or_404(LandingPage, pk=empreendimento_vinculado)
